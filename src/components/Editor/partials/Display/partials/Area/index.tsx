@@ -7,11 +7,11 @@ export const Area = ({ name, id, pid, title, style, splitArea, removeWidget, pul
     e.stopPropagation()
     pullArea(id, 20)
     // splitArea(id, false, 20)
-    // removeWidget(id)
+    // removeWidget(id, true)
   }
   const remove = (e) => {
     e.stopPropagation()
-    removeWidget(id)
+    removeWidget(id, true)
   }
   const pull = (e) => {
     e.stopPropagation()

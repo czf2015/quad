@@ -47,19 +47,22 @@ export const useWidgets = (initialWidgets = []) => {
     });
   };
   // 删除
-  const removeWidget = (id) => {
+  const removeWidget = (id, isArea = false) => {
     setWidgets((widgets) => {
+      if (!isArea) {
+        return widgets.filter(item => item.id != id)
+      }
       const result = [];
       const selected_area = widgets.find((item) => item.id == id);
       const neighbour_area = widgets.find(
         (item) => item.pid == selected_area.pid && item.id !== selected_area.id
       );
       widgets.forEach((item) => {
-        if (item.pid == id || item.id == id || item.id == neighbour_area.id) {
+        if (item.pid == id || item.id == id || item.id == neighbour_area?.id) {
           return;
         }
-        if (item.pid == neighbour_area.id) {
-          result.push({ ...item, pid: neighbour_area.pid });
+        if (item.pid == neighbour_area?.id) {
+          result.push({ ...item, pid: neighbour_area?.pid });
         } else {
           result.push(item);
         }
