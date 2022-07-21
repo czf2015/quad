@@ -4,7 +4,6 @@ import styles from './index.module.less'
 
 export const Area = ({ name, id, pid, title, style, splitArea, removeWidget, pullArea, children }: IAreaProps) => {
   const split = (e) => {
-    console.log('11111111111111')
     e.stopPropagation()
     pullArea(id, 20)
     // splitArea(id, false, 20)
