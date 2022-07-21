@@ -1,12 +1,11 @@
 // @ts-nocheck
-import { useState } from 'react'
+import { useState } from "react";
 
 export const useWidgets = (initialWidgets = []) => {
-  const [widgets, setWidgets] = useState(initialWidgets)
-  debugger
+  const [widgets, setWidgets] = useState(initialWidgets);
   // 分割
   const splitArea = (id, isHorizontal = false, offset) => {
-    setWidgets(widgets => {
+    setWidgets((widgets) => {
       const result = [];
       widgets.forEach((item) => {
         if (item.pid == id) {
@@ -45,11 +44,11 @@ export const useWidgets = (initialWidgets = []) => {
         });
       });
       return result;
-    })
-  }
+    });
+  };
   // 删除
-  const removeArea = (id) => {
-    setWidgets(widgets => {
+  const removeWidget = (id) => {
+    setWidgets((widgets) => {
       const result = [];
       const selected_area = widgets.find((item) => item.id == id);
       const neighbour_area = widgets.find(
@@ -66,41 +65,80 @@ export const useWidgets = (initialWidgets = []) => {
         }
       });
       return result;
-    })
-  }
+    });
+  };
   // 拉伸
   const pullArea = (id, offset) => {
-    setWidgets(widgets => {
+    setWidgets((widgets) => {
       const selected_area = widgets.find((item) => item.id == id);
       const neighbour_area = widgets.find(
         (item) => item.pid == selected_area.pid && item.id != id
       );
+
+      const margin = {
+        w:
+          (selected_area.style.marginLeft || 0) +
+          (selected_area.style.marginRight || 0) +
+          (neighbour_area.style.marginLeft || 0) +
+          (neighbour_area.style.marginRight || 0),
+        h:
+          (selected_area.style.marginTop || 0) +
+          (selected_area.style.marginBottom || 0) +
+          (neighbour_area.style.marginTop || 0) +
+          (neighbour_area.style.marginBottom || 0),
+      };
+
       switch (selected_area.quad) {
         case "top":
-          selected_area.style.height += offset;
-          neighbour_area.style.height = `calc(100% - ${selected_area.style.height}px)`;
+          selected_area.style = {
+            ...selected_area.style,
+            height: selected_area.style.height + offset,
+          };
+          neighbour_area.style = {
+            ...neighbour_area.style,
+            height: `calc(100% - ${selected_area.style.height}px - ${margin.h}px)`,
+          };
           break;
         case "bottom":
-          neighbour_area.style.height -= offset;
-          selected_area.style.height = `calc(100% - ${neighbour_area.style.height}px)`;
+          neighbour_area.style.height = {
+            ...neighbour_area.style,
+            height: neighbour_area.style.height - offset,
+          };
+          selected_area.style = {
+            ...selected_area.style,
+            height: `calc(100% - ${neighbour_area.style.height}px - ${margin.h}px)`,
+          };
           break;
         case "left":
-          selected_area.style.width += offset;
-          neighbour_area.style.width = `calc(100% - ${selected_area.style.width}px)`;
+          selected_area.style = {
+            ...selected_area.style,
+            width: selected_area.style.width + offset,
+          };
+          neighbour_area.style = {
+            ...neighbour_area.style,
+            width: `calc(100% - ${selected_area.style.width}px - ${margin.w}px)`,
+          };
           break;
         case "right":
-          neighbour_area.style.width -= offset;
-          selected_area.style.width = `calc(100% - ${neighbour_area.style.width}px)`;
+          neighbour_area.style = {
+            ...neighbour_area.style,
+            width: neighbour_area.style.width - offset,
+          };
+          selected_area.style = {
+            ...selected_area.style,
+            width: `calc(100% - ${neighbour_area.style.width}px - ${margin.w}px)`,
+          };
           break;
       }
-      return { ...widgets }
-    })
-  }
+
+      return [...widgets];
+    });
+  };
 
   return {
     widgets,
+    removeWidget,
     splitArea,
-    removeArea,
     pullArea,
-  }
-}
+  };
+};

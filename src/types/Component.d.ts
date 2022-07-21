@@ -70,7 +70,7 @@ interface IActions {
 }
 
 interface IAnimates {
-  [propName: string]: boolean
+  [propName: string]: boolean;
 }
 
 // 组件规范数据结构设计
@@ -107,13 +107,18 @@ interface IComponent {
 //   return [getter, setter];
 // };
 
-
-interface IArea {​
-  name: 'Area';
-  id: number | string;​
-  pid: number | string;​
+interface IWrapperProps {
+  name: "Wrapper";
+  id: number | string;
+  pid: number | string;
   title: string;
-  style: IElementStyle;​
-  quad: 'top' | 'bottom' | 'left' | 'right'; // 分割区块，对应的可拉伸的边分别为下边、下边、右边及左边
-  // children
+  style?: IElementStyle;
+  removeWidget: Function;
+}
+
+interface IAreaProps extends IWrapperProps {
+  name: "Area";
+  quad: "top" | "bottom" | "left" | "right"; // 分割区块，对应的可拉伸的边分别为下边、下边、右边及左边
+  splitArea: Function;
+  pullArea: Function;
 }
