@@ -3,7 +3,7 @@
   display: flex;
   flex-wrap: wrap;
 
-  >.scissor {
+  >.scissor_btn {
     position: absolute;
     top: 4px;
     right: 32px;
@@ -12,7 +12,7 @@
     color: rgb(0, 106, 255);
   }
 
-  >.delete {
+  >.delete_btn {
     position: absolute;
     top: 4px;
     right: 4px;
@@ -21,7 +21,7 @@
     color: rgb(0, 106, 255);
   }
 
-  >.pull {
+  >.boundary {
     position: absolute;
     outline: 1px dashed rgb(0, 106, 255);
 
@@ -62,15 +62,11 @@
   }
 
 
-
-
-
-
   &:not(:hover):not(.contextmenu) {
 
-    >.delete,
-    >.scissor,
-    >.clip {
+    >.delete_btn,
+    >.scissor_btn,
+    >.clip_scissor {
       display: none;
     }
   }

@@ -42,7 +42,7 @@ export const Clip = ({ isHorizontal, menuItems, offset, onClick, onMenuClick, on
   return null
 }
 
-const getPullQuadStyle = (quad) => {
+const getBoundaryStyle = (quad) => {
   switch (quad) {
     case 'top':
       return {
@@ -75,11 +75,11 @@ const getPullQuadStyle = (quad) => {
   }
 }
 
-const PullQuad = ({ pull, quad }) => {
+const Boundary = ({ pull, quad }) => {
   const attrs = useDragMove(pull)
 
   return (
-    <div className={`${styles.pull} ${styles[quad]}`} style={getPullQuadStyle(quad)} {...attrs} />
+    <div className={`${styles.boundary} ${styles[quad]}`} style={getBoundaryStyle(quad)} {...attrs} />
   )
 }
 
@@ -119,10 +119,10 @@ export const Subarea = ({ name, id, pid, title, quad, isHorizontal, setIsHorizon
 
   return (
     <div id={id} className={`${styles.subarea} ${haltClip ? styles.contextmenu : ''}`} style={style} onMouseMove={onMouseMove} ref={ref}>
-      <DeleteOutlined className={styles.delete} onClick={remove} />
-      <PullQuad pull={pull} quad={quad} />
+      <DeleteOutlined className={styles.delete_btn} onClick={remove} />
+      <Boundary pull={pull} quad={quad} />
       {hiddenClip
-        ? <ScissorOutlined className={styles.scissor} onClick={() => setHiddenClip(false)} />
+        ? <ScissorOutlined className={styles.scissor_btn} onClick={() => setHiddenClip(false)} />
         : <Clip isHorizontal={isHorizontal} offset={offset} menuItems={menuItems} onClick={split} onVisibleChange={setHaltClipClip} onMenuClick={onMenuClick} />}
       {children}
     </div>
