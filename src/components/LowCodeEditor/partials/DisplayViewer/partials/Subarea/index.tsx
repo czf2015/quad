@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import { Button, Dropdown, Menu } from 'antd'
 import { DeleteOutlined, ScissorOutlined } from '@ant-design/icons'
-import { useClip } from '@/hooks'
+import { useClip, useDragMove } from '@/hooks'
 import styles from './index.module.less'
 
 const menuItems = [
@@ -42,6 +42,47 @@ export const Clip = ({ isHorizontal, menuItems, offset, onClick, onMenuClick, on
   return null
 }
 
+const getPullQuadStyle = (quad) => {
+  switch (quad) {
+    case 'top':
+      return {
+        bottom: 0,
+        width: '100%',
+        height: 4,
+      }
+    // case 'bottom':
+    //   return {
+    //     top: 0,
+    //     width: '100%',
+    //     height: 4,
+    //   }
+    case 'left':
+      return {
+        right: 0,
+        width: 4,
+        height: '100%'
+      }
+    // case 'right':
+    //   return {
+    //     left: 0,
+    //     width: 4,
+    //     height: '100%'
+    //   }
+    default:
+      return {
+        display: 'none'
+      }
+  }
+}
+
+const PullQuad = ({ pull, quad }) => {
+  const attrs = useDragMove(pull)
+
+  return (
+    <div className={`${styles.pull} ${styles[quad]}`} style={getPullQuadStyle(quad)} {...attrs} />
+  )
+}
+
 
 export const Subarea = ({ name, id, pid, title, quad, isHorizontal, setIsHorizontal, hiddenClip, setHiddenClip, style, splitSubarea, removeEntity, pullSubarea, children }: ISubareaProps) => {
   const [halt, setHalt] = useState(false)
@@ -72,14 +113,14 @@ export const Subarea = ({ name, id, pid, title, quad, isHorizontal, setIsHorizon
     e.stopPropagation()
     removeEntity(id, true)
   }
-  const pull = (e) => {
-    e.stopPropagation()
-    pullSubarea(id, 20)
+  const pull = (dragMove) => {
+    pullSubarea(id, dragMove)
   }
 
   return (
-    <div className={`${styles.subarea} ${halt ? styles.contextmenu : ''}`} style={style} onMouseMove={onMouseMove} ref={ref}>
+    <div id={id} className={`${styles.subarea} ${halt ? styles.contextmenu : ''}`} style={style} onMouseMove={onMouseMove} ref={ref}>
       <DeleteOutlined className={styles.delete} onClick={remove} />
+      <PullQuad pull={pull} quad={quad} />
       {hiddenClip
         ? <ScissorOutlined className={styles.scissor} onClick={() => setHiddenClip(false)} />
         : <Clip isHorizontal={isHorizontal} offset={offset} menuItems={menuItems} onClick={split} onVisibleChange={setHalt} onMenuClick={onMenuClick} />}

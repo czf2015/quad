@@ -71,7 +71,7 @@ export const useEntities = (initialEntities = []) => {
     });
   };
   // 拉伸
-  const pullSubarea = (id, offset) => {
+  const pullSubarea = (id, dragMove) => {
     setEntities((entities) => {
       const selected_area = entities.find((item) => item.id == id);
       const neighbour_area = entities.find(
@@ -95,7 +95,7 @@ export const useEntities = (initialEntities = []) => {
         case "top":
           selected_area.style = {
             ...selected_area.style,
-            height: selected_area.style.height + offset,
+            height: selected_area.style.height + dragMove.y,
           };
           neighbour_area.style = {
             ...neighbour_area.style,
@@ -105,7 +105,7 @@ export const useEntities = (initialEntities = []) => {
         case "bottom":
           neighbour_area.style.height = {
             ...neighbour_area.style,
-            height: neighbour_area.style.height - offset,
+            height: neighbour_area.style.height - dragMove.y,
           };
           selected_area.style = {
             ...selected_area.style,
@@ -115,7 +115,7 @@ export const useEntities = (initialEntities = []) => {
         case "left":
           selected_area.style = {
             ...selected_area.style,
-            width: selected_area.style.width + offset,
+            width: selected_area.style.width + dragMove.x,
           };
           neighbour_area.style = {
             ...neighbour_area.style,
@@ -125,13 +125,15 @@ export const useEntities = (initialEntities = []) => {
         case "right":
           neighbour_area.style = {
             ...neighbour_area.style,
-            width: neighbour_area.style.width - offset,
+            width: neighbour_area.style.width - dragMove.x,
           };
           selected_area.style = {
             ...selected_area.style,
             width: `calc(100% - ${neighbour_area.style.width}px - ${margin.w}px)`,
           };
           break;
+          default:
+            break;
       }
 
       return [...entities];
