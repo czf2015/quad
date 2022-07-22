@@ -1,3 +1,3 @@
 export * from './useEntities'
-export * from './useMouseOffset'
 export * from './useClip'
+export * from './useRectRef'
