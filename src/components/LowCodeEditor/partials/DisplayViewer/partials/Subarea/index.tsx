@@ -79,10 +79,10 @@ export const Subarea = ({ name, id, pid, title, quad, isHorizontal, setIsHorizon
 
   return (
     <div className={`${styles.subarea} ${halt ? styles.contextmenu : ''}`} style={style} onMouseMove={onMouseMove} ref={ref}>
+      <DeleteOutlined className={styles.delete} onClick={remove} />
       {hiddenClip
         ? <ScissorOutlined className={styles.scissor} onClick={() => setHiddenClip(false)} />
         : <Clip isHorizontal={isHorizontal} offset={offset} menuItems={menuItems} onClick={split} onVisibleChange={setHalt} onMenuClick={onMenuClick} />}
-      <DeleteOutlined className={styles.delete} onClick={remove} />
       {children}
     </div>
   )
