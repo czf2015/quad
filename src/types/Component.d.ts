@@ -119,6 +119,6 @@ interface IWrapperProps {
 interface IAreaProps extends IWrapperProps {
   name: "Area";
   quad: "top" | "bottom" | "left" | "right"; // 分割区块，对应的可拉伸的边分别为下边、下边、右边及左边
-  splitArea: Function;
-  pullArea: Function;
+  splitSubarea: Function;
+  pullSubarea: Function;
 }

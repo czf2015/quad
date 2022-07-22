@@ -1,4 +1,4 @@
-export const nodeList = [
+export default [
   {
     name: 'Subarea',
     id: 0b1,

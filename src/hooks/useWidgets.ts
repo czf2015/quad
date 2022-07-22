@@ -4,7 +4,7 @@ import { useState } from "react";
 export const useWidgets = (initialWidgets = []) => {
   const [widgets, setWidgets] = useState(initialWidgets);
   // 分割
-  const splitArea = (id, isHorizontal = false, offset) => {
+  const splitSubarea = (id, isHorizontal = false, offset) => {
     setWidgets((widgets) => {
       const result = [];
       widgets.forEach((item) => {
@@ -71,7 +71,7 @@ export const useWidgets = (initialWidgets = []) => {
     });
   };
   // 拉伸
-  const pullArea = (id, offset) => {
+  const pullSubarea = (id, offset) => {
     setWidgets((widgets) => {
       const selected_area = widgets.find((item) => item.id == id);
       const neighbour_area = widgets.find(
@@ -141,7 +141,7 @@ export const useWidgets = (initialWidgets = []) => {
   return {
     widgets,
     removeWidget,
-    splitArea,
-    pullArea,
+    splitSubarea,
+    pullSubarea,
   };
 };

@@ -1,3 +1,3 @@
 export * from './WidgetsPanel'
 export * from './ConfigPanel'
-export * from './Display'
+export * from './DisplayViewer'
