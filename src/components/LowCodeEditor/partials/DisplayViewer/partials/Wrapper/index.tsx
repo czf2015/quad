@@ -1,5 +1,6 @@
 // @ts-nocheck
 import React from "react";
+import { DeleteOutlined } from '@ant-design/icons'
 import styles from "./index.module.less";
 
 export const Wrapper = ({
@@ -16,7 +17,8 @@ export const Wrapper = ({
     removeWidget(id);
   };
   return (
-    <div className={styles.wrapper} onClick={remove}>
+    <div className={styles.wrapper}>
+      <DeleteOutlined className={styles.delete} onClick={remove} />
       {children}
     </div>
   );

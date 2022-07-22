@@ -17,7 +17,7 @@ export const useWidgets = (initialWidgets = []) => {
       // 子区域
       [0, 1].forEach((idx) => {
         result.push({
-          name: "Area",
+          name: "Subarea",
           id: id * 2 + idx,
           pid: id,
           title: `区域${id * 2 + idx}`,
