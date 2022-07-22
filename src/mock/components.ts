@@ -1,6 +1,6 @@
-export const areas = [
+export const nodeList = [
   {
-    name: 'Area',
+    name: 'Subarea',
     id: 0b1,
     pid: 0b0,
     title: '页面',
@@ -11,7 +11,7 @@ export const areas = [
     }
   },
   {
-    name: 'Area',
+    name: 'Subarea',
     id: 0b10,
     pid: 0b1,
     title: '页面-顶部栏',
@@ -23,7 +23,7 @@ export const areas = [
     }
   },
   {
-    name: 'Area',
+    name: 'Subarea',
     id: 0b11,
     pid: 0b1,
     title: '页面-编辑区',
@@ -36,7 +36,7 @@ export const areas = [
     }
   },
   {
-    name: 'Area',
+    name: 'Subarea',
     id: 0b110,
     pid: 0b11,
     title: '页面-编辑区-左侧组件面板',
@@ -49,7 +49,7 @@ export const areas = [
     }
   },
   {
-    name: 'Area',
+    name: 'Subarea',
     id: 0b111,
     pid: 0b11,
     title: '页面-编辑区-右侧',
@@ -61,7 +61,7 @@ export const areas = [
     }
   },
   {
-    name: 'Area',
+    name: 'Subarea',
     id: 0b1110,
     pid: 0b111,
     title: '页面-编辑区-右侧-中间显示区',
@@ -74,7 +74,7 @@ export const areas = [
     }
   },
   {
-    name: 'Area',
+    name: 'Subarea',
     id: 0b1111,
     pid: 0b111,
     title: '页面-编辑区-右侧 -右侧配置面板',

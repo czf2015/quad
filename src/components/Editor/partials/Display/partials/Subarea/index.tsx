@@ -2,12 +2,12 @@
 import React from 'react'
 import styles from './index.module.less'
 
-export const Area = ({ name, id, pid, title, style, splitArea, removeWidget, pullArea, children }: IAreaProps) => {
+export const Subarea = ({ name, id, pid, title, style, splitArea, removeWidget, pullArea, children }: IAreaProps) => {
   const split = (e) => {
     e.stopPropagation()
-    pullArea(id, 20)
+    // pullArea(id, 20)
     // splitArea(id, false, 20)
-    // removeWidget(id, true)
+    removeWidget(id, true)
   }
   const remove = (e) => {
     e.stopPropagation()
@@ -18,7 +18,7 @@ export const Area = ({ name, id, pid, title, style, splitArea, removeWidget, pul
     pullArea(id, 20)
   }
   return (
-    <div className={styles.area} style={style} onClick={split}>
+    <div className={styles.subarea} style={style} onClick={split}>
       {children}
     </div>
   )

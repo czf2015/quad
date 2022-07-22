@@ -2,17 +2,17 @@
 import React from 'react'
 import * as Widgets from './partials'
 import { useWidgets } from '@/hooks'
-import { areas/* , components */ } from '@/mock/components'
+import { nodeList } from '@/mock/components'
 
 
 export const Display = (props) => {
-  const { widgets, removeWidget, splitArea, pullArea } = useWidgets(areas)
+  const { widgets, removeWidget, splitArea, pullArea } = useWidgets(nodeList)
   const render = (treeList, pid) => {
     return (
       <>
         {treeList.filter(item => item.pid == pid).map((item) => {
           const Component = Widgets[item.name]
-          return item.name == 'Area' ? (
+          return item.name == 'Subarea' ? (
             <Component {...item} removeWidget={removeWidget} splitArea={splitArea} pullArea={pullArea} key={item.id}>
               {render(treeList, item.id)}
             </Component>
