@@ -1,8 +1,8 @@
 import React from 'react'
-import Editor from '@/components/Editor'
+import LowCodeEditor from '@/components/LowCodeEditor'
 
 export default () => {
   return (
-    <Editor />
+    <LowCodeEditor />
   )
 }

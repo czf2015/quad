@@ -116,8 +116,8 @@ interface IWrapperProps {
   removeWidget: Function;
 }
 
-interface IAreaProps extends IWrapperProps {
-  name: "Area";
+interface ISubareaProps extends IWrapperProps {
+  name: "Subarea";
   quad: "top" | "bottom" | "left" | "right"; // 分割区块，对应的可拉伸的边分别为下边、下边、右边及左边
   splitSubarea: Function;
   pullSubarea: Function;
