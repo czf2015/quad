@@ -1,12 +1,12 @@
 // @ts-nocheck
 import React, { useState } from 'react'
-import * as Widgets from './partials'
-import { useWidgets } from '@/hooks'
+import * as Entities from './partials'
+import { useEntities } from '@/hooks'
 import mock from '@/mock/treeList'
 
 
 export const DisplayViewer = ({ treeList = mock, pid = 0, initials = { isHorizontal: false, hiddenClip: false } }) => {
-  const { widgets, removeWidget, splitSubarea, pullSubarea } = useWidgets(treeList)
+  const { entities, removeEntity, splitSubarea, pullSubarea } = useEntities(treeList)
   const [isHorizontal, setIsHorizontal] = useState(initials.isHorizontal)
   const [hiddenClip, setHiddenClip] = useState(initials.hiddenClip)
 
@@ -14,20 +14,20 @@ export const DisplayViewer = ({ treeList = mock, pid = 0, initials = { isHorizon
     return (
       <>
         {treeList.filter(item => item.pid == pid).map((item) => {
-          const Component = Widgets[item.name]
+          const Component = Entities[item.name]
           return item.name == 'Subarea' ? (
-            <Component {...item} removeWidget={removeWidget} isHorizontal={isHorizontal} setIsHorizontal={setIsHorizontal} hiddenClip={hiddenClip} setHiddenClip={setHiddenClip} splitSubarea={splitSubarea} pullSubarea={pullSubarea} key={item.id}>
+            <Component {...item} removeEntity={removeEntity} isHorizontal={isHorizontal} setIsHorizontal={setIsHorizontal} hiddenClip={hiddenClip} setHiddenClip={setHiddenClip} splitSubarea={splitSubarea} pullSubarea={pullSubarea} key={item.id}>
               {render(treeList, item.id)}
             </Component>
           ) : (
-            <Widgets.Wrapper {...item} removeWidget={removeWidget} key={item.id}>
+            <Entities.Wrapper {...item} removeEntity={removeEntity} key={item.id}>
               <Component {...item} />
-            </Widgets.Wrapper>
+            </Entities.Wrapper>
           )
         })}
       </>
     )
   }
 
-  return render(widgets, pid)
+  return render(entities, pid)
 }

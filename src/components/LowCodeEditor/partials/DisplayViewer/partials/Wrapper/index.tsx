@@ -9,12 +9,12 @@ export const Wrapper = ({
   pid,
   title,
   style,
-  removeWidget,
+  removeEntity,
   children,
 }: IWrapperProps) => {
   const remove = (e) => {
     e.stopPropagation();
-    removeWidget(id);
+    removeEntity(id);
   };
   return (
     <div className={styles.wrapper}>

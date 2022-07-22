@@ -113,7 +113,7 @@ interface IWrapperProps {
   pid: number | string;
   title: string;
   style?: IElementStyle;
-  removeWidget: Function;
+  removeEntity: Function;
 }
 
 interface ISubareaProps extends IWrapperProps {

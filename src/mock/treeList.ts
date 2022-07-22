@@ -89,14 +89,14 @@ export default [
   // 
   {
     name: 'WidgetsPanel',
-    id: 'component1',
+    id: 'WidgetsPanel',
     pid: 0b110,
-    title: "组件栏" ,                                                                                                        
+    title: "组件栏",
   },
   {
     name: 'ConfigPanel',
-    id: 'component2',
+    id: 'ConfigPanel',
     pid: 0b1111,
-    title: "配置栏" ,                                                                                                        
+    title: "配置栏",
   },
 ]

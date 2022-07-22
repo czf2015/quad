@@ -43,7 +43,7 @@ export const Clip = ({ isHorizontal, menuItems, offset, onClick, onMenuClick, on
 }
 
 
-export const Subarea = ({ name, id, pid, title, quad, isHorizontal, setIsHorizontal, hiddenClip, setHiddenClip, style, splitSubarea, removeWidget, pullSubarea, children }: ISubareaProps) => {
+export const Subarea = ({ name, id, pid, title, quad, isHorizontal, setIsHorizontal, hiddenClip, setHiddenClip, style, splitSubarea, removeEntity, pullSubarea, children }: ISubareaProps) => {
   const [halt, setHalt] = useState(false)
   const onMenuClick: MenuProps['onClick'] = e => {
     setHalt(false)
@@ -70,7 +70,7 @@ export const Subarea = ({ name, id, pid, title, quad, isHorizontal, setIsHorizon
   }
   const remove = (e) => {
     e.stopPropagation()
-    removeWidget(id, true)
+    removeEntity(id, true)
   }
   const pull = (e) => {
     e.stopPropagation()

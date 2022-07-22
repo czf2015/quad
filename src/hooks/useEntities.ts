@@ -1,13 +1,13 @@
 // @ts-nocheck
 import { useState } from "react";
 
-export const useWidgets = (initialWidgets = []) => {
-  const [widgets, setWidgets] = useState(initialWidgets);
+export const useEntities = (initialEntities = []) => {
+  const [entities, setEntities] = useState(initialEntities);
   // 分割
   const splitSubarea = (id, isHorizontal = false, offset) => {
-    setWidgets((widgets) => {
+    setEntities((entities) => {
       const result = [];
-      widgets.forEach((item) => {
+      entities.forEach((item) => {
         if (item.pid == id) {
           result.push({ ...item, pid: id * 2 });
         } else {
@@ -47,17 +47,17 @@ export const useWidgets = (initialWidgets = []) => {
     });
   };
   // 删除
-  const removeWidget = (id, isArea = false) => {
-    setWidgets((widgets) => {
+  const removeEntity = (id, isArea = false) => {
+    setEntities((entities) => {
       if (!isArea) {
-        return widgets.filter(item => item.id != id)
+        return entities.filter(item => item.id != id)
       }
       const result = [];
-      const selected_area = widgets.find((item) => item.id == id);
-      const neighbour_area = widgets.find(
+      const selected_area = entities.find((item) => item.id == id);
+      const neighbour_area = entities.find(
         (item) => item.pid == selected_area.pid && item.id !== selected_area.id
       );
-      widgets.forEach((item) => {
+      entities.forEach((item) => {
         if (item.pid == id || item.id == id || item.id == neighbour_area?.id) {
           return;
         }
@@ -72,9 +72,9 @@ export const useWidgets = (initialWidgets = []) => {
   };
   // 拉伸
   const pullSubarea = (id, offset) => {
-    setWidgets((widgets) => {
-      const selected_area = widgets.find((item) => item.id == id);
-      const neighbour_area = widgets.find(
+    setEntities((entities) => {
+      const selected_area = entities.find((item) => item.id == id);
+      const neighbour_area = entities.find(
         (item) => item.pid == selected_area.pid && item.id != id
       );
 
@@ -134,13 +134,13 @@ export const useWidgets = (initialWidgets = []) => {
           break;
       }
 
-      return [...widgets];
+      return [...entities];
     });
   };
 
   return {
-    widgets,
-    removeWidget,
+    entities,
+    removeEntity,
     splitSubarea,
     pullSubarea,
   };
