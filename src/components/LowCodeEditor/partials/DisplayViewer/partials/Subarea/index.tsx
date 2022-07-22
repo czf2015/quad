@@ -31,9 +31,9 @@ export const Clip = ({ isHorizontal, menuItems, offset, onClick, onMenuClick, on
 
     return (
       <>
-        <div className={isHorizontal ? styles.horizontal : styles.vertical} style={isHorizontal ? { top: offset?.height } : { left: offset?.width }} />
+        <div className={isHorizontal ? styles.clip_horizontal : styles.clip_vertical} style={isHorizontal ? { top: offset?.height } : { left: offset?.width }} />
         <Dropdown overlay={menu} onVisibleChange={onVisibleChange} trigger="contextMenu">
-          <Button className={styles.clip} style={{ top: offset?.height, left: offset?.width }} onClick={onClick} type="primary" shape="circle" icon={<ScissorOutlined rotate={isHorizontal ? 0 : 90} />} />
+          <Button className={styles.clip_scissor} style={{ top: offset?.height, left: offset?.width }} onClick={onClick} type="primary" shape="circle" icon={<ScissorOutlined rotate={isHorizontal ? 0 : 90} />} />
         </Dropdown>
       </>
     )
@@ -48,24 +48,24 @@ const getPullQuadStyle = (quad) => {
       return {
         bottom: 0,
         width: '100%',
-        height: 4,
+        height: 2,
       }
     // case 'bottom':
     //   return {
     //     top: 0,
     //     width: '100%',
-    //     height: 4,
+    //     height: 2,
     //   }
     case 'left':
       return {
         right: 0,
-        width: 4,
+        width: 2,
         height: '100%'
       }
     // case 'right':
     //   return {
     //     left: 0,
-    //     width: 4,
+    //     width: 2,
     //     height: '100%'
     //   }
     default:
@@ -85,9 +85,9 @@ const PullQuad = ({ pull, quad }) => {
 
 
 export const Subarea = ({ name, id, pid, title, quad, isHorizontal, setIsHorizontal, hiddenClip, setHiddenClip, style, splitSubarea, removeEntity, pullSubarea, children }: ISubareaProps) => {
-  const [halt, setHalt] = useState(false)
+  const [haltClip, setHaltClipClip] = useState(false)
   const onMenuClick: MenuProps['onClick'] = e => {
-    setHalt(false)
+    setHaltClipClip(false)
     switch (e.key) {
       case 'horizontal':
         setHiddenClip(false)
@@ -103,7 +103,7 @@ export const Subarea = ({ name, id, pid, title, quad, isHorizontal, setIsHorizon
     }
   };
 
-  const { ref, offset, onMouseMove } = useClip(halt)
+  const { ref, offset, onMouseMove } = useClip(haltClip)
 
   const split = (e) => {
     e.stopPropagation()
@@ -118,12 +118,12 @@ export const Subarea = ({ name, id, pid, title, quad, isHorizontal, setIsHorizon
   }
 
   return (
-    <div id={id} className={`${styles.subarea} ${halt ? styles.contextmenu : ''}`} style={style} onMouseMove={onMouseMove} ref={ref}>
+    <div id={id} className={`${styles.subarea} ${haltClip ? styles.contextmenu : ''}`} style={style} onMouseMove={onMouseMove} ref={ref}>
       <DeleteOutlined className={styles.delete} onClick={remove} />
       <PullQuad pull={pull} quad={quad} />
       {hiddenClip
         ? <ScissorOutlined className={styles.scissor} onClick={() => setHiddenClip(false)} />
-        : <Clip isHorizontal={isHorizontal} offset={offset} menuItems={menuItems} onClick={split} onVisibleChange={setHalt} onMenuClick={onMenuClick} />}
+        : <Clip isHorizontal={isHorizontal} offset={offset} menuItems={menuItems} onClick={split} onVisibleChange={setHaltClipClip} onMenuClick={onMenuClick} />}
       {children}
     </div>
   )
