@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react'
 
-type snapShortRecordType = any
-type snapShortStepType = string
 
 export const useSnapShort = (initialSnapShortRecords: snapShortRecordType[], isPrinted = false) => {
   const [snapShortRecords, setSnapShortRecords] = useState(initialSnapShortRecords)
