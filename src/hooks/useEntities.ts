@@ -1,8 +1,10 @@
 // @ts-nocheck
 import { useState } from "react";
+import { useSnapShort } from "./useSnapShort";
 
 export const useEntities = (initialEntities = []) => {
   const [entities, setEntities] = useState(initialEntities);
+  const snapShort = useSnapShort([initialEntities])
   // 分割
   const splitSubarea = (id, isHorizontal = false, offset) => {
     setEntities((entities) => {
@@ -11,7 +13,7 @@ export const useEntities = (initialEntities = []) => {
         if (item.pid == id) {
           result.push({ ...item, pid: id * 2 });
         } else {
-          result.push(item);
+          result.push({ ...item });
         }
       });
       // 子区域
@@ -43,14 +45,17 @@ export const useEntities = (initialEntities = []) => {
           },
         });
       });
+      snapShort.take(result, `${isHorizontal ? 'horizontal' : 'vertical'} split subarea: ${id} by ${offset}px offset`)
       return result;
     });
   };
   // 删除
-  const removeEntity = (id, isArea = false) => {
+  const removeEntity = (id, isSubarea = false) => {
     setEntities((entities) => {
-      if (!isArea) {
-        return entities.filter(item => item.id != id)
+      if (!isSubarea) {
+        const result = entities.filter(item => item.id != id)
+        snapShort.take(result, `remove entity of widget: ${id}`)
+        return result
       }
       const result = [];
       const selected_area = entities.find((item) => item.id == id);
@@ -64,15 +69,17 @@ export const useEntities = (initialEntities = []) => {
         if (item.pid == neighbour_area?.id) {
           result.push({ ...item, pid: neighbour_area?.pid });
         } else {
-          result.push(item);
+          result.push({ ...item });
         }
       });
+      snapShort.take(result, `remove entity of subarea: ${id}`)
       return result;
     });
   };
   // 拉伸
   const pullSubarea = (id, dragMove) => {
-    setEntities((entities) => {
+    setEntities((_entities) => {
+      const entities = _entities.map(item => ({ ...item }))
       const selected_area = entities.find((item) => item.id == id);
       const neighbour_area = entities.find(
         (item) => item.pid == selected_area.pid && item.id != id
@@ -91,11 +98,14 @@ export const useEntities = (initialEntities = []) => {
           (neighbour_area.style.marginBottom || 0),
       };
 
-      switch (selected_area.quad) {
+      const { quad } = selected_area
+      let offset = dragMove.x
+      switch (quad) {
         case "top":
+          offset = dragMove.y
           selected_area.style = {
             ...selected_area.style,
-            height: selected_area.style.height + dragMove.y,
+            height: selected_area.style.height + offset,
           };
           neighbour_area.style = {
             ...neighbour_area.style,
@@ -103,9 +113,10 @@ export const useEntities = (initialEntities = []) => {
           };
           break;
         case "bottom":
+          offset = dragMove.y
           neighbour_area.style.height = {
             ...neighbour_area.style,
-            height: neighbour_area.style.height - dragMove.y,
+            height: neighbour_area.style.height - offset,
           };
           selected_area.style = {
             ...selected_area.style,
@@ -115,7 +126,7 @@ export const useEntities = (initialEntities = []) => {
         case "left":
           selected_area.style = {
             ...selected_area.style,
-            width: selected_area.style.width + dragMove.x,
+            width: selected_area.style.width + offset,
           };
           neighbour_area.style = {
             ...neighbour_area.style,
@@ -125,7 +136,7 @@ export const useEntities = (initialEntities = []) => {
         case "right":
           neighbour_area.style = {
             ...neighbour_area.style,
-            width: neighbour_area.style.width - dragMove.x,
+            width: neighbour_area.style.width - offset,
           };
           selected_area.style = {
             ...selected_area.style,
@@ -135,13 +146,14 @@ export const useEntities = (initialEntities = []) => {
           default:
             break;
       }
-
-      return [...entities];
+      snapShort.take(entities, `pull ${quad} subarea: ${id} by ${offset}px offset`)
+      return entities;
     });
   };
 
   return {
     entities,
+    snapShort,
     removeEntity,
     splitSubarea,
     pullSubarea,

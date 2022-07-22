@@ -6,7 +6,7 @@ import mock from '@/mock/treeList'
 
 
 export const DisplayViewer = ({ treeList = mock, pid = 0, initials = { isHorizontal: false, hiddenClip: false } }) => {
-  const { entities, removeEntity, splitSubarea, pullSubarea } = useEntities(treeList)
+  const { entities, snapShort, removeEntity, splitSubarea, pullSubarea } = useEntities(treeList)
   const [isHorizontal, setIsHorizontal] = useState(initials.isHorizontal)
   const [hiddenClip, setHiddenClip] = useState(initials.hiddenClip)
 
