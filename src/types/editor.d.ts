@@ -3,11 +3,13 @@ import { CSSProperties, ReactNode } from "react";
 interface IWidget {
   name: string;
   title: string;
+  description?: string;
 }
 
 interface IWidgetsPanelProps {
   category: string;
   title: string;
+  description?: string;
   children: IWidget[];
 }
 
@@ -53,6 +55,10 @@ interface ILoadings {
 interface IWrapperClassNames {
   [propName: string]: string;
 }
+type handlerType = (e: Event) => any
+interface IHandlers {
+  [propName: string]: handlerType
+}
 type actionType = string;
 type payloadType = any;
 interface IDeclare {
@@ -63,10 +69,11 @@ interface IComponentProps extends IEntity {
   updates?: IUpdates;
   loadings?: ILoadings;
   intervals?: IIntervals;
+  handlers?: IHandlers;
+  dispatch?: (declare: IDeclare) => any;
   wrapperClassNames?: IWrapperClassNames;
   style?: CSSProperties;
   children?: ReactNode;
-  dispatch?: (declare: IDeclare) => any;
 }
 
 interface IConfigPanelProps {
