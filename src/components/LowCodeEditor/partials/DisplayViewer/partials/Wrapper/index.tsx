@@ -8,8 +8,8 @@ export const Wrapper = ({
   id,
   pid,
   title,
-  style,
   removeEntity,
+  style,
   children,
 }: IWrapperProps) => {
   const remove = (e) => {
