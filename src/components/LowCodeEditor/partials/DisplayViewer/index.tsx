@@ -5,8 +5,8 @@ import { useEntities } from '@/hooks'
 import mock from '@/mock/treeList'
 
 
-export const DisplayViewer = ({ treeList = mock, pid = 0, initials = { isHorizontal: false, hiddenClip: false } }) => {
-  const { entities, prev, next, undo, redo, removeEntity, splitSubarea, pullSubarea } = useEntities(treeList)
+export const DisplayViewer = ({ treeList = mock, pid = 0, initials = { isHorizontal: false, hiddenClip: false }, isPrinted = true }) => {
+  const { entities, prev, next, undo, redo, removeEntity, splitSubarea, pullSubarea } = useEntities(treeList, isPrinted)
   const [isHorizontal, setIsHorizontal] = useState(initials.isHorizontal)
   const [hiddenClip, setHiddenClip] = useState(initials.hiddenClip)
 
