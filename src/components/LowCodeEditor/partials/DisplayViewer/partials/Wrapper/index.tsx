@@ -18,7 +18,7 @@ export const Wrapper = ({
   };
   return (
     <div className={styles.wrapper}>
-      <DeleteOutlined className={styles.delete} onClick={remove} />
+      <DeleteOutlined className={styles.delete_btn} onClick={remove} />
       {children}
     </div>
   );
