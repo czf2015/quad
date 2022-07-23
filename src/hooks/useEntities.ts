@@ -1,10 +1,10 @@
 // @ts-nocheck
-import { useState } from "react";
 import { useSnapShort } from "./useSnapShort";
+import { useRestore } from "./useRestore";
 
 export const useEntities = (initialEntities = []) => {
-  const [entities, setEntities] = useState(initialEntities);
   const snapShort = useSnapShort([initialEntities])
+  const { state: entities, setState: setEntities, prev, next, undo, redo } = useRestore(initialEntities, snapShort)
   // 分割
   const splitSubarea = (id, isHorizontal = false, offset) => {
     setEntities((entities) => {
@@ -28,14 +28,14 @@ export const useEntities = (initialEntities = []) => {
               ? "bottom"
               : "top"
             : idx > 0
-            ? "right"
-            : "left",
+              ? "right"
+              : "left",
           style: {
             width: isHorizontal
               ? "100%"
               : idx > 0
-              ? `calc(100% - ${offset}px)`
-              : offset,
+                ? `calc(100% - ${offset}px)`
+                : offset,
             height: isHorizontal
               ? idx > 0
                 ? `calc(100% - ${offset}px)`
@@ -143,8 +143,8 @@ export const useEntities = (initialEntities = []) => {
             width: `calc(100% - ${neighbour_area.style.width}px - ${margin.w}px)`,
           };
           break;
-          default:
-            break;
+        default:
+          break;
       }
       snapShort.take(entities, `pull ${quad} subarea: ${id} by ${offset}px offset`)
       return entities;
@@ -153,7 +153,10 @@ export const useEntities = (initialEntities = []) => {
 
   return {
     entities,
-    snapShort,
+    prev,
+    next,
+    undo,
+    redo,
     removeEntity,
     splitSubarea,
     pullSubarea,
