@@ -50,23 +50,23 @@ interface IIntervals {
 interface ILoadings {
   [propName: string]: boolean;
 }
-type actionType = string
-type payloadType = any
-interface IActions {
-  [propName: actionType]: payloadType;
-}
 interface IWrapperClassNames {
   [propName: string]: string;
+}
+type actionType = string;
+type payloadType = any;
+interface IDeclare {
+  [propName: actionType]: payloadType;
 }
 interface IComponentProps extends IEntity {
   initials?: IInitials;
   updates?: IUpdates;
-  actions?: IActions;
   loadings?: ILoadings;
   intervals?: IIntervals;
   wrapperClassNames?: IWrapperClassNames;
   style?: CSSProperties;
   children?: ReactNode;
+  dispatch?: (declare: IDeclare) => any;
 }
 
 interface IConfigPanelProps {
