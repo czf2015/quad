@@ -2,8 +2,8 @@
 import { useState } from 'react'
 
 const delayPromise = (fn, duration) => (...params) => {
-  return new Promise(async (resolve, reject) => {
-    setTimeout(() => {
+  return new Promise((resolve, reject) => {
+    setTimeout(async () => {
       try {
         resolve(await fn(...params))
       } catch (e) {
