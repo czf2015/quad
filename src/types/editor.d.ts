@@ -40,37 +40,14 @@ interface IWrapperProps extends IEntity {
   children?: ReactNode;
 }
 
-interface IInitials {
-  [propName: string]: any;
-}
-interface IUpdates {
-  [propName: string]: any;
-}
-interface IIntervals {
-  [propName: string]: number;
-}
-interface ILoadings {
-  [propName: string]: boolean;
-}
 interface IWrapperClassNames {
   [propName: string]: string;
 }
-type handlerType = (e: Event) => any
-interface IHandlers {
-  [propName: string]: handlerType
-}
 type actionType = string;
 type payloadType = any;
-interface IDeclare {
-  [propName: actionType]: payloadType;
-}
 interface IComponentProps extends IEntity {
-  initials?: IInitials;
-  updates?: IUpdates;
-  loadings?: ILoadings;
-  intervals?: IIntervals;
-  handlers?: IHandlers;
-  dispatch?: (declare: IDeclare) => any;
+  store?: Function; // 
+  dispatch?: (message: { type: actionType, payload: payloadType }) => any;
   wrapperClassNames?: IWrapperClassNames;
   style?: CSSProperties;
   children?: ReactNode;

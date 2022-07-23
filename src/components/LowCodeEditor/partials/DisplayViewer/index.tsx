@@ -1,14 +1,11 @@
 // @ts-nocheck
-import React, { useState } from 'react'
+import React from 'react'
 import * as Entities from './partials'
-import { useEntities } from '@/hooks'
-import mock from '@/mock/treeList'
+import { useStore } from '@/hooks'
 
 
-export const DisplayViewer = ({ treeList = mock, pid = 0, initials = { isHorizontal: false, hiddenClip: false }, isPrinted = true }) => {
-  const { entities, prev, next, undo, redo, removeEntity, splitSubarea, pullSubarea } = useEntities(treeList, isPrinted)
-  const [isHorizontal, setIsHorizontal] = useState(initials.isHorizontal)
-  const [hiddenClip, setHiddenClip] = useState(initials.hiddenClip)
+export const DisplayViewer = ({ entities, updateEntity, removeEntity, splitSubarea, pullSubarea, pid = 0 }) => {
+  const store = useStore({ isHorizontal: false, hiddenClip: false })
 
   const render = (treeList, pid) => {
     return (
@@ -16,7 +13,7 @@ export const DisplayViewer = ({ treeList = mock, pid = 0, initials = { isHorizon
         {treeList.filter(item => item.pid == pid).map((item) => {
           const Component = Entities[item.name]
           return item.name == 'Subarea' ? (
-            <Component {...item} removeEntity={removeEntity} isHorizontal={isHorizontal} setIsHorizontal={setIsHorizontal} hiddenClip={hiddenClip} setHiddenClip={setHiddenClip} splitSubarea={splitSubarea} pullSubarea={pullSubarea} key={item.id}>
+            <Component {...item} store={store} removeEntity={removeEntity} splitSubarea={splitSubarea} pullSubarea={pullSubarea} key={item.id}>
               {render(treeList, item.id)}
             </Component>
           ) : (

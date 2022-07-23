@@ -84,21 +84,21 @@ const Boundary = ({ pull, quad }) => {
 }
 
 
-export const Subarea = ({ name, id, pid, title, quad, isHorizontal, setIsHorizontal, hiddenClip, setHiddenClip, style, splitSubarea, removeEntity, pullSubarea, children }: ISubareaProps) => {
+export const Subarea = ({ name, id, pid, title, quad, store, style, splitSubarea, removeEntity, pullSubarea, children }: ISubareaProps) => {
   const [haltClip, setHaltClipClip] = useState(false)
   const onMenuClick: MenuProps['onClick'] = e => {
     setHaltClipClip(false)
     switch (e.key) {
       case 'horizontal':
-        setHiddenClip(false)
-        setIsHorizontal(true)
+        store('hiddenClip', false)
+        store('isHorizontal', true)
         break
       case 'vertical':
-        setHiddenClip(false)
-        setIsHorizontal(false)
+        store('hiddenClip', false)
+        store('isHorizontal', false)
         break
       default:
-        setHiddenClip(true)
+        store('hiddenClip', true)
         break
     }
   };
@@ -107,7 +107,7 @@ export const Subarea = ({ name, id, pid, title, quad, isHorizontal, setIsHorizon
 
   const split = (e) => {
     e.stopPropagation()
-    splitSubarea(id, isHorizontal, isHorizontal ? offset.height : offset.width)
+    splitSubarea(id, store('isHorizontal'), store('isHorizontal') ? offset.height : offset.width)
   }
   const remove = (e) => {
     e.stopPropagation()
@@ -121,9 +121,9 @@ export const Subarea = ({ name, id, pid, title, quad, isHorizontal, setIsHorizon
     <div id={id} className={`${styles.subarea} ${haltClip ? styles.contextmenu : ''}`} style={style} onMouseMove={onMouseMove} ref={ref}>
       <DeleteOutlined className={styles.delete_btn} onClick={remove} />
       <Boundary pull={pull} quad={quad} />
-      {hiddenClip
-        ? <ScissorOutlined className={styles.scissor_btn} onClick={() => setHiddenClip(false)} />
-        : <Clip isHorizontal={isHorizontal} offset={offset} menuItems={menuItems} onClick={split} onVisibleChange={setHaltClipClip} onMenuClick={onMenuClick} />}
+      {store('hiddenClip')
+        ? <ScissorOutlined className={styles.scissor_btn} onClick={() => store('hiddenClip', false)} />
+        : <Clip isHorizontal={store('isHorizontal')} offset={offset} menuItems={menuItems} onClick={split} onVisibleChange={setHaltClipClip} onMenuClick={onMenuClick} />}
       {children}
     </div>
   )
