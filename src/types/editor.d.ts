@@ -3,6 +3,7 @@ import { CSSProperties, ReactNode } from "react";
 interface IWidget {
   name: string;
   title: string;
+  icon?: string;
   description?: string;
 }
 
