@@ -5,6 +5,48 @@ import { useRestore } from "./useRestore";
 export const useEntities = (initialEntities = []) => {
   const snapShort = useSnapShort([initialEntities])
   const { state: entities, setState: setEntities, prev, next, undo, redo } = useRestore(initialEntities, snapShort)
+
+  // 更新
+  const updateEntity = (id, updated) => {
+    setEntities(entities => {
+      const result = []
+      entities.forEach(item => {
+        if (item.id == id) {
+          result.push({ ...item, ...updated })
+        } else {
+          result.push({ ...item })
+        }
+      })
+      return result
+    })
+  }
+  // 删除
+  const removeEntity = (id, isSubarea = false) => {
+    setEntities((entities) => {
+      if (!isSubarea) {
+        const result = entities.filter(item => item.id != id)
+        snapShort.take(result, `remove entity of widget: ${id}`)
+        return result
+      }
+      const result = [];
+      const selected_area = entities.find((item) => item.id == id);
+      const neighbour_area = entities.find(
+        (item) => item.pid == selected_area.pid && item.id !== selected_area.id
+      );
+      entities.forEach((item) => {
+        if (item.pid == id || item.id == id || item.id == neighbour_area?.id) {
+          return;
+        }
+        if (item.pid == neighbour_area?.id) {
+          result.push({ ...item, pid: neighbour_area?.pid });
+        } else {
+          result.push({ ...item });
+        }
+      });
+      snapShort.take(result, `remove entity of subarea: ${id}`)
+      return result;
+    });
+  };
   // 分割
   const splitSubarea = (id, isHorizontal = false, offset) => {
     setEntities((entities) => {
@@ -46,33 +88,6 @@ export const useEntities = (initialEntities = []) => {
         });
       });
       snapShort.take(result, `${isHorizontal ? 'horizontal' : 'vertical'} split subarea: ${id} by ${offset}px offset`)
-      return result;
-    });
-  };
-  // 删除
-  const removeEntity = (id, isSubarea = false) => {
-    setEntities((entities) => {
-      if (!isSubarea) {
-        const result = entities.filter(item => item.id != id)
-        snapShort.take(result, `remove entity of widget: ${id}`)
-        return result
-      }
-      const result = [];
-      const selected_area = entities.find((item) => item.id == id);
-      const neighbour_area = entities.find(
-        (item) => item.pid == selected_area.pid && item.id !== selected_area.id
-      );
-      entities.forEach((item) => {
-        if (item.pid == id || item.id == id || item.id == neighbour_area?.id) {
-          return;
-        }
-        if (item.pid == neighbour_area?.id) {
-          result.push({ ...item, pid: neighbour_area?.pid });
-        } else {
-          result.push({ ...item });
-        }
-      });
-      snapShort.take(result, `remove entity of subarea: ${id}`)
       return result;
     });
   };
@@ -157,6 +172,7 @@ export const useEntities = (initialEntities = []) => {
     next,
     undo,
     redo,
+    updateEntity,
     removeEntity,
     splitSubarea,
     pullSubarea,
