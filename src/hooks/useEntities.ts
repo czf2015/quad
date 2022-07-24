@@ -4,7 +4,7 @@ import { useRestore } from "./useRestore";
 
 export const useEntities = (initialEntities = [], isPrinted) => {
   const snapShort = useSnapShort([initialEntities], isPrinted)
-  const { state: entities, setState: setEntities, prev, next, undo, redo } = useRestore(initialEntities, snapShort)
+  const { state: entities, setState: setEntities, prev, next, undo, redo, stage } = useRestore(initialEntities, snapShort)
 
   // 更新
   const updateEntity = (id, updated) => {
@@ -172,6 +172,7 @@ export const useEntities = (initialEntities = [], isPrinted) => {
     next,
     undo,
     redo,
+    stage,
     updateEntity,
     removeEntity,
     splitSubarea,

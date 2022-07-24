@@ -12,7 +12,7 @@ export default ({ page }) => {
   const header = (
     <>
       <Edit />
-      <Restore />
+      <Restore {...attrs} />
       <Console />
     </>
   )
@@ -45,7 +45,7 @@ export default ({ page }) => {
     main,
     footer,
   }
-  
+
   return (
     <Layout slots={slots} />
   )

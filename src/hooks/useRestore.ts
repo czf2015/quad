@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export const useRestore = (initialState, snapShort) => {
   const [state, setState] = useState(initialState)
@@ -14,5 +14,18 @@ export const useRestore = (initialState, snapShort) => {
     setState(snapShort.forward())
   }
 
-  return { state, setState, prev, next, undo, redo }
+  const stage = () => {
+    localStorage.setItem('restore', JSON.stringify({ state }))
+  }
+  useEffect(() => {
+    const storage = localStorage.getItem('restore')
+    if (storage && storage !== 'null') {
+      const { state: storageState } = JSON.parse(storage)
+      if (storageState) {
+        setState(storageState)
+      }
+    }
+  }, [])
+
+  return { state, setState, prev, next, undo, redo, stage }
 }
