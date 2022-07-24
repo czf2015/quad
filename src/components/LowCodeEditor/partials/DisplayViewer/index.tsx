@@ -5,7 +5,7 @@ import { useStore } from '@/hooks'
 
 
 export const DisplayViewer = ({ entities, updateEntity, removeEntity, splitSubarea, pullSubarea, pid = 0 }) => {
-  const store = useStore({ isHorizontal: false, hiddenClip: false })
+  const store = useStore({ isHorizontal: false, hiddenClip: true })
 
   const render = (treeList, pid) => {
     return (

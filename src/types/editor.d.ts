@@ -7,11 +7,11 @@ interface IWidget {
   description?: string;
 }
 
-interface IWidgetsPanelProps {
+interface IWidgetCategory {
   category: string;
   title: string;
   description?: string;
-  children: IWidget[];
+  items: IWidget[];
 }
 
 interface IEntity extends IWidget {
@@ -41,7 +41,7 @@ interface IWrapperProps extends IEntity {
   children?: ReactNode;
 }
 
-interface IWrapperClassNames {
+interface IClassNames {
   [propName: string]: string;
 }
 type actionType = string;
@@ -49,7 +49,7 @@ type payloadType = any;
 interface IComponentProps extends IEntity {
   store?: Function; // 
   dispatch?: (message: { type: actionType, payload: payloadType }) => any;
-  wrapperClassNames?: IWrapperClassNames;
+  classNames?: IClassNames;
   style?: CSSProperties;
   children?: ReactNode;
 }

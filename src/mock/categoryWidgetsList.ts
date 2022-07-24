@@ -3,7 +3,7 @@ export default [
     category: 'base',
     title: '基础',
     description: '',
-    children: [
+    items: [
       {
         name: 'Sheets',
         title: '多维表',
@@ -28,7 +28,7 @@ export default [
     category: 'chart',
     title: '图表',
     description: '',
-    children: [
+    items: [
       {
         name: 'PieChart',
         title: '饼图',

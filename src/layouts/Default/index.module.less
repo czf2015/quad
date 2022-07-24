@@ -1,0 +1,36 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  width: 2560px;
+  height: 100vh;
+
+  >.header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 4px;
+  }
+
+  >.main {
+    display: flex;
+    width: 100%;
+
+    >.left {
+      width: 280px;
+    }
+
+    >.content {
+      width: 1920px;
+    }
+
+    >.right {
+      width: calc(100% - 1920px - 24px);
+    }
+  }
+
+  >.footer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+}

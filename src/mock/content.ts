@@ -87,16 +87,16 @@ export default [
     }
   },
   // 
-  {
-    name: 'WidgetsPanel',
-    id: 'WidgetsPanel',
-    pid: 0b110,
-    title: "组件栏",
-  },
-  {
-    name: 'ConfigPanel',
-    id: 'ConfigPanel',
-    pid: 0b1111,
-    title: "配置栏",
-  },
+  // {
+  //   name: 'WidgetsPanel',
+  //   id: 'WidgetsPanel',
+  //   pid: 0b110,
+  //   title: "组件栏",
+  // },
+  // {
+  //   name: 'ConfigPanel',
+  //   id: 'ConfigPanel',
+  //   pid: 0b1111,
+  //   title: "配置栏",
+  // },
 ]
