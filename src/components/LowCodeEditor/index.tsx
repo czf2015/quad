@@ -3,11 +3,12 @@ import React, { useState } from 'react'
 import { Tabs } from 'antd'
 import Layout from '@/layouts/Default'
 import { Menu, Restore, Console, Assets, Widgets, Outline, DisplayViewer, ConfigPanel, Tips, Status, Formatters } from './partials'
-import { useEntities } from '@/hooks'
+import { useEntities, useStore } from '@/hooks'
 
 
-export default ({ page }) => {
-  const { entities, ...attrs } = useEntities(page?.content, false)
+export default ({ page: { content: initialEntities, ...initialBaseInfo } }) => {
+  const { entities, ...attrs } = useEntities(initialEntities, false)
+  const store = useStore(initialBaseInfo)
   const [mode, setMode] = useState(0) // 空白状态：0  查看状态: 1 编辑状态：2 
 
   const open = () => {
@@ -25,9 +26,9 @@ export default ({ page }) => {
 
   const header = (
     <>
-      <Menu mode={mode} open={open} create={create} />
+      <Menu store={store} mode={mode} open={open} create={create} />
       <Restore mode={mode} {...attrs} />
-      <Console mode={mode} save={save} edit={edit} />
+      <Console store mode={mode} save={save} edit={edit} />
     </>
   )
   const main = {
