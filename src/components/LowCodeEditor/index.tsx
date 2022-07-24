@@ -2,7 +2,7 @@
 import React from 'react'
 import { Tabs } from 'antd'
 import Layout from '@/layouts/Default'
-import { Edit, Restore, Console, Assets, Widgets, Outline, DisplayViewer, ConfigPanel, Tips, Status, Formatters } from './partials'
+import { Menu, Restore, Console, Assets, Widgets, Outline, DisplayViewer, ConfigPanel, Tips, Status, Formatters } from './partials'
 import { useEntities } from '@/hooks'
 
 
@@ -11,7 +11,7 @@ export default ({ page }) => {
 
   const header = (
     <>
-      <Edit />
+      <Menu />
       <Restore {...attrs} />
       <Console />
     </>

@@ -1,8 +1,8 @@
 import React from 'react'
 import styles from './index.module.less'
 
-export const Edit = () => {
+export const Menu = () => {
   return (
-    <div>Edit</div>
+    <div>Menu</div>
   )
 }
