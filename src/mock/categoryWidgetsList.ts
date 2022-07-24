@@ -5,8 +5,14 @@ export default [
     description: '',
     items: [
       {
-        name: 'Sheets',
+        name: 'Dimentions',
         title: '多维表',
+        icon: '',
+        description: ''
+      },
+      {
+        name: 'Statistic',
+        title: '统计值',
         icon: '',
         description: ''
       },
@@ -30,20 +36,8 @@ export default [
     description: '',
     items: [
       {
-        name: 'PieChart',
-        title: '饼图',
-        icon: '',
-        description: ''
-      },
-      {
         name: 'BarChart',
         title: '柱状图',
-        icon: '',
-        description: ''
-      },
-      {
-        name: 'ScatterChart',
-        title: '散点图',
         icon: '',
         description: ''
       },
@@ -54,8 +48,20 @@ export default [
         description: ''
       },
       {
+        name: 'PieChart',
+        title: '饼图',
+        icon: '',
+        description: ''
+      },
+      {
         name: 'RadarChart',
         title: '雷达图',
+        icon: '',
+        description: ''
+      },
+      {
+        name: 'ScatterChart',
+        title: '散点图',
         icon: '',
         description: ''
       },
