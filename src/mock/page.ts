@@ -15,7 +15,6 @@ export default {
   },
   template: '圣杯布局-1',
   timezone: 'China Standard Time',
-  mode: 0, // 空白状态：0  查看状态: 1 编辑状态：2
   published: 0, // 预览 发布
   version: '<% major %>.<% minor %>.<% modify %>', // 随发布变更
   logs: [
