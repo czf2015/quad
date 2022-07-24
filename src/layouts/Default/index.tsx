@@ -10,7 +10,7 @@ export default ({ slots: { header, main, footer } }) => {
       <div className={styles.main}>
         <div className={styles.left}>{left}</div>
         <div className={styles.content}>{content}</div>
-        <div className={styles.footer}>{right}</div>
+        <div className={styles.right}>{right}</div>
       </div>
       <div className={styles.footer}>{footer}</div>
     </div>
