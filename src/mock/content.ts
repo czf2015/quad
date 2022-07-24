@@ -43,7 +43,7 @@ export default [
     quad: "left",
     style: {
       // margin: 16,
-      width: 280,
+      width: 216,
       height: "100%",
       backgroundColor: "#8cb6c0",
     },
@@ -56,7 +56,7 @@ export default [
     quad: "right",
     style: {
       // margin: 16,
-      width: "calc(100% - 280px)",
+      width: "calc(100% - 216px)",
       height: "100%",
     },
   },

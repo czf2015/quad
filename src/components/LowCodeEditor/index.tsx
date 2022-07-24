@@ -18,7 +18,7 @@ export default ({ page }) => {
   )
   const main = {
     left: (
-      <Tabs defaultActiveKey="Widgets" centered>
+      <Tabs defaultActiveKey="Widgets" style={{ width: 216, height: '100%' }} centered>
         <Tabs.TabPane tab="资源" key="Assets">
           <Assets />
         </Tabs.TabPane>
