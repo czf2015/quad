@@ -4,18 +4,19 @@ import { SaveOutlined, FormOutlined, EyeOutlined, FileTextOutlined, SendOutlined
 import styles from './index.module.less'
 
 
-export const Console = ({ mode = 0, save = () => console.log('save'), edit = () => console.log('edit'), preview = () => console.log('preview'), publish = () => console.log('publish'), share = () => console.log('share') }) => {
+export const Console = ({ mode = 0, save, edit, preview, publish, share }) => {
   const isEditMode = mode == 2
+  
   return (
     <div className={styles.console}>
       {isEditMode
-        ? <Button title="保存" onClick={save} icon={<SaveOutlined />} />
+        ? <Button title="保存" onClick={save} type="text" icon={<SaveOutlined />} />
         : (
           <>
-            <Button title="编辑" onClick={edit} icon={<FormOutlined />} />
-            <Button title="预览" onClick={preview} icon={<EyeOutlined />} />
-            <Button title="发布" onClick={publish} icon={<FileTextOutlined />} />
-            <Button title="分享" onClick={share} icon={<SendOutlined />} />
+            <Button title="编辑" onClick={edit} type="text" icon={<FormOutlined />} />
+            <Button title="预览" onClick={preview} type="text" icon={<EyeOutlined />} />
+            <Button title="发布" onClick={publish} type="text" icon={<FileTextOutlined />} />
+            <Button title="分享" onClick={share} type="text" icon={<SendOutlined />} />
           </>
         )}
     </div>
