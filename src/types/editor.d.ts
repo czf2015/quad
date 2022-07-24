@@ -1,5 +1,9 @@
 import { CSSProperties, ReactNode } from "react";
 
+type blockIDType = number
+type widgetIDType = string
+type idType = blockIDType | widgetIDType
+
 interface IWidget {
   name: string;
   title: string;
@@ -15,13 +19,15 @@ interface IWidgetCategory {
 }
 
 interface IEntity extends IWidget {
-  id: number;
-  pid: number;
+  id: idType;
+  pid: idType;
 }
 
 type quadType = "top" | "bottom" | "left" | "right";
-interface ISubareaProps extends IEntity {
-  name: "Subarea";
+interface IBlockProps extends IEntity {
+  id: blockIDType;
+  pid: blockIDType;
+  name: "Block";
   quad?: quadType;
   isHorizontal: boolean;
   setIsHorizontal: Function;
@@ -29,10 +35,11 @@ interface ISubareaProps extends IEntity {
   setHiddenClip: Function;
   updateEntity: Function;
   removeEntity: Function;
-  splitSubarea: Function;
-  pullSubarea: Function;
+  splitBlock: Function;
+  pullBlock: Function;
   style?: CSSProperties;
   children?: ReactNode;
+  widgets?: widgetIDType[];
 }
 
 interface IWrapperProps extends IEntity {
@@ -47,6 +54,9 @@ interface IClassNames {
 type actionType = string;
 type payloadType = any;
 interface IComponentProps extends IEntity {
+  id: widgetIDType;
+  pid: widgetIDType;
+  blocks?: blockIDType[];
   store?: Function; // 
   dispatch?: (message: { type: actionType, payload: payloadType }) => any;
   classNames?: IClassNames;

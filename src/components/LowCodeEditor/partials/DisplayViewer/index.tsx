@@ -4,7 +4,7 @@ import * as Entities from './partials'
 import { useStore } from '@/hooks'
 
 
-export const DisplayViewer = ({ entities, updateEntity, removeEntity, splitSubarea, pullSubarea, pid = 0 }) => {
+export const DisplayViewer = ({ entities, updateEntity, removeEntity, splitBlock, pullBlock, pid = 0 }) => {
   const store = useStore({ isHorizontal: false, hiddenClip: true })
 
   const render = (treeList, pid) => {
@@ -12,8 +12,8 @@ export const DisplayViewer = ({ entities, updateEntity, removeEntity, splitSubar
       <>
         {treeList.filter(item => item.pid == pid).map((item) => {
           const Component = Entities[item.name]
-          return item.name == 'Subarea' ? (
-            <Component {...item} store={store} removeEntity={removeEntity} splitSubarea={splitSubarea} pullSubarea={pullSubarea} key={item.id}>
+          return item.name == 'Block' ? (
+            <Component {...item} store={store} removeEntity={removeEntity} splitBlock={splitBlock} pullBlock={pullBlock} key={item.id}>
               {render(treeList, item.id)}
             </Component>
           ) : (

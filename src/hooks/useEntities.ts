@@ -21,9 +21,9 @@ export const useEntities = (initialEntities = [], isPrinted) => {
     })
   }
   // 删除
-  const removeEntity = (id, isSubarea = false) => {
+  const removeEntity = (id, isBlock = false) => {
     setEntities((entities) => {
-      if (!isSubarea) {
+      if (!isBlock) {
         const result = entities.filter(item => item.id != id)
         snapShort.take(result, `remove entity of widget: ${id}`)
         return result
@@ -43,12 +43,12 @@ export const useEntities = (initialEntities = [], isPrinted) => {
           result.push({ ...item });
         }
       });
-      snapShort.take(result, `remove entity of subarea: ${id}`)
+      snapShort.take(result, `remove entity of block: ${id}`)
       return result;
     });
   };
   // 分割
-  const splitSubarea = (id, isHorizontal = false, offset) => {
+  const splitBlock = (id, isHorizontal = false, offset) => {
     setEntities((entities) => {
       const result = [];
       entities.forEach((item) => {
@@ -61,7 +61,7 @@ export const useEntities = (initialEntities = [], isPrinted) => {
       // 子区域
       [0, 1].forEach((idx) => {
         result.push({
-          name: "Subarea",
+          name: "Block",
           id: id * 2 + idx,
           pid: id,
           title: `区域${id * 2 + idx}`,
@@ -87,12 +87,12 @@ export const useEntities = (initialEntities = [], isPrinted) => {
           },
         });
       });
-      snapShort.take(result, `${isHorizontal ? 'horizontal' : 'vertical'} split subarea: ${id} by ${offset}px offset`)
+      snapShort.take(result, `${isHorizontal ? 'horizontal' : 'vertical'} split block: ${id} by ${offset}px offset`)
       return result;
     });
   };
   // 拉伸
-  const pullSubarea = (id, dragMove) => {
+  const pullBlock = (id, dragMove) => {
     setEntities((_entities) => {
       const entities = _entities.map(item => ({ ...item }))
       const selected_area = entities.find((item) => item.id == id);
@@ -161,7 +161,7 @@ export const useEntities = (initialEntities = [], isPrinted) => {
         default:
           break;
       }
-      snapShort.take(entities, `pull ${quad} subarea: ${id} by ${offset}px offset`)
+      snapShort.take(entities, `pull ${quad} block: ${id} by ${offset}px offset`)
       return entities;
     });
   };
@@ -175,7 +175,7 @@ export const useEntities = (initialEntities = [], isPrinted) => {
     stage,
     updateEntity,
     removeEntity,
-    splitSubarea,
-    pullSubarea,
+    splitBlock,
+    pullBlock,
   };
 };

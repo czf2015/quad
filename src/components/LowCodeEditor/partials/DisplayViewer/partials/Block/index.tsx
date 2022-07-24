@@ -79,12 +79,12 @@ const Boundary = ({ pull, quad }) => {
   const attrs = useDragMove(pull)
 
   return (
-    <div className={`${styles.boundary} ${styles[quad]}`} {...attrs} />
+    <div className={`${styles.boundary} ${quad ? styles[quad] : ''}`} {...attrs} />
   )
 }
 
 
-export const Subarea = ({ name, id, pid, title, quad, store, style, splitSubarea, removeEntity, pullSubarea, children }: ISubareaProps) => {
+export const Block = ({ name, id, pid, title, quad, store, style, splitBlock, removeEntity, pullBlock, children }: IBlockProps) => {
   const [haltClip, setHaltClipClip] = useState(false)
   const onMenuClick: MenuProps['onClick'] = e => {
     setHaltClipClip(false)
@@ -107,18 +107,18 @@ export const Subarea = ({ name, id, pid, title, quad, store, style, splitSubarea
 
   const split = (e) => {
     e.stopPropagation()
-    splitSubarea(id, store('isHorizontal'), store('isHorizontal') ? offset.height : offset.width)
+    splitBlock(id, store('isHorizontal'), store('isHorizontal') ? offset.height : offset.width)
   }
   const remove = (e) => {
     e.stopPropagation()
     removeEntity(id, true)
   }
   const pull = (dragMove) => {
-    pullSubarea(id, dragMove)
+    pullBlock(id, dragMove)
   }
 
   return (
-    <div id={id} className={`${styles.subarea} ${haltClip ? styles.contextmenu : ''}`} style={style} onMouseMove={onMouseMove} ref={ref}>
+    <div id={id} className={`${styles.block} ${haltClip ? styles.contextmenu : ''}`} style={style} onMouseMove={onMouseMove} ref={ref}>
       <DeleteOutlined className={styles.delete_btn} onClick={remove} />
       <Boundary pull={pull} quad={quad} />
       {store('hiddenClip')

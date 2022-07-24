@@ -1,2 +1,2 @@
-export * from './Subarea'
+export * from './Block'
 export * from './Wrapper'
