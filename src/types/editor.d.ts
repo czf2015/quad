@@ -49,11 +49,12 @@ interface IWrapperProps extends IEntity {
 interface IClassNames {
   [propName: string]: string;
 }
+type slotsKeyType = string
 interface ISlots {
-  [propName: string]: ReactNode;
+  [propName: slotsKeyType]: ReactNode;
 }
 interface IComponentBlocks {
-  [propName: string]: idType;
+  [propName: slotsKeyType]: idType;
 }
 type actionType = string;
 type payloadType = any;

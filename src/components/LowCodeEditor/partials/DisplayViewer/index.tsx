@@ -1,7 +1,7 @@
 // @ts-nocheck
 import React from 'react'
 import { Block, Wrapper } from './partials'
-import { components } from './register'
+import { components } from '@/register'
 import { useStore } from '@/hooks'
 
 
@@ -19,14 +19,14 @@ export const DisplayViewer = ({ entities = [], updateEntity, removeEntity, split
               </Block>
             )
           }
-          
+
           const { name, id, blocks = {}, ...attrs } = item
           const Widget = components[name]
           if (Widget) {
             const slots = {}
-            Object.entries(blocks).forEach(([key, value]) => {
-              slots[key] = render(value)
-            })
+            for (let key in blocks) {
+              slots[key] = render(blocks[key])
+            }
             return (
               <Wrapper {...attrs} removeEntity={removeEntity} key={id}>
                 <Widget id={id} {...attrs} slots={slots} />
