@@ -80,18 +80,34 @@ export default [
       height: "100%",
       backgroundColor: "#c3d08b",
     },
+  },  
+  {
+    name: 'WidgetsPanel',
+    id: 'WidgetsPanel-1',
+    pid: 0b110,
+    title: "组件栏",
+    blocks: ['WidgetsPanel-1-1'],
+    style: {
+      width: '100%',
+      height: '100%',
+      backgroundColor: 'red'
+    },
   },
-  //
-  // {
-  //   name: 'WidgetsPanel',
-  //   id: 'WidgetsPanel',
-  //   pid: 0b110,
-  //   title: "组件栏",
-  // },
-  // {
-  //   name: 'ConfigPanel',
-  //   id: 'ConfigPanel',
-  //   pid: 0b1111,
-  //   title: "配置栏",
-  // },
+  {
+    name: 'ConfigPanel',
+    id: 'ConfigPanel-1',
+    pid: 0b1111,
+    title: "配置栏",
+  },
+  {
+    name: "Block",
+    id: 'WidgetsPanel-1-1',
+    pid: 'WidgetsPanel-1',
+    title: "WidgetsPanel-1-1",
+    style: {
+      width: 100,
+      height: 100,
+      backgroundColor: 'red'
+    },
+  },
 ];

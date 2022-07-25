@@ -3,8 +3,8 @@ import { useSnapShort } from "./useSnapShort";
 import { useRestore } from "./useRestore";
 
 export const useEntities = (initialEntities = [], isPrinted) => {
-  const snapShort = useSnapShort([initialEntities], isPrinted)
-  const { state: entities, setState: setEntities, prev, next, undo, redo, stage } = useRestore(initialEntities, snapShort)
+  const snapShort = useSnapShort(initialEntities, isPrinted)
+  const { state: entities, setState: setEntities, prev, next, restart, undo, redo, stage } = useRestore(initialEntities, snapShort)
 
   // 更新
   const updateEntity = (id, updated) => {
@@ -170,6 +170,7 @@ export const useEntities = (initialEntities = [], isPrinted) => {
     entities,
     prev,
     next,
+    restart,
     undo,
     redo,
     stage,

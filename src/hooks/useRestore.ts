@@ -6,6 +6,10 @@ export const useRestore = (initialState, snapShort) => {
   const prev = snapShort.offset
   const next = snapShort.len - 1 - snapShort.offset
 
+  const restart = () => {
+    setState(snapShort.restart())
+  }
+
   const undo = () => {
     setState(snapShort.backward())
   }
@@ -27,5 +31,5 @@ export const useRestore = (initialState, snapShort) => {
     }
   }, [])
 
-  return { state, setState, prev, next, undo, redo, stage }
+  return { state, setState, prev, next, restart, undo, redo, stage }
 }

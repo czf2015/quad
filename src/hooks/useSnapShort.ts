@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 
 
-export const useSnapShort = (initialSnapShortRecords: snapShortRecordType[], isPrinted = false) => {
-  const [snapShortRecords, setSnapShortRecords] = useState(initialSnapShortRecords)
-  const [offset, setOffset] = useState(initialSnapShortRecords.length - 1)
+export const useSnapShort = (initialSnapShortRecord: snapShortRecordType, isPrinted = false) => {
+  const [snapShortRecords, setSnapShortRecords] = useState([initialSnapShortRecord])
+  const [offset, setOffset] = useState(0)
   const [steps, setSteps] = useState([] as snapShortStepType[])
 
   const track = (step: snapShortStepType) => setSteps(steps => [...steps, step])
@@ -30,6 +30,19 @@ export const useSnapShort = (initialSnapShortRecords: snapShortRecordType[], isP
     setOffset(offset => offset - 1)
     return snapShortRecords[offset - 1]
   }
+  const restart = () => {
+    track(`restartSnapShort`)
+    setOffset(offset => {
+      offset += 1
+      setSnapShortRecords(snapShortRecords => {
+        const newSnapShortRecords = snapShortRecords.slice(0, offset)
+        newSnapShortRecords.push(initialSnapShortRecord)
+        return newSnapShortRecords
+      })
+      return offset
+    })
+    return initialSnapShortRecord
+  }
 
   const len = snapShortRecords.length
 
@@ -42,5 +55,5 @@ export const useSnapShort = (initialSnapShortRecords: snapShortRecordType[], isP
     }
   }, [offset])
 
-  return { steps, len, offset, take, forward, backward }
+  return { steps, len, offset, take, forward, backward, restart }
 }
