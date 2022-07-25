@@ -7,8 +7,12 @@ const defaultIconSrc = 'https://marketplace.canva.cn/EW8HY/MAB60mEW8HY/2/tl/canv
 const Icon = ({ src = defaultIconSrc, style = { width: 48, height: 48 } }) => <img src={src || defaultIconSrc} style={style} />
 
 export const Widget = ({ name, title, description = title, icon }: IWidget) => {
+  const onDragStart = (e) => {
+    e.dataTransfer.setData("dragWidgetName", name);
+  };
+
   return (
-    <div className={styles.widget} title={description} draggable key={name}>
+    <div className={styles.widget} title={description} onDragStart={onDragStart} draggable key={name}>
       <Icon src={icon} />
       <span>{title}</span>
     </div>

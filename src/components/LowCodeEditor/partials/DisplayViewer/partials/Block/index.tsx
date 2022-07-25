@@ -4,6 +4,7 @@ import { Button, Dropdown, Menu } from 'antd'
 import { DeleteOutlined, ScissorOutlined } from '@ant-design/icons'
 import { useClip, useDragMove } from '@/hooks'
 import styles from './index.module.less'
+import { endianness } from 'os'
 
 const menuItems = [
   {
@@ -84,7 +85,7 @@ const Boundary = ({ pull, quad }) => {
 }
 
 
-export const Block = ({ name, id, pid, title, quad, store, style, splitBlock, removeEntity, pullBlock, children }: IBlockProps) => {
+export const Block = ({ name, id, pid, title, quad, store, style, splitBlock, removeEntity, pullBlock, handleDrop, children }: IBlockProps) => {
   const [haltClip, setHaltClipClip] = useState(false)
   const onMenuClick: MenuProps['onClick'] = e => {
     setHaltClipClip(false)
@@ -117,8 +118,13 @@ export const Block = ({ name, id, pid, title, quad, store, style, splitBlock, re
     pullBlock(id, dragMove)
   }
 
+  const onDragOver = (e) => {
+    e.preventDefault()
+  }
+  const onDrop = handleDrop(id)
+
   return (
-    <div id={id} className={`${styles.block} ${haltClip ? styles.contextmenu : ''}`} style={style} onMouseMove={onMouseMove} ref={ref}>
+    <div id={id} className={`${styles.block} ${haltClip ? styles.contextmenu : ''}`} style={style} onMouseMove={onMouseMove} onDragOver={onDragOver} onDrop={onDrop} ref={ref}>
       <DeleteOutlined className={styles.delete_btn} onClick={remove} />
       <Boundary pull={pull} quad={quad} />
       {store('hiddenClip')

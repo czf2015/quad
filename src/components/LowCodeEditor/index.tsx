@@ -9,7 +9,7 @@ const { TabPane } = Tabs
 
 
 export default ({ page: { content: initialEntities, ...initialBaseInfo } }) => {
-  const { entities, ...attrs } = useEntities(initialEntities, false)
+  const { entities, ...attrs } = useEntities(initialEntities, true)
   const store = useStore(initialBaseInfo)
   const [mode, setMode] = useState(0) // 空白状态：0  查看状态: 1 编辑状态：2 
 

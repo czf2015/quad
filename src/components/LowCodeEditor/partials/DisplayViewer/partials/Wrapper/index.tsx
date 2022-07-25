@@ -9,6 +9,7 @@ export const Wrapper = ({
   pid,
   title,
   removeEntity,
+  handleDrop,
   style,
   children,
 }: IWrapperProps) => {
@@ -16,8 +17,17 @@ export const Wrapper = ({
     e.stopPropagation();
     removeEntity(id);
   };
+
+  const onDragStart = (e) => {
+    e.dataTransfer.setData("dragWidgetId", id);
+  };
+  const onDragOver = (e) => {
+    e.preventDefault()
+  }
+  const onDrop = handleDrop(id)
+
   return (
-    <div id={id} className={styles.wrapper}>
+    <div id={id} className={styles.wrapper} draggable onDragStart={onDragStart} onDragOver={onDragOver} onDrop={onDrop}>
       <DeleteOutlined className={styles.delete_btn} onClick={remove} />
       {children}
     </div>
