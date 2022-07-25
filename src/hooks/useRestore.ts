@@ -1,21 +1,21 @@
 // @ts-nocheck
 import { useState, useEffect } from 'react'
 
-export const useRestore = (initialState, snapShort) => {
+export const useRestore = (initialState, snapShot) => {
   const [state, setState] = useState(initialState)
-  const prev = snapShort.offset
-  const next = snapShort.len - 1 - snapShort.offset
+  const prev = snapShot.offset
+  const next = snapShot.len - 1 - snapShot.offset
 
   const restart = () => {
-    setState(snapShort.restart())
+    setState(snapShot.restart())
   }
 
   const undo = () => {
-    setState(snapShort.backward())
+    setState(snapShot.backward())
   }
 
   const redo = () => {
-    setState(snapShort.forward())
+    setState(snapShot.forward())
   }
 
   const stage = () => {
@@ -23,7 +23,7 @@ export const useRestore = (initialState, snapShort) => {
   }
   useEffect(() => {
     const storage = localStorage.getItem('restore')
-    if (storage && storage !== 'null') {
+    if (storage && storage != 'null') {
       const { state: storageState } = JSON.parse(storage)
       if (storageState) {
         setState(storageState)

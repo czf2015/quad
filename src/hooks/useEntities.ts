@@ -1,9 +1,9 @@
 // @ts-nocheck
-import { useSnapShort } from "./useSnapShort";
+import { useSnapShot } from "./useSnapShot";
 import { useRestore } from "./useRestore";
 
 export const useEntities = (initialEntities = [], isPrinted) => {
-  const snapShort = useSnapShort(initialEntities, isPrinted);
+  const snapShot = useSnapShot(initialEntities, isPrinted);
   const {
     state: entities,
     setState: setEntities,
@@ -13,7 +13,7 @@ export const useEntities = (initialEntities = [], isPrinted) => {
     undo,
     redo,
     stage,
-  } = useRestore(initialEntities, snapShort);
+  } = useRestore(initialEntities, snapShot);
 
   // 更新
   const updateEntity = (id, updated) => {
@@ -34,25 +34,29 @@ export const useEntities = (initialEntities = [], isPrinted) => {
     setEntities((entities) => {
       if (!isBlock) {
         const result = entities.filter((item) => item.id != id);
-        snapShort.take(result, `remove entity of widget: ${id}`);
+        snapShot.take(result, `remove entity of widget: ${id}`);
         return result;
       }
       const result = [];
       const selected_area = entities.find((item) => item.id == id);
       const neighbour_area = entities.find(
-        (item) => item.pid == selected_area.pid && item.id !== selected_area.id
+        (item) => item.pid == selected_area.pid && item.id != selected_area.id
       );
       entities.forEach((item) => {
         if (item.pid == id || item.id == id || item.id == neighbour_area?.id) {
           return;
         }
         if (item.pid == neighbour_area?.id) {
-          result.push({ ...item, pid: neighbour_area?.pid, widgets: neighbour_area?.widgets  });
+          result.push({
+            ...item,
+            pid: neighbour_area?.pid,
+            widgets: neighbour_area?.widgets,
+          });
         } else {
           result.push({ ...item });
         }
       });
-      snapShort.take(result, `remove entity of block: ${id}`);
+      snapShot.take(result, `remove entity of block: ${id}`);
       return result;
     });
   };
@@ -99,7 +103,7 @@ export const useEntities = (initialEntities = [], isPrinted) => {
           result.push({ ...item });
         }
       });
-      snapShort.take(
+      snapShot.take(
         result,
         `${
           isHorizontal ? "horizontal" : "vertical"
@@ -178,7 +182,7 @@ export const useEntities = (initialEntities = [], isPrinted) => {
         default:
           break;
       }
-      snapShort.take(
+      snapShot.take(
         entities,
         `pull ${quad} block: ${id} by ${offset}px offset`
       );
@@ -186,7 +190,7 @@ export const useEntities = (initialEntities = [], isPrinted) => {
     });
   };
 
-  const dragWidget = (dropId, name) => {
+  const dragWidget = (dragName, dropId) => {
     const dropEntity = entities.find((item) => item.id == dropId);
     setEntities((entities) => {
       const result = [];
@@ -226,11 +230,101 @@ export const useEntities = (initialEntities = [], isPrinted) => {
         result.push({ ...entity });
       });
       if (dropEntity?.name == "Block") {
-        snapShort.take(result, `drag widget of ${name} in block: ${dropEntity.id}`)
+        snapShot.take(
+          result,
+          `drag widget of ${dragName} in block: ${dropEntity.id}`
+        );
       } else {
-        snapShort.take(result, `drag widget of ${name} before widget: ${dropEntity.id} of block: ${dropEntity.pid}`)
+        snapShot.take(
+          result,
+          `drag widget of ${dragName} before widget: ${dropEntity.id} of block: ${dropEntity.pid}`
+        );
       }
       return result;
+    });
+  };
+
+  const dragEntity = (dragId, dropId) => {
+    const dragWidget = entities.find((item) => item.id == dragId);
+    const dragBlock = entities.find((item) => item.id == dragWidget.pid);
+    const dropEntity = entities.find((item) => item.id == dropId);
+    setEntities((entities) => {
+      if (dropEntity?.name == "Block") {
+        if (dropEntity.id == dragBlock.id) {
+          if (dropEntity?.widgets.length > 0) {
+            const widgets = [];
+            dropEntity.widgets.forEach((widgetId) => {
+              if (widgetId != dragId) {
+                widgets.push(widgetId);
+              }
+            });
+            widgets.push(dragId);
+            dropEntity.widgets = widgets;
+          }
+        } else {
+          dragWidget.pid = dropEntity.id;
+          if (dragBlock?.widgets?.length > 0) {
+            dragBlock.widgets = dragBlock?.widgets?.filter(
+              (widgetId) => widgetId != dragId
+            );
+          } else {
+            dragBlock.widgets = [];
+          }
+          if (dropEntity?.widgets?.length > 0) {
+            dropEntity.widgets.push(dragId);
+          } else {
+            dropEntity.widgets = [dragId];
+          }
+        }
+      } else {
+        const dropBlock = entities.find((item) => item.id == dropEntity.pid);
+        if (dropBlock.id == dragBlock.id) {
+          if (dropBlock?.widgets.length > 0) {
+            const widgets = [];
+            dropBlock.widgets.forEach((widgetId) => {
+              if (widgetId == dragId) {
+                //
+              } else if (widgetId == dropId) {
+                widgets.push(dragId);
+                widgets.push(dropId);
+              } else {
+                widgets.push(widgetId);
+              }
+            });
+            Object.assign(dropBlock, { widgets });
+          }
+        } else {
+          dragWidget.pid = dropBlock.id;
+          dragBlock.widgets = dragBlock.widgets.filter(
+            (widgetId) => widgetId != dragId
+          );
+          const widgets = [];
+          dropBlock.widgets.forEach((widgetId) => {
+            if (widgetId == dropId) {
+              widgets.push(dragId);
+              widgets.push(dropId);
+            } else {
+              widgets.push(widgetId);
+            }
+          });
+        }
+      }
+      if (dropEntity?.name == "Block") {
+        snapShot.take(
+          entities,
+          `drag widget: ${dragId} ${
+            dropEntity.id == dragBlock.id ? "in" : "to"
+          } block: ${dropEntity.id}`
+        );
+      } else {
+        snapShot.take(
+          entities,
+          `drag widget: ${dragId} before widget: ${dropEntity.id} ${
+            dropEntity.pid == dragBlock.id ? "in" : "of"
+          } block: ${dropEntity.pid}`
+        );
+      }
+      return [...entities];
     });
   };
 
@@ -247,5 +341,6 @@ export const useEntities = (initialEntities = [], isPrinted) => {
     splitBlock,
     pullBlock,
     dragWidget,
+    dragEntity,
   };
 };

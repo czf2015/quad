@@ -1,2 +1,2 @@
-type snapShortRecordType = any
-type snapShortStepType = string
+type snapShotRecordType = any
+type snapShotStepType = string

@@ -7,7 +7,7 @@ export const convertListToTree = (
 ) => {
   return treeList /* .sort((a, b) => a.order - b.order) */
     .filter((node) => {
-      if (node?.id && node?.pid === pid) {
+      if (node?.id && node?.pid == pid) {
         // if (typeof adapter == 'object') {
         //   Object.keys(adapter).forEach(key => {
         //     node[key] = node[adapter[key]]
@@ -70,7 +70,7 @@ export class Areas {
     const result = [];
     const selected_area = this.instance.find((item) => item.id == id);
     const neighbour_area = this.instance.find(
-      (item) => item.pid == selected_area.pid && item.id !== selected_area.id
+      (item) => item.pid == selected_area.pid && item.id != selected_area.id
     );
     this.instance.forEach((item) => {
       if (item.pid == id || item.id == id || item.id == neighbour_area.id) {

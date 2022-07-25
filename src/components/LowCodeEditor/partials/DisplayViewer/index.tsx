@@ -5,7 +5,7 @@ import { components } from '@/register'
 import { useStore } from '@/hooks'
 
 
-export const DisplayViewer = ({ entities = [], updateEntity, removeEntity, splitBlock, pullBlock, dragWidget, pid = 0 }) => {
+export const DisplayViewer = ({ entities = [], updateEntity, removeEntity, splitBlock, pullBlock, dragWidget, dragEntity, pid = 0 }) => {
   const store = useStore({ isHorizontal: false, hiddenClip: true })
 
   const handleDrop = (dropId) => (e) => {
@@ -13,12 +13,12 @@ export const DisplayViewer = ({ entities = [], updateEntity, removeEntity, split
     // 从左侧面板拖拽某组件到显示区域
     const dragWidgetName = e.dataTransfer.getData("dragWidgetName");
     if (dragWidgetName) {
-      dragWidget(dropId, dragWidgetName)
+      dragWidget(dragWidgetName, dropId)
     }
     // 拖拽显示区组件到特定区域（位置）
     const dragWidgetId = e.dataTransfer.getData("dragWidgetId");
     if (dragWidgetId) {
-      console.log({ dragWidgetId })
+      dragEntity(dragWidgetId, dropId)
     }
   }
 
