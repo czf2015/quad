@@ -203,7 +203,7 @@ export const useEntities = (initialEntities = [], isPrinted) => {
             } else {
               entity.widgets = [dragWidgetId];
             }
-            result.push({ name: "Button", id: dragWidgetId, pid: entity.id });
+            result.push({ name: dragName, id: dragWidgetId, pid: entity.id });
           }
         } else {
           if (entity.id == dropEntity.pid) {
@@ -220,8 +220,7 @@ export const useEntities = (initialEntities = [], isPrinted) => {
               entity.widgets = [widgetId];
             }
             result.push({
-              name: "Button",
-              title: "fsfsfsf",
+              name: dragName,
               id: dragWidgetId,
               pid: entity.id,
             });

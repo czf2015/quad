@@ -1,5 +1,5 @@
-import Loadable from "@/components/Loadable";
+import * as charts from "@/components/Chart";
 
 export const components = {
-  Button: Loadable(() => import("@/components/Button")),
-};
+  ...charts,
+}

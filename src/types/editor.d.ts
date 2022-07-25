@@ -1,6 +1,13 @@
 import { CSSProperties, ReactNode } from "react";
 
 type idType = number | string;
+type slotsKeyType = string
+interface ISlots {
+  [propName: slotsKeyType]: ReactNode;
+}
+type actionType = string;
+type payloadType = any;
+type dispatchType = (message: { type: actionType; payload: payloadType }) => any
 
 interface IWidget {
   name: string;
@@ -19,55 +26,36 @@ interface IWidgetCategory {
 interface IEntity extends IWidget {
   id: idType;
   pid: idType;
+  store?: Function; //
+  updateEntity: Function;
+  removeEntity: Function;
+  onDrop: Function;
 }
 
 type quadType = "top" | "bottom" | "left" | "right";
 interface IBlockProps extends IEntity {
-  id: idType;
-  pid: idType;
   name: "Block";
   quad?: quadType;
-  isHorizontal: boolean;
-  setIsHorizontal: Function;
-  hiddenClip: boolean;
-  setHiddenClip: Function;
-  updateEntity: Function;
-  removeEntity: Function;
+  slot?: slotKeyType;
   splitBlock: Function;
   pullBlock: Function;
-  style?: CSSProperties;
-  children?: ReactNode;
   widgets?: idType[];
 }
 
 interface IWrapperProps extends IEntity {
-  removeEntity: Function;
-  style?: CSSProperties;
-  children?: ReactNode;
 }
 
 interface IClassNames {
   [propName: string]: string;
 }
-type slotsKeyType = string
-interface ISlots {
-  [propName: slotsKeyType]: ReactNode;
-}
 interface IComponentBlocks {
   [propName: slotsKeyType]: idType;
 }
-type actionType = string;
-type payloadType = any;
 interface IComponentProps extends IEntity {
-  id: idType;
-  pid: idType;
   blocks?: IComponentBlocks;
   slots?: ISlots;
-  store?: Function; //
-  dispatch?: (message: { type: actionType; payload: payloadType }) => any;
   classNames?: IClassNames;
-  style?: CSSProperties;
-  children?: ReactNode;
+  dispatch?: dispatchType;
 }
 
 interface IConfigPanelProps {

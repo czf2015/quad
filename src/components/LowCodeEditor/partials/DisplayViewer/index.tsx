@@ -10,12 +10,12 @@ export const DisplayViewer = ({ entities = [], updateEntity, removeEntity, split
 
   const handleDrop = (dropId) => (e) => {
     e.stopPropagation()
-    // 从左侧面板拖拽某组件到显示区域
+    // 从左侧面板拖拽组件到显示区域(位置)
     const dragWidgetName = e.dataTransfer.getData("dragWidgetName");
     if (dragWidgetName) {
       dragWidget(dragWidgetName, dropId)
     }
-    // 拖拽显示区组件到特定区域（位置）
+    // 拖拽某显示区内组件到特定区域（位置）
     const dragWidgetId = e.dataTransfer.getData("dragWidgetId");
     if (dragWidgetId) {
       dragEntity(dragWidgetId, dropId)

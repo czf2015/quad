@@ -4,7 +4,6 @@ import { Button, Dropdown, Menu } from 'antd'
 import { DeleteOutlined, ScissorOutlined } from '@ant-design/icons'
 import { useClip, useDragMove } from '@/hooks'
 import styles from './index.module.less'
-import { endianness } from 'os'
 
 const menuItems = [
   {
