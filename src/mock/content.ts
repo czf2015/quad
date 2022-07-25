@@ -82,32 +82,46 @@ export default [
     },
   },  
   {
-    name: 'WidgetsPanel',
-    id: 'WidgetsPanel-1',
+    name: 'Button',
+    id: 'Widget-1',
     pid: 0b110,
     title: "组件栏",
-    blocks: ['WidgetsPanel-1-1'],
+    // blocks: {
+    //   left: 'Widget-1-left',
+    //   right: 'Widget-1-right',
+    // },
     style: {
-      width: '100%',
-      height: '100%',
-      backgroundColor: 'red'
+      // width: '100%',
+      // height: '100%',
+      // backgroundColor: 'red'
     },
   },
-  {
-    name: 'ConfigPanel',
-    id: 'ConfigPanel-1',
-    pid: 0b1111,
-    title: "配置栏",
-  },
-  {
-    name: "Block",
-    id: 'WidgetsPanel-1-1',
-    pid: 'WidgetsPanel-1',
-    title: "WidgetsPanel-1-1",
-    style: {
-      width: 100,
-      height: 100,
-      backgroundColor: 'red'
-    },
-  },
+  // {
+  //   name: 'ConfigPanel',
+  //   id: 'ConfigPanel-1',
+  //   pid: 0b1111,
+  //   title: "配置栏",
+  // },
+  // {
+  //   name: "Block",
+  //   id: 'Widget-1-left',
+  //   pid: 'Widget-1',
+  //   title: "Widget-1-left",
+  //   style: {
+  //     width: 100,
+  //     height: 100,
+  //     backgroundColor: 'red'
+  //   },
+  // },
+  // {
+  //   name: "Block",
+  //   id: 'Widget-1-right',
+  //   pid: 'Widget-1',
+  //   title: "Widget-1-right",
+  //   style: {
+  //     width: 100,
+  //     height: 100,
+  //     backgroundColor: 'red'
+  //   },
+  // },
 ];

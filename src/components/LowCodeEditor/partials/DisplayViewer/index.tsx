@@ -1,6 +1,7 @@
 // @ts-nocheck
 import React from 'react'
 import { Block, Wrapper } from './partials'
+import { components } from './register'
 import { useStore } from '@/hooks'
 
 
@@ -18,15 +19,22 @@ export const DisplayViewer = ({ entities = [], updateEntity, removeEntity, split
               </Block>
             )
           }
-          const { name, id, blocks = [], ...attrs } = item
-          const Widget = Wrapper
-          return (
-            <Wrapper {...attrs} removeEntity={removeEntity} key={id}>
-              <Widget id={id} {...attrs}>
-                {blocks.map(render)}
-              </Widget>
-            </Wrapper>
-          )
+          
+          const { name, id, blocks = {}, ...attrs } = item
+          const Widget = components[name]
+          if (Widget) {
+            const slots = {}
+            Object.entries(blocks).forEach(([key, value]) => {
+              slots[key] = render(value)
+            })
+            return (
+              <Wrapper {...attrs} removeEntity={removeEntity} key={id}>
+                <Widget id={id} {...attrs} slots={slots} />
+              </Wrapper>
+            )
+          }
+
+          return null
         })}
       </>
     )

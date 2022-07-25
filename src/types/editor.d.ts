@@ -1,8 +1,6 @@
 import { CSSProperties, ReactNode } from "react";
 
-type blockIDType = number
-type widgetIDType = string
-type idType = blockIDType | widgetIDType
+type idType = number | string;
 
 interface IWidget {
   name: string;
@@ -25,8 +23,8 @@ interface IEntity extends IWidget {
 
 type quadType = "top" | "bottom" | "left" | "right";
 interface IBlockProps extends IEntity {
-  id: blockIDType;
-  pid: blockIDType;
+  id: idType;
+  pid: idType;
   name: "Block";
   quad?: quadType;
   isHorizontal: boolean;
@@ -39,7 +37,7 @@ interface IBlockProps extends IEntity {
   pullBlock: Function;
   style?: CSSProperties;
   children?: ReactNode;
-  widgets?: widgetIDType[];
+  widgets?: idType[];
 }
 
 interface IWrapperProps extends IEntity {
@@ -51,14 +49,21 @@ interface IWrapperProps extends IEntity {
 interface IClassNames {
   [propName: string]: string;
 }
+interface ISlots {
+  [propName: string]: ReactNode;
+}
+interface IComponentBlocks {
+  [propName: string]: idType;
+}
 type actionType = string;
 type payloadType = any;
 interface IComponentProps extends IEntity {
-  id: widgetIDType;
-  pid: widgetIDType;
-  blocks?: blockIDType[];
-  store?: Function; // 
-  dispatch?: (message: { type: actionType, payload: payloadType }) => any;
+  id: idType;
+  pid: idType;
+  blocks?: IComponentBlocks;
+  slots?: ISlots;
+  store?: Function; //
+  dispatch?: (message: { type: actionType; payload: payloadType }) => any;
   classNames?: IClassNames;
   style?: CSSProperties;
   children?: ReactNode;
