@@ -5,6 +5,8 @@ import Layout from '@/layouts/Default'
 import { Menu, Restore, Console, Assets, Widgets, Outline, DisplayViewer, ConfigPanel, Tips, Status, Formatters } from './partials'
 import { useEntities, useStore } from '@/hooks'
 
+const { TabPane } = Tabs
+
 
 export default ({ page: { content: initialEntities, ...initialBaseInfo } }) => {
   const { entities, ...attrs } = useEntities(initialEntities, false)
@@ -34,15 +36,15 @@ export default ({ page: { content: initialEntities, ...initialBaseInfo } }) => {
   const main = {
     left: (
       <Tabs defaultActiveKey="Widgets" style={{ width: 216, height: '100%' }} centered>
-        <Tabs.TabPane tab="资源" key="Assets">
+        <TabPane tab="资源" key="Assets">
           <Assets />
-        </Tabs.TabPane>
-        <Tabs.TabPane tab="组件" key="Widgets">
+        </TabPane>
+        <TabPane tab="组件" key="Widgets">
           <Widgets />
-        </Tabs.TabPane>
-        <Tabs.TabPane tab="页面" key="Outline">
+        </TabPane>
+        <TabPane tab="页面" key="Outline">
           <Outline />
-        </Tabs.TabPane>
+        </TabPane>
       </Tabs>
     ),
     content: <DisplayViewer entities={entities} {...attrs} />,
