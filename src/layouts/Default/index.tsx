@@ -5,8 +5,8 @@ import styles from './index.module.less'
 
 export default ({ slots: { header, main, footer } }) => {
   const { left, content, right } = main
-  const rootRef = useResponsive()
-  
+  const rootRef = useResponsive({ width: 1920, height: 1080 }, false)
+
   return (
     <div className={styles.layout} ref={rootRef}>
       <div className={styles.header}>{header}</div>
