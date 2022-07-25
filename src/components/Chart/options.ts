@@ -2921,7 +2921,7 @@ export const getTreemapOption = ({
   };
 };
 
-export const getSunburstOption = ({ title, data }) => {
+export const getSunburstOption = ({ title, data = [] } = {}) => {
   var colors = ["#FFAE57", "#FF7853", "#EA5151", "#CC3F57", "#9A2555"];
   var bgColor = "#2E2733";
 
