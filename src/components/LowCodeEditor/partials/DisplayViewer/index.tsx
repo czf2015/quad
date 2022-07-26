@@ -63,7 +63,7 @@ export const DisplayViewer = ({ entities = [], updateEntity, removeEntity, split
 
   return (
     <div className={styles.container}>
-      <Scale len={1920} gap={5} direction='left' style={{ position: 'absolute', top: 0, left: 0 }} />
+      <Scale len={1440} gap={5} direction='left' style={{ position: 'absolute', top: 0, left: 0 }} />
       <Scale len={1080} gap={5} direction='down' style={{ position: 'absolute', top: 0, left: 0 }} />
       {render(pid)}
     </div>

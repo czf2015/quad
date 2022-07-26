@@ -7,7 +7,6 @@ export default [
     style: {
       width: 1440,
       height: 1080,
-      backgroundColor: "#f9cc9d",
     },
   },
   {
@@ -19,7 +18,6 @@ export default [
     style: {
       width: "100%",
       height: 64,
-      backgroundColor: "#fddd9b",
     },
   },
   {
@@ -31,7 +29,6 @@ export default [
     style: {
       width: "100%",
       height: "calc(100% - 64px)",
-      backgroundColor: "#fff",
     },
   },
   {
@@ -43,7 +40,6 @@ export default [
     style: {
       width: 216,
       height: "100%",
-      backgroundColor: "#8cb6c0",
     },
   },
   {
@@ -66,7 +62,6 @@ export default [
     style: {
       width: 960,
       height: "100%",
-      backgroundColor: "#f9cc9d",
     },
   },
   {
@@ -78,50 +73,46 @@ export default [
     style: {
       width: "calc(100% - 960px)",
       height: "100%",
-      backgroundColor: "#c3d08b",
     },
-  },  
+  },
   {
-    name: 'Button',
-    id: 'Widget-1',
+    name: "Button",
+    id: "Widget-1",
     pid: 0b110,
     title: "组件栏",
     blocks: {
-      left: 'Widget-1-left',
-      right: 'Widget-1-right',
+      left: "Widget-1-left",
+      right: "Widget-1-right",
     },
     style: {
       // width: '100%',
       // height: '100%',
-      // backgroundColor: 'red'
     },
   },
   {
-    name: 'ConfigPanel',
-    id: 'ConfigPanel-1',
+    name: "ConfigPanel",
+    id: "ConfigPanel-1",
     pid: 0b1111,
     title: "配置栏",
   },
   {
     name: "Block",
-    id: 'Widget-1-left',
-    pid: 'Widget-1',
+    id: "Widget-1-left",
+    pid: "Widget-1",
     title: "Widget-1-left",
     style: {
       width: 100,
       height: 100,
-      backgroundColor: 'red'
     },
   },
   {
     name: "Block",
-    id: 'Widget-1-right',
-    pid: 'Widget-1',
+    id: "Widget-1-right",
+    pid: "Widget-1",
     title: "Widget-1-right",
     style: {
       width: 100,
       height: 100,
-      backgroundColor: 'red'
     },
   },
 ];

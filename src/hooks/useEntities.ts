@@ -91,7 +91,6 @@ export const useEntities = (initialEntities = [], isPrinted) => {
                     ? `calc(100% - ${offset}px)`
                     : offset
                   : "100%",
-                backgroundColor: "#fddd9b",
               },
               widgets: idx > 0 ? [] : item.widgets,
             });
