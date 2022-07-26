@@ -51,7 +51,6 @@ export const useEntities = (initialEntities = [], isPrinted) => {
             ...item,
             pid: neighbour_area?.pid,
             widgets: neighbour_area?.widgets,
-            hasBlock: false,
           });
         } else {
           result.push({ ...item });
