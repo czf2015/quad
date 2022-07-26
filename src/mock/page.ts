@@ -9,6 +9,8 @@ export default {
     description: '',
   },
   content,
+  width: 1920,
+  height: 1080,
   path: '/custom/demo',
   query: {
     id: 1,

@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React from 'react'
-import { Block, Wrapper, Calibration } from './partials'
+import { Block, Wrapper, Scale } from './partials'
 import { components } from '@/register'
 import { useStore } from '@/hooks'
 import styles from './index.module.less'
@@ -23,7 +23,7 @@ export const DisplayViewer = ({ entities = [], updateEntity, removeEntity, split
     }
   }
 
-  const renderWidget = ({ name, id, blocks = {}, ...attrs }) => {
+  const renderWidget = ({ name, id, blocks = {}, ...attrs } = {}) => {
     const Widget = components[name]
     if (Widget) {
       const slots = {}
@@ -63,8 +63,8 @@ export const DisplayViewer = ({ entities = [], updateEntity, removeEntity, split
 
   return (
     <div className={styles.container}>
-      <Calibration direction="up" len={1920} />
-      <Calibration direction="left" len={1080} />
+      <Scale len={1920} gap={5} direction='left' style={{ position: 'absolute', top: 0, left: 0 }} />
+      <Scale len={1080} gap={5} direction='down' style={{ position: 'absolute', top: 0, left: 0 }} />
       {render(pid)}
     </div>
   )
