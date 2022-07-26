@@ -42,39 +42,6 @@ export const Clip = ({ isHorizontal, menuItems, offset, onClick, onMenuClick, on
   return null
 }
 
-const getBoundaryStyle = (quad) => {
-  switch (quad) {
-    case 'top':
-      return {
-        bottom: 0,
-        width: '100%',
-        height: 2,
-      }
-    // case 'bottom':
-    //   return {
-    //     top: 0,
-    //     width: '100%',
-    //     height: 2,
-    //   }
-    case 'left':
-      return {
-        right: 0,
-        width: 2,
-        height: '100%'
-      }
-    // case 'right':
-    //   return {
-    //     left: 0,
-    //     width: 2,
-    //     height: '100%'
-    //   }
-    default:
-      return {
-        display: 'none'
-      }
-  }
-}
-
 const Boundary = ({ pull, quad }) => {
   const attrs = useDragMove(pull)
 
@@ -84,7 +51,7 @@ const Boundary = ({ pull, quad }) => {
 }
 
 
-export const Block = ({ name, id, pid, title, quad, store, style, splitBlock, removeEntity, pullBlock, handleDrop, children }: IBlockProps) => {
+export const Block = ({ name, id, pid, title, quad, hasBlock, store, style, splitBlock, removeEntity, pullBlock, handleDrop, children }: IBlockProps) => {
   const [haltClip, setHaltClipClip] = useState(false)
   const onMenuClick: MenuProps['onClick'] = e => {
     setHaltClipClip(false)
@@ -123,7 +90,7 @@ export const Block = ({ name, id, pid, title, quad, store, style, splitBlock, re
   const onDrop = handleDrop(id)
 
   return (
-    <div id={id} className={`${styles.block} ${haltClip ? styles.contextmenu : ''}`} style={style} onMouseMove={onMouseMove} onDragOver={onDragOver} onDrop={onDrop} ref={ref}>
+    <div id={id} className={`${styles.block} ${haltClip ? styles.contextmenu : ''} ${hasBlock ? styles.hasBlock : ''}`} style={style} onMouseMove={onMouseMove} onDragOver={onDragOver} onDrop={onDrop} ref={ref}>
       <DeleteOutlined className={styles.delete_btn} onClick={remove} />
       <Boundary pull={pull} quad={quad} />
       {store('hiddenClip')
