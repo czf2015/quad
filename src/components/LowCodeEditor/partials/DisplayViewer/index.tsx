@@ -1,8 +1,9 @@
 // @ts-nocheck
 import React from 'react'
-import { Block, Wrapper } from './partials'
+import { Block, Wrapper, Calibration } from './partials'
 import { components } from '@/register'
 import { useStore } from '@/hooks'
+import styles from './index.module.less'
 
 
 export const DisplayViewer = ({ entities = [], updateEntity, removeEntity, splitBlock, pullBlock, dragWidget, dragEntity, pid = 0 }) => {
@@ -60,5 +61,11 @@ export const DisplayViewer = ({ entities = [], updateEntity, removeEntity, split
     )
   }
 
-  return render(pid)
+  return (
+    <div className={styles.container}>
+      <Calibration direction="up" len={1920} />
+      <Calibration direction="left" len={1080} />
+      {render(pid)}
+    </div>
+  )
 }

@@ -6,9 +6,9 @@ import React, { useEffect, useRef, useImperativeHandle, forwardRef } from "react
 import Chart from "@/plugins/Chart";
 import { getOption, getTimelineOption, getPieOption, getBarOption, getGaugeOption, getCandlestickOption, getGanttOption, getHeatmapOption, getPictorialBarOption, getRaceOption, getRadarOption, getScatterOption, getStackBarOption, getSunburstOption, getProfileOption, getTreemapOption, getWaterfallBarOption, getNestGaugeOption, getNestPieOption, getCircleOption, } from "./options";
 
-const defaultStyle = { width: "100%", height: 300, backgroundColor: "transparent" }
+const defaultStyle = { width: 400, height: 300, backgroundColor: "transparent" }
 
-const GeneralChart = forwardRef(({
+const General = forwardRef(({
   option,
   events = [],
   style = defaultStyle,
@@ -43,30 +43,24 @@ const GeneralChart = forwardRef(({
   return <div style={{ defaultStyle, ...style }} ref={chartRef} />;
 });
 
-const hoc = (getOption) => ({ option, ...attrs }) => <GeneralChart option={getOption(option)} {...attrs} />
-
+const hoc = (getOption) => ({ option, ...attrs }) => <General option={getOption(option)} {...attrs} />
 
 export default hoc(getOption)
 
 export const PieChart = hoc(getPieOption)
+export const NestPieChart = hoc(getNestPieOption) // 可以合并到PieChart
 
 export const LineChart = hoc(getOption)
 
 export const BarChart = hoc(getBarOption)
-
-export const StackBarChart = hoc(getStackBarOption)
-
-export const PictorialBarChart = hoc(getPictorialBarOption)
-
-export const GuageChart = hoc(getGaugeOption)
+export const StackBarChart = hoc(getStackBarOption) // 可以合并到BarChart
+export const PictorialBarChart = hoc(getPictorialBarOption) // 同上
+export const WaterfallBarChart = hoc(getWaterfallBarOption) // 同上
 
 export const ScatterChart = hoc(getScatterOption)
 
-export const WaterfallBarChart = hoc(getWaterfallBarOption)
-
-export const NestGaugeChart = hoc(getNestGaugeOption)
-
-export const NestPieChart = hoc(getNestPieOption)
+export const GuageChart = hoc(getGaugeOption)
+export const NestGaugeChart = hoc(getNestGaugeOption) // 可以合并到GuageChart 
 
 export const ProfileChart = hoc(getProfileOption)
 

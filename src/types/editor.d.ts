@@ -1,10 +1,6 @@
 import { CSSProperties, ReactNode } from "react";
 
 type idType = number | string;
-type slotsKeyType = string
-interface ISlots {
-  [propName: slotsKeyType]: ReactNode;
-}
 type actionType = string;
 type payloadType = any;
 type dispatchType = (message: { type: actionType; payload: payloadType }) => any
@@ -36,7 +32,6 @@ type quadType = "top" | "bottom" | "left" | "right";
 interface IBlockProps extends IEntity {
   name: "Block";
   quad?: quadType;
-  slot?: slotKeyType;
   splitBlock: Function;
   pullBlock: Function;
   widgets?: idType[];
@@ -47,6 +42,10 @@ interface IWrapperProps extends IEntity {
 
 interface IClassNames {
   [propName: string]: string;
+}
+type slotsKeyType = string
+interface ISlots {
+  [propName: slotsKeyType]: ReactNode;
 }
 interface IComponentBlocks {
   [propName: slotsKeyType]: idType;
