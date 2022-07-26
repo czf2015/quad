@@ -51,6 +51,7 @@ export const useEntities = (initialEntities = [], isPrinted) => {
             ...item,
             pid: neighbour_area?.pid,
             widgets: neighbour_area?.widgets,
+            hasBlock: false,
           });
         } else {
           result.push({ ...item });
@@ -95,7 +96,7 @@ export const useEntities = (initialEntities = [], isPrinted) => {
               widgets: idx > 0 ? [] : item.widgets,
             });
           });
-          result.push({ ...item, widgets: [] });
+          result.push({ ...item, hasBlock: true, widgets: [] });
         } else if (item.pid == id) {
           result.push({ ...item, pid: id * 2 });
         } else {
