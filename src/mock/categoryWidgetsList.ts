@@ -60,7 +60,7 @@ export default [
       },
       {
         name: "Kind",
-        title: "类型",
+        title: "类别",
         icon: "",
         description: "",
       },
@@ -103,6 +103,18 @@ export default [
       {
         name: "Join",
         title: "关联表",
+        icon: "",
+        description: "",
+      },
+      {
+        name: "Tags",
+        title: "标签",
+        icon: "",
+        description: "",
+      },
+      {
+        name: "Percent",
+        title: "百分比",
         icon: "",
         description: "",
       },
