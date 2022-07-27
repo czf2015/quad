@@ -4,6 +4,7 @@ export default [
     id: 0b1,
     pid: 0b0,
     title: "页面",
+    hasBlock: true,
     style: {
       width: 1440,
       height: 1080,
@@ -26,6 +27,7 @@ export default [
     pid: 0b1,
     title: "页面-编辑区",
     quad: "bottom",
+    hasBlock: true,
     style: {
       width: "100%",
       height: "calc(100% - 64px)",
@@ -47,6 +49,7 @@ export default [
     id: 0b111,
     pid: 0b11,
     title: "页面-编辑区-右侧",
+    hasBlock: true,
     quad: "right",
     style: {
       width: "calc(100% - 216px)",
@@ -73,46 +76,6 @@ export default [
     style: {
       width: "calc(100% - 960px)",
       height: "100%",
-    },
-  },
-  {
-    name: "Button",
-    id: "Widget-1",
-    pid: 0b110,
-    title: "组件栏",
-    blocks: {
-      left: "Widget-1-left",
-      right: "Widget-1-right",
-    },
-    style: {
-      // width: '100%',
-      // height: '100%',
-    },
-  },
-  {
-    name: "ConfigPanel",
-    id: "ConfigPanel-1",
-    pid: 0b1111,
-    title: "配置栏",
-  },
-  {
-    name: "Block",
-    id: "Widget-1-left",
-    pid: "Widget-1",
-    title: "Widget-1-left",
-    style: {
-      width: 100,
-      height: 100,
-    },
-  },
-  {
-    name: "Block",
-    id: "Widget-1-right",
-    pid: "Widget-1",
-    title: "Widget-1-right",
-    style: {
-      width: 100,
-      height: 100,
     },
   },
 ];

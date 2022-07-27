@@ -71,12 +71,12 @@ export default [
         icon: "",
         description: "",
       },
-      {
-        name: "RaceChart",
-        title: "赛道图",
-        icon: "",
-        description: "",
-      },
+      // {
+      //   name: "RaceChart",
+      //   title: "赛道图",
+      //   icon: "",
+      //   description: "",
+      // },
       {
         name: "MapChart",
         title: "地图",

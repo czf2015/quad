@@ -45,9 +45,8 @@ export const DisplayViewer = ({ entities = [], updateEntity, removeEntity, split
       <>
         {entities.filter(item => item.pid == pid).map((item) => {
           if (item.name == 'Block') {
-            const hasBlock = entities.findIndex(entity => entity.pid == item.id && entity.name == 'Block') != -1
             return (
-              <Block {...item} hasBlock={hasBlock} store={store} removeEntity={removeEntity} splitBlock={splitBlock} pullBlock={pullBlock} handleDrop={handleDrop} key={item.id}>
+              <Block {...item} store={store} removeEntity={removeEntity} splitBlock={splitBlock} pullBlock={pullBlock} handleDrop={handleDrop} key={item.id}>
                 {item?.widgets?.length > 0 ? item.widgets.map(widgetId => {
                   const widget = entities.find(entity => entity.id == widgetId)
                   return renderWidget(widget)

@@ -51,7 +51,7 @@ const Boundary = ({ pull, quad }) => {
 }
 
 
-export const Block = ({ name, id, pid, title, quad, hasBlock, store, style, splitBlock, removeEntity, pullBlock, handleDrop, children }: IBlockProps) => {
+export const Block = ({ name, id, pid, title, quad, hasBlock = false, store, style, splitBlock, removeEntity, pullBlock, handleDrop, children }: IBlockProps) => {
   const [haltClip, setHaltClipClip] = useState(false)
   const onMenuClick: MenuProps['onClick'] = e => {
     setHaltClipClip(false)

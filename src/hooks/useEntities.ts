@@ -46,7 +46,9 @@ export const useEntities = (initialEntities = [], isPrinted) => {
         if (item.pid == id || item.id == id || item.id == neighbour_area?.id) {
           return;
         }
-        if (item.pid == neighbour_area?.id) {
+        if (item.id == selected_area.pid) {
+          result.push({ ...item, hasBlock: neighbour_area?.hasBlock });
+        } else if (item.pid == neighbour_area?.id) {
           result.push({
             ...item,
             pid: neighbour_area?.pid,
