@@ -2,24 +2,24 @@
   position: relative;
   display: flex;
   flex-wrap: wrap;
-  outline: 1px dashed rgb(0, 106, 255);
+  outline: 1px dashed #1890ff;
 
   > .scissor_btn {
     position: absolute;
     top: 4px;
     right: 32px;
-    width: 24px;
-    height: 24px;
-    color: rgb(0, 106, 255);
+    &:hover {
+      color: #1890ff;
+    }
   }
 
   > .delete_btn {
     position: absolute;
     top: 4px;
     right: 4px;
-    width: 24px;
-    height: 24px;
-    color: rgb(0, 106, 255);
+    &:hover {
+      color: #e33e38;
+    }
   }
 
   > .boundary {
@@ -30,10 +30,10 @@
       bottom: 0;
       width: 100%;
       height: 0;
-      border-bottom: 1px dashed rgb(0, 106, 255);
+      border-bottom: 1px dashed #1890ff;
 
       &:hover {
-        border-bottom: 2px solid rgb(0, 106, 255);
+        border-bottom: 2px solid #1890ff;
         cursor: ns-resize;
       }
     }
@@ -42,10 +42,10 @@
       right: 0;
       width: 0;
       height: 100%;
-      border-right: 1px dashed rgb(0, 106, 255);
+      border-right: 1px dashed #1890ff;
 
       &:hover {
-        border-right: 2px solid rgb(0, 106, 255);
+        border-right: 2px solid #1890ff;
         cursor: ew-resize;
       }
     }
@@ -65,13 +65,13 @@
   > .clip_horizontal {
     position: absolute;
     width: 100%;
-    border-bottom: 1px dashed rgb(0, 106, 255);
+    border-bottom: 1px dashed #1890ff;
   }
 
   > .clip_vertical {
     position: absolute;
     height: 100%;
-    border-right: 1px dashed rgb(0, 106, 255);
+    border-right: 1px dashed #1890ff;
   }
 
   &:not(:hover):not(.contextmenu),

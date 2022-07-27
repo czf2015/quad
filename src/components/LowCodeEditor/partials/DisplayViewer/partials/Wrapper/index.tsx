@@ -7,7 +7,7 @@ export const Wrapper = ({
   name,
   id,
   pid,
-  title,
+  title = '',
   removeEntity,
   handleDrop,
   style,
@@ -28,7 +28,7 @@ export const Wrapper = ({
 
   return (
     <div id={id} className={styles.wrapper} draggable onDragStart={onDragStart} onDragOver={onDragOver} onDrop={onDrop}>
-      <DeleteOutlined className={styles.delete_btn} onClick={remove} />
+      <DeleteOutlined className={`${styles.delete_btn} quad-circle`} onClick={remove} />
       {children}
     </div>
   );

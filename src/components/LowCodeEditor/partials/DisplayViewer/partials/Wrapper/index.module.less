@@ -1,18 +1,16 @@
 .wrapper {
   position: relative;
-  display: inline-block;
-  >.delete_btn {
+  > .delete_btn {
     position: absolute;
     top: 4px;
-    right: 4px;
-    display: none;
-    width: 24px;
-    height: 24px;
-    color: rgb(0, 106, 255);
+    left: 4px;
+    &:hover {
+      color: #e33e38;
+    }
   }
-  &:hover {
-    >.delete_btn {
-      display: inline-block;
+  &:not(:hover) {
+    > .delete_btn {
+      display: none;
     }
   }
 }

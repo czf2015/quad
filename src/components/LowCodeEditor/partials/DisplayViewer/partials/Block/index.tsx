@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React, { useState } from 'react'
-import { Button, Dropdown, Menu } from 'antd'
+import { Button, Dropdown, Menu, Tooltip, } from 'antd'
 import { DeleteOutlined, ScissorOutlined } from '@ant-design/icons'
 import { useClip, useDragMove } from '@/hooks'
 import styles from './index.module.less'
@@ -51,7 +51,7 @@ const Boundary = ({ pull, quad }) => {
 }
 
 
-export const Block = ({ name, id, pid, title, quad, hasBlock = false, store, style, splitBlock, removeEntity, pullBlock, handleDrop, children }: IBlockProps) => {
+export const Block = ({ name, id, pid, title = '', quad, hasBlock = false, store, style, splitBlock, removeEntity, pullBlock, handleDrop, children }: IBlockProps) => {
   const [haltClip, setHaltClipClip] = useState(false)
   const onMenuClick: MenuProps['onClick'] = e => {
     setHaltClipClip(false)
@@ -91,10 +91,10 @@ export const Block = ({ name, id, pid, title, quad, hasBlock = false, store, sty
 
   return (
     <div id={id} className={`${styles.block} ${haltClip ? styles.contextmenu : ''} ${hasBlock ? styles.hasBlock : ''}`} style={style} onMouseMove={onMouseMove} onDragOver={onDragOver} onDrop={onDrop} ref={ref}>
-      <DeleteOutlined className={styles.delete_btn} onClick={remove} />
+      <DeleteOutlined className={`${styles.delete_btn} quad-circle`} onClick={remove} />
       <Boundary pull={pull} quad={quad} />
       {store('hiddenClip')
-        ? <ScissorOutlined className={styles.scissor_btn} onClick={() => store('hiddenClip', false)} />
+        ? <ScissorOutlined className={`${styles.scissor_btn} quad-circle`} onClick={() => store('hiddenClip', false)} />
         : <Clip isHorizontal={store('isHorizontal')} offset={offset} menuItems={menuItems} onClick={split} onVisibleChange={setHaltClipClip} onMenuClick={onMenuClick} />}
       {children}
     </div>
