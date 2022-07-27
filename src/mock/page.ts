@@ -11,6 +11,7 @@ export default {
   content,
   width: 1920,
   height: 1080,
+  tags: [],
   path: '/custom/demo',
   query: {
     id: 1,
