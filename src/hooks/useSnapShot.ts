@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 
 export const useSnapShot = (initialSnapShotRecord: snapShotRecordType, isPrinted = false) => {
   const [snapShotRecords, setSnapShotRecords] = useState([initialSnapShotRecord])
-  const [offset, setOffset] = useState(0)
+  const [offset, setOffset] = useState(-1)
   const [steps, setSteps] = useState([] as snapShotStepType[])
 
   const track = (step: snapShotStepType) => setSteps(steps => [...steps, step])

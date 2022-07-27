@@ -27,6 +27,7 @@ export const useRestore = (initialState, snapShot) => {
       const { state: storageState } = JSON.parse(storage)
       if (storageState) {
         setState(storageState)
+        snapShot.take(storageState, 'restore snapShort')
       }
     }
   }, [])
