@@ -32,6 +32,7 @@ type quadType = "top" | "bottom" | "left" | "right";
 interface IBlockProps extends IEntity {
   name: "Block";
   quad?: quadType;
+  hasBlock?: boolean;
   splitBlock: Function;
   pullBlock: Function;
   widgets?: idType[];

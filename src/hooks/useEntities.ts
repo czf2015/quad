@@ -95,7 +95,7 @@ export const useEntities = (initialEntities = [], isPrinted) => {
               widgets: idx > 0 ? [] : item.widgets,
             });
           });
-          result.push({ ...item, widgets: [] });
+          result.push({ ...item, hasBlock: true, widgets: [] });
         } else if (item.pid == id) {
           result.push({ ...item, pid: id * 2 });
         } else {
