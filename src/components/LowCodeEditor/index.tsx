@@ -9,7 +9,7 @@ const { TabPane } = Tabs
 
 
 export default ({ page: { content: initialEntities, ...initialBaseInfo } }) => {
-  const { entities, ...attrs } = useEntities(initialEntities, true)
+  const { entities, ...attrs } = useEntities(initialEntities/* , true */)
   const store = useStore(initialBaseInfo)
   const [mode, setMode] = useState(0) // 空白状态：0  查看状态: 1 编辑状态：2 
 
@@ -35,7 +35,7 @@ export default ({ page: { content: initialEntities, ...initialBaseInfo } }) => {
   )
   const main = {
     left: (
-      <Tabs defaultActiveKey="Widgets" style={{ width: 216, height: '100%' }} centered>
+      <Tabs defaultActiveKey="Widgets" style={{ height: '100%', background: '#fff' }} centered>
         <TabPane tab="资源" key="Assets">
           <Assets />
         </TabPane>

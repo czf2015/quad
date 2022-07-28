@@ -46,7 +46,10 @@ const Boundary = ({ pull, quad }) => {
   const attrs = useDragMove(pull)
 
   return (
-    <div className={`${styles.boundary} ${quad ? styles[quad] : ''}`} {...attrs}></div>
+    <div className={`${styles.boundary} ${quad ? styles[quad] : ''}`} {...attrs}>
+      <div></div>
+      <div></div>
+    </div>
   )
 }
 

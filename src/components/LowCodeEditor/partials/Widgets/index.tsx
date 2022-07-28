@@ -10,7 +10,7 @@ interface IWidgetsProps {
 }
 export const Widgets = ({ categories = mock }: IWidgetsProps) => {
   return (
-    <Collapse defaultActiveKey="chart">
+    <Collapse defaultActiveKey="chart" expandIconPosition="end">
       {categories.map(({ category, title, items = [] }) => {
         return (
           <Collapse.Panel header={title} key={category}>

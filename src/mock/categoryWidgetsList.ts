@@ -118,6 +118,18 @@ export default [
         icon: "",
         description: "",
       },
+      {
+        name: "RichText",
+        title: "富文本",
+        icon: "",
+        description: "",
+      },
+      {
+        name: "Markdown",
+        title: "Markdown",
+        icon: "",
+        description: "",
+      },
     ],
   },
   {
