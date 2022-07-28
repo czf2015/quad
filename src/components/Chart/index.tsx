@@ -49,6 +49,7 @@ export default hoc(getOption)
 
 export const PieChart = hoc(getPieOption)
 export const NestPieChart = hoc(getNestPieOption) // 可以合并到PieChart
+export const CircleChart = hoc(getCircleOption) // 可以合并到PieChart
 
 export const LineChart = hoc(getOption)
 
@@ -77,8 +78,6 @@ export const CandlestickChart = hoc(getCandlestickOption)
 export const SunburstChart = hoc(getSunburstOption)
 
 export const TreemapChart = hoc(getTreemapOption)
-
-export const CircleChart = hoc(getCircleOption)
 
 export const TimelineChart = hoc(getTimelineOption)
 

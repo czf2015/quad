@@ -5,8 +5,8 @@ export default [
     description: "",
     items: [
       {
-        name: "Dimentions",
-        title: "多维表",
+        name: "DataTable",
+        title: "数据表",
         icon: "",
         description: "",
       },
@@ -23,7 +23,7 @@ export default [
         description: "",
       },
       {
-        name: "Choose",
+        name: "Check",
         title: "勾选",
         icon: "",
         description: "",
@@ -227,12 +227,6 @@ export default [
       //   icon: "",
       //   description: "",
       // },
-      {
-        name: "CircleChart",
-        title: "环图",
-        icon: "",
-        description: "",
-      },
     ],
   },
 ];

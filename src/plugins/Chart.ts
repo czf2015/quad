@@ -8,7 +8,7 @@ export default class Chart {
   static clipRectByRect = echarts.graphic.clipRectByRect
   static linearGradient = (...params) => new echarts.graphic.LinearGradient(...params)
   static getTextRect = (text) => echarts.format.getTextRect(text)
-  // single class
+  // 单例模式
   constructor(el, theme = 'macarons') {
     this.instance = echarts.getInstanceByDom(el) || echarts.init(el, theme);
   }
