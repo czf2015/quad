@@ -1,20 +1,21 @@
 // @ts-nocheck
-import { useRef } from "react"
+import { useRef } from "react";
 
-export const useDragMove = (handle) => {
-  const dragRef = useRef()
+export const useDragMove = (handleDragMove) => {
+  const dragRef = useRef({ pageX: 0, pageY: 0 });
   const onDragStart = (e) => {
-    dragRef.current = { pageX: e.pageX, pageY: e.pageY }
-  }
+    dragRef.current = { pageX: e.pageX, pageY: e.pageY };
+  };
   const onDragOver = (e) => {
-    e.preventDefault()
-  }
+    e.preventDefault();
+  };
   const onDragEnd = (e) => {
-    handle({
+    const dragMove = {
       x: e.pageX - dragRef.current.pageX,
-      y: e.pageY - dragRef.current.pageY
-    })
-  }
+      y: e.pageY - dragRef.current.pageY,
+    };
+    handleDragMove(dragMove);
+  };
 
-  return { draggable: true, onDragStart, onDragOver, onDragEnd }
-}
+  return { draggable: true, onDragStart, onDragOver, onDragEnd };
+};

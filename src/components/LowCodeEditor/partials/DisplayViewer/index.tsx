@@ -1,11 +1,17 @@
 // @ts-nocheck
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Block, Wrapper, Scale } from './partials'
 import { components } from '@/register'
 import { useStore } from '@/hooks'
 
 
 export const DisplayViewer = ({ entities = [], updateEntity, removeEntity, splitBlock, pullBlock, dragWidget, dragEntity, pid = 0 }) => {
+  useEffect(() => {
+    document.oncontextmenu = function (event) {
+      event.preventDefault();
+    };
+  }, [])
+
   const store = useStore({ isHorizontal: false, hiddenClip: true })
 
   const handleDrop = (dropId) => (e) => {
@@ -45,12 +51,14 @@ export const DisplayViewer = ({ entities = [], updateEntity, removeEntity, split
         {entities.filter(item => item.pid == pid).map((item) => {
           if (item.name == 'Block') {
             return (
-              <Block {...item} store={store} removeEntity={removeEntity} splitBlock={splitBlock} pullBlock={pullBlock} handleDrop={handleDrop} key={item.id}>
-                {item?.widgets?.length > 0 ? item.widgets.map(widgetId => {
-                  const widget = entities.find(entity => entity.id == widgetId)
-                  return renderWidget(widget)
-                }) : render(item.id)}
-              </Block>
+              <>
+                <Block {...item} store={store} removeEntity={removeEntity} splitBlock={splitBlock} pullBlock={pullBlock} handleDrop={handleDrop} key={item.id}>
+                  {item?.widgets?.map(widgetId => {
+                    const widget = entities.find(entity => entity.id == widgetId)
+                    return renderWidget(widget)
+                  })} </Block>
+                {item?.widgets?.length > 0 ? null : render(item.id)}
+              </>
             )
           }
 
@@ -62,9 +70,11 @@ export const DisplayViewer = ({ entities = [], updateEntity, removeEntity, split
 
   return (
     <>
+      {/* <div className={styles.container}> */}
+      {/* </div> */}
+      <Scale len={1440} gap={5} direction='left' />
+      <Scale len={1080} gap={5} direction='down' />
       {render(pid)}
-      <Scale len={1920} gap={5} direction='left' style={{ position: 'absolute', top: 0, left: 0 }} />
-      <Scale len={1080} gap={5} direction='down' style={{ position: 'absolute', top: 0, left: 0 }} />
     </>
   )
 }

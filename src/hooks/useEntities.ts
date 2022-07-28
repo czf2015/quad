@@ -38,21 +38,21 @@ export const useEntities = (initialEntities = [], isPrinted) => {
         return result;
       }
       const result = [];
-      const selected_area = entities.find((item) => item.id == id);
-      const neighbour_area = entities.find(
-        (item) => item.pid == selected_area.pid && item.id != selected_area.id
+      const selected_block = entities.find((item) => item.id == id);
+      const neighbour_block = entities.find(
+        (item) => item.pid == selected_block.pid && item.id != selected_block.id
       );
       entities.forEach((item) => {
-        if (item.pid == id || item.id == id || item.id == neighbour_area?.id) {
+        if (item.pid == id || item.id == id || item.id == neighbour_block?.id) {
           return;
         }
-        if (item.id == selected_area.pid) {
-          result.push({ ...item, hasBlock: neighbour_area?.hasBlock });
-        } else if (item.pid == neighbour_area?.id) {
+        if (item.id == selected_block.pid) {
+          result.push({ ...item, hasBlock: neighbour_block?.hasBlock });
+        } else if (item.pid == neighbour_block?.id) {
           result.push({
             ...item,
-            pid: neighbour_area?.pid,
-            widgets: neighbour_area?.widgets,
+            pid: neighbour_block?.pid,
+            widgets: neighbour_block?.widgets,
           });
         } else {
           result.push({ ...item });
@@ -83,16 +83,26 @@ export const useEntities = (initialEntities = [], isPrinted) => {
                 ? "right"
                 : "left",
               style: {
-                width: isHorizontal
-                  ? "100%"
+                left: isHorizontal
+                  ? item.style.left
                   : idx > 0
-                  ? `calc(100% - ${offset}px)`
-                  : offset,
+                  ? item.style.left + offset.x
+                  : item.style.left,
+                top: isHorizontal
+                  ? idx > 0
+                    ? item.style.top + offset.y
+                    : item.style.top
+                  : item.style.top,
+                width: isHorizontal
+                  ? item.style.width
+                  : idx > 0
+                  ? item.style.width - offset.x
+                  : offset.x,
                 height: isHorizontal
                   ? idx > 0
-                    ? `calc(100% - ${offset}px)`
-                    : offset
-                  : "100%",
+                    ? item.style.height - offset.y
+                    : offset.y
+                  : item.style.height,
               },
               widgets: idx > 0 ? [] : item.widgets,
             });
@@ -116,76 +126,147 @@ export const useEntities = (initialEntities = [], isPrinted) => {
   // 拉伸
   const pullBlock = (id, dragMove) => {
     setEntities((_entities) => {
-      const entities = _entities.map((item) => ({ ...item }));
-      const selected_area = entities.find((item) => item.id == id);
-      const neighbour_area = entities.find(
-        (item) => item.pid == selected_area.pid && item.id != id
-      );
+      console.log(JSON.stringify(_entities));
+      const entities = JSON.parse(JSON.stringify(_entities));
+      let forbiddenFlag = false;
 
-      const margin = {
-        w:
-          (selected_area.style.marginLeft || 0) +
-          (selected_area.style.marginRight || 0) +
-          (neighbour_area.style.marginLeft || 0) +
-          (neighbour_area.style.marginRight || 0),
-        h:
-          (selected_area.style.marginTop || 0) +
-          (selected_area.style.marginBottom || 0) +
-          (neighbour_area.style.marginTop || 0) +
-          (neighbour_area.style.marginBottom || 0),
+      const handleSubBlock = (block, offset, pid = block.id) => {
+        const len = entities.length;
+        for (let i = 0; i < len; i++) {
+          const entity = entities[i];
+          if (entity.pid == pid) {
+            switch (block.quad) {
+              // 上下拖拽
+              // 上半区
+              case "top":
+                if (entity.quad !== "top") {
+                  if (entity.style.height + offset < 0) {
+                    forbiddenFlag = true;
+                    return true;
+                  }
+                  entity.style = {
+                    ...entity.style,
+                    height: entity.style.height + offset,
+                  };
+                }
+                break;
+              // 下半区
+              case "bottom":
+                if (entity.quad !== "bottom") {
+                  if (entity.style.height - offset < 0) {
+                    forbiddenFlag = true;
+                    return true;
+                  }
+                  entity.style = {
+                    ...entity.style,
+                    top: entity.style.top + offset,
+                    height: entity.style.height - offset,
+                  };
+                }
+                break;
+              // 左右拖拽
+              // 左半区
+              case "left":
+                if (entity.quad !== "left") {
+                  if (entity.style.width + offset < 0) {
+                    forbiddenFlag = true;
+                    return true;
+                  }
+                  entity.style = {
+                    ...entity.style,
+                    width: entity.style.width + offset,
+                  };
+                }
+                break;
+              // 右半区
+              case "right":
+                if (entity.quad !== "right") {
+                  if (entity.style.width - offset < 0) {
+                    forbiddenFlag = true;
+                    return true;
+                  }
+                  entity.style = {
+                    ...entity.style,
+                    left: entity.style.left + offset,
+                    width: entity.style.width - offset,
+                  };
+                }
+                break;
+              default:
+                break;
+            }
+            if (handleSubBlock(block, offset, entity.id)) {
+              return true;
+            }
+          }
+        }
+        return false;
       };
 
-      const { quad } = selected_area;
-      let offset = dragMove.x;
-      switch (quad) {
+      const selected_block = entities.find((item) => item.id == id);
+      const neighbour_block = entities.find(
+        (item) => item.pid == selected_block.pid && item.id != selected_block.id
+      );
+      switch (selected_block.quad) {
         case "top":
-          offset = dragMove.y;
-          selected_area.style = {
-            ...selected_area.style,
-            height: selected_area.style.height + offset,
+          if (
+            selected_block.style.height + dragMove.y < 0 ||
+            neighbour_block.style.height - dragMove.y < 0
+          ) {
+            return _entities;
+          }
+          selected_block.style = {
+            ...selected_block.style,
+            height: selected_block.style.height + dragMove.y,
           };
-          neighbour_area.style = {
-            ...neighbour_area.style,
-            height: `calc(100% - ${selected_area.style.height}px - ${margin.h}px)`,
+          if (handleSubBlock(selected_block, dragMove.y)) {
+            return _entities;
+          }
+          neighbour_block.style = {
+            ...neighbour_block.style,
+            top: neighbour_block.style.top + dragMove.y,
+            height: neighbour_block.style.height - dragMove.y,
           };
-          break;
-        case "bottom":
-          offset = dragMove.y;
-          neighbour_area.style.height = {
-            ...neighbour_area.style,
-            height: neighbour_area.style.height - offset,
-          };
-          selected_area.style = {
-            ...selected_area.style,
-            height: `calc(100% - ${neighbour_area.style.height}px - ${margin.h}px)`,
-          };
+          if (handleSubBlock(neighbour_block, dragMove.y)) {
+            return _entities;
+          }
           break;
         case "left":
-          selected_area.style = {
-            ...selected_area.style,
-            width: selected_area.style.width + offset,
+          if (
+            selected_block.style.width + dragMove.x < 0 ||
+            neighbour_block.style.width - dragMove.x < 0
+          ) {
+            return _entities;
+          }
+          selected_block.style = {
+            ...selected_block.style,
+            width: selected_block.style.width + dragMove.x,
           };
-          neighbour_area.style = {
-            ...neighbour_area.style,
-            width: `calc(100% - ${selected_area.style.width}px - ${margin.w}px)`,
+          if (handleSubBlock(selected_block, dragMove.x)) {
+            return _entities;
+          }
+          neighbour_block.style = {
+            ...neighbour_block.style,
+            left: neighbour_block.style.left + dragMove.x,
+            width: neighbour_block.style.width - dragMove.x,
           };
-          break;
-        case "right":
-          neighbour_area.style = {
-            ...neighbour_area.style,
-            width: neighbour_area.style.width - offset,
-          };
-          selected_area.style = {
-            ...selected_area.style,
-            width: `calc(100% - ${neighbour_area.style.width}px - ${margin.w}px)`,
-          };
+          if (handleSubBlock(neighbour_block, dragMove.x)) {
+            return _entities;
+          }
           break;
         default:
           break;
       }
+      if (forbiddenFlag) {
+        return _entities;
+      }
+
+      console.log(
+        `pull block: ${id} by (${dragMove.x}px, ${dragMove.y}px) offset`
+      );
       snapShot.take(
         entities,
-        `pull ${quad} block: ${id} by ${offset}px offset`
+        `pull block: ${id} by (${dragMove.x}px, ${dragMove.y}px) offset`
       );
       return entities;
     });

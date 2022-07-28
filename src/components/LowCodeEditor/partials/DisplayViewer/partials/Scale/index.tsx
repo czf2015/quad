@@ -3,11 +3,11 @@ import React from 'react'
 import { getNumbers } from './helpers'
 import styles from './index.module.less'
 
-export const Scale = ({ len = 1920, gap = 5, direction = 'left', style }) => {
+export const Scale = ({ len = 1920, gap = 5, direction = 'left', style = { position: 'absolute', top: 0, left: 0 } }) => {
   const numbers = getNumbers(len, gap)
 
   const isHorizontal = direction == 'left'
-  const scaleStyle = isHorizontal ? { width: len, borderTop: '1px solid #bab1b1' } : { flexDirection: 'column', height: len, borderLeft: '1px solid #bab1b1' }
+  const scaleStyle = isHorizontal ? { width: len, height: 16, borderTop: '1px solid #bab1b1' } : { flexDirection: 'column', width: 16, height: len, borderLeft: '1px solid #bab1b1' }
 
   return (
     <div className={styles.scale} style={{ ...scaleStyle, ...style }}>

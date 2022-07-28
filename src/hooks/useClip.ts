@@ -5,13 +5,13 @@ import { useRectRef } from "./useRectRef";
 export const useClip = (halt = false) => {
   const ref = useRectRef();
 
-  const [offset, setOffset] = useState({ rect: {}, offset: { width: 0, height: 0 } });
+  const [offset, setOffset] = useState({ x: 0, y: 0 });
   const onMouseMove = (e) => {
     e.stopPropagation();
     if (!halt) {
       setOffset({
-        width: e.pageX - ref.current.rect?.left,
-        height: e.pageY - ref.current?.rect?.top,
+        x: e.pageX - ref.current.rect?.left,
+        y: e.pageY - ref.current?.rect?.top,
       });
     }
   };

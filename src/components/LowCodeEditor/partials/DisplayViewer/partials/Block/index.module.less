@@ -1,5 +1,5 @@
 .block {
-  position: relative;
+  position: absolute;
   display: flex;
   flex-wrap: wrap;
   outline: 1px dashed #1890ff;
@@ -47,6 +47,7 @@
     &.left {
       right: -4px;
       height: 100%;
+      overflow: visible;
       &:hover {
         cursor: ew-resize;
       }

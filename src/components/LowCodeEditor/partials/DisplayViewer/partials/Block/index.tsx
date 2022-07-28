@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React, { useState } from 'react'
-import { Button, Dropdown, Menu, Tooltip, } from 'antd'
+import { Button, Dropdown, Menu } from 'antd'
 import { DeleteOutlined, ScissorOutlined } from '@ant-design/icons'
 import { useClip, useDragMove } from '@/hooks'
 import styles from './index.module.less'
@@ -21,7 +21,7 @@ const menuItems = [
 ]
 
 export const Clip = ({ isHorizontal, menuItems, offset, onClick, onMenuClick, onVisibleChange }) => {
-  if (offset?.width || offset?.height) {
+  if (offset?.x || offset?.y) {
     const menu = (
       <Menu
         onClick={onMenuClick}
@@ -31,9 +31,9 @@ export const Clip = ({ isHorizontal, menuItems, offset, onClick, onMenuClick, on
 
     return (
       <>
-        <div className={isHorizontal ? styles.clip_horizontal : styles.clip_vertical} style={isHorizontal ? { top: offset?.height } : { left: offset?.width }} />
+        <div className={isHorizontal ? styles.clip_horizontal : styles.clip_vertical} style={isHorizontal ? { top: offset?.y } : { left: offset?.x }} />
         <Dropdown overlay={menu} onVisibleChange={onVisibleChange} trigger="contextMenu">
-          <Button className={styles.clip_scissor} style={{ top: offset?.height, left: offset?.width }} onClick={onClick} type="primary" shape="circle" icon={<ScissorOutlined rotate={isHorizontal ? 0 : 90} />} />
+          <Button className={styles.clip_scissor} style={{ top: offset?.y, left: offset?.x }} onClick={onClick} type="primary" shape="circle" icon={<ScissorOutlined rotate={isHorizontal ? 0 : 90} />} />
         </Dropdown>
       </>
     )
@@ -52,7 +52,6 @@ const Boundary = ({ pull, quad }) => {
     </div>
   )
 }
-
 
 export const Block = ({ name, id, pid, title = '', quad, hasBlock = false, store, style, splitBlock, removeEntity, pullBlock, handleDrop, children }: IBlockProps) => {
   const [haltClip, setHaltClipClip] = useState(false)
@@ -77,7 +76,7 @@ export const Block = ({ name, id, pid, title = '', quad, hasBlock = false, store
 
   const split = (e) => {
     e.stopPropagation()
-    splitBlock(id, store('isHorizontal'), store('isHorizontal') ? offset.height : offset.width)
+    splitBlock(id, store('isHorizontal'), offset)
   }
   const remove = (e) => {
     e.stopPropagation()

@@ -6,6 +6,8 @@ export default [
     title: "页面",
     hasBlock: true,
     style: {
+      top: 0,
+      left: 0,
       width: 1440,
       height: 1080,
     },
@@ -17,7 +19,9 @@ export default [
     title: "页面-顶部栏",
     quad: "top",
     style: {
-      width: "100%",
+      top: 0,
+      left: 0,
+      width: 1440,
       height: 64,
     },
   },
@@ -29,8 +33,10 @@ export default [
     quad: "bottom",
     hasBlock: true,
     style: {
-      width: "100%",
-      height: "calc(100% - 64px)",
+      top: 64,
+      left: 0,
+      width: 1440,
+      height: 1016,
     },
   },
   {
@@ -40,8 +46,10 @@ export default [
     title: "页面-编辑区-左侧组件面板",
     quad: "left",
     style: {
+      top: 64,
+      left: 0,
       width: 216,
-      height: "100%",
+      height: 1016,
     },
   },
   {
@@ -52,8 +60,10 @@ export default [
     hasBlock: true,
     quad: "right",
     style: {
-      width: "calc(100% - 216px)",
-      height: "100%",
+      top: 64,
+      left: 216,
+      width: 1224,
+      height: 1016,
     },
   },
   {
@@ -63,8 +73,10 @@ export default [
     title: "页面-编辑区-右侧-中间显示区",
     quad: "left",
     style: {
+      top: 64,
+      left: 216,
       width: 960,
-      height: "100%",
+      height: 1016,
     },
   },
   {
@@ -74,8 +86,10 @@ export default [
     title: "页面-编辑区-右侧 -右侧配置面板",
     quad: "right",
     style: {
-      width: "calc(100% - 960px)",
-      height: "100%",
+      top: 64,
+      left: 1176,
+      width: 264,
+      height: 1016,
     },
   },
 ];
