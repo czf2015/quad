@@ -3,7 +3,6 @@ import React from 'react'
 import { Block, Wrapper, Scale } from './partials'
 import { components } from '@/register'
 import { useStore } from '@/hooks'
-import styles from './index.module.less'
 
 
 export const DisplayViewer = ({ entities = [], updateEntity, removeEntity, splitBlock, pullBlock, dragWidget, dragEntity, pid = 0 }) => {
@@ -62,10 +61,10 @@ export const DisplayViewer = ({ entities = [], updateEntity, removeEntity, split
   }
 
   return (
-    <div className={styles.container}>
-      <Scale len={1440} gap={5} direction='left' style={{ position: 'absolute', top: 0, left: 0 }} />
-      <Scale len={1080} gap={5} direction='down' style={{ position: 'absolute', top: 0, left: 0 }} />
+    <>
       {render(pid)}
-    </div>
+      <Scale len={1440} gap={5} direction='left' style={{ position: 'fixed', top: 52, left: 220 }} />
+      <Scale len={1080} gap={5} direction='down' style={{ position: 'fixed', top: 52, left: 220 }} />
+    </>
   )
 }

@@ -7,7 +7,7 @@ export const Scale = ({ len = 1920, gap = 5, direction = 'left', style }) => {
   const numbers = getNumbers(len, gap)
 
   const isHorizontal = direction == 'left'
-  const scaleStyle = isHorizontal ? { width: len, borderTop: '1px solid #222' } : { flexDirection: 'column', height: len, borderLeft: '1px solid #222' }
+  const scaleStyle = isHorizontal ? { width: len, borderTop: '1px solid #bab1b1' } : { flexDirection: 'column', height: len, borderLeft: '1px solid #bab1b1' }
 
   return (
     <div className={styles.scale} style={{ ...scaleStyle, ...style }}>
