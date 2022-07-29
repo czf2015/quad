@@ -1,3 +1,3 @@
 import React from 'react'
 
-export const Bind = ({ name, type, payload, children }) => <></>
+export const Bind = ({ id, event, type, payload, children }: IBind) => <></>

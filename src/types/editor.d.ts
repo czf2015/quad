@@ -3,9 +3,10 @@ import { CSSProperties, ReactNode } from "react";
 type idType = number | string;
 type actionType = string;
 type payloadType = number | string | boolean | Array | Object | Function;
-type dispatchType = (message: { type: actionType; payload: payloadType }) => any
+interface IMessage { id: idType; type: actionType; payload: payloadType; description?: string }
+type dispatchType = (message: IMessage) => any
 type eventType = 'onClick' | 'onMenuContext' | 'onMouseEnter' | 'onMouseLeave' | 'onMouseOver' | 'onDragStart' | 'onDragOver' | 'onDragEnd' | 'onDrop'
-type bindType = 'Confirm' | 'Drawer' | actionType
+// type bindType = 'Confirm' | 'Drawer' | actionType
 
 interface IWidget {
   name: string;
@@ -53,21 +54,25 @@ interface ISlots {
 interface IComponentBlocks {
   [propName: slotsKeyType]: idType;
 }
+interface IBind extends IMessage {
+  event: eventType;
+}
 interface IBinds {
-  [propName: string]: {
-    name: eventType;
-    type: bindType;
-    payload: payloadType;
-  }
+  [propName: string]: IBind
+}
+interface IHandlers {
+  [propName: string]: dispatchType
+}
+interface IDataSource {
+
 }
 interface IComponentProps extends IEntity {
   blocks?: IComponentBlocks;
   slots?: ISlots;
   classNames?: IClassNames;
-  dispatch?: dispatchType;
-  binds: IBinds;
-  // loads: 
-  // 
+  dataSource?: IDataSource;
+  handlers?: IHandlers;
+  binds?: IBinds;
 }
 
 interface IConfigPanelProps {
