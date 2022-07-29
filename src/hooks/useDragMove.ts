@@ -20,6 +20,7 @@ export const useDragMove = (handleDragMove) => {
           pageX: e.pageX,
           pageY: e.pageY,
           now,
+          dragging: true
         };
       }
     }
