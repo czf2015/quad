@@ -46,5 +46,4 @@ export const icons = {
   CandlestickChart: AreaChartOutlined,
   TreemapChart: AreaChartOutlined,
   TimelineChart: AreaChartOutlined,
-  CircleChart: AreaChartOutlined,
 }
