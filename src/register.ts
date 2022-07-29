@@ -18,7 +18,7 @@ import {
   GattChart as GattChartIcon,
   CandlestickChart as CandlestickChartIcon,
   RaceChart as RaceChartIcon
-} from "@/assets/Icon";
+} from "@/assets/Icon/index.js";
 
 import {
   AreaChartOutlined,
