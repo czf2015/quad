@@ -2,6 +2,7 @@ import { CSSProperties } from "react";
 
 enum enumFormItemType {
   TEXT,
+  RICHTEXT,
   NUMBER,
   CHECK,
   SINGLE,
@@ -100,6 +101,10 @@ interface IKindFormItem extends IFormItem {
   type: enumFormItemType.KIND;
   value: number | string;
   options: optionType[];
+}
+interface IRichTextFormItem extends IFormItem {
+  type: enumFormItemType.RICHTEXT;
+  value: string;
 }
 
 interface IDataTableColumn {
