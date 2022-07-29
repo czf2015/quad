@@ -9,7 +9,8 @@ export const Widget = ({ name, title, description = title, icon }: IWidget) => {
     e.dataTransfer.setData("dragWidgetName", name);
   };
 
-  const Icon = icons[name]
+  const DefaultIcon = () => <img src={`/icons/${name}.svg`} />
+  const Icon = icons[name] || DefaultIcon
 
   return (
     <div className={styles.widget} title={description} onDragStart={onDragStart} draggable key={name}>

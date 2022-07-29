@@ -126,7 +126,6 @@ export const useEntities = (initialEntities = [], isPrinted) => {
   // 拉伸
   const pullBlock = (id, dragMove) => {
     setEntities((_entities) => {
-      console.log(JSON.stringify(_entities));
       const entities = JSON.parse(JSON.stringify(_entities));
       let forbiddenFlag = false;
 

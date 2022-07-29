@@ -58,7 +58,7 @@ interface IBind extends IMessage {
   event: eventType;
 }
 interface IBinds {
-  [propName: string]: IBind
+  [propName: string]: IBind[]
 }
 interface IDataSource {
 

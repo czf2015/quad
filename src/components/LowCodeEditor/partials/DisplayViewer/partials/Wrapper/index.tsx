@@ -23,10 +23,6 @@ export const Wrapper = ({
   const onDragStart = (e) => {
     e.dataTransfer.setData("dragWidgetId", id);
   };
-  // const onDragOver = (e) => {
-  //   console.log('dfsdfsdfdsf')
-  //   e.preventDefault()
-  // }
   const onDrop = handleDrop(id)
 
   const handleDragMove = (dragMove) => {
