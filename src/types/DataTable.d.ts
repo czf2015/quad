@@ -2,6 +2,7 @@ import { CSSProperties } from "react";
 
 enum enumFormItemType {
   TEXT,
+  RICHTEXT,
   NUMBER,
   CHECK,
   SINGLE,
@@ -53,9 +54,6 @@ interface INumberFormItem extends IFormItem {
 interface ICheckFormItem extends IFormItem {
   type: enumFormItemType.CHECK;
   value: boolean;
-  min?: number;
-  max?: number;
-  step?: number;
 }
 
 interface ISingleFormItem extends IFormItem {
@@ -76,8 +74,8 @@ interface IDateFormItem extends IFormItem {
 }
 
 interface ILimit {
-  length: number;
-  total: number;
+  length?: number; // 单位字节
+  total?: number; // 数量限制
 }
 
 interface IAttachmentFormItem extends IFormItem {
@@ -103,6 +101,10 @@ interface IKindFormItem extends IFormItem {
   type: enumFormItemType.KIND;
   value: number | string;
   options: optionType[];
+}
+interface IRichTextFormItem extends IFormItem {
+  type: enumFormItemType.RICHTEXT;
+  value: string;
 }
 
 interface IDataTableColumn {
