@@ -36,7 +36,7 @@ export const DisplayViewer = ({ entities = [], updateEntity, removeEntity, split
         slots[key] = render(blocks[key])
       }
       return (
-        <Wrapper id={id} {...attrs} removeEntity={removeEntity} handleDrop={handleDrop} key={id}>
+        <Wrapper id={id} {...attrs} removeEntity={removeEntity} updateEntity={updateEntity} handleDrop={handleDrop} key={id}>
           <Widget id={id} {...attrs} slots={slots} />
         </Wrapper>
       )
@@ -70,8 +70,6 @@ export const DisplayViewer = ({ entities = [], updateEntity, removeEntity, split
 
   return (
     <>
-      {/* <div className={styles.container}> */}
-      {/* </div> */}
       <Scale len={1440} gap={5} direction='left' />
       <Scale len={1080} gap={5} direction='down' />
       {render(pid)}
