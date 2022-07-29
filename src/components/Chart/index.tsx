@@ -4,9 +4,10 @@
  */
 import React, { useEffect, useRef, useImperativeHandle, forwardRef } from "react";
 import Chart from "@/plugins/Chart";
+import { observe } from "@/utils/dom";
 import { getOption, getTimelineOption, getPieOption, getBarOption, getGaugeOption, getCandlestickOption, getGanttOption, getHeatmapOption, getPictorialBarOption, getRaceOption, getRadarOption, getScatterOption, getStackBarOption, getSunburstOption, getProfileOption, getTreemapOption, getWaterfallBarOption, getNestGaugeOption, getNestPieOption, getCircleOption, } from "./options";
 
-const defaultStyle = { width: 400, height: 300, backgroundColor: "transparent" }
+const defaultStyle = { width: /* 400 */'100%', height: '100%'/* 300 */, backgroundColor: "transparent" }
 
 const General = forwardRef(({
   option,
@@ -26,6 +27,7 @@ const General = forwardRef(({
       instanceRef.current.resize();
     };
     window.addEventListener("resize", handleResize);
+    observe(chartRef.current.parentNode, undefined, handleResize)
     return () => {
       window.removeEventListener("resize", handleResize);
       events.forEach(({ event, handler }) => {

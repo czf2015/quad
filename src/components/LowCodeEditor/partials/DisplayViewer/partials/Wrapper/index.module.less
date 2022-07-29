@@ -1,15 +1,33 @@
 .wrapper {
   position: relative;
-  > .delete_btn {
+  > .holder_btn {
     position: absolute;
     top: 4px;
     left: 4px;
     &:hover {
+      cursor: move;
+    }
+  }
+  > .delete_btn {
+    position: absolute;
+    top: 4px;
+    left: 32px;
+    &:hover {
       color: #e33e38;
     }
   }
+  > .expand_btn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    &:hover {
+      cursor: nw-resize;
+    }
+  }
   &:not(:hover) {
-    > .delete_btn {
+    > .holder_btn,
+    > .delete_btn,
+    > .expand_btn {
       display: none;
     }
   }

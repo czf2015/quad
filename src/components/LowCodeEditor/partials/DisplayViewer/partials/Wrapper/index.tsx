@@ -1,6 +1,7 @@
 // @ts-nocheck
-import React from "react";
-import { DeleteOutlined } from '@ant-design/icons'
+import React, { useState } from "react";
+import { useDragMove } from "@/hooks";
+import { HolderOutlined, DeleteOutlined, ExpandAltOutlined } from '@ant-design/icons'
 import styles from "./index.module.less";
 
 export const Wrapper = ({
@@ -10,7 +11,7 @@ export const Wrapper = ({
   title = '',
   removeEntity,
   handleDrop,
-  style,
+  style = { width: 200, height: 200 },
   children,
 }: IWrapperProps) => {
   const remove = (e) => {
@@ -26,10 +27,15 @@ export const Wrapper = ({
   }
   const onDrop = handleDrop(id)
 
+  const [delta, setDelta] = useState({ x: 0, y: 0 })
+  const dragMove = useDragMove(setDelta)
+
   return (
-    <div id={id} className={styles.wrapper} draggable onDragStart={onDragStart} onDragOver={onDragOver} onDrop={onDrop}>
+    <div id={id} className={styles.wrapper} onDragOver={onDragOver} onDrop={onDrop} style={{ ...style, width: style.width + delta.x, height: style.height + delta.y }}>
+      <HolderOutlined className={`${styles.holder_btn} quad-circle`} draggable onDragStart={onDragStart} />
       <DeleteOutlined className={`${styles.delete_btn} quad-circle`} onClick={remove} />
       {children}
+      <ExpandAltOutlined className={`${styles.expand_btn} quad-circle`} rotate={90} {...dragMove} />
     </div>
   );
 };
