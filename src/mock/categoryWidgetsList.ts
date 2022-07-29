@@ -71,18 +71,6 @@ export default [
         description: "",
       },
       {
-        name: "Button",
-        title: "按钮",
-        icon: "",
-        description: "",
-      },
-      {
-        name: "Menu",
-        title: "菜单",
-        icon: "",
-        description: "",
-      },
-      {
         name: "Link",
         title: "链接",
         icon: "",
@@ -121,6 +109,18 @@ export default [
       {
         name: "RichText",
         title: "富文本",
+        icon: "",
+        description: "",
+      },
+      {
+        name: "Button",
+        title: "按钮",
+        icon: "",
+        description: "",
+      },
+      {
+        name: "Menu",
+        title: "菜单",
         icon: "",
         description: "",
       },

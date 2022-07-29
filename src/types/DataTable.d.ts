@@ -53,9 +53,6 @@ interface INumberFormItem extends IFormItem {
 interface ICheckFormItem extends IFormItem {
   type: enumFormItemType.CHECK;
   value: boolean;
-  min?: number;
-  max?: number;
-  step?: number;
 }
 
 interface ISingleFormItem extends IFormItem {
@@ -76,8 +73,8 @@ interface IDateFormItem extends IFormItem {
 }
 
 interface ILimit {
-  length: number;
-  total: number;
+  length?: number; // 单位字节
+  total?: number; // 数量限制
 }
 
 interface IAttachmentFormItem extends IFormItem {
