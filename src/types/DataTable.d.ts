@@ -14,18 +14,8 @@ enum enumFormItemType {
 }
 
 type validatorType = (val: any) => boolean;
-
-type optionType = {
-  label: string;
-  value: number | string;
-};
-
 type dateType = string;
-type tagType = {
-  label: string;
-  value: number | string;
-};
-type kindType = {
+type optionType = {
   label: string;
   value: number | string;
 };
@@ -105,12 +95,11 @@ interface IRatingFormItem extends IFormItem {
 interface ITagsFormItem extends IFormItem {
   type: enumFormItemType.TAGS;
   value: (number | string)[];
-  options: tagType[];
+  options: optionType[];
 }
 
 interface IKindFormItem extends IFormItem {
   type: enumFormItemType.KIND;
   value: number | string;
-  options: kindType[];
+  options: optionType[];
 }
-
