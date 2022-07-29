@@ -60,9 +60,6 @@ interface IBind extends IMessage {
 interface IBinds {
   [propName: string]: IBind
 }
-interface IHandlers {
-  [propName: string]: dispatchType
-}
 interface IDataSource {
 
 }
@@ -71,7 +68,7 @@ interface IComponentProps extends IEntity {
   slots?: ISlots;
   classNames?: IClassNames;
   dataSource?: IDataSource;
-  handlers?: IHandlers;
+  handlers?: dispatchType[];
   binds?: IBinds;
 }
 
