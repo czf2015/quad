@@ -23,6 +23,7 @@ type optionType = {
 interface IFormItem {
   type: enumFormItemType;
   field: string;
+  description?: string;
   label?: string;
   value?: any;
   required?: boolean;
@@ -102,4 +103,30 @@ interface IKindFormItem extends IFormItem {
   type: enumFormItemType.KIND;
   value: number | string;
   options: optionType[];
+}
+
+interface IDataTableColumn {
+  field: string;
+  label: string;
+  render?: Function;
+  properties?: IFormItem;
+}
+
+interface IDataTableRecord {
+  [propName: key]: IDataTableColumn;
+}
+interface IPagination {
+  showQuickJumper: boolean;
+  total: number;
+  current: number;
+  pageSize: number;
+  onChange: (page: number, pageSize: number) => any;
+  showTotal: (toal: number, range: [number, number]) => string;
+}
+interface IDataTable {
+  query: Function;
+  params: Object;
+  dataSource: IDataTableRecord[];
+  pagination: IPagination;
+  loading?: boolean;
 }
