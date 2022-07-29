@@ -11,6 +11,12 @@ export default [
         description: "",
       },
       {
+        name: "Statistics",
+        title: "统计值",
+        icon: "",
+        description: "",
+      },
+      {
         name: "Text",
         title: "文本",
         icon: "",
@@ -61,12 +67,6 @@ export default [
       {
         name: "Kind",
         title: "类别",
-        icon: "",
-        description: "",
-      },
-      {
-        name: "Statistic",
-        title: "统计值",
         icon: "",
         description: "",
       },

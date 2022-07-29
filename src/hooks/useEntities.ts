@@ -148,6 +148,9 @@ export const useEntities = (initialEntities = [], isPrinted) => {
                     ...entity.style,
                     height: entity.style.height + offset,
                   };
+                  if (handleSubBlock(block, offset, entity.id)) {
+                    return true;
+                  }
                 }
                 break;
               // 下半区
@@ -162,6 +165,9 @@ export const useEntities = (initialEntities = [], isPrinted) => {
                     top: entity.style.top + offset,
                     height: entity.style.height - offset,
                   };
+                  if (handleSubBlock(block, offset, entity.id)) {
+                    return true;
+                  }
                 }
                 break;
               // 左右拖拽
@@ -176,6 +182,9 @@ export const useEntities = (initialEntities = [], isPrinted) => {
                     ...entity.style,
                     width: entity.style.width + offset,
                   };
+                  if (handleSubBlock(block, offset, entity.id)) {
+                    return true;
+                  }
                 }
                 break;
               // 右半区
@@ -190,13 +199,13 @@ export const useEntities = (initialEntities = [], isPrinted) => {
                     left: entity.style.left + offset,
                     width: entity.style.width - offset,
                   };
+                  if (handleSubBlock(block, offset, entity.id)) {
+                    return true;
+                  }
                 }
                 break;
               default:
                 break;
-            }
-            if (handleSubBlock(block, offset, entity.id)) {
-              return true;
             }
           }
         }
