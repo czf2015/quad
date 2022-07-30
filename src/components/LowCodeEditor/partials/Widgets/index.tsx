@@ -14,7 +14,7 @@ export const Widgets = ({ categories = mock }: IWidgetsProps) => {
       {categories.map(({ category, title, items = [] }) => {
         return (
           <Collapse.Panel header={title} key={category}>
-            <div className={styles.columns}>
+            <div className={styles.grid}>
               {items.map(item => <Widget {...item} key={item.name} />)}
             </div>
           </Collapse.Panel>
