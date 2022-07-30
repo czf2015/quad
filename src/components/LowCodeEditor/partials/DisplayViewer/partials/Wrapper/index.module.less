@@ -2,18 +2,27 @@
   position: relative;
   > .holder_btn {
     position: absolute;
-    top: 4px;
-    left: 4px;
+    top: 0;
+    left: 0;
     &:hover {
       cursor: move;
     }
   }
   > .delete_btn {
     position: absolute;
-    top: 4px;
-    left: 32px;
+    bottom: 0;
+    left: 0;
     &:hover {
       color: #e33e38;
+    }
+  }
+  > .more_btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    &:hover {
+      color: #1890ff;
+      cursor: pointer;
     }
   }
   > .expand_btn {
@@ -24,9 +33,10 @@
       cursor: nw-resize;
     }
   }
-  &:not(:hover) {
+  &:not(:hover):not(.dropdown_overlay) {
     > .holder_btn,
     > .delete_btn,
+    > .more_btn,
     > .expand_btn {
       display: none;
     }

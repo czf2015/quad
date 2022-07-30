@@ -28,7 +28,7 @@ export const DisplayViewer = ({ entities = [], updateEntity, removeEntity, split
     }
   }
 
-  const renderWidget = ({ name, id, blocks = {}, ...attrs } = {}) => {
+  const renderWidget = ({ name, id, blocks = {}, style, ...attrs } = {}) => {
     const Widget = components[name]
     if (Widget) {
       const slots = {}
@@ -36,7 +36,7 @@ export const DisplayViewer = ({ entities = [], updateEntity, removeEntity, split
         slots[key] = render(blocks[key])
       }
       return (
-        <Wrapper id={id} {...attrs} removeEntity={removeEntity} updateEntity={updateEntity} handleDrop={handleDrop} key={id}>
+        <Wrapper id={id} name={name} {...attrs} style={style} removeEntity={removeEntity} updateEntity={updateEntity} handleDrop={handleDrop} key={id}>
           <Widget id={id} {...attrs} slots={slots} />
         </Wrapper>
       )

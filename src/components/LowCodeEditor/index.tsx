@@ -35,7 +35,7 @@ export default ({ page: { content: initialEntities, ...initialBaseInfo } }) => {
   )
   const main = {
     left: (
-      <Tabs defaultActiveKey="Widgets" style={{ height: '100%', background: '#fff' }} centered>
+      <Tabs defaultActiveKey="Widgets" className="quad-scrollbar" style={{ height: '100%', background: '#fff' }} centered>
         <TabPane tab="资源" key="Assets">
           <Assets />
         </TabPane>

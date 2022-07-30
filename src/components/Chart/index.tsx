@@ -7,7 +7,7 @@ import Chart from "@/plugins/Chart";
 import { observe } from "@/utils/dom";
 import { getOption, getTimelineOption, getPieOption, getBarOption, getGaugeOption, getCandlestickOption, getGanttOption, getHeatmapOption, getPictorialBarOption, getRaceOption, getRadarOption, getScatterOption, getStackBarOption, getSunburstOption, getProfileOption, getTreemapOption, getWaterfallBarOption, getNestGaugeOption, getNestPieOption, getCircleOption, } from "./options";
 
-const defaultStyle = { width: /* 400 */'100%', height: '100%'/* 300 */, backgroundColor: "transparent" }
+const defaultStyle = { width: '100%', height: '100%', backgroundColor: "transparent" }
 
 const General = forwardRef(({
   option,

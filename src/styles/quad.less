@@ -9,3 +9,19 @@
   border-radius: 50%;
   z-index: 999;
 }
+
+.quad-scrollbar {
+  overflow: auto;
+  &::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  &::-webkit-scrollbar-track {
+    border-radius: 2px;
+    background-color: #f5f7fa;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    background-color: #c1c1c188;
+  }
+}

@@ -9,13 +9,13 @@ export const Widget = ({ name, title, description = title, icon }: IWidget) => {
     e.dataTransfer.setData("dragWidgetName", name);
   };
 
-  const DefaultIcon = () => <img src={`/icons/${name}.svg`} />
+  const DefaultIcon = () => <img src={`/icons/${name}.svg`} style={{ width: 24, height: 24 }} />
   const Icon = icons[name] || DefaultIcon
 
   return (
     <div className={styles.widget} title={description} onDragStart={onDragStart} draggable key={name}>
-      <Icon style={{ fontSize: 32 }} />
-      <span>{title}</span>
+      <Icon style={{ fontSize: 24 }} />
+      <span className={styles.title}>{title}</span>
     </div>
   )
 }
