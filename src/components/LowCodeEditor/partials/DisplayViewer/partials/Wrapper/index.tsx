@@ -9,7 +9,7 @@ export const Wrapper = ({
   name,
   id,
   pid,
-  title = 'title',
+  title = '图表名称',
   removeEntity,
   updateEntity,
   handleDrop,
@@ -74,6 +74,7 @@ export const Wrapper = ({
       </Dropdown>
       <ExpandAltOutlined className={`${styles.expand_btn} quad-circle`} rotate={90} {...attrs} />
       <DeleteOutlined className={`${styles.delete_btn} quad-circle`} onClick={remove} />
+      {isCardStyle && <h4 className={styles.card_title}>{title}</h4> }
       {children}
     </div>
   );
