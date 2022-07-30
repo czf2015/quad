@@ -47,7 +47,7 @@ export default ({ page: { content: initialEntities, ...initialBaseInfo } }) => {
         </TabPane>
       </Tabs>
     ),
-    content: <DisplayViewer entities={entities} {...attrs} />,
+    content: <DisplayViewer entities={entities} width={store('width')} height={store('height')} {...attrs} />,
     right: <ConfigPanel />
   }
   const footer = (

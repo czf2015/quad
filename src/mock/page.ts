@@ -9,7 +9,7 @@ export default {
     description: '',
   },
   content,
-  width: 1920,
+  width: 1440,
   height: 1080,
   tags: [],
   path: '/custom/demo',

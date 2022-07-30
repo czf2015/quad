@@ -10,6 +10,7 @@ export default [
       left: 0,
       width: 1440,
       height: 1080,
+      backgroundColor: '#fff'
     },
   },
   {
