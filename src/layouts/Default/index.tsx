@@ -12,7 +12,7 @@ export default ({ slots: { header, main, footer }, zoom }) => {
       <div className={styles.header}>{header}</div>
       <div className={styles.main}>
         <div className={styles.left}>{left}</div>
-        <div className={`${styles.content} quad-scrollbar`} style={{ width: 1440 / zoom, transform: `scale(${zoom})` }}>{content}</div>
+        <div className={styles.content} style={{ transform: `scale(${zoom})` }}>{content}</div>
         <div className={styles.right}>{right}</div>
       </div>
       <div className={styles.footer}>{footer}</div>
