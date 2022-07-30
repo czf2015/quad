@@ -67,7 +67,7 @@ export const Wrapper = ({
 
 
   return (
-    <div id={id} className={`${styles.wrapper} ${dropdownOverlayVisible ? styles.dropdown_overlay : ''} ${isCardStyle ? styles.card : ''}`} onDragOver={onDragOver} onDrop={onDrop} style={style}>
+    <div id={id} className={`${styles.wrapper} ${dropdownOverlayVisible ? styles.dropdown_overlay : ''} ${isCardStyle ? 'quad-card' : ''}`} onDragOver={onDragOver} onDrop={onDrop} style={style}>
       <HolderOutlined className={`${styles.holder_btn} quad-circle`} draggable onDragStart={onDragStart} />
       <Dropdown overlay={menu} placement="right" onVisibleChange={setDropdownOverlayVisible} arrow>
         <MoreOutlined className={`${styles.more_btn} quad-circle`} />
