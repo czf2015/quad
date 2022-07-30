@@ -13,6 +13,8 @@ export default ({ page: { content: initialEntities, ...initialBaseInfo } }) => {
   const store = useStore(initialBaseInfo)
   const [mode, setMode] = useState(0) // 空白状态：0  查看状态: 1 编辑状态：2 
 
+  const zoom = 1440 / store('width')
+
   const open = () => {
     setMode(1)
   }
@@ -35,7 +37,7 @@ export default ({ page: { content: initialEntities, ...initialBaseInfo } }) => {
   )
   const main = {
     left: (
-      <Tabs defaultActiveKey="Widgets" className="quad-scrollbar" style={{ height: '100%', background: '#fff' }} centered>
+      <Tabs defaultActiveKey="Widgets" style={{ height: '100%', background: '#fff' }} centered>
         <TabPane tab="资源" key="Assets">
           <Assets />
         </TabPane>
@@ -47,7 +49,7 @@ export default ({ page: { content: initialEntities, ...initialBaseInfo } }) => {
         </TabPane>
       </Tabs>
     ),
-    content: <DisplayViewer entities={entities} width={store('width')} height={store('height')} {...attrs} />,
+    content: <DisplayViewer entities={entities} width={store('width')} height={store('height')} zoom={zoom} {...attrs} />,
     right: <ConfigPanel />
   }
   const footer = (
@@ -64,6 +66,6 @@ export default ({ page: { content: initialEntities, ...initialBaseInfo } }) => {
   }
 
   return (
-    <Layout slots={slots} />
+    <Layout slots={slots} zoom={zoom} />
   )
 }

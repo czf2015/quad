@@ -12,28 +12,37 @@
     width: 100%;
     height: 64px;
     padding: 0 4px;
-    background-color: #fff;
   }
 
   > .main {
-    display: flex;
+    position: relative;
     padding-top: 12px;
     width: 100%;
-    height: calc(100vh - 76px);
+    height: calc(100vh - 108px);
     background-color: #f5f7fa;
 
     > .left {
+      position: absolute;
+      top: 12px;
+      left: 0;
       width: 216px;
+      height: 100%;
     }
 
     > .content {
-      position: relative;
-      margin: 0 12px;
-      width: 1440px;
+      position: absolute;
+      top: 12px;
+      left: 228px;
+      transform-origin: left top;
+      overflow: visible;
     }
 
     > .right {
+      position: absolute;
+      top: 12px;
+      right: 0;
       width: 252px;
+      height: 100%;
     }
   }
 

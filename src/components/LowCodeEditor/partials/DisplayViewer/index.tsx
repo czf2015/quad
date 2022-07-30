@@ -5,7 +5,7 @@ import { components } from '@/register'
 import { useStore } from '@/hooks'
 
 
-export const DisplayViewer = ({ entities = [], updateEntity, removeEntity, splitBlock, pullBlock, dragWidget, dragEntity, pid = 0, width, height }) => {
+export const DisplayViewer = ({ entities = [], updateEntity, removeEntity, splitBlock, pullBlock, dragWidget, dragEntity, pid = 0, width, height, zoom }) => {
   useEffect(() => {
     document.oncontextmenu = function (event) {
       event.preventDefault();
@@ -52,7 +52,7 @@ export const DisplayViewer = ({ entities = [], updateEntity, removeEntity, split
           if (item.name == 'Block') {
             return (
               <>
-                <Block {...item} store={store} removeEntity={removeEntity} splitBlock={splitBlock} pullBlock={pullBlock} handleDrop={handleDrop} key={item.id}>
+                <Block {...item} store={store} zoom={zoom} removeEntity={removeEntity} splitBlock={splitBlock} pullBlock={pullBlock} handleDrop={handleDrop} key={item.id}>
                   {item?.widgets?.map(widgetId => {
                     const widget = entities.find(entity => entity.id == widgetId)
                     return renderWidget(widget)

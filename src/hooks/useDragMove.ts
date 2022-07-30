@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { useRef } from "react";
 
-export const useDragMove = (handleDragMove) => {
+export const useDragMove = (handleDragMove, zoom) => {
   const dragRef = useRef({ pageX: 0, pageY: 0, now: Date.now(), dragging: false });
   const onDragStart = (e) => {
     dragRef.current = { pageX: e.pageX, pageY: e.pageY, now: Date.now(), dragging: true };
@@ -27,8 +27,8 @@ export const useDragMove = (handleDragMove) => {
   };
   const onDragEnd = (e) => {
     const dragMove = {
-      x: e.pageX - dragRef.current.pageX,
-      y: e.pageY - dragRef.current.pageY,
+      x: (e.pageX - dragRef.current.pageX) / zoom,
+      y: (e.pageY - dragRef.current.pageY) / zoom,
     };
     handleDragMove(dragMove);
     dragRef.current.dragging = false

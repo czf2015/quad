@@ -269,9 +269,6 @@ export const useEntities = (initialEntities = [], isPrinted) => {
         return _entities;
       }
 
-      console.log(
-        `pull block: ${id} by (${dragMove.x}px, ${dragMove.y}px) offset`
-      );
       snapShot.take(
         entities,
         `pull block: ${id} by (${dragMove.x}px, ${dragMove.y}px) offset`

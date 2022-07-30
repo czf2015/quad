@@ -10,16 +10,18 @@ interface IWidgetsProps {
 }
 export const Widgets = ({ categories = mock }: IWidgetsProps) => {
   return (
-    <Collapse defaultActiveKey="chart" expandIconPosition="end">
-      {categories.map(({ category, title, items = [] }) => {
-        return (
-          <Collapse.Panel header={title} key={category}>
-            <div className={styles.grid}>
-              {items.map(item => <Widget {...item} key={item.name} />)}
-            </div>
-          </Collapse.Panel>
-        )
-      })}
-    </Collapse>
+    <div className={`${styles.container} quad-scrollbar`}>
+      <Collapse defaultActiveKey="chart" expandIconPosition="end">
+        {categories.map(({ category, title, items = [] }) => {
+          return (
+            <Collapse.Panel header={title} key={category}>
+              <div className={styles.grid}>
+                {items.map(item => <Widget {...item} key={item.name} />)}
+              </div>
+            </Collapse.Panel>
+          )
+        })}
+      </Collapse>
+    </div>
   )
 }
