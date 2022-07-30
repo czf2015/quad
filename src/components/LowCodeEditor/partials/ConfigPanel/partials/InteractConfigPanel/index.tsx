@@ -6,15 +6,15 @@ export const InteractConfigPanel = ({ content }) => {
       window.$eventBus.on(type, (payload) => handle(payload))
     })
 
-    Object.keys(content.binds).forEach(bindKey => {
-      content.binds[bindKey].forEach(msg => {
-        window.$eventBus.emit(msg.type, msg)
-      })
-    })
+    // Object.keys(content.binds).forEach(bindKey => {
+    //   content.binds[bindKey].forEach(msg => {
+    //     window.$eventBus.emit(msg.type, msg)
+    //   })
+    // })
 
-    return () => content?.handlers.forEach(({ id, type, handle, payload, description }) => {
-      window.$eventBus.off(type, () => handle(payload))
-    })
+    // return () => content?.handlers.forEach(({ id, type, handle, payload, description }) => {
+    //   window.$eventBus.off(type, () => handle(payload))
+    // })
   }, [])
 
   const json = JSON.stringify(content, (k, v) => {
