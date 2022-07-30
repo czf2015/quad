@@ -133,7 +133,7 @@ export const useEntities = (initialEntities = [], isPrinted) => {
         const len = entities.length;
         for (let i = 0; i < len; i++) {
           const entity = entities[i];
-          if (entity.pid == pid) {
+          if (entity.pid == pid && entity.name == 'Block') {
             switch (block.quad) {
               // 上下拖拽
               // 上半区
