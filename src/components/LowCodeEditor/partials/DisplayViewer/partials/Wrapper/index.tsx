@@ -67,13 +67,13 @@ export const Wrapper = ({
 
 
   return (
-    <div id={id} className={`${styles.wrapper} ${dropdownOverlayVisible ? styles.dropdown_overlay : ''}`} onDragOver={onDragOver} onDrop={onDrop} style={isCardStyle ? { margin: '16px 0 0 16px', padding: 24, borderRadius: 4, boxShadow: '2px 2px 4px 4px #ccc', ...style } : style}>
+    <div id={id} className={`${styles.wrapper} ${dropdownOverlayVisible ? styles.dropdown_overlay : ''} ${isCardStyle ? styles.card : ''}`} onDragOver={onDragOver} onDrop={onDrop} style={style}>
       <HolderOutlined className={`${styles.holder_btn} quad-circle`} draggable onDragStart={onDragStart} />
       <Dropdown overlay={menu} placement="right" onVisibleChange={setDropdownOverlayVisible} arrow>
         <MoreOutlined className={`${styles.more_btn} quad-circle`} />
       </Dropdown>
-      <DeleteOutlined className={`${styles.delete_btn} quad-circle`} onClick={remove} />
       <ExpandAltOutlined className={`${styles.expand_btn} quad-circle`} rotate={90} {...attrs} />
+      <DeleteOutlined className={`${styles.delete_btn} quad-circle`} onClick={remove} />
       {children}
     </div>
   );
