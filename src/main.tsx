@@ -1,7 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-// import App from './App'
-// import './index.css'
 import App from '@/pages/low-code-editor'
 import '@/styles/index.less'
 import { EventBus } from '@/utils/EventBus'
