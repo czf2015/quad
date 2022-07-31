@@ -59,11 +59,11 @@ export const configTabsPanel = [
     tab: "数据",
     key: "data",
     content: {
-      type: "",
-      data: {
+      type: 0,
+      data: `{
         title: '标题',
         description: '描述'
-      },
+      }`,
     },
   },
   {
@@ -75,7 +75,7 @@ export const configTabsPanel = [
           id: "", // 非必填
           type: "SELECT_TIME",
           handle(payload) {
-            console.log('=======')
+            console.log("=======");
             console.log(payload);
           },
         },
@@ -86,7 +86,7 @@ export const configTabsPanel = [
             id: "11", // 组件id, 自动填写
             type: "SELECT_TIME", // 下拉选择
             payload: 0, // 自动获取
-            description: '最近30天' // ...
+            description: "最近30天", // ...
           },
         ],
       },
