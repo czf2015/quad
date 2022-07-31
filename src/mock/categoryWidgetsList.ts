@@ -11,6 +11,12 @@ export default [
         description: "",
       },
       {
+        name: "Form",
+        title: "表单",
+        icon: "",
+        description: "",
+      },
+      {
         name: "Statistics",
         title: "统计值",
         icon: "",

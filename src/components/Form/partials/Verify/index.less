@@ -1,0 +1,17 @@
+.verify-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  >a {
+    display: inline-block;
+    margin-left: 16px;
+    width: 160px;
+    line-height: 32px;
+    text-align: center;
+    color: var(--xdrsec-verify-color);
+    background-color: var(--xdrsec-verify-background-color);
+    &.disabled {
+      background-color: var(--xdrsec-verify-disabled-background-color);
+    }
+  }
+}

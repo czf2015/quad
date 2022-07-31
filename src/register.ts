@@ -1,5 +1,6 @@
 import * as charts from "@/components/Chart";
 import DataTable from "./components/DataTable";
+import Form from "./components/Form";
 import {
   BarChartOutlined,
   LineChartOutlined,
@@ -17,11 +18,13 @@ import {
   DashboardOutlined,
   FontColorsOutlined,
   CheckOutlined,
+  FormOutlined,
 } from "@ant-design/icons";
 
 export const components = {
   ...charts,
   DataTable,
+  Form,
 };
 
 export const icons = {
@@ -35,6 +38,7 @@ export const icons = {
   Tags: TagsOutlined,
   Percent: PercentageOutlined,
   Markdown: FileMarkdownOutlined,
+  Form: FormOutlined,
   // 图表类别
   BarChart: BarChartOutlined,
   LineChart: LineChartOutlined,
