@@ -70,7 +70,7 @@ export const DisplayViewer = ({ entities = [], updateEntity, removeEntity, split
   }
 
   return (
-    <div className={`${styles.display_viewer} quad-scrollbar`} style={{ width: 1440 / zoom, height: `calc(calc(100vh - 108px) / ${zoom})` }}>
+    <div className={styles.display_viewer} style={{ width, height }}>
       <Scale len={width} gap={5} direction='left' />
       <Scale len={height} gap={5} direction='down' />
       {render(pid)}

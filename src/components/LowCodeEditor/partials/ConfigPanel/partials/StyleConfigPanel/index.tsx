@@ -11,13 +11,13 @@ import styles from './index.module.less'
 
 export const StyleConfigPanel = ({ content }) => {
   return (
-    <div className={`${styles.container} quad-scrollbar`}>
+    <div className={styles.container}>
       <CodeMirror
         value={content}
         options={{
           mode: 'css',
           theme: 'eclipse',
-          lineNumbers: true, // 是否显示行号
+          // lineNumbers: true, // 是否显示行号
           readOnly: false,  // 是否只读
           lineWiseCopyCut: true,
           lineWrapping: true,

@@ -10,26 +10,22 @@
   z-index: 99;
 }
 
-.quad-scrollbar {
-  overflow: auto;
-  &::-webkit-scrollbar {
-    width: 4px;
-    height: 4px;
-  }
-  &::-webkit-scrollbar-track {
-    border-radius: 2px;
-    background-color: #f5f7fa;
-  }
-  &::-webkit-scrollbar-thumb {
-    border-radius: 2px;
-    background-color: #c1c1c188;
-  }
-}
-
 .quad-card {
   margin: 12px 0 0 12px;
   padding: 12px;
   border-radius: 4px;
-  // background: #fff;
   box-shadow: 2px 2px 4px 4px #ccc;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  border-radius: 2px;
+  background-color: #f5f7fa;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  background-color: #c1c1c188;
 }
