@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React from 'react'
-import { Collapse } from 'antd'
+import { Collapse } from '@/plugins/ui'
 import { Widget } from './partials'
 import styles from './index.module.less'
 import mock from '@/mock/categoryWidgetsList'

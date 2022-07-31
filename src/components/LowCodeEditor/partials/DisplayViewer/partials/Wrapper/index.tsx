@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React, { useState } from "react";
-import { Dropdown, Menu } from 'antd'
+import { Dropdown, Menu } from '@/plugins/ui'
 import { useDragMove } from "@/hooks";
 import { HolderOutlined, DeleteOutlined, MoreOutlined, ArrowsAltOutlined, ExpandAltOutlined } from '@ant-design/icons'
 import styles from "./index.module.less";
@@ -9,11 +9,12 @@ export const Wrapper = ({
   name,
   id,
   pid,
+  zoom,
   title = '图表名称',
   removeEntity,
   updateEntity,
   handleDrop,
-  style = { width: 200, height: 200 },
+  style = { width: 400, height: 300 },
   children,
 }: IWrapperProps) => {
   const remove = (e) => {
@@ -29,7 +30,7 @@ export const Wrapper = ({
   const handleDragMove = (dragMove) => {
     updateEntity(id, { style: { ...style, width: style.width + dragMove.x, height: style.height + dragMove.y } })
   }
-  const { onDragOver, ...attrs } = useDragMove(handleDragMove)
+  const { onDragOver, ...attrs } = useDragMove(handleDragMove, zoom)
 
   const isCardStyle = /Chart/.test(name)
 

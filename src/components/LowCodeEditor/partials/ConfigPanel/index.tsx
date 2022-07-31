@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React from 'react'
-import { Tabs } from 'antd'
+import { Tabs } from '@/plugins/ui'
 import { StyleConfigPanel, DataConfigPanel, InteractConfigPanel } from './partials'
 import { configTabsPanel } from '@/mock/configPanel'
 

@@ -1,9 +1,6 @@
 import * as charts from "@/components/Chart";
-
+import DataTable from "./components/DataTable";
 import {
-  // AreaChartOutlined,
-  // FileTextOutlined,
-  CheckSquareOutlined,
   BarChartOutlined,
   LineChartOutlined,
   PieChartOutlined,
@@ -12,16 +9,11 @@ import {
   PercentageOutlined,
   TagsOutlined,
   PhoneOutlined,
-  SnippetsOutlined,
   MailOutlined,
   LinkOutlined,
-  MenuOutlined,
-  // NumberOutlined,
   PaperClipOutlined,
-  StarOutlined,
   DotChartOutlined,
   HeatMapOutlined,
-  // CalendarOutlined,
   DashboardOutlined,
   FontColorsOutlined,
   CheckOutlined,
@@ -29,6 +21,7 @@ import {
 
 export const components = {
   ...charts,
+  DataTable,
 };
 
 export const icons = {

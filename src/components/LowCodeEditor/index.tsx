@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React, { useState } from 'react'
-import { Tabs } from 'antd'
+import { Tabs } from '@/plugins/ui'
 import Layout from '@/layouts/Default'
 import { Menu, Restore, Console, Assets, Widgets, Outline, DisplayViewer, ConfigPanel, Tips, Status, Formatters } from './partials'
 import { useEntities, useStore } from '@/hooks'

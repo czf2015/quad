@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React, { useState } from 'react'
-import { Button, Dropdown, Menu } from 'antd'
+import { Button, Dropdown, Menu } from '@/plugins/ui'
 import { DeleteOutlined, ScissorOutlined } from '@ant-design/icons'
 import { useClip, useDragMove } from '@/hooks'
 import styles from './index.module.less'
