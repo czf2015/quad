@@ -42,7 +42,7 @@ export const Wrapper = ({
           key: '1',
           label: (
             <a onClick={() => setDropdownOverlayVisible(false)}>
-              <img src="/icons/Styles.svg" style={{ marginRight: 8, width: 16, height: 16 }} />样式
+              <img src="/icons/Styles.svg" style={{ width: 16, height: 16 }} />{/* 样式 */}
             </a>
           ),
         },
@@ -50,7 +50,7 @@ export const Wrapper = ({
           key: '2',
           label: (
             <a onClick={() => setDropdownOverlayVisible(false)}>
-              <img src="/icons/Datasource.svg" style={{ marginRight: 8, width: 16, height: 16 }} />数据
+              <img src="/icons/Datasource.svg" style={{ width: 16, height: 16 }} />{/* 数据 */}
             </a>
           ),
         },
@@ -58,7 +58,7 @@ export const Wrapper = ({
           key: '3',
           label: (
             <a onClick={() => setDropdownOverlayVisible(false)}>
-              <img src="/icons/Interact.svg" style={{ marginRight: 8, width: 16, height: 16 }} />交互
+              <img src="/icons/Interact.svg" style={{ width: 16, height: 16 }} />{/* 交互 */}
             </a>
           ),
         },
@@ -70,7 +70,7 @@ export const Wrapper = ({
   return (
     <div id={id} className={`${styles.wrapper} ${dropdownOverlayVisible ? styles.dropdown_overlay : ''} ${isCardStyle ? 'quad-card' : ''}`} onDragOver={onDragOver} onDrop={onDrop} style={style}>
       <HolderOutlined className={`${styles.holder_btn} quad-circle`} draggable onDragStart={onDragStart} />
-      <Dropdown overlay={menu} placement="right" onVisibleChange={setDropdownOverlayVisible} arrow>
+      <Dropdown overlay={menu} placement="right" onVisibleChange={setDropdownOverlayVisible}>
         <MoreOutlined className={`${styles.more_btn} quad-circle`} />
       </Dropdown>
       <ExpandAltOutlined className={`${styles.expand_btn} quad-circle`} rotate={90} {...attrs} />
