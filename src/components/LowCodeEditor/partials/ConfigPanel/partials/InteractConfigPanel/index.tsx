@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import Form from '@/components/Form'
-import { formItems } from './mock'
+// import { formItems } from './mock'
 
 export const InteractConfigPanel = ({ id, content }) => {
   useEffect(() => {
@@ -21,5 +21,5 @@ export const InteractConfigPanel = ({ id, content }) => {
 
 
 
-  return <Form children={formItems} />
+  return <Form /* children={formItems} */ />
 }

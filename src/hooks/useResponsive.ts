@@ -10,6 +10,7 @@ export const useResponsive = (basic = { width: 1920, height: 1080 }, isFullScree
       } else {
         const radio = docEle.clientWidth / basic.width
         rootRef.current.style.transform = `scale(${radio})`
+        rootRef.current.style.height = `calc(100vh / ${radio})`
       }
       rootRef.current.style.transformOrigin = `top left`
     }
