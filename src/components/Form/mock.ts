@@ -1,7 +1,6 @@
 export const formProps = {
   initialValues: {
-    // FieldA: "xxx",
-    // FieldB: "",
+    type: 0,
   },
   disabled: false,
   requiredMark: true,
@@ -15,32 +14,59 @@ export const formProps = {
   labelAlign: "right",
   children: [
     {
-      name: "FieldA",
-      value: "xxxx",
-      type: "Select",
+      name: "type",
+      label: "类型",
+      type: "Radio",
       options: [
         {
-          label: "最近30天",
+          label: "调用接口",
           value: 0,
         },
         {
-          label: "最近7天",
+          label: "手动填写",
           value: 1,
-        },
-        {
-          label: "最近24小时",
-          value: 2,
         },
       ],
     },
     {
-      name: "FieldB",
-      value: "xxxx",
+      name: "url",
+      label: "地址",
       type: "Input",
-      placeholder: "input placeholder",
+      required: true,
+      placeholder: "请输入接口地址！",
       prerequisites: [
         {
-          field: "FieldA",
+          field: "type",
+          options: {
+            all: [0],
+          },
+        },
+      ],
+    },
+    {
+      name: "query",
+      label: "参数",
+      type: "TextArea",
+      required: true,
+      placeholder: "请输入参数信息！",
+      prerequisites: [
+        {
+          field: "type",
+          options: {
+            all: [0],
+          },
+        },
+      ],
+    },
+    {
+      name: "data",
+      label: "数据",
+      type: "TextArea",
+      required: true,
+      placeholder: "请输入数据！",
+      prerequisites: [
+        {
+          field: "type",
           options: {
             all: [1],
           },

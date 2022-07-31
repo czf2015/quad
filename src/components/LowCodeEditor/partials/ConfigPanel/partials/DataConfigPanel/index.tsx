@@ -1,11 +1,6 @@
-import React, { useEffect } from 'react'
+import React from 'react'
+import Form from '@/components/Form'
 
-export const DataConfigPanel = ({ content }) => {
-  useEffect(() => {
-    setInterval(() => {
-      window.$eventBus.emit('SELECT_TIME', { payload: Date.now()})
-
-    }, 1000)
-  }, [])
-  return <div>{JSON.stringify(content, undefined, 2)}</div>
+export const DataConfigPanel = ({id, name, title }) => {
+  return <Form />
 }
