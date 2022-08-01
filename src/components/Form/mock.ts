@@ -19,11 +19,11 @@ export const formProps = {
       type: "Radio",
       options: [
         {
-          label: "调用接口",
+          label: "接口",
           value: 0,
         },
         {
-          label: "手动填写",
+          label: "手填",
           value: 1,
         },
       ],
@@ -47,7 +47,7 @@ export const formProps = {
       name: "query",
       label: "参数",
       type: "TextArea",
-      required: true,
+      // required: true,
       placeholder: "请输入参数信息！",
       prerequisites: [
         {

@@ -61,9 +61,9 @@ export const configTabsPanel = [
     content: {
       type: 0,
       data: `{
-        title: '标题',
-        description: '描述'
-      }`,
+  title: '标题',
+  description: '描述'
+}`,
     },
   },
   {

@@ -14,12 +14,12 @@ export default ({
   requiredMark = true,
   layout = 'horizontal',
   wrapperCol = {
-    span: 14,
+    span: 16,
   },
   labelCol = {
-    span: 4,
+    span: 7,
   },
-  labelAlign = 'right',
+  labelAlign = 'left',
 }) => {
 
   const [formData, setFormData] = useState(initialValues);

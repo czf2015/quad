@@ -1,7 +1,7 @@
 export const formItems = [
   {
     name: "id",
-    label: "来源组件id",
+    label: "消息来源id",
     type: "Input",
   },
   {
@@ -12,7 +12,7 @@ export const formItems = [
   },
   {
     name: "handle",
-    label: "函数",
+    label: "处理函数",
     type: "TextArea",
   },
 ];

@@ -21,5 +21,16 @@ export const InteractConfigPanel = ({ id, content }) => {
 
 
 
-  return <Form children={formItems} />
+  return (
+    <Form
+      layout="vertical"
+      labelCol={{
+        span: 24,
+      }}
+      wrapperCol={{
+        span: 23
+      }}
+      children={formItems}
+    />
+  )
 }
