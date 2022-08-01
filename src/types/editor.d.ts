@@ -96,6 +96,7 @@ interface IConfigPanelTabPane {
 
 interface IConfigPanelProps {
   id: idType;
+  name: string;
   title?: string;
   description?: string;
   tabs: IConfigPanelTabPane[];

@@ -19,7 +19,7 @@ enum enumLine {
   DASHED,
 }
 type colorType = string;
-type borderType = {
+interface ILine {
   type: enumLine; // 类型
   color: colorType; // 颜色
   thickness: number | string; // 粗细
@@ -27,14 +27,18 @@ type borderType = {
 
 type borderRadiusType = string;
 interface IBorder {
-  border?: borderType;
-  borderTop?: borderType;
-  borderBottom?: borderType;
-  borderLeft?: borderType;
-  borderRight?: borderType;
+  border?: ILine;
+  borderTop?: ILine;
+  borderBottom?: ILine;
+  borderLeft?: ILine;
+  borderRight?: ILine;
   borderRadius?: borderRadiusType;
+  borderRadiusTopLeft?: borderRadiusType;
+  borderRadiusTopRight?: borderRadiusType;
+  borderRadiusBottomLeft?: borderRadiusType;
+  borderRadiusBottomRight?: borderRadiusType;
 }
-// ================IConstraints：对区块Block生效==================
+// ================IConstraints==================
 enum enumConstraint {
   START, // 左对齐
   END, // 右对齐
@@ -49,10 +53,18 @@ interface IConstraints {
 // ============IBox=====================
 interface IBoxShadow {}
 interface IBox extends IPosition, IBorder {
-  margin: number | string;
-  padding: number | string;
-  width: number | string;
-  height: number | string;
+  margin?: number | string;
+  marginTop?: number | string;
+  marginBottom?: number | string;
+  marginLeft?: number | string;
+  marginRight?: number | string;
+  padding?: number | string;
+  paddingTop?: number | string;
+  paddingBottom?: number | string;
+  paddingLeft?: number | string;
+  paddingRight?: number | string;
+  width: number;
+  height: number;
   constraints: IConstraints;
   boxShadow: IBoxShadow;
 }
@@ -92,8 +104,6 @@ interface IOverflow {
   overflowY?: enumOverflow;
 }
 interface ILayerFill {}
-interface ILayerStroke {}
-// ITransform：对区块Block生效
 interface ITransform {
   scale?: number;
   scaleX?: number;
@@ -102,8 +112,8 @@ interface ITransform {
 }
 interface ILayer extends IOverflow {
   transform: ITransform;
-  fill: ILayerFill; // background
-  stroke: ILayerStroke; // outline
+  fill: ILayerFill[]; // background
+  stroke: ILine; // outline
   opacity: number; // 透明度
   z: number; // z-index
   hidden: boolean; // 隐藏
