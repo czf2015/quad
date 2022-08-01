@@ -1,6 +1,7 @@
 export const formProps = {
   initialValues: {
     type: 0,
+    method: 0,
   },
   disabled: false,
   requiredMark: true,
@@ -44,7 +45,40 @@ export const formProps = {
       ],
     },
     {
-      name: "query",
+      name: "method",
+      label: "方法",
+      type: "Select",
+      options: [
+        {
+          label: "POST",
+          value: 0,
+        },
+        {
+          label: "GET",
+          value: 1,
+        },
+        {
+          label: "PUT",
+          value: 2,
+        },
+        {
+          label: "DELETE",
+          value: 3,
+        },
+      ],
+      required: true,
+      placeholder: "请选择请求方法！",
+      prerequisites: [
+        {
+          field: "type",
+          options: {
+            all: [0],
+          },
+        },
+      ],
+    },
+    {
+      name: "params",
       label: "参数",
       type: "TextArea",
       // required: true,

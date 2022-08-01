@@ -1,5 +1,10 @@
 export const formItems = [
   {
+    name: "enable",
+    // label: "启停",
+    type: "Switch",
+  },
+  {
     name: "id",
     label: "消息来源id",
     type: "Input",

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
-import Form from '@/components/Form'
-import { formItems } from './mock'
+// import Form from '@/components/Form'
+// import { formItems } from './mock'
+import { Handlers } from './partials'
 
 export const InteractConfigPanel = ({ id, content }) => {
   useEffect(() => {
@@ -19,18 +20,7 @@ export const InteractConfigPanel = ({ id, content }) => {
     // })
   }, [])
 
-
-
   return (
-    <Form
-      layout="vertical"
-      labelCol={{
-        span: 24,
-      }}
-      wrapperCol={{
-        span: 24
-      }}
-      children={formItems}
-    />
+    <Handlers />
   )
 }
