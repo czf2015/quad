@@ -74,9 +74,12 @@ export const configTabsPanel = [
         {
           id: "", // 非必填
           type: "SELECT_TIME",
+          enable: true,
           handle(payload) {
-            console.log("=======");
-            console.log(payload);
+            setInterval(() => {
+              console.log("=======");
+              console.log(payload);
+            }, 1000)
           },
         },
       ],

@@ -3,9 +3,23 @@ import { CSSProperties, ReactNode } from "react";
 type idType = number | string;
 type actionType = string;
 type payloadType = number | string | boolean | Array | Object | Function;
-interface IMessage { id: idType; type: actionType; payload: payloadType; description?: string }
-type dispatchType = (message: IMessage) => any
-type eventType = 'onClick' | 'onMenuContext' | 'onMouseEnter' | 'onMouseLeave' | 'onMouseOver' | 'onDragStart' | 'onDragOver' | 'onDragEnd' | 'onDrop'
+interface IMessage {
+  id: idType;
+  type: actionType;
+  payload: payloadType;
+  description?: string;
+}
+type dispatchType = (message: IMessage) => any;
+type eventType =
+  | "onClick"
+  | "onMenuContext"
+  | "onMouseEnter"
+  | "onMouseLeave"
+  | "onMouseOver"
+  | "onDragStart"
+  | "onDragOver"
+  | "onDragEnd"
+  | "onDrop";
 // type bindType = 'Confirm' | 'Drawer' | actionType
 
 interface IWidget {
@@ -41,13 +55,12 @@ interface IBlockProps extends IEntity {
   widgets?: idType[];
 }
 
-interface IWrapperProps extends IEntity {
-}
+interface IWrapperProps extends IEntity {}
 
 interface IClassNames {
   [propName: string]: string;
 }
-type slotsKeyType = string
+type slotsKeyType = string;
 interface ISlots {
   [propName: slotsKeyType]: ReactNode;
 }
@@ -58,11 +71,9 @@ interface IBind extends IMessage {
   event: eventType;
 }
 interface IBinds {
-  [propName: string]: IBind[]
+  [propName: string]: IBind[];
 }
-interface IDataSource {
-
-}
+interface IDataSource {}
 interface IComponentProps extends IEntity {
   blocks?: IComponentBlocks;
   slots?: ISlots;
@@ -71,7 +82,21 @@ interface IComponentProps extends IEntity {
   handlers?: dispatchType[];
   binds?: IBinds;
 }
+enum IConfigPanelTabKey {
+  STYLE, // 样式
+  DATA, // 数据
+  INTERACT, // 交互
+}
+
+interface IConfigPanelTabPane {
+  key: IConfigPanelTabKey;
+  tab: "样式" | "数据" | "交互";
+  pane: IStyleConfig;
+}
 
 interface IConfigPanelProps {
-  //
+  id: idType;
+  title?: string;
+  description?: string;
+  tabs: IConfigPanelTabPane[];
 }
