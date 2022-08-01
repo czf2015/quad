@@ -14,7 +14,7 @@ const { TabPane } = Tabs
 
 export const ConfigPanel = ({ name, id, pid, title = 'ConfigPanel', }) => {
   return (
-    <Tabs defaultActiveKey="style" style={{ height: '100%', background: '#fff' }} centered>
+    <Tabs defaultActiveKey="style" style={{ height: '100%', background: '#fff', padding: '0 8px' }} centered>
       {configTabsPanel.map(({ tab, key, content }) => {
         const Panel = ConfigTabsPanelMap[key]
         return (

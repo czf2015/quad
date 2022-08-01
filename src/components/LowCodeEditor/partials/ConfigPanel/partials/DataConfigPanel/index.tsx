@@ -9,7 +9,7 @@ export const DataConfigPanel = ({ id, content }) => {
         span: 6,
       }}
       wrapperCol={{
-        span: 17
+        span: 18
       }}
     />
   )

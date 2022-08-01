@@ -28,7 +28,7 @@ export const InteractConfigPanel = ({ id, content }) => {
         span: 24,
       }}
       wrapperCol={{
-        span: 23
+        span: 24
       }}
       children={formItems}
     />

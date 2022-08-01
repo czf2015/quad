@@ -17,7 +17,7 @@ export default ({
     span: 16,
   },
   labelCol = {
-    span: 7,
+    span: 8,
   },
   labelAlign = 'left',
 }) => {
