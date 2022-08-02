@@ -1,0 +1,76 @@
+.handlers {
+  position: relative;
+  padding: 0px 6px;
+
+  >.add_btn {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    color: #ccc;
+    
+    &:hover {
+      color: #1890ff;
+      cursor: pointer;
+    }
+  }
+
+  .handler {
+    position: relative;
+    margin: 24px 0;
+    padding: 8px;
+    box-shadow: 2px 2px 4px 4px #ccc;
+    border-radius: 4px;
+
+    >.add_btn {
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      color: #ccc;
+
+      &:hover {
+        color: #1890ff;
+        cursor: pointer;
+      }
+    }
+
+    >.title {
+      position: relative;
+      margin: 0;
+      padding: 0;
+      color: #ccc;
+
+      .holder_btn {
+        margin-right: 4px;
+
+        &:hover {
+          cursor: move;
+        }
+      }
+
+      >.delete_btn {
+        position: absolute;
+        top: 0px;
+        right: 0;
+        color: #ccc;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+
+    &:hover {
+      // >.add_btn {
+      //   color: #1890ff;
+      // }
+
+      >.title {
+        color: #1890ff;
+
+        >.delete_btn {
+          color: red;
+        }
+      }
+    }
+  }
+}

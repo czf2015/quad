@@ -85,16 +85,16 @@ export const configTabsPanel = [
           },
         },
       ],
-      binds: {
-        "onClick:1": [
-          {
-            id: "11", // 组件id, 自动填写
-            type: "SELECT_TIME", // 下拉选择
-            payload: 0, // 自动获取
-            description: "最近30天", // ...
-          },
-        ],
-      },
+      binds: [
+        {
+          target: 'add', // 
+          event: 'onClick', // 下拉
+          id: "11", // 组件id, 自动填写
+          type: "SELECT_TIME", // 下拉选择
+          payload: 0, // 自动获取
+          description: "最近30天", // ...
+        },
+      ],
     },
   },
 ];
