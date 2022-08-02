@@ -1,31 +1,37 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Input } from 'antd'
 import { useToggle } from '@/hooks'
-import { EditOutlined } from '@ant-design/icons'
+import { EditOutlined, EnterOutlined } from '@ant-design/icons'
 import styles from './index.module.less'
 
 export const TextEdit = ({ text }) => {
+  const ref = useRef()
   const [inputValue, setInputValue] = useState(text)
   const [contentEditable, setContentEditable] = useToggle(false)
 
-  const handleEdit = (e) => {
+  const handleEdit = () => {
     setContentEditable(true)
   }
   const handleChange = (e) => {
     setInputValue(e.target.value)
   }
-  const handlePressEnter = (e) => {
+  const handleBlur = (e) => {
     setContentEditable(false)
   }
 
-  if (contentEditable) {
-    return <Input style={{ width: 100 }} value={inputValue} onChange={handleChange} onPressEnter={handlePressEnter} onBlur={handlePressEnter} />
-  }
+  useEffect(() => {
+    if (contentEditable) {
+      ref.current.focus()
+    }
+  }, [contentEditable])
 
   return (
     <>
-      <span>{inputValue}</span>
-      <EditOutlined className={styles.edit_btn} onClick={handleEdit} />
-    </>
+      <Input size="small" ref={ref} style={{ width: 160, display: contentEditable ? '' : 'none', border: 'none', outline: '1px solid #1890ff' }} value={inputValue} onChange={handleChange} onBlur={handleBlur} />
+      <div style={{ display: contentEditable ? 'none' : 'inline-block' }} >
+        <span>{inputValue}</span>
+        <EditOutlined className={styles.edit_btn} onClick={handleEdit} />
+      </div>
+    </ >
   )
 }

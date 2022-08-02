@@ -2,16 +2,12 @@
   position: relative;
   padding: 0px 6px;
 
-  >.add_btn {
+  > .add_btn {
     position: absolute;
     top: -20px;
     left: 50%;
-    color: #ccc;
-
-    &:hover {
-      color: #1890ff;
-      cursor: pointer;
-    }
+    color: #1890ff;
+    cursor: pointer;
   }
 
   .handler {
@@ -21,51 +17,44 @@
     box-shadow: 2px 2px 4px 4px #ccc;
     border-radius: 4px;
 
-    >.add_btn {
+    > .holder_btn {
+      position: absolute;
+      top: 8px;
+      left: 4px;
+      cursor: move;
+    }
+
+    > .delete_btn {
+      position: absolute;
+      top: 8px;
+      right: 4px;
+      color: #333;
+      cursor: pointer;
+    }
+
+    > .add_btn {
       position: absolute;
       bottom: -20px;
       left: 50%;
-      color: #ccc;
-
-      &:hover {
-        color: #1890ff;
-        cursor: pointer;
-      }
+      color: #1890ff;
+      cursor: pointer;
     }
 
-    >.title {
-      position: relative;
-      margin: 0;
-      padding: 0;
-      color: #ccc;
-
-      .holder_btn {
-        margin-right: 4px;
-
-        &:hover {
-          cursor: move;
-        }
-      }
-
-      >.delete_btn {
-        position: absolute;
-        top: 0px;
-        right: 0;
-        color: #ccc;
-
-        &:hover {
-          cursor: pointer;
-        }
-      }
+    > .title {
+      margin: -4px 0 0px 16px;
+      height: 32px;
+      color: #222;
     }
 
     &:hover {
-      >.title {
+      > .title {
         color: #1890ff;
-
-        >.delete_btn {
-          color: red;
-        }
+      }
+      > .holder_btn {
+        color: #1890ff;
+      }
+      > .delete_btn {
+        color: red;
       }
     }
   }

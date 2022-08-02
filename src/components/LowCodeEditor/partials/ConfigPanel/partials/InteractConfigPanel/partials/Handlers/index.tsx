@@ -3,15 +3,14 @@ import { Form, Input, Code, TextEdit } from '@/plugins/ui'
 import { DeleteOutlined, HolderOutlined, PlusOutlined } from '@ant-design/icons'
 import styles from './index.module.less'
 
-export const Handler = ({ description = '名称', initialValues = { id: 3, type: 'SELECT_TIME', handle: `(payload) => console.log(payload)` }  }) => {
+export const Handler = ({ description = '名称', initialValues = { id: 3, type: 'SELECT_TIME', handle: `(payload) => console.log(payload)` } }) => {
 
   return (
     <div className={styles.handler}>
-      <PlusOutlined className={styles.add_btn} />
+      <HolderOutlined className={styles.holder_btn} />
+      <DeleteOutlined className={styles.delete_btn} />
       <h4 className={styles.title}>
-        <HolderOutlined className={styles.holder_btn} />
         <TextEdit text={description} />
-        <DeleteOutlined className={styles.delete_btn} />
       </h4>
       <Form
         initialValues={initialValues}
@@ -33,6 +32,7 @@ export const Handler = ({ description = '名称', initialValues = { id: 3, type:
           <Code value={initialValues.handle} />
         </Form.Item>
       </Form>
+      <PlusOutlined className={styles.add_btn} />
     </div>
   )
 }
