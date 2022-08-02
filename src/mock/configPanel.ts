@@ -33,7 +33,7 @@ export const configTabsPanel = [
     top: 0;
     right: 0;
     &:hover {
-      color: #1890ff;
+      color: #40a9ff;
       cursor: pointer;
     }
   }

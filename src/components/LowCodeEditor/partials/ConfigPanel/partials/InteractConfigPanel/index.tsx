@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { Tabs, Badge, Collapse, Radio } from 'antd'
+import { Radio } from 'antd'
 // import Form from '@/components/Form'
 // import { formItems } from './mock'
 import { Handlers, Binds } from './partials'
 import styles from './index.module.less'
 
-const { TabPane } = Tabs
 
 export const InteractConfigPanel = ({ id, content }) => {
   useEffect(() => {

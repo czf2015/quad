@@ -27,7 +27,7 @@ export const TextEdit = ({ text }) => {
 
   return (
     <>
-      <Input size="small" ref={ref} style={{ width: 160, display: contentEditable ? '' : 'none', border: 'none', outline: '1px solid #1890ff' }} value={inputValue} onChange={handleChange} onBlur={handleBlur} />
+      <Input size="small" ref={ref} style={{ width: 160, display: contentEditable ? '' : 'none', border: 'none', outline: '1px solid #40a9ff' }} value={inputValue} onChange={handleChange} onBlur={handleBlur} />
       <div style={{ display: contentEditable ? 'none' : 'inline-block' }} >
         <span>{inputValue}</span>
         <EditOutlined className={styles.edit_btn} onClick={handleEdit} />

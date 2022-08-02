@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { Dropdown, Menu } from '@/plugins/ui'
 import { useDragMove } from "@/hooks";
-import { HolderOutlined, DeleteOutlined, MoreOutlined, ArrowsAltOutlined, ExpandAltOutlined } from '@ant-design/icons'
+import { HolderOutlined, DeleteOutlined, MoreOutlined, ExpandAltOutlined, CopyOutlined } from '@ant-design/icons'
 import styles from "./index.module.less";
 
 export const Wrapper = ({
@@ -38,6 +38,14 @@ export const Wrapper = ({
   const menu = (
     <Menu
       items={[
+        {
+          key: '0',
+          label: (
+            <a onClick={() => setDropdownOverlayVisible(false)}>
+              <CopyOutlined fontSize={32} />{/* 复制 */}
+            </a>
+          ),
+        },
         {
           key: '1',
           label: (
