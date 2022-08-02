@@ -8,7 +8,7 @@ import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/ayu-dark.css';
 // import 'codemirror/theme/solarized.css';
 // import 'codemirror/theme/xq-dark.css';
-// import 'codemirror/theme/eclipse.css';
+import 'codemirror/theme/eclipse.css';
 
 // 模式
 import 'codemirror/mode/css/css';
@@ -58,8 +58,10 @@ import 'codemirror/addon/dialog/dialog.css'
 import 'codemirror/addon/dialog/dialog'
 
 const defaultOptions = {
-  mode: 'application/json',
+  mode: 'text/javascript',
+  // mode: 'application/json',
   theme: 'ayu-dark',
+  // theme: 'eclipse',
   // lineNumbers: true, // 是否显示行号
   // readOnly: true,  // 是否只读
   // lineWiseCopyCut: true,

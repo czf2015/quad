@@ -1,7 +1,7 @@
 // @ts-nocheck
 import React from "react";
 import { LockOutlined } from "@ant-design/icons";
-import { Form, Input, Select, Switch, Radio } from "antd";
+import { Form, Input, Select, Switch, Radio, Code } from "@/plugins/ui";
 import Cascader from './partials/Cascader'
 import TreeSelect from "./partials/TreeSelect";
 import { CaretDownOutlined } from "@ant-design/icons";
@@ -82,6 +82,9 @@ export const renderFormItem = ({
             prefix={<LockOutlined />}
           />
         );
+        break;
+      case "Code":
+        formItem = <Code />;
         break;
       default:
         break;

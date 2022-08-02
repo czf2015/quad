@@ -1,16 +1,11 @@
 import React from 'react'
 import Form from '@/components/Form'
+import { formProps } from './config'
 
 export const DataConfigPanel = ({ id, content }) => {
   return (
     <Form
-      // initialValues={content}
-      labelCol={{
-        span: 6,
-      }}
-      wrapperCol={{
-        span: 18
-      }}
+      {...formProps}
     />
   )
 }
