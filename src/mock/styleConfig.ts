@@ -1,4 +1,7 @@
 export const blockStyle = {
+  position: 2,
+  top: 0,
+  left: 0,
   constraints: {
     horizontal: 0,
     vertical: 2,
@@ -49,7 +52,4 @@ export const widgetStyle = {
     thickness: 1,
   },
   borderRadius: "",
-  position: 2,
-  top: 0,
-  left: 0,
 };

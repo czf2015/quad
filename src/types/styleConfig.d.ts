@@ -52,7 +52,7 @@ interface IConstraints {
 }
 // ============IBox=====================
 interface IBoxShadow {}
-interface IBox extends IPosition, IBorder {
+interface IBox extends IBorder {
   margin?: number | string;
   marginTop?: number | string;
   marginBottom?: number | string;
@@ -119,5 +119,5 @@ interface ILayer extends IOverflow {
   hidden: boolean; // 隐藏
 }
 // =============IStyleConfig==========
-interface IStyleConfig extends IBox, IText, ILayer {
+interface IStyleConfig extends IPosition, IBox, IText, ILayer {
 }
