@@ -68,10 +68,8 @@ interface IComponentBlocks {
   [propName: slotsKeyType]: idType;
 }
 interface IBind extends IMessage {
+  key: string;
   event: eventType;
-}
-interface IBinds {
-  [propName: string]: IBind[];
 }
 interface IDataSource {}
 interface IComponentProps extends IEntity {
@@ -80,7 +78,7 @@ interface IComponentProps extends IEntity {
   classNames?: IClassNames;
   dataSource?: IDataSource;
   handlers?: dispatchType[];
-  binds?: IBinds;
+  binds?: IBind[];
 }
 enum IConfigPanelTabKey {
   STYLE, // 样式
