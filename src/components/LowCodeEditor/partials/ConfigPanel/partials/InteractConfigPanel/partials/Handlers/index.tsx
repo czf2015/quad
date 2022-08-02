@@ -1,7 +1,6 @@
 import React from 'react'
 import { Form, Input, Code } from '@/plugins/ui'
-import FormCards from '@/components/Form/Cards'
-
+import FormCards from '@/components/Form/partials/Cards'
 
 export const Handlers = ({ initialValues = { id: 3, type: 'SELECT_TIME', handle: `(payload) => console.log(payload)` }, }) => {
   return (

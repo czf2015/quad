@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, Input, Code, TextEdit, Switch } from '@/plugins/ui'
+import { TextEdit, Switch } from '@/plugins/ui'
 import { useToggle } from '@/hooks'
 import { DeleteOutlined, HolderOutlined, PlusOutlined, RightOutlined } from '@ant-design/icons'
 import styles from './index.module.less'
@@ -9,7 +9,7 @@ export const Card = ({ description = '名称', children }) => {
   const [enableState, toggleEnableState] = useToggle(true)
 
   return (
-    <div className={`${styles.handler} ${enableState ? styles.enabled : ''}`}>
+    <div className={`${styles.card} ${enableState ? styles.enabled : ''}`}>
       <div className={`${styles.insert_btn} quad-circle`}><PlusOutlined /></div>
       <HolderOutlined className={styles.holder_btn} />
       <DeleteOutlined className={styles.delete_btn} />
@@ -29,7 +29,7 @@ export const Card = ({ description = '名称', children }) => {
 
 export default ({ children }) => {
   return (
-    <div className={styles.handlers}>
+    <div className={styles.cards}>
       <Card>{children}</Card>
       <Card>{children}</Card>
       <Card>{children}</Card>
