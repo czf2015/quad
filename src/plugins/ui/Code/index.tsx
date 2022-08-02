@@ -57,12 +57,9 @@ import 'codemirror/addon/search/searchcursor'
 import 'codemirror/addon/dialog/dialog.css'
 import 'codemirror/addon/dialog/dialog'
 
-
-
-
 const defaultOptions = {
   mode: 'application/json',
-  // theme: 'ayu-dark',
+  theme: 'ayu-dark',
   // lineNumbers: true, // 是否显示行号
   // readOnly: true,  // 是否只读
   // lineWiseCopyCut: true,

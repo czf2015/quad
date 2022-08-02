@@ -1,18 +1,13 @@
 import React from 'react'
-import { Form, Input, Select, TextEdit } from '@/plugins/ui'
-import { DeleteOutlined, HolderOutlined, PlusOutlined } from '@ant-design/icons'
-import styles from './index.module.less'
+import { Form, Input, Select } from '@/plugins/ui'
+import FormCards from '@/components/Form/Cards'
 
-export const Bind = ({ description = '名称' }) => {
+
+export const Binds = ({ initialValues = { id: 3, type: 'SELECT_TIME', handle: `(payload) => console.log(payload)` }, }) => {
   return (
-    <div className={styles.handler}>
-      <HolderOutlined className={styles.holder_btn} />
-      <DeleteOutlined className={styles.delete_btn} />
-      <h4 className={styles.title}>
-        <TextEdit text={description} />
-      </h4>
+    <FormCards>
       <Form
-        initialValues={{ id: 3, type: 'SELECT_TIME', handle: `(payload) => console.log(payload)` }}
+        initialValues={initialValues}
         layout="vertical"
         labelCol={{
           span: 24,
@@ -34,18 +29,6 @@ export const Bind = ({ description = '名称' }) => {
           <Input.TextArea name="description" />
         </Form.Item>
       </Form>
-      <PlusOutlined className={styles.add_btn} />
-    </div>
-  )
-}
-
-export const Binds = () => {
-  return (
-    <div className={styles.handlers}>
-      <PlusOutlined className={styles.add_btn} />
-      <Bind />
-      <Bind />
-      <Bind />
-    </div>
+    </FormCards>
   )
 }
