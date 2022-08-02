@@ -41,7 +41,6 @@ export const renderFormItem = ({
       case "TreeSelect":
         formItem = (
           <TreeSelect
-            getPopupContainer={(triggerNode) => triggerNode.parentNode}
             placeholder={placeholder || "请选择"}
             treeData={options}
           />
@@ -51,7 +50,6 @@ export const renderFormItem = ({
         formItem = (
           <Select
             options={options}
-            getPopupContainer={(triggerNode) => triggerNode.parentNode}
             suffixIcon={
               <CaretDownOutlined
                 style={{ color: "var(--xdrsec-select-suffix-icon-color)" }}
