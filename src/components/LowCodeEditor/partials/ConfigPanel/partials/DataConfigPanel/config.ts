@@ -92,19 +92,6 @@ export const formProps = {
       ],
     },
     {
-      name: "preprocess",
-      label: "预处理",
-      type: "Code",
-      prerequisites: [
-        {
-          field: "type",
-          options: {
-            all: [0],
-          },
-        },
-      ],
-    },
-    {
       name: "data",
       label: "数据",
       type: "Code",
@@ -113,6 +100,19 @@ export const formProps = {
           field: "type",
           options: {
             all: [1],
+          },
+        },
+      ],
+    },
+    {
+      name: "preprocess",
+      label: "预处理",
+      type: "Code",
+      prerequisites: [
+        {
+          field: "type",
+          options: {
+            all: [0],
           },
         },
       ],
