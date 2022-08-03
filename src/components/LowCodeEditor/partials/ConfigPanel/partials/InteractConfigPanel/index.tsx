@@ -4,7 +4,7 @@ import FormList from '@/components/Form/partials/List'
 import TabsPanel from '@/components/TabsPanel'
 import { tabList } from './config'
 
-export const InteractConfigPanel = ({ initialValues }) => {
+export const InteractConfigPanel = ({ content: initialValues }) => {
   const tabs = tabList.map(({ key, tab, schema }) => {
     return {
       tab,

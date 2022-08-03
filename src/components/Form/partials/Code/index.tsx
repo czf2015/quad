@@ -14,7 +14,7 @@ export default ({ value }) => {
       <Input value={inputValue} style={{ display: 'none' }} />
       <Code
         value={inputValue}
-        height='200px'
+        height='150px'
         // 设置尺寸
         onChange={handleChange}
         onBeforeChange={(editor: any, data: any, value: string) => { }}

@@ -62,9 +62,16 @@ export const configTabsPanel = [
       type: 0,
       method: 0,
       url: '',
+      params: `{
+  offset: 0,
+  limit: 10
+}`,
       data: `{
   title: '标题',
-  description: '描述'
+  description: '描述',
+  params: {
+    id: 1,
+  }
 }`,
     },
   },

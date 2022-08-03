@@ -1,7 +1,8 @@
 // @ts-nocheck
 import React from "react";
 import { LockOutlined } from "@ant-design/icons";
-import { Form, Input, Select, Switch, Radio, Code } from "@/plugins/ui";
+import { Form, Input, Select, Switch, Radio } from "@/plugins/ui";
+import Code from '@/components/Form/partials/Code'
 import Cascader from './partials/Cascader'
 import TreeSelect from "./partials/TreeSelect";
 import { CaretDownOutlined } from "@ant-design/icons";

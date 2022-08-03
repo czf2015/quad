@@ -1,8 +1,4 @@
 export const formProps = {
-  initialValues: {
-    type: 0,
-    method: 0,
-  },
   disabled: false,
   requiredMark: true,
   layout: "horizontal",
@@ -80,7 +76,7 @@ export const formProps = {
     {
       name: "params",
       label: "参数",
-      type: "TextArea",
+      type: "Code",
       placeholder: "请输入参数信息！",
       prerequisites: [
         {

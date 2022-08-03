@@ -3,11 +3,10 @@ import React, { useState } from "react";
 import { Form } from "@/plugins/ui";
 import { renderFormItem } from "./render";
 import { filter } from "./helpers";
-import { formProps } from "./mock";
 
 export default ({
-  initialValues = formProps.initialValues,
-  children: formItems = formProps.children,
+  initialValues,
+  children: formItems,
   onFinish = console.success,
   onFinishFailed = console.error,
   disabled = false,
