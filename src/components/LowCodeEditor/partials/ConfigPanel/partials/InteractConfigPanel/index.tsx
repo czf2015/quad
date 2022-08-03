@@ -31,7 +31,7 @@ export const InteractConfigPanel = ({ id, content }) => {
   return (
     <>
       <div className={styles.center}>
-        <Radio.Group value={value} onChange={onChange} style={{ marginBottom: 16 }}>
+        <Radio.Group value={value} onChange={onChange}>
           <Radio.Button value="binds">事件绑定</Radio.Button>
           <Radio.Button value="handlers">事件处理</Radio.Button>
         </Radio.Group>

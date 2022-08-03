@@ -14,10 +14,12 @@ export const renderFormItem = ({
   prefix,
   needFormItem = true,
   render,
+  size = 'small',
   ...attrs
 }) => {
   let formItem = (
     <Input
+      size={size}
       prefix={prefix}
       placeholder={placeholder || "请输入"}
       allowClear
@@ -30,17 +32,19 @@ export const renderFormItem = ({
       case "TextArea":
         formItem = (
           <Input.TextArea
+            size={size}
             autoSize={{ minRows: 2, maxRows: 10 }}
             placeholder={placeholder}
           />
         );
         break;
       case "Switch":
-        formItem = <Switch />;
+        formItem = <Switch size={size} />;
         break;
       case "TreeSelect":
         formItem = (
           <TreeSelect
+            size={size}
             placeholder={placeholder || "请选择"}
             treeData={options}
           />
@@ -49,6 +53,7 @@ export const renderFormItem = ({
       case "Select":
         formItem = (
           <Select
+            size={size}
             options={options}
             suffixIcon={
               <CaretDownOutlined
@@ -63,6 +68,7 @@ export const renderFormItem = ({
       case "Cascader":
         formItem = (
           <Cascader
+            size={size}
             options={options}
             placeholder={placeholder}
             {...attrs}
@@ -70,21 +76,22 @@ export const renderFormItem = ({
         );
         break;
       case "Radio":
-        formItem = <Radio.Group options={options} />;
+        formItem = <Radio.Group size={size} options={options} />;
         break;
       case "Checkbox":
-        formItem = <Checkbox.Group options={options} />;
+        formItem = <Checkbox.Group size={size} options={options} />;
         break;
       case "Password":
         formItem = (
           <Input.Password
+            size={size}
             placeholder={placeholder}
             prefix={<LockOutlined />}
           />
         );
         break;
       case "Code":
-        formItem = <Code />;
+        formItem = <Code size={size} />;
         break;
       default:
         break;

@@ -15,7 +15,6 @@
     &:hover {
       color: #fff;
       background-color: #40a9ff;
-      outline: none;
     }
   }
 
@@ -78,7 +77,10 @@
 
     :global {
       .ant-form-item {
-        margin: 12px 0;
+        margin: 4px 0;
+        > .ant-form-item-label {
+          padding-bottom: 0px;
+        }
       }
     }
     &:not(.enabled) {

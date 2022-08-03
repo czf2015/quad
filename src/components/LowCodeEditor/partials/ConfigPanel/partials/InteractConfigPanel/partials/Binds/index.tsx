@@ -16,16 +16,16 @@ export const Binds = ({ initialValues = { id: 3, type: 'SELECT_TIME', handle: `(
         }}
       >
         <Form.Item label="绑定对象：">
-          <Select name="target" />
+          <Select name="target" size="small" />
         </Form.Item>
         <Form.Item label="事件类型：">
-          <Select name="event" />
+          <Select name="event" size="small" />
         </Form.Item>
         <Form.Item label="消息类型：" required>
-          <Select name="type" options={[]} required />
+          <Select name="type" options={[]} required size="small" />
         </Form.Item>
         <Form.Item label="描述说明：">
-          <Input.TextArea name="description" />
+          <Input.TextArea name="description" size="small" />
         </Form.Item>
       </Form>
     </FormCards>

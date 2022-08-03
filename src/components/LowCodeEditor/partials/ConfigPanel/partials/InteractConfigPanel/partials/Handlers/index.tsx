@@ -16,10 +16,10 @@ export const Handlers = ({ initialValues = { id: 3, type: 'SELECT_TIME', handle:
         }}
       >
         <Form.Item label="消息类型：" required>
-          <Input name="type" />
+          <Input name="type" size="small" />
         </Form.Item>
         <Form.Item label="消息来源组件id：">
-          <Input name="id" />
+          <Input name="id" size="small" />
         </Form.Item>
         <Form.Item label="处理函数：">
           <Code value={initialValues.handle} />
