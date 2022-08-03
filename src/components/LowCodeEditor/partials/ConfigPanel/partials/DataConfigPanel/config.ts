@@ -108,14 +108,14 @@ export const formProps = {
       name: "preprocess",
       label: "预处理",
       type: "Code",
-      prerequisites: [
-        {
-          field: "type",
-          options: {
-            all: [0],
-          },
-        },
-      ],
+    //   prerequisites: [
+    //     {
+    //       field: "type",
+    //       options: {
+    //         all: [0],
+    //       },
+    //     },
+    //   ],
     },
   ],
 };
