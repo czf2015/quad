@@ -1,18 +1,30 @@
 import React from 'react'
+import { Form } from '@/plugins/ui'
 import TabsPanel from '@/components/TabsPanel'
-import { Handlers, Binds } from './partials'
+import FormList from '@/components/Form/partials/List'
+import { tabList } from './config'
 
-export const InteractConfigPanel = () => {
-  const tabs = [
-    {
-      tab: '事件绑定',
-      content: <Binds />,
-    },
-    {
-      tab: '事件处理',
-      content: <Handlers />,
-    },
-  ]
+export const InteractConfigPanel = ({ initialValues }) => {
+  const tabs = tabList.map(({ key, tab, list }) => {
+    return {
+      tab,
+      key,
+      content: <FormList name={key} list={list} />
+    }
+  })
 
-  return <TabsPanel tabs={tabs} />
+  return (
+    <Form
+      initialValues={initialValues}
+      layout="vertical"
+      labelCol={{
+        span: 24,
+      }}
+      wrapperCol={{
+        span: 24
+      }}
+    >
+      <TabsPanel tabs={tabs} defaultActiveKey="handlers" />
+    </Form>
+  )
 }

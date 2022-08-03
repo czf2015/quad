@@ -8,7 +8,7 @@ import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/ayu-dark.css';
 // import 'codemirror/theme/solarized.css';
 // import 'codemirror/theme/xq-dark.css';
-import 'codemirror/theme/eclipse.css';
+// import 'codemirror/theme/eclipse.css';
 
 // 模式
 import 'codemirror/mode/css/css';
@@ -18,8 +18,8 @@ import 'codemirror/mode/javascript/javascript';
 import 'codemirror/mode/python/python.js';
 
 // 全屏模式
-import 'codemirror/addon/display/fullscreen.css'
-import 'codemirror/addon/display/fullscreen'
+// import 'codemirror/addon/display/fullscreen.css'
+// import 'codemirror/addon/display/fullscreen'
 
 // 支持代码折叠
 import 'codemirror/addon/fold/foldgutter.css';
@@ -68,7 +68,7 @@ const defaultOptions = {
   // lineWrapping: true,
 }
 
-export const Code = ({ value, onChange, onBeforeChange, options = defaultOptions, }) => {
+export const Code = ({ value, onChange, onBeforeChange, options = defaultOptions, width = 'auto', height = 'auto' }) => {
   return (
     <CodeMirror
       value={value}
@@ -78,7 +78,7 @@ export const Code = ({ value, onChange, onBeforeChange, options = defaultOptions
       }}
       // 设置尺寸
       editorDidMount={(editor) => {
-        editor.setSize('auto', 'auto');
+        editor.setSize(width, height);
       }}
       onChange={(editor: any, data: any, value: string) => { }}
       onBeforeChange={(editor: any, data: any, value: string) => { }}

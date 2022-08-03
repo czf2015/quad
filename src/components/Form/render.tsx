@@ -91,7 +91,7 @@ export const renderFormItem = ({
         );
         break;
       case "Code":
-        formItem = <Code size={size} />;
+        formItem = <Code size={size} height="120px" />;
         break;
       default:
         break;
