@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { Dropdown, Menu } from '@/plugins/ui'
 import { useDragMove } from "@/hooks";
+import { copyText } from '@/utils/dom'
 import { HolderOutlined, DeleteOutlined, MoreOutlined, ExpandAltOutlined, CopyOutlined } from '@ant-design/icons'
 import styles from "./index.module.less";
 
@@ -35,13 +36,17 @@ export const Wrapper = ({
   const isCardStyle = /Chart/.test(name)
 
   const [dropdownOverlayVisible, setDropdownOverlayVisible] = useState(false)
+  const copy = () => {
+    setDropdownOverlayVisible(false)
+    copyText(id)
+  }
   const menu = (
     <Menu
       items={[
         {
           key: '0',
           label: (
-            <a onClick={() => setDropdownOverlayVisible(false)}>
+            <a onClick={copy}>
               <CopyOutlined fontSize={32} />{/* 复制 */}
             </a>
           ),
@@ -83,7 +88,7 @@ export const Wrapper = ({
       </Dropdown>
       <ExpandAltOutlined className={`${styles.expand_btn} quad-circle`} rotate={90} {...attrs} />
       <DeleteOutlined className={`${styles.delete_btn} quad-circle`} onClick={remove} />
-      {isCardStyle && <h4 className={styles.card_title}>{title}</h4> }
+      {isCardStyle && <h4 className={styles.card_title}>{title}</h4>}
       {children}
     </div>
   );
