@@ -19,10 +19,10 @@ export const Binds = ({ initialValues = { id: 3, type: 'SELECT_TIME', handle: `(
           <Select name="target" size="small" />
         </Form.Item>
         <Form.Item label="事件类型：">
-          <Select name="event" size="small" />
+          <Select name="event" options={[{ label: '单击', value: 'onClick' }]} size="small" />
         </Form.Item>
         <Form.Item label="消息类型：" required>
-          <Select name="type" options={[]} required size="small" />
+          <Select mode="tags" options={[{ label: '打开弹窗', value: 'OPEN_DRAWER' }]} name="type" required size="small" />
         </Form.Item>
         <Form.Item label="描述说明：">
           <Input.TextArea name="description" size="small" />
