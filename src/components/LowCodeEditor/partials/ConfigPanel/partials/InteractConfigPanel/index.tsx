@@ -1,44 +1,18 @@
-import React, { useEffect, useState } from 'react'
-import { Radio } from 'antd'
-// import Form from '@/components/Form'
-// import { formItems } from './mock'
+import React from 'react'
+import TabsPanel from '@/components/TabsPanel'
 import { Handlers, Binds } from './partials'
-import styles from './index.module.less'
 
+export const InteractConfigPanel = () => {
+  const tabs = [
+    {
+      tab: '事件绑定',
+      content: <Binds />,
+    },
+    {
+      tab: '事件处理',
+      content: <Handlers />,
+    },
+  ]
 
-export const InteractConfigPanel = ({ id, content }) => {
-  useEffect(() => {
-    // content?.handlers.forEach(({ id, type, handle }) => {
-    //   window.$eventBus.on(type, (payload) => handle(payload))
-    // })
-
-    // Object.keys(content.binds).forEach(bindKey => {
-    //   content.binds[bindKey].forEach(msg => {
-    //     window.$eventBus.emit(msg.type, msg)
-    //   })
-    // })
-
-    // return () => content?.handlers.forEach(({ id, type, handle, payload, description }) => {
-    //   window.$eventBus.off(type, () => handle(payload))
-    // })
-  }, [])
-
-  const [value, setValue] = useState('handlers')
-  const onChange = (e) => {
-    setValue(e.target.value)
-  }
-
-  return (
-    <>
-      <div className={styles.center}>
-        <Radio.Group value={value} onChange={onChange}>
-          <Radio.Button value="binds">事件绑定</Radio.Button>
-          <Radio.Button value="handlers">事件处理</Radio.Button>
-        </Radio.Group>
-      </div>
-      <div className={styles.scroll}>
-        {value == 'handlers' ? <Handlers /> : <Binds />}
-      </div>
-    </>
-  )
+  return <TabsPanel tabs={tabs} />
 }

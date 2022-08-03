@@ -68,10 +68,42 @@ interface IComponentBlocks {
   [propName: slotsKeyType]: idType;
 }
 interface IBind extends IMessage {
-  key: string;
+  title?: string;
+  target: string;
   event: eventType;
 }
-interface IDataSource {}
+interface IHandler {
+  id: idType;
+  type: eventType;
+  enable?: boolean;
+  handle?: dispatchType;
+}
+interface IInteractConfig {
+  binds: IBind[];
+  handlers: IHandler[];
+}
+
+enum enumDataType {
+  API,
+  MANUAL,
+}
+enum enumRequestMethod {
+  POST,
+  GET,
+  PUT,
+  DELETE,
+}
+interface IRequestParams {
+  [propName: string]: any
+}
+interface IDataSource {
+  type: enumDataType;
+  url?: string;
+  method?: enumRequestMethod;
+  params?: IRequestParams;
+  data?: any;
+  proprocess?: Function;
+}
 interface IComponentProps extends IEntity {
   blocks?: IComponentBlocks;
   slots?: ISlots;
@@ -85,11 +117,10 @@ enum IConfigPanelTabKey {
   DATA, // 数据
   INTERACT, // 交互
 }
-
 interface IConfigPanelTabPane {
   key: IConfigPanelTabKey;
   tab: "样式" | "数据" | "交互";
-  pane: IStyleConfig;
+  pane: IStyleConfig | IDataSource | IInteractConfig;
 }
 
 interface IConfigPanelProps {
@@ -99,3 +130,4 @@ interface IConfigPanelProps {
   description?: string;
   tabs: IConfigPanelTabPane[];
 }
+

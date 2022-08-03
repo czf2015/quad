@@ -77,16 +77,17 @@ export const configTabsPanel = [
           id: "", // 非必填
           type: "SELECT_TIME",
           enable: true,
-          handle(payload) {
+          handle(params) {
             setInterval(() => {
               console.log("=======");
-              console.log(payload);
+              console.log(params.payload);
             }, 1000)
           },
         },
       ],
       binds: [
         {
+          title: 'xxx',
           target: 'add', // 
           event: 'onClick', // 下拉
           id: "11", // 组件id, 自动填写
