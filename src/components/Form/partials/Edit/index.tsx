@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Input } from 'antd'
+import { Input, Form } from 'antd'
 import { useToggle } from '@/hooks'
-import { EditOutlined, EnterOutlined } from '@ant-design/icons'
+import { EditOutlined } from '@ant-design/icons'
 import styles from './index.module.less'
 
-export const TextEdit = ({ text }) => {
+export default ({ name = 'title', value, ...attrs }) => {
   const ref = useRef()
-  const [inputValue, setInputValue] = useState(text)
+  const [inputValue, setInputValue] = useState(value)
   const [contentEditable, setContentEditable] = useToggle(false)
 
   const handleEdit = () => {
@@ -26,12 +26,12 @@ export const TextEdit = ({ text }) => {
   }, [contentEditable])
 
   return (
-    <>
+    <Form.Item className={styles.input_edit} name={name} {...attrs}>
       <Input size="small" ref={ref} style={{ width: 160, display: contentEditable ? '' : 'none', border: 'none', outline: '1px solid #40a9ff' }} value={inputValue} onChange={handleChange} onBlur={handleBlur} allowClear />
       <div style={{ display: contentEditable ? 'none' : 'inline-block' }} >
         <span>{inputValue}</span>
         <EditOutlined className={styles.edit_btn} onClick={handleEdit} />
       </div>
-    </ >
+    </Form.Item>
   )
 }

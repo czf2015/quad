@@ -74,6 +74,7 @@ export const configTabsPanel = [
     content: {
       handlers: [
         {
+          title: 'xxx',
           id: "", // 非必填
           type: "SELECT_TIME",
           enable: true,

@@ -1,6 +1,6 @@
-.cards {
+.card_list {
   position: relative;
-  padding: 0px 6px;
+  padding: 0 6px;
 
   .add_btn {
     margin: 4px 0;
@@ -60,26 +60,22 @@
 
     > .enable_btn {
       position: absolute;
-      bottom: -12px;
+      bottom: -16px;
       right: -4px;
       color: #fff;
       cursor: pointer;
     }
 
     > .title {
-      margin: -4px 0 0px 14px;
+      margin: -12px 0 0 14px;
       color: #222;
-    }
-
-    > .collapsed {
-      display: none;
     }
 
     :global {
       .ant-form-item {
         margin: 4px 0;
         > .ant-form-item-label {
-          padding-bottom: 0px;
+          padding-bottom: 0;
         }
       }
     }
@@ -126,6 +122,12 @@
     }
     &:not(.enabled) {
       background-color: #f5f5f5;
+    }
+    &.collapsed {
+      padding-bottom: 0;
+      > main {
+        display: none;
+      }
     }
   }
 }

@@ -80,7 +80,7 @@ export const Code = ({ value, onChange, onBeforeChange, options = defaultOptions
       editorDidMount={(editor) => {
         editor.setSize(width, height);
       }}
-      onChange={(editor: any, data: any, value: string) => { }}
+      onChange={onChange}
       onBeforeChange={(editor: any, data: any, value: string) => { }}
     />
   )

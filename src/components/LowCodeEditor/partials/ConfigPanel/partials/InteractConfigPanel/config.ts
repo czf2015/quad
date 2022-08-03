@@ -2,7 +2,7 @@ export const tabList = [
   {
     tab: "事件绑定",
     key: "binds",
-    list: [
+    schema: [
       {
         name: "target",
         label: "绑定对象",
@@ -33,7 +33,7 @@ export const tabList = [
   {
     tab: "事件处理",
     key: "handlers",
-    list: [
+    schema: [
       {
         name: "type",
         label: "消息类型",
@@ -49,7 +49,7 @@ export const tabList = [
       {
         name: "handle",
         label: "处理函数",
-        type: "TextArea",
+        type: "Code",
       },
     ],
   },
