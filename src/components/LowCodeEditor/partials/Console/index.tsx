@@ -1,16 +1,17 @@
 import React from 'react'
 import Button from '@/components/Button'
-import { SaveOutlined, FormOutlined, EyeOutlined, FileTextOutlined, SendOutlined } from '@ant-design/icons'
+import { FormOutlined, EyeOutlined, FileTextOutlined, SendOutlined } from '@ant-design/icons'
+import { Save } from './partials'
 import styles from './index.module.less'
 
 
 export const Console = ({ mode = 0, save, edit, preview, publish, share }) => {
   const isEditMode = mode == 2
-  
+
   return (
     <div className={styles.console}>
       {isEditMode
-        ? <Button title="保存" onClick={save} type="text" icon={<SaveOutlined />} />
+        ? <Save save={save} />
         : (
           <>
             <Button title="编辑" onClick={edit} type="text" icon={<FormOutlined />} />

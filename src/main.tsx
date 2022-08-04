@@ -7,7 +7,7 @@ import { EventBus } from '@/utils/EventBus'
 window.$eventBus = new EventBus()
 
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+ReactDOM.createRoot(document.getElementById('quad')!).render(
   // <React.StrictMode>
     <App />
   // </React.StrictMode>
