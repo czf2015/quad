@@ -1,3 +1,5 @@
+import { EditableCell } from './partials';
+
 export const columns = [
   {
     title: "Name",
@@ -16,6 +18,9 @@ export const columns = [
       },
     ],
     onFilter: (value, record) => record.name.indexOf(value) === 0,
+    render(text, record, idx) {
+      return <EditableCell type="string" value={text} />;
+    },
   },
   {
     title: "Other",
@@ -26,6 +31,9 @@ export const columns = [
         key: "age",
         width: 150,
         sorter: (a, b) => a.age - b.age,
+        render(text, record, idx) {
+          return <EditableCell type="number" value={text} />;
+        },
       },
       {
         title: "Address",
@@ -95,6 +103,7 @@ export const fetchData = async ({ limit, offset }) => {
       companyAddress: "Lake Street 42",
       companyName: "SoftLake Co",
       gender: "M",
+      index: i,
     });
     offset++;
   }
