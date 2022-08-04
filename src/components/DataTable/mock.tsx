@@ -52,6 +52,9 @@ export const columns = [
                 dataIndex: "building",
                 key: "building",
                 width: 100,
+                render(text, record, idx) {
+                  return <EditableCell type="file" value={[]} />;
+                },
               },
               {
                 title: "Door No.",
@@ -87,6 +90,9 @@ export const columns = [
     key: "gender",
     width: 80,
     fixed: "right",
+    render(text, record, idx) {
+      return <EditableCell type="boolean" value={text} />;
+    },
   },
 ];
 

@@ -2,13 +2,9 @@ import React from 'react'
 import { Tag } from '@/plugins/ui'
 
 export const renderTags = (tags) => (
-  <span>
+  <>
     {tags?.map((tag) => {
-      let color = tag.length > 5 ? 'geekblue' : 'green';
-
-      if (tag === 'loser') {
-        color = 'volcano';
-      }
+      const color = tag === 'loser' ? 'volcano' : tag.length > 5 ? 'geekblue' : 'green';
 
       return (
         <Tag color={color} key={tag}>
@@ -16,5 +12,5 @@ export const renderTags = (tags) => (
         </Tag>
       );
     })}
-  </span>
+  </>
 )
