@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Modal, Avatar, List, Skeleton } from '@/plugins/ui'
 import Button from '@/components/Button'
+import SelectSearch from '@/components/Form/partials/Search/SelectSearch'
 import { FolderOpenOutlined } from '@ant-design/icons'
 
 const count = 3;
@@ -100,6 +101,7 @@ export const Open = ({ disabled, /* open,  */value = { lang: 'zh', timezone: 'Ch
     <>
       <Button title="打开" disabled={disabled} onClick={open} icon={<FolderOpenOutlined />} />
       <Modal title="打开页面" visible={visible} onOk={handleOk} onCancel={handleCancel} width={720} bodyStyle={{ height: 640, overflow: 'auto' }}>
+        <SelectSearch />
         <App />
       </Modal>
     </>

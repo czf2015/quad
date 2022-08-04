@@ -9,7 +9,7 @@ import {
   Col,
 } from 'antd';
 
-const Filter = ({ label, options, checked }) => {
+const Filter = ({ label, options = [], checked }) => {
   const isSelected = label == '已选字段'
   const checkedMap = {}
   checked.forEach(name => {

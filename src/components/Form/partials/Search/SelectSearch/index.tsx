@@ -3,13 +3,13 @@
  * 过滤选择的 组件
  */
 import React, { useState } from 'react';
-import Search from '~/components/Form/partials/Search'
-import FilterCheckboxGroup from '~/components/Form/partials/CheckboxGroup/Filter'
+import Search from '@/components/Form/partials/Search'
+import FilterCheckboxGroup from '@/components/Form/partials/CheckboxGroup/Filter'
 import './index.less';
 
 export default ({
   title = '展示字段',
-  options,
+  options = [],
   search = (e) => {
     console.log(e.target.value)
   }
