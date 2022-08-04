@@ -40,7 +40,7 @@ export default ({
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
     >
-      {filter(formItems, formData).map(renderFormItem)}
+      {filter(formItems, formData)?.map(renderFormItem)}
     </Form>
   );
 };

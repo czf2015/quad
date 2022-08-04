@@ -36,7 +36,7 @@ export const filter = (
   formItems,
   formData,
 ) => {
-  return formItems.filter((formItem) => {
+  return formItems?.filter((formItem) => {
     let ret = true;
     if (formItem.prerequisites) {
       ret = formItem.prerequisites.every((prerequisite) =>
