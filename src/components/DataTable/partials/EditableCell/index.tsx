@@ -25,12 +25,12 @@ export const EditableCell = ({ type = 'string', value = '', options = [], action
     case 'boolean':
       return <Switch checked={inputValue} onChange={handleChange} onBlur={handleBlur} />
     case 'tags':
-      return editMode == 1 ? <Select options={options} value={inputValue} onChange={handleChange} onBlur={handleBlur} /> : <div onClick={edit}>{value}</div>
+      return editMode == 1 ? <Select options={options} value={inputValue} onChange={handleChange} onBlur={handleBlur} /> : <div onClick={edit}>{renderTags(value)}</div>
     case 'rating':
       return editMode == 1 ? <Select options={options} value={inputValue} onChange={handleChange} onBlur={handleBlur} /> : <div onClick={edit}>{value}</div>
     case 'multiple':
       return editMode == 1 ? <Select options={options} value={inputValue} onChange={handleChange} onBlur={handleBlur} /> : <div onClick={edit}>{value}</div>
     case 'file':
-      return <Upload action={action} fileList={value} /> 
+      return <Upload action={action} fileList={value} />
   }
 }
