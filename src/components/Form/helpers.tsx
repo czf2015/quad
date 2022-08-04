@@ -4,7 +4,7 @@ const compareValue = (v1, v2) => {
   if (Array.isArray(v1)) {
     return v2.every((item) => v1.includes(item));
   } else {
-    return v1 == v2;
+    return v1 === v2;
   }
 };
 

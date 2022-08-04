@@ -1,4 +1,5 @@
 export const blockStyle = {
+  padding: 0,
   constraints: {
     horizontal: 0,
     vertical: 2,

@@ -10,18 +10,25 @@ import { CaretDownOutlined } from "@ant-design/icons";
 export const renderFormItem = ({
   name,
   type,
+  mode,
   options,
   placeholder,
   prefix,
+  suffix,
+  addonBefore,
+  addonAfter,
   needFormItem = true,
   render,
-  size = 'small',
+  size/*  = 'small' */,
   ...attrs
 }) => {
   let formItem = (
     <Input
       size={size}
       prefix={prefix}
+      suffix={suffix}
+      addonBefore={addonBefore}
+      addonAfter={addonAfter}
       placeholder={placeholder || "请输入"}
       allowClear
     />
@@ -34,7 +41,7 @@ export const renderFormItem = ({
         formItem = (
           <Input.TextArea
             size={size}
-            autoSize={{ minRows: 2, maxRows: 10 }}
+            autoSize={{ minRows: 4, maxRows: 10 }}
             placeholder={placeholder}
           />
         );
@@ -54,6 +61,7 @@ export const renderFormItem = ({
       case "Select":
         formItem = (
           <Select
+            mode={mode}
             size={size}
             options={options}
             suffixIcon={

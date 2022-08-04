@@ -13,8 +13,6 @@ export const Card = ({ children, field, add, remove }) => {
   return (
     <div className={`${styles.card} ${enableState ? styles.enabled : ''} ${collapsed ? styles.collapsed : ''}`}>
       <div className={`${styles.insert_btn} quad-circle`} onClick={add}><PlusOutlined /></div>
-      <HolderOutlined className={styles.holder_btn} />
-      <DeleteOutlined className={styles.delete_btn} onClick={remove} />
       <header className={styles.title}>
         <InputEdit
           {...field}
@@ -23,6 +21,8 @@ export const Card = ({ children, field, add, remove }) => {
       <main>
         {children}
       </main>
+      <HolderOutlined className={styles.holder_btn} />
+      <DeleteOutlined className={styles.delete_btn} onClick={remove} />
       <Form.Item
         className={styles.enable_btn}
         {...field}

@@ -5,7 +5,7 @@ export default {
   icon: '/favicon.svg',
   lang: 'en',
   meta: {
-    keywords: '',
+    keywords: ['低代码'],
     description: '',
   },
   content,

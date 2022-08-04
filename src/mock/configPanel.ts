@@ -86,10 +86,10 @@ export const configTabsPanel = [
           type: "SELECT_TIME",
           enable: true,
           handle(params) {
-            setInterval(() => {
-              console.log("=======");
-              console.log(params.payload);
-            }, 1000)
+            // setInterval(() => {
+            //   console.log("=======");
+            //   console.log(params.payload);
+            // }, 1000)
           },
         },
       ],
