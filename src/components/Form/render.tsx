@@ -1,7 +1,7 @@
 // @ts-nocheck
 import React from "react";
 import { LockOutlined } from "@ant-design/icons";
-import { Form, Input, Select, Switch, Radio, Checkbox } from "@/plugins/ui";
+import { Form, Input, Select, Switch, Radio, Checkbox, InputNumber } from "@/plugins/ui";
 import Code from '@/components/Form/partials/Code'
 import Cascader from './partials/Cascader'
 import TreeSelect from "./partials/TreeSelect";
@@ -39,13 +39,21 @@ export const renderFormItem = ({
     formItem = render({ name, options, placeholder, prefix, ...attrs });
   } else {
     switch (type) {
+      case "InputNumber":
+        formItem = (
+          <InputNumber
+            size={size}
+            placeholder={placeholder}
+            disabled={disabled}
+          />
+        );
+        break;
       case "TextArea":
         formItem = (
           <Input.TextArea
             size={size}
             autoSize={{ minRows: 4, maxRows: 10 }}
             placeholder={placeholder}
-
             disabled={disabled}
           />
         );

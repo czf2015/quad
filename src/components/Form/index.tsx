@@ -24,7 +24,7 @@ export default ({
 
   const [formData, setFormData] = useState(initialValues);
   const handleValuesChange = (changedValues, allValues) => {
-    console.log({ changedValues })
+    console.log({ changedValues, allValues })
     setFormData(allValues);
   }
 

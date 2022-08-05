@@ -14,7 +14,7 @@ const FORM_ITEM_TYPES = [
 ];
 
 const convertEnumsToOptions = (enums) =>
-  enums.map((label, idx) => ({ label, value: idx }));
+  enums.map((label, idx) => ({ label, value: Number(idx) }));
 
 export const tableColumn = [
   {
@@ -68,12 +68,43 @@ export const tableColumn = [
   //   defaultValue: false,
   // },
   {
-    name: "default",
+    name: "defaultValue",
     label: "默认值",
-    // type: "Input",
-    render() {
-      return <>默认值</>
-    },
+    type: "Input",
+    prerequisites: [
+      {
+        field: 'type',
+        options: {
+          equal: 0
+        }
+      }
+    ]
+  },
+  {
+    name: "defaultValue",
+    label: "默认值",
+    type: "InputNumber",
+    prerequisites: [
+      {
+        field: 'type',
+        options: {
+          equal: 1
+        }
+      }
+    ]
+  },
+  {
+    name: "defaultValue",
+    label: "默认值",
+    type: "Switch",
+    prerequisites: [
+      {
+        field: 'type',
+        options: {
+          equal: 2
+        }
+      }
+    ]
   },
   {
     name: "rules",
