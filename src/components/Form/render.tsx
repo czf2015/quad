@@ -46,6 +46,7 @@ export const renderFormItem = ({
   } else {
     switch (type) {
       case "InputNumber":
+      case "NUMBER":
         formItem = (
           <InputNumber
             placeholder={placeholder}
@@ -59,20 +60,24 @@ export const renderFormItem = ({
             addonBefore={addonBefore}
             addonAfter={addonAfter}
             style={{ width: 120 }}
+            allowClear
           />
         );
         break;
       case "TextArea":
+      case "RICHTEXT":
         formItem = (
           <Input.TextArea
             size={size}
             autoSize={{ minRows: 4, maxRows: 10 }}
             placeholder={placeholder}
             disabled={disabled}
+            allowClear
           />
         );
         break;
       case "Switch":
+      case "ONOFF":
         formItem = <Switch size={size} disabled={disabled} />;
         break;
       case "TreeSelect":
@@ -82,23 +87,21 @@ export const renderFormItem = ({
             placeholder={placeholder || "请选择"}
             treeData={options}
             disabled={disabled}
+            allowClear
           />
         );
         break;
       case "Select":
+      case "SELECT":
         formItem = (
           <Select
             mode={mode}
             size={size}
             options={options}
-            suffixIcon={
-              <CaretDownOutlined
-                style={{ color: "var(--xdrsec-select-suffix-icon-color)" }}
-              />
-            }
-            allowClear
+            suffixIcon={<CaretDownOutlined style={{ color: "var(--xdrsec-select-suffix-icon-color)" }}/>}
             placeholder={placeholder}
             disabled={disabled}
+            allowClear
           />
         );
         break;
@@ -108,7 +111,6 @@ export const renderFormItem = ({
             size={size}
             options={options}
             placeholder={placeholder}
-
             disabled={disabled}
             {...attrs}
           />

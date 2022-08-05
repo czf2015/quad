@@ -139,7 +139,7 @@ interface IDataTableProperties {
     type: string;
     label: string;
     required: boolean;
-    default: any;
+    defaultValue: any;
     disabled: boolean;
     display: boolean;
     rules: IRule[];

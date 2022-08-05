@@ -12,5 +12,6 @@ export const useRowSelection = (defaultSelectedRowKeys = []) => {
     onChange,
     selectedRowKeys,
     setSelectedRowKeys,
+    total: selectedRowKeys.length,
   };
 };

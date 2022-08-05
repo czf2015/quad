@@ -117,7 +117,7 @@ export const columns = [
 
 export const fetchData = async ({ limit, offset }) => {
   const list = [];
-  for (let i = 0; i < limit; i++) {
+  for (let i = 0; i < /* limit */100; i++) {
     list.push({
       key: offset,
       name: "John Brown",
