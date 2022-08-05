@@ -61,6 +61,9 @@ export const columns = [
                 dataIndex: "number",
                 key: "number",
                 width: 100,
+                render(text, record, idx) {
+                  return <EditableCell type="tags" value={[0, 1]} options={[{ label: 'label1', value: 0 }, { label: 'label2', value: 1 }]} />;
+                },
               },
             ],
           },
