@@ -43,7 +43,6 @@ export const filter = (
   return formItems?.filter((formItem) => {
     let ret = true;
     if (formItem.prerequisites) {
-      debugger
       ret = formItem.prerequisites.every((prerequisite) =>
         judgePrerequiste(prerequisite, formData)
       );

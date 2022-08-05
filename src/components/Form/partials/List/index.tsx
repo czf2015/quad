@@ -1,6 +1,7 @@
 import React from 'react'
 import InputEdit from '@/components/Form/partials/Edit'
-import InputCode from '@/components/Form/partials/Code'
+import JsonEdit from '@/components/Form/partials/Json'
+import CodeEdit from '@/components/Form/partials/Code'
 import { Button, Form, Input, Select, Switch } from '@/plugins/ui'
 import { useToggle } from '@/hooks'
 import { DeleteOutlined, HolderOutlined, PlusOutlined, RightOutlined, EditOutlined } from '@ant-design/icons'
@@ -50,9 +51,11 @@ export default ({ name, list }) => {
                     ? <Select mode={mode} options={options} placeholder={placeholder} size="small" />
                     : type == 'TextArea'
                       ? <Input.TextArea options={options} placeholder={placeholder} size="small" />
-                      : type == 'Code'
-                        ? <InputCode />
-                        : <Input options={options} placeholder={placeholder} size="small" />}
+                      : type == 'Json'
+                        ? <JsonEdit />
+                        : type == 'Code'
+                          ? <CodeEdit />
+                          : <Input options={options} placeholder={placeholder} size="small" />}
                 </Form.Item>
               ))}
             </Card>

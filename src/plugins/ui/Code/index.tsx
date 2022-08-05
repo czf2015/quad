@@ -81,7 +81,7 @@ export const Code = ({ value, onChange, onBeforeChange, options = defaultOptions
         editor.setSize(width, height);
       }}
       onChange={onChange}
-      onBeforeChange={(editor: any, data: any, value: string) => { }}
+      onBeforeChange={onBeforeChange}
     />
   )
 }

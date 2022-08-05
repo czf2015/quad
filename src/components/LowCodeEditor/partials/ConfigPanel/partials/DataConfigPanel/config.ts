@@ -76,7 +76,7 @@ export const formProps = {
     {
       name: "params",
       label: "参数",
-      type: "Code",
+      type: "Json",
       placeholder: "请输入参数信息！",
       prerequisites: [
         {
@@ -90,7 +90,7 @@ export const formProps = {
     {
       name: "data",
       label: "数据",
-      type: "Code",
+      type: "Json",
       prerequisites: [
         {
           field: "type",

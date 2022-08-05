@@ -73,6 +73,7 @@ export const configTabsPanel = [
     id: 1,
   }
 }`,
+      preprocess: 'sss'
     },
   },
   {
@@ -84,13 +85,13 @@ export const configTabsPanel = [
           title: 'xxx',
           id: "", // 非必填
           type: "SELECT_TIME",
-          enable: true,
-          handle(params) {
+          enable: false,
+          handle: `(params) => {
             // setInterval(() => {
             //   console.log("=======");
             //   console.log(params.payload);
             // }, 1000)
-          },
+          }`,
         },
       ],
       binds: [

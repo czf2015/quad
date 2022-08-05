@@ -19,7 +19,7 @@ export const formProps = {
     {
       name: "query",
       label: "参数",
-      type: "Code",
+      type: "Json",
     },
     {
       name: "template",

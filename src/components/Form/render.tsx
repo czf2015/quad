@@ -2,7 +2,8 @@
 import React from "react";
 import { LockOutlined } from "@ant-design/icons";
 import { Form, Input, Select, Switch, Radio, Checkbox, InputNumber } from "@/plugins/ui";
-import Code from '@/components/Form/partials/Code'
+import JsonEdit from '@/components/Form/partials/Json'
+import CodeEdit from '@/components/Form/partials/Code'
 import Cascader from './partials/Cascader'
 import TreeSelect from "./partials/TreeSelect";
 import FormList from "./partials/List";
@@ -118,8 +119,11 @@ export const renderFormItem = ({
           />
         );
         break;
+      case "Json":
+        formItem = <JsonEdit disabled={disabled} />;
+        break;
       case "Code":
-        formItem = <Code size={size} height="120px" disabled={disabled} />;
+        formItem = <CodeEdit name={name} disabled={disabled} />;
         break;
       case "FormList":
         formItem = <FormList name={name} list={schema} disabled={disabled} />
@@ -133,5 +137,5 @@ export const renderFormItem = ({
     <Form.Item name={name} {...attrs} key={name}>
       {formItem}
     </Form.Item>
-  ) : formItem
+  ) : <React.Fragment key={name}>{formItem}</React.Fragment>
 }

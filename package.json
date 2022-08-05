@@ -16,7 +16,8 @@
     "echarts": "^5.3.3",
     "react": "^18.0.0",
     "react-codemirror2": "^7.2.1",
-    "react-dom": "^18.0.0"
+    "react-dom": "^18.0.0",
+    "react-json-view": "^1.21.3"
   },
   "devDependencies": {
     "@types/codemirror": "^5.60.5",

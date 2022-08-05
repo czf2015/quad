@@ -1,24 +1,21 @@
 // @ts-nocheck
 import React, { useState } from 'react'
-import { Input, Code } from '@/plugins/ui'
+import { Code, Form } from '@/plugins/ui'
 
-export default ({ value }) => {
+export default ({ name, value, }) => {
+  const form = Form.useFormInstance()
   const [inputValue, setInputValue] = useState(value)
 
   const handleChange = (editor: any, data: any, value: string) => {
     setInputValue(value)
+    form?.setFieldsValue?.({ [name]: value })
   }
 
   return (
-    <div>
-      <Input value={inputValue} style={{ display: 'none' }} />
-      <Code
-        value={inputValue}
-        height='150px'
-        // 设置尺寸
-        onChange={handleChange}
-        onBeforeChange={(editor: any, data: any, value: string) => { }}
-      />
-    </div>
+    <Code
+      value={inputValue}
+      onChange={handleChange}
+      height='150px'
+    />
   )
 }

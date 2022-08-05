@@ -107,6 +107,19 @@ export const tableColumn = [
     ]
   },
   {
+    name: "defaultValue",
+    label: "默认值",
+    type: "Select",
+    prerequisites: [
+      {
+        field: 'type',
+        options: {
+          equal: [3]
+        }
+      }
+    ]
+  },
+  {
     name: "rules",
     label: "校验",
     type: "FormList",
