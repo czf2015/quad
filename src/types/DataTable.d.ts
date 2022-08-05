@@ -13,6 +13,8 @@ enum enumFormItemType {
   TAGS,
   KIND,
   RICHTEXT,
+  CODE_EDITOR,
+  JSON_EDITOR,
 }
 
 type validatorType = (val: any) => boolean;
@@ -131,10 +133,26 @@ interface IPagination {
   onChange: (page: number, pageSize: number) => any;
   showTotal: (toal: number, range: [number, number]) => string;
 }
+
+interface IDataTableProperties {
+  [propName: string]: {
+    type: string;
+    label: string;
+    required: boolean;
+    default: any;
+    disabled: boolean;
+    display: boolean;
+    rules: IRule[];
+    description: string;
+  };
+}
+
 interface IDataTable {
   query: Function;
   params: Object;
   dataSource: IDataTableRecord[];
   pagination: IPagination;
   loading?: boolean;
+  properties: IDataTableProperties;
+  order: string[];
 }

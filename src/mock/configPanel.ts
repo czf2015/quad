@@ -61,19 +61,19 @@ export const configTabsPanel = [
     content: {
       type: 0,
       method: 0,
-      url: '',
-      params: `{
-  offset: 0,
-  limit: 10
-}`,
-      data: `{
-  title: '标题',
-  description: '描述',
-  params: {
-    id: 1,
-  }
-}`,
-      preprocess: 'sss'
+      url: "",
+      params: {
+        offset: 0,
+        limit: 10,
+      },
+      data: {
+        title: "标题",
+        description: "描述",
+        params: {
+          id: 1,
+        },
+      },
+      preprocess: "sss",
     },
   },
   {
@@ -82,7 +82,7 @@ export const configTabsPanel = [
     content: {
       handlers: [
         {
-          title: 'xxx',
+          title: "",
           id: "", // 非必填
           type: "SELECT_TIME",
           enable: false,
@@ -96,9 +96,9 @@ export const configTabsPanel = [
       ],
       binds: [
         {
-          title: 'xxx',
-          target: 'add', // 
-          event: 'onClick', // 下拉
+          title: "xxx",
+          target: "add", //
+          event: "onClick", // 下拉
           id: "11", // 组件id, 自动填写
           type: "SELECT_TIME", // 下拉选择
           payload: 0, // 自动获取

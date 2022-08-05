@@ -1,21 +1,18 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 const defaultParams = { limit: 10, offset: 0 };
 
-export const useDataTable = (fetchData, params = defaultParams) => {
+export const useDataTable = (query, params = defaultParams) => {
   const [page, setPage] = useState({ current: params?.offset + 1, pageSize: params?.limit });
   const onChange = (current: number, pageSize: number) => {
     setPage({ current, pageSize });
   };
 
   const [loading, setLoading] = useState(false);
-  const [data, setData] = useState({
-    total: 0,
-    list: [],
-  });
+  const [data, setData] = useState({ total: 0, list: [] });
   useEffect(() => {
     setLoading(true);
-    fetchData(params)
+    query(params)
       .then((data) => {
         setData(data);
       })
@@ -24,7 +21,7 @@ export const useDataTable = (fetchData, params = defaultParams) => {
       });
   }, [params, page]);
 
-  const { total = 0, list: dataSource = [] } = data;
+  const { total = 0, list: dataSource = [], properties, order } = data;
   const pagination = {
     total,
     ...page,
@@ -36,5 +33,5 @@ export const useDataTable = (fetchData, params = defaultParams) => {
     showQuickJumper: true,
   };
 
-  return { params, dataSource, pagination, loading };
+  return { params, dataSource, properties, order, pagination, loading };
 };

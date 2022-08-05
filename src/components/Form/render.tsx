@@ -23,6 +23,9 @@ export const renderFormItem = ({
   render,
   size/*  = 'small' */,
   disabled = false,
+  min,
+  max,
+  step,
   schema,
   ...attrs
 }) => {
@@ -45,9 +48,17 @@ export const renderFormItem = ({
       case "InputNumber":
         formItem = (
           <InputNumber
-            size={size}
             placeholder={placeholder}
             disabled={disabled}
+            min={min}
+            max={max}
+            step={step}
+            size={size}
+            prefix={prefix}
+            suffix={suffix}
+            addonBefore={addonBefore}
+            addonAfter={addonAfter}
+            style={{ width: 120 }}
           />
         );
         break;

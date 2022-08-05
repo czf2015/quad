@@ -1,4 +1,6 @@
+import { Popconfirm } from "@/plugins/ui";
 import { EditableCell } from './partials';
+import { FormOutlined, DeleteOutlined } from '@ant-design/icons'
 
 export const columns = [
   {
@@ -97,6 +99,20 @@ export const columns = [
       return <EditableCell type="boolean" value={text} />;
     },
   },
+  {
+    title: "操作",
+    dataIndex: "operation",
+    align: 'center',
+    width: 120,
+    render: (_, record: { key: React.Key }) => (
+      <>
+        <FormOutlined style={{ color: '#40a9ff', cursor: 'pointer' }} />
+        <Popconfirm title="确认是否删除?" onConfirm={console.log}>
+          <DeleteOutlined style={{ marginLeft: 16, color: 'red' }} />
+        </Popconfirm>
+      </>
+    ),
+  },
 ];
 
 export const fetchData = async ({ limit, offset }) => {
@@ -116,8 +132,20 @@ export const fetchData = async ({ limit, offset }) => {
     });
     offset++;
   }
+
   return {
     total: 100,
     list,
+    properties: {
+      name: {
+        label: '姓名',
+        type: 'TEXT'
+      },
+      age: {
+        label: '年龄',
+        type: 'NUMBER',
+      }
+    },
+    order: ['age', 'name'],
   };
 };
