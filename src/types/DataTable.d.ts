@@ -3,13 +3,13 @@ import { CSSProperties } from "react";
 enum enumFormItemType {
   TEXT,
   NUMBER,
-  CHECK,
+  ONOFF,
   SINGLE,
   MULTIPLE,
   DATE,
   TIME,
   ATTACHMENT,
-  RATING,
+  RATE,
   TAGS,
   KIND,
   RICHTEXT,
@@ -59,8 +59,8 @@ interface INumberFormItem extends IFormItem {
   step?: number;
 }
 
-interface ICheckFormItem extends IFormItem {
-  type: enumFormItemType.CHECK;
+interface IOnOffFormItem extends IFormItem {
+  type: enumFormItemType.ONOFF;
   value: boolean;
 }
 
@@ -82,7 +82,7 @@ interface IDateFormItem extends IFormItem {
 }
 
 interface ILimit {
-  length?: number; // 单位字节
+  size?: number; // 单位字节
   total?: number; // 数量限制
 }
 
@@ -92,8 +92,8 @@ interface IAttachmentFormItem extends IFormItem {
   limit?: ILimit;
 }
 
-interface IRatingFormItem extends IFormItem {
-  type: enumFormItemType.RATING;
+interface IRateFormItem extends IFormItem {
+  type: enumFormItemType.RATE;
   value: number;
   min?: number;
   max?: number;

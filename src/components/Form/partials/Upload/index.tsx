@@ -12,6 +12,7 @@ export default ({
       url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
     },
   ],
+  limit = { total: 1 },
 }) => {
   const [fileList, setFileList] = useState(_fileList);
 
@@ -46,7 +47,7 @@ export default ({
         onChange={onChange}
         onPreview={onPreview}
       >
-        {fileList.length < 5 ? '+ Upload' : ''}
+        {fileList.length < limit.total ? '+ Upload' : ''}
       </Upload>
     </ImgCrop>
   );

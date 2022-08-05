@@ -65,7 +65,7 @@ export default [
         description: "",
       },
       {
-        name: "Rating",
+        name: "Rate",
         title: "评分",
         icon: "",
         description: "",

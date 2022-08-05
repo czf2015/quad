@@ -3,7 +3,8 @@ import React, { useState } from 'react'
 import { Input, InputNumber, Switch, Select, Rate, DatePicker, TimePicker } from '@/plugins/ui'
 import Upload from '@/components/Form/partials/Upload'
 import Tags from '@/components/Form/partials/Tags'
-// import { renderTags } from '@/components/DataTable/render'
+import { renderTags } from '@/components/DataTable/render'
+import { Moment } from '@/plugins/moment'
 
 
 export const EditableCell = ({ type = 'TEXT', value = '', options = [], action, mode = 'multiple', allowClear }) => {
@@ -26,23 +27,21 @@ export const EditableCell = ({ type = 'TEXT', value = '', options = [], action, 
     case 'NUMBER':
       return editMode == 1 ? <InputNumber value={inputValue} onChange={handleChange} onBlur={handleBlur} /> : <div onClick={edit}>{inputValue}</div>
     case 'SELECT':
-      return editMode == 1 ? <Select mode={mode} options={options} value={inputValue} onChange={handleChange} onBlur={handleBlur} /> : <div onClick={edit}>{inputValue}</div>
+      return editMode == 1 ? <Select mode={mode} options={options} value={inputValue} onChange={handleChange} onBlur={handleBlur} /> : <div onClick={edit}>{renderTags(inputValue, options)}</div>
     case 'DATE':
-      return editMode == 1 ? <DatePicker value={inputValue} onChange={(date, dateString) => {
-        console.log(date, dateString);
-        setInputValue(date)
+      return editMode == 1 ? <DatePicker value={Moment.normalize(inputValue)} onChange={(date, dateString) => {
+        setInputValue(dateString)
       }} onBlur={handleBlur} /> : <div onClick={edit}>{inputValue}</div>
     case 'TIME':
-      return editMode == 1 ? <TimePicker value={inputValue} onChange={(time: moment, timeString: string) => {
-        console.log(time, timeString);
-        setInputValue(time)
+      return editMode == 1 ? <TimePicker value={Moment.normalize(inputValue, 'HH:mm:ss')} onChange={(time: moment, timeString: string) => {
+        setInputValue(timeString)
       }} minuteStep={15} secondStep={10} onBlur={handleBlur} /> : <div onClick={edit}>{inputValue}</div>;
-    case 'CHECK':
-      return <Switch checked={inputValue} onChange={handleChange} onBlur={handleBlur} />
+    case 'ONOFF':
+      return <Switch checked={inputValue} onChange={setInputValue} onBlur={handleBlur} />
     case 'TAGS':
       // return editMode == 1 ? <Select mode="tags" options={options} value={inputValue} onChange={handleChange} onBlur={handleBlur} /> : <div onClick={edit}>{renderTags(value)}</div>
       return <Tags checked={inputValue} options={options} onChange={setInputValue} />
-    case 'RATING':
+    case 'RATE':
       return <Rate value={inputValue} onChange={setInputValue} allowClear={allowClear} />
     case 'ATTACHMENT':
       return <Upload action={action} fileList={inputValue} />

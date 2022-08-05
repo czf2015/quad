@@ -34,7 +34,7 @@ export const columns = [
         width: 150,
         sorter: (a, b) => a.age - b.age,
         render(text, record, idx) {
-          return <EditableCell type="number" value={text} />;
+          return <EditableCell type="date" value={text} />;
         },
       },
       {
@@ -60,8 +60,8 @@ export const columns = [
               },
               {
                 title: "Door No.",
-                dataIndex: "number",
-                key: "number",
+                dataIndex: "date",
+                key: "date",
                 width: 100,
                 render(text, record, idx) {
                   return <EditableCell type="tags" value={[0, 1]} options={[{ label: 'label1', value: 0 }, { label: 'label2', value: 1 }]} />;
@@ -124,10 +124,16 @@ export const fetchData = async ({ limit, offset }) => {
       age: offset,
       street: "Lake Park",
       building: "C",
-      number: 2035,
+      date: '2022-08-05',
+      time: '12:00:00',
       companyAddress: "Lake Street 42",
       companyName: "SoftLake Co",
       gender: "M",
+      rate: 3,
+      tags: ['good', 'cute'],
+      avatar: [],
+      enable: false,
+      activities: [0, 1],
       index: i,
     });
     offset++;
@@ -144,8 +150,38 @@ export const fetchData = async ({ limit, offset }) => {
       age: {
         label: '年龄',
         type: 'NUMBER',
-      }
+      },
+      date: {
+        label: '日期',
+        type: 'DATE'
+      },
+      time: {
+        label: '时间',
+        type: 'TIME'
+      },
+      rate: {
+        label: '评分',
+        type: 'RATE'
+      },
+      tags: {
+        label: '标签',
+        type: 'TAGS',
+        options: [{ label: '棒！', value: 'good' }, { label: '差！', value: 'bad' }]
+      },
+      avatar: {
+        label: '头像',
+        type: 'ATTACHMENT'
+      },
+      enable: {
+        label: '开启',
+        type: 'ONOFF'
+      },
+      activities: {
+        label: '活动',
+        type: 'SELECT',
+        options: [{ label: '打羽毛球', value: 0}, { label: '跳绳', value: 1}]
+      },
     },
-    order: ['age', 'name'],
+    order: ['age', 'name', 'date', 'time', 'rate', 'tags', 'avatar', 'enable', 'activities'],
   };
 };
