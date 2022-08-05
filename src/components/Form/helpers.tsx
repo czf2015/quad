@@ -20,11 +20,10 @@ const judgePrerequiste = (prerequisite, formData = {}) => {
     }
     if (options?.equal) {
       if (Array.isArray(v1)) {
-        if (options?.equal?.some(item => !contain(v1, item))) {
-          return false
+        if (options.equal.every(item => item?.length != v1.length || item.some(item2 => !contain(v1, item2)))) {
+          return fasle
         }
-      } else if (v1 != options?.equal) {
-        console.log({ field, v1, options })
+      } else if (options.equal.every(item => item !== v1)) {
         return false
       }
     }

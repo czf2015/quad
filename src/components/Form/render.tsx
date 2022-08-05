@@ -5,6 +5,7 @@ import { Form, Input, Select, Switch, Radio, Checkbox, InputNumber } from "@/plu
 import Code from '@/components/Form/partials/Code'
 import Cascader from './partials/Cascader'
 import TreeSelect from "./partials/TreeSelect";
+import FormList from "./partials/List";
 import { CaretDownOutlined } from "@ant-design/icons";
 
 export const renderFormItem = ({
@@ -21,6 +22,7 @@ export const renderFormItem = ({
   render,
   size/*  = 'small' */,
   disabled = false,
+  schema,
   ...attrs
 }) => {
   let formItem = (
@@ -118,6 +120,9 @@ export const renderFormItem = ({
         break;
       case "Code":
         formItem = <Code size={size} height="120px" disabled={disabled} />;
+        break;
+      case "FormList":
+        formItem = <FormList name={name} list={schema} disabled={disabled} />
         break;
       default:
         break;

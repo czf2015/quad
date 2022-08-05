@@ -6,7 +6,7 @@ import { filter } from "./helpers";
 import { tableColumn } from "@/mock/tableColumn";
 
 export default ({
-  initialValues = { set: [4] },
+  initialValues = { type: 0, set: [4], },
   children: formItems = tableColumn,
   onFinish = console.success,
   onFinishFailed = console.error,

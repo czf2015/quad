@@ -27,10 +27,12 @@ export default ({ name = 'title', value, ...attrs }) => {
 
   return (
     <Form.Item className={styles.input_edit} name={name} {...attrs}>
-      <Input size="small" ref={ref} style={{ width: 160, display: contentEditable ? '' : 'none', border: 'none', outline: '1px solid #40a9ff' }} value={inputValue} onChange={handleChange} onBlur={handleBlur} allowClear />
-      <div style={{ display: contentEditable ? 'none' : 'inline-block' }} >
-        <span>{inputValue}</span>
-        <EditOutlined className={styles.edit_btn} onClick={handleEdit} />
+      <div>
+        <Input size="small" ref={ref} style={{ width: 160, display: contentEditable ? '' : 'none', border: 'none', outline: '1px solid #40a9ff' }} value={inputValue} onChange={handleChange} onBlur={handleBlur} allowClear />
+        <div style={{ display: contentEditable ? 'none' : 'inline-block' }} >
+          <span>{inputValue}</span>
+          <EditOutlined className={styles.edit_btn} onClick={handleEdit} />
+        </div>
       </div>
     </Form.Item>
   )

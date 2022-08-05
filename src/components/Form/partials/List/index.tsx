@@ -3,7 +3,7 @@ import InputEdit from '@/components/Form/partials/Edit'
 import InputCode from '@/components/Form/partials/Code'
 import { Button, Form, Input, Select, Switch } from '@/plugins/ui'
 import { useToggle } from '@/hooks'
-import { DeleteOutlined, HolderOutlined, PlusOutlined, RightOutlined } from '@ant-design/icons'
+import { DeleteOutlined, HolderOutlined, PlusOutlined, RightOutlined, EditOutlined } from '@ant-design/icons'
 import styles from './index.module.less'
 
 export const Card = ({ children, field, add, remove }) => {
@@ -14,9 +14,7 @@ export const Card = ({ children, field, add, remove }) => {
     <div className={`${styles.card} ${enableState ? styles.enabled : ''} ${collapsed ? styles.collapsed : ''}`}>
       <div className={`${styles.insert_btn} quad-circle`} onClick={add}><PlusOutlined /></div>
       <header className={styles.title}>
-        <InputEdit
-          {...field}
-          name={[field.name, "title"]} />
+        <InputEdit {...field} name={[field.name, "title"]} />
       </header>
       <main>
         {children}

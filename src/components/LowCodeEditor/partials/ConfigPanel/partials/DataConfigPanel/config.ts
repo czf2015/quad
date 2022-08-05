@@ -35,7 +35,7 @@ export const formProps = {
         {
           field: "type",
           options: {
-            all: [0],
+            equal: [0],
           },
         },
       ],
@@ -68,7 +68,7 @@ export const formProps = {
         {
           field: "type",
           options: {
-            all: [0],
+            equal: [0],
           },
         },
       ],
@@ -82,7 +82,7 @@ export const formProps = {
         {
           field: "type",
           options: {
-            all: [0],
+            equal: [0],
           },
         },
       ],
@@ -95,7 +95,7 @@ export const formProps = {
         {
           field: "type",
           options: {
-            all: [1],
+            equal: [1],
           },
         },
       ],
@@ -104,14 +104,14 @@ export const formProps = {
       name: "preprocess",
       label: "预处理",
       type: "Code",
-    //   prerequisites: [
-    //     {
-    //       field: "type",
-    //       options: {
-    //         all: [0],
-    //       },
-    //     },
-    //   ],
+      //   prerequisites: [
+      //     {
+      //       field: "type",
+      //       options: {
+      //         equal: [0],
+      //       },
+      //     },
+      //   ],
     },
   ],
 };

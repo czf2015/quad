@@ -75,7 +75,7 @@ export const tableColumn = [
       {
         field: 'type',
         options: {
-          equal: 0
+          equal: [0]
         }
       }
     ]
@@ -88,7 +88,7 @@ export const tableColumn = [
       {
         field: 'type',
         options: {
-          equal: 1
+          equal: [1]
         }
       }
     ]
@@ -101,7 +101,7 @@ export const tableColumn = [
       {
         field: 'type',
         options: {
-          equal: 2
+          equal: [2]
         }
       }
     ]
@@ -109,10 +109,20 @@ export const tableColumn = [
   {
     name: "rules",
     label: "校验",
-    // type: "FormList",
-    render() {
-      return <>校验</>
-    },
+    type: "FormList",
+    schema: [
+      {
+        name: "pattern",
+        label: "正则匹配",
+        type: "Input",
+        placeholder: "请输入正则表达式",
+      },
+      {
+        name: "message",
+        label: "错误提示",
+        type: "Input",
+      },
+    ],
   },
   {
     name: "description",
