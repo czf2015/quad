@@ -2,16 +2,17 @@ import { CSSProperties } from "react";
 
 enum enumFormItemType {
   TEXT,
-  RICHTEXT,
   NUMBER,
   CHECK,
   SINGLE,
   MULTIPLE,
   DATE,
+  TIME,
   ATTACHMENT,
   RATING,
   TAGS,
   KIND,
+  RICHTEXT,
 }
 
 type validatorType = (val: any) => boolean;
@@ -20,15 +21,20 @@ type optionType = {
   label: string;
   value: number | string;
 };
-
+interface IRule {
+  pattern: RegExp;
+  message: string;
+}
 interface IFormItem {
   type: enumFormItemType;
   field: string;
   description?: string;
   label?: string;
   value?: any;
+  default?: any;
   required?: boolean;
-  validator?: validatorType;
+  // validator?: validatorType;
+  rules?: IRule[];
   disabled?: boolean;
   style: CSSProperties;
 }

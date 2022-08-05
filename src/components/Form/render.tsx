@@ -1,7 +1,7 @@
 // @ts-nocheck
 import React from "react";
 import { LockOutlined } from "@ant-design/icons";
-import { Form, Input, Select, Switch, Radio } from "@/plugins/ui";
+import { Form, Input, Select, Switch, Radio, Checkbox } from "@/plugins/ui";
 import Code from '@/components/Form/partials/Code'
 import Cascader from './partials/Cascader'
 import TreeSelect from "./partials/TreeSelect";
@@ -20,6 +20,7 @@ export const renderFormItem = ({
   needFormItem = true,
   render,
   size/*  = 'small' */,
+  disabled = false,
   ...attrs
 }) => {
   let formItem = (
@@ -30,6 +31,7 @@ export const renderFormItem = ({
       addonBefore={addonBefore}
       addonAfter={addonAfter}
       placeholder={placeholder || "请输入"}
+      disabled={disabled}
       allowClear
     />
   );
@@ -43,11 +45,13 @@ export const renderFormItem = ({
             size={size}
             autoSize={{ minRows: 4, maxRows: 10 }}
             placeholder={placeholder}
+
+            disabled={disabled}
           />
         );
         break;
       case "Switch":
-        formItem = <Switch size={size} />;
+        formItem = <Switch size={size} disabled={disabled} />;
         break;
       case "TreeSelect":
         formItem = (
@@ -55,6 +59,7 @@ export const renderFormItem = ({
             size={size}
             placeholder={placeholder || "请选择"}
             treeData={options}
+            disabled={disabled}
           />
         );
         break;
@@ -71,6 +76,7 @@ export const renderFormItem = ({
             }
             allowClear
             placeholder={placeholder}
+            disabled={disabled}
           />
         );
         break;
@@ -80,15 +86,17 @@ export const renderFormItem = ({
             size={size}
             options={options}
             placeholder={placeholder}
+
+            disabled={disabled}
             {...attrs}
           />
         );
         break;
       case "Radio":
-        formItem = <Radio.Group size={size} options={options} />;
+        formItem = <Radio.Group size={size} options={options} disabled={disabled} />;
         break;
       case "Checkbox":
-        formItem = <Checkbox.Group size={size} options={options} />;
+        formItem = <Checkbox.Group size={size} options={options} disabled={disabled} />;
         break;
       case "Password":
         formItem = (
@@ -96,11 +104,12 @@ export const renderFormItem = ({
             size={size}
             placeholder={placeholder}
             prefix={<LockOutlined />}
+            disabled={disabled}
           />
         );
         break;
       case "Code":
-        formItem = <Code size={size} height="120px" />;
+        formItem = <Code size={size} height="120px" disabled={disabled} />;
         break;
       default:
         break;

@@ -3,10 +3,11 @@ import React, { useState } from "react";
 import { Form } from "@/plugins/ui";
 import { renderFormItem } from "./render";
 import { filter } from "./helpers";
+import { tableColumn } from "@/mock/tableColumn";
 
 export default ({
-  initialValues,
-  children: formItems,
+  initialValues = { set: [4] },
+  children: formItems = tableColumn,
   onFinish = console.success,
   onFinishFailed = console.error,
   disabled = false,
@@ -18,7 +19,7 @@ export default ({
   labelCol = {
     span: 8,
   },
-  labelAlign = 'left',
+  labelAlign = 'right',
 }) => {
 
   const [formData, setFormData] = useState(initialValues);
