@@ -25,21 +25,20 @@ export const EditableCell = ({ type = 'TEXT', value = '', options = [], action, 
     case 'TEXT':
       return editMode == 1 ? <Input value={inputValue} onChange={handleChange} onBlur={handleBlur} /> : <div onClick={edit}>{inputValue}</div>
     case 'NUMBER':
-      return editMode == 1 ? <InputNumber value={inputValue} onChange={handleChange} onBlur={handleBlur} /> : <div onClick={edit}>{inputValue}</div>
+      return editMode == 1 ? <InputNumber value={inputValue} onChange={setInputValue} onBlur={handleBlur} /> : <div onClick={edit}>{inputValue}</div>
     case 'SELECT':
-      return editMode == 1 ? <Select mode={mode} options={options} value={inputValue} onChange={handleChange} onBlur={handleBlur} /> : <div onClick={edit}>{renderTags(inputValue, options)}</div>
+      return editMode == 1 ? <Select mode={mode} options={options} value={inputValue} onChange={setInputValue} onBlur={handleBlur} /> : <div onClick={edit}>{renderTags(inputValue, options)}</div>
     case 'DATE':
       return editMode == 1 ? <DatePicker value={Moment.normalize(inputValue)} onChange={(date, dateString) => {
         setInputValue(dateString)
-      }} onBlur={handleBlur} /> : <div onClick={edit}>{inputValue}</div>
+      }} onBlur={handleBlur} allowClear={false} /> : <div onClick={edit}>{inputValue}</div>
     case 'TIME':
       return editMode == 1 ? <TimePicker value={Moment.normalize(inputValue, 'HH:mm:ss')} onChange={(time: moment, timeString: string) => {
         setInputValue(timeString)
-      }} minuteStep={15} secondStep={10} onBlur={handleBlur} /> : <div onClick={edit}>{inputValue}</div>;
+      }} minuteStep={15} secondStep={10} onBlur={handleBlur} allowClear={false} /> : <div onClick={edit}>{inputValue}</div>;
     case 'ONOFF':
       return <Switch checked={inputValue} onChange={setInputValue} onBlur={handleBlur} />
     case 'TAGS':
-      // return editMode == 1 ? <Select mode="tags" options={options} value={inputValue} onChange={handleChange} onBlur={handleBlur} /> : <div onClick={edit}>{renderTags(value)}</div>
       return <Tags checked={inputValue} options={options} onChange={setInputValue} />
     case 'RATE':
       return <Rate value={inputValue} onChange={setInputValue} allowClear={allowClear} />

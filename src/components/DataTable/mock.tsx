@@ -117,7 +117,7 @@ export const columns = [
 
 export const fetchData = async ({ limit, offset }) => {
   const list = [];
-  for (let i = 0; i < /* limit */100; i++) {
+  for (let i = 0; i < limit; i++) {
     list.push({
       key: offset,
       name: "John Brown",
@@ -162,7 +162,7 @@ export const fetchData = async ({ limit, offset }) => {
       },
       rate: {
         label: '评分',
-        type: 'RATE'
+        type: 'RATE',
       },
       tags: {
         label: '标签',

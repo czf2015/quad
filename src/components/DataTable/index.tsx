@@ -28,6 +28,12 @@ export default ({ query = fetchData, params, size = "small", scroll = { x: 'calc
 
   const options = formItems.map(item => ({ label: item.label, value: item.name }))
   const [checked = formItems.filter(({ display = true }) => display).map(item => item.name), setChecked] = useState()
+  const handleBatch = () => {
+    console.log(rowSelection.selectedRowKeys)
+  }
+  const importData = () => {
+    console.log('导入')
+  }
   const renderTitle = (currentPageData) => {
     return (
       <div className={styles.title}>
@@ -37,8 +43,8 @@ export default ({ query = fetchData, params, size = "small", scroll = { x: 'calc
           <span>共{pagination.total}条{rowSelection.total > 0 ? `, 已选中${rowSelection.total}条` : ''}</span>
         </div>
         <div className={styles.title__right}>
-          <Button title="批量xx" />
-          <Button title="导入" />
+          <Button title="批量xx" onClick={handleBatch} />
+          <Button title="导入" onClick={importData} />
           <Button title="新增" onClick={open} />
           <FieldsFilter checked={checked} options={options} onChange={setChecked} />
         </div>
@@ -61,6 +67,7 @@ export default ({ query = fetchData, params, size = "small", scroll = { x: 'calc
   columns.push({
     title: '操作',
     key: 'operate',
+    align: 'center',
     render(record) {
       return (
         <>

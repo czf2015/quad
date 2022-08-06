@@ -1,9 +1,10 @@
 // @ts-nocheck
 import React from "react";
 import { LockOutlined } from "@ant-design/icons";
-import { Form, Input, Select, Switch, Radio, Checkbox, InputNumber } from "@/plugins/ui";
+import { Form, Input, Select, Switch, Radio, Checkbox, InputNumber, Rate } from "@/plugins/ui";
 import JsonEdit from '@/components/Form/partials/JsonEdit'
 import CodeEdit from '@/components/Form/partials/CodeEdit'
+import Upload from './partials/Upload'
 import Cascader from './partials/Cascader'
 import TreeSelect from "./partials/TreeSelect";
 import FormList from "./partials/List";
@@ -27,6 +28,8 @@ export const renderFormItem = ({
   max,
   step,
   schema,
+  action,
+  fileList,
   ...attrs
 }) => {
   let formItem = (
@@ -98,7 +101,20 @@ export const renderFormItem = ({
             mode={mode}
             size={size}
             options={options}
-            suffixIcon={<CaretDownOutlined style={{ color: "var(--xdrsec-select-suffix-icon-color)" }}/>}
+            suffixIcon={<CaretDownOutlined style={{ color: "var(--xdrsec-select-suffix-icon-color)" }} />}
+            placeholder={placeholder}
+            disabled={disabled}
+            allowClear
+          />
+        );
+        break;
+      case "TAGS":
+        formItem = (
+          <Select
+            mode="tags"
+            size={size}
+            options={options}
+            suffixIcon={<CaretDownOutlined style={{ color: "var(--xdrsec-select-suffix-icon-color)" }} />}
             placeholder={placeholder}
             disabled={disabled}
             allowClear
@@ -141,6 +157,11 @@ export const renderFormItem = ({
       case "FormList":
         formItem = <FormList name={name} list={schema} disabled={disabled} />
         break;
+      case "RATE":
+        formItem = <Rate disabled={disabled} />
+        break
+      case "ATTACHMENT":
+        formItem = <Upload action={action} fileList={fileList} />
       default:
         break;
     }

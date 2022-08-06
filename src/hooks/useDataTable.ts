@@ -1,11 +1,9 @@
 import { useState, useEffect } from "react";
 
-const defaultParams = { limit: 10, offset: 0 };
-
-export const useDataTable = (query, params = defaultParams) => {
+export const useDataTable = (query, params) => {
   const [page, setPage] = useState({
-    current: params?.offset + 1,
-    pageSize: params?.limit,
+    current: 1,
+    pageSize: 10,
   });
   const onChange = (current: number, pageSize: number) => {
     setPage({ current, pageSize });
@@ -15,7 +13,7 @@ export const useDataTable = (query, params = defaultParams) => {
   const [data, setData] = useState({ total: 0, list: [] });
   useEffect(() => {
     setLoading(true);
-    query(params)
+    query({ ...params, offset: (page.current - 1) * page.pageSize, limit: page.pageSize })
       .then((data) => {
         setData(data);
       })
