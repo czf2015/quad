@@ -1,7 +1,6 @@
 import ReactJsonView from 'react-json-view'
 
 export default ({ value, onChange }) => {
-  debugger
   return (
     <ReactJsonView
       src={value}
