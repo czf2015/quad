@@ -25,10 +25,11 @@ export const useDataTable = (query, params = defaultParams) => {
   }, [params, page]);
 
   const {
+    title = '列表',
     total = 0,
     list: dataSource = [],
     properties = {},
-    order: defaultOrder = Object.keys(properties),
+    orderKeys = Object.keys(properties),
   } = data;
   const pagination = {
     total,
@@ -41,18 +42,12 @@ export const useDataTable = (query, params = defaultParams) => {
     showQuickJumper: true,
   };
 
-  const [order, setOrder] = useState(defaultOrder);
-  useEffect(() => {
-    setOrder(defaultOrder);
-  }, [defaultOrder.length]);
-
   return {
-    params,
+    title,
     dataSource,
-    properties,
-    order,
-    setOrder,
     pagination,
     loading,
+    properties,
+    orderKeys,
   };
 };

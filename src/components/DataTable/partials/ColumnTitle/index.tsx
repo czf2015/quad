@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const ColumnTitle = ({ title, orderKey, setOrder }) => {
+export const ColumnTitle = ({ title, orderKey, orderKeys, setOrderKeys }) => {
   const handleDragStart = (e) => {
     e.dataTransfer.setData("dragColumnKey", orderKey);
   }
@@ -9,10 +9,10 @@ export const ColumnTitle = ({ title, orderKey, setOrder }) => {
   }
   const handleDrop = (e) => {
     const dragColumnKey = e.dataTransfer.getData("dragColumnKey")
-    setOrder(keys => {
+    setOrderKeys(_ => {
       const result = []
       let flag = 0
-      keys.forEach(item => {
+      orderKeys.forEach(item => {
         if (item == dragColumnKey) {
           flag = 1
         } else if (item == orderKey) {

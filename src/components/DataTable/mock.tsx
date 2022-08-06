@@ -145,7 +145,8 @@ export const fetchData = async ({ limit, offset }) => {
     properties: {
       name: {
         label: '姓名',
-        type: 'TEXT'
+        type: 'TEXT',
+        required: true,
       },
       age: {
         label: '年龄',

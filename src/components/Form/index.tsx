@@ -3,11 +3,10 @@ import React, { useState } from "react";
 import { Form } from "@/plugins/ui";
 import { renderFormItem } from "./render";
 import { filter } from "./helpers";
-import { tableColumn } from "@/mock/tableColumn";
 
 export default ({
-  initialValues = { type: 0, set: [4], },
-  children: formItems = tableColumn,
+  initialValues,
+  children: formItems,
   onFinish = console.success,
   onFinishFailed = console.error,
   disabled = false,
@@ -21,7 +20,6 @@ export default ({
   },
   labelAlign = 'right',
 }) => {
-
   const [formData, setFormData] = useState(initialValues);
   const handleValuesChange = (changedValues, allValues) => {
     console.log({ changedValues, allValues })

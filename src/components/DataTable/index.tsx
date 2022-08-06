@@ -11,22 +11,23 @@ import styles from './index.module.less'
 import { fetchData } from './mock'
 
 export default ({ query = fetchData, params, size = "small", scroll = { x: 'calc(700px + 50%)', y: 240 }, bordered = true }) => {
-  const { title = '列表', dataSource, pagination, properties = {}, order, setOrder, loading } = useDataTable(query, params)
+  const { title, dataSource, pagination, properties, orderKeys: defaultOrderKeys, loading } = useDataTable(query, params)
+  const [orderKeys = defaultOrderKeys, setOrderKeys] = useState();
+  const formItems = convertToFormItems(properties, orderKeys)
   const rowSelection = useRowSelection()
 
   const [visible, setVisible] = useState(false)
   const [record, setRecord] = useState()
-  const formItems = convertToFormItems(properties, order)
   const open = (_record) => {
-    setVisible(true)
     setRecord(_record)
+    setVisible(true)
   }
   const handleCancel = () => {
     setVisible(false)
   }
 
-  const options = formItems.map(item => ({ label: item.label, value: item.field }))
-  const [checked = options.filter(({ display = true }) => display).map(item => item.value), setChecked] = useState()
+  const options = formItems.map(item => ({ label: item.label, value: item.name }))
+  const [checked = formItems.filter(({ display = true }) => display).map(item => item.name), setChecked] = useState()
   const renderTitle = (currentPageData) => {
     return (
       <div className={styles.title}>
@@ -45,14 +46,14 @@ export default ({ query = fetchData, params, size = "small", scroll = { x: 'calc
   }
 
   const columns = []
-  order?.forEach((key) => {
-    if (properties?.[key]) {
-      const { label: title, type, ...attrs } = properties[key];
-      if (checked?.includes(key)) {
+  orderKeys?.forEach((orderKey) => {
+    if (properties?.[orderKey]) {
+      const { label: title, type, ...attrs } = properties[orderKey];
+      if (checked?.includes(orderKey)) {
         const render = (value, record, idx) => {
           return <EditableCell type={type} value={value} {...attrs} />
         }
-        columns.push({ title: <ColumnTitle title={title} orderKey={key} setOrder={setOrder} />, dataIndex: key, render });
+        columns.push({ title: <ColumnTitle title={title} orderKey={orderKey} orderKeys={orderKeys} setOrderKeys={setOrderKeys} />, dataIndex: orderKey, render });
       }
     }
   });
@@ -62,7 +63,7 @@ export default ({ query = fetchData, params, size = "small", scroll = { x: 'calc
     render(record) {
       return (
         <>
-          <FormOutlined style={{ color: '#40a9ff', cursor: 'pointer' }} />
+          <FormOutlined onClick={() => open(record)} style={{ color: '#40a9ff', cursor: 'pointer' }} />
           <Popconfirm title="确认是否删除?" onConfirm={console.log}>
             <DeleteOutlined style={{ marginLeft: 16, color: 'red' }} />
           </Popconfirm>
@@ -85,7 +86,7 @@ export default ({ query = fetchData, params, size = "small", scroll = { x: 'calc
         scroll={scroll}
         bordered={bordered}
       />
-      <FormModal title={title} value={record} visible={visible} children={formItems} onOk={open} onCancel={handleCancel} />
+      <FormModal title={title} value={record} visible={visible} children={formItems} onOk={handleCancel} onCancel={handleCancel} />
     </>
   )
 };
