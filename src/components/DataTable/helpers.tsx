@@ -3,12 +3,12 @@ import { EditableCell } from './partials';
 import { FormOutlined, DeleteOutlined } from '@ant-design/icons'
 
 
-export const convertToColumns = (properties = {}, keys = Object.keys(properties)) => {
+export const convertToColumns = (properties = {}, keys = Object.keys(properties), checked = []) => {
   const columns = [];
   keys?.forEach((key) => {
     if (properties?.[key]) {
-      const { label: title, type, display = true, ...attrs } = properties[key];
-      if (display) {
+      const { label: title, type/* , display = true */, ...attrs } = properties[key];
+      if (/* display */checked?.includes(key)) {
         const render = (value, record, idx) => {
           return <EditableCell type={type} value={value} {...attrs} />
         }

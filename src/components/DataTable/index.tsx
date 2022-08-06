@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { /* VirtualTable as  */Table } from '@/plugins/ui';
-import { useDataTable, useRowSelection } from '@/hooks';
 import FormModal from "@/components/FormModal";
+import FieldsFilter from '@/components/Form/partials/FieldsFilter';
+import Button from '@/components/Button';
+import { useDataTable, useRowSelection } from '@/hooks';
 import { convertToColumns, convertToFormItems } from './helpers';
 import { InfoCircleOutlined } from '@ant-design/icons';
-import { columns as _columns, fetchData } from './mock'
-import Button from '@/components/Button';
 import styles from './index.module.less'
+import { fetchData } from './mock'
 
 export default ({ query = fetchData, params, size = "small", scroll = { x: 'calc(700px + 50%)', y: 240 }, bordered = true }) => {
   const { title = '列表', dataSource, pagination, properties, order, loading } = useDataTable(query, params)
@@ -23,7 +24,8 @@ export default ({ query = fetchData, params, size = "small", scroll = { x: 'calc
     setVisible(false)
   }
 
-  const columns = convertToColumns(properties, order)
+  const options = formItems.map(item => ({ label: item.label, value: item.field }))
+  const [checked = options.filter(({ display = true }) => display).map(item => item.value), setChecked] = useState()
   const renderTitle = (currentPageData) => {
     return (
       <div className={styles.title}>
@@ -32,13 +34,16 @@ export default ({ query = fetchData, params, size = "small", scroll = { x: 'calc
           <InfoCircleOutlined />
           <span>共{pagination.total}条{rowSelection.total > 0 ? `, 已选中${rowSelection.total}条` : ''}</span>
         </div>
-        <div className={styles.title__left}>
+        <div className={styles.title__right}>
           <Button title="批量xx" />
           <Button title="新增" onClick={open} />
+          <FieldsFilter checked={checked} options={options} onChange={setChecked} />
         </div>
       </div>
     )
   }
+
+  const columns = convertToColumns(properties, order, checked)
 
   return (
     <>
