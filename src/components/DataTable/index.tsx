@@ -33,11 +33,12 @@ export default ({ query = fetchData, params, size = "small", scroll = { x: 'calc
       <div className={styles.title}>
         <div className={styles.title__left}>
           <span>{title}</span>
-          <InfoCircleOutlined />
+          <InfoCircleOutlined style={{ margin: '0 4px' }} />
           <span>共{pagination.total}条{rowSelection.total > 0 ? `, 已选中${rowSelection.total}条` : ''}</span>
         </div>
         <div className={styles.title__right}>
           <Button title="批量xx" />
+          <Button title="导入" />
           <Button title="新增" onClick={open} />
           <FieldsFilter checked={checked} options={options} onChange={setChecked} />
         </div>
