@@ -3,7 +3,10 @@ import { useState, useEffect } from "react";
 const defaultParams = { limit: 10, offset: 0 };
 
 export const useDataTable = (query, params = defaultParams) => {
-  const [page, setPage] = useState({ current: params?.offset + 1, pageSize: params?.limit });
+  const [page, setPage] = useState({
+    current: params?.offset + 1,
+    pageSize: params?.limit,
+  });
   const onChange = (current: number, pageSize: number) => {
     setPage({ current, pageSize });
   };
@@ -21,7 +24,12 @@ export const useDataTable = (query, params = defaultParams) => {
       });
   }, [params, page]);
 
-  const { total = 0, list: dataSource = [], properties, order } = data;
+  const {
+    total = 0,
+    list: dataSource = [],
+    properties = {},
+    order: defaultOrder = Object.keys(properties),
+  } = data;
   const pagination = {
     total,
     ...page,
@@ -33,5 +41,18 @@ export const useDataTable = (query, params = defaultParams) => {
     showQuickJumper: true,
   };
 
-  return { params, dataSource, properties, order, pagination, loading };
+  const [order, setOrder] = useState(defaultOrder);
+  useEffect(() => {
+    setOrder(defaultOrder);
+  }, [defaultOrder.length]);
+
+  return {
+    params,
+    dataSource,
+    properties,
+    order,
+    setOrder,
+    pagination,
+    loading,
+  };
 };

@@ -8,7 +8,7 @@ import React from "react";
 import { Checkbox, Popover, Tooltip } from "@/plugins/ui";
 import { FilterIcon } from "./icons";
 
-export default ({ title = '字段筛选', checked, onChange, options, trigger = 'click', style = { marginLeft: 4 } }) => {
+export default ({ title = '字段筛选', checked, onChange, options, trigger = 'click', style = { marginLeft: 8 } }) => {
   const menu = (
     <Checkbox.Group onChange={onChange} value={checked}>
       {options?.map((item) => (

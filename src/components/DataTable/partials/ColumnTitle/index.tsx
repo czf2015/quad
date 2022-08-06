@@ -1,6 +1,7 @@
+import React from 'react'
+
 export const ColumnTitle = ({ title, orderKey, setOrder }) => {
   const handleDragStart = (e) => {
-    console.log({ orderKey })
     e.dataTransfer.setData("dragColumnKey", orderKey);
   }
   const handleDragOver = (e) => {
@@ -31,14 +32,3 @@ export const ColumnTitle = ({ title, orderKey, setOrder }) => {
   }
   return <div onDragStart={handleDragStart} onDragOver={handleDragOver} onDrop={handleDrop} draggable>{title}</div>
 }
-
-
-export const convertToFormItems = (properties = {}, keys = Object.keys(properties)) => {
-  const formItems = [];
-  keys?.forEach((key) => {
-    if (properties?.[key]) {
-      formItems.push({ field: key, ...properties[key] });
-    }
-  });
-  return formItems;
-};
