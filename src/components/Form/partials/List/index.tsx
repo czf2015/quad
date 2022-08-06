@@ -37,7 +37,7 @@ export const Card = ({ children, field, add, remove }) => {
 export default ({ name, list }) => {
   return (
     <Form.List name={name}>
-      {(fields, { add, remove }) => (
+      {(fields, { add, remove }, { errors }) => (
         <div className={styles.card_list}>
           {fields.map((field) => (
             <Card key={field.key} field={field} add={add} remove={() => remove(field.name)}>
@@ -61,6 +61,9 @@ export default ({ name, list }) => {
             </Card>
           ))}
           <Button type="dashed" onClick={add} className={styles.add_btn}><PlusOutlined /></Button>
+          <Form.Item>
+            <Form.ErrorList errors={errors} />
+          </Form.Item>
         </div>
       )}
     </Form.List>
