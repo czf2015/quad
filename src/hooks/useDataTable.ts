@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { message } from "antd";
 import request from '@/plugins/request';
 
@@ -15,7 +15,7 @@ const getData = (responseData, preprocess) => {
   return data
 }
 
-export const useDataTable = ({ type, url, method = 'post', params, data: jsonData, preprocess }) => {
+export const useDataTable = ({ type, url, method = 'post', params, interval, data: jsonData, preprocess }) => {
   const [page, setPage] = useState({
     current: 1,
     pageSize: 10,
@@ -26,6 +26,23 @@ export const useDataTable = ({ type, url, method = 'post', params, data: jsonDat
 
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState({ total: 0, list: [] });
+  const refresh = () => {
+    setLoading(true);
+    request({
+      url,
+      method,
+      [method == 'post' || method == 'put' ? 'data' : 'params']: { ...params, offset: (page.current - 1) * page.pageSize, limit: page.pageSize },
+    })
+      .then(responseData => {
+        setData(getData(responseData, preprocess))
+      })
+      .catch((e) => {
+        message.error(e)
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }
   useEffect(() => {
     if (type == 1) {
       try {
@@ -35,23 +52,20 @@ export const useDataTable = ({ type, url, method = 'post', params, data: jsonDat
         message.error(e)
       }
     } else {
-      setLoading(true);
-      request({
-        url,
-        method,
-        [method == 'post' || method == 'put' ? 'data' : 'params']: { ...params, offset: (page.current - 1) * page.pageSize, limit: page.pageSize },
-      })
-        .then(responseData => {
-          setData(getData(responseData, preprocess))
-        })
-        .catch((e) => {
-          message.error(e)
-        })
-        .finally(() => {
-          setLoading(false);
-        });
+      refresh()
     }
   }, [type, url, method, params, preprocess, page]);
+
+  const timerRef = useRef()
+  useEffect(() => {
+    clearInterval(timerRef.current)
+    if (interval) {
+      timerRef.current = setInterval(refresh, interval * 1000)
+    }
+    return () => {
+      clearInterval(timerRef.current)
+    }
+  }, [interval])
 
   const {
     title = '列表',

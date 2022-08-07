@@ -88,6 +88,20 @@ export const formProps = {
       ],
     },
     {
+      name: "interval",
+      label: "刷新间隔",
+      type: "InputNumber",
+      addonAfter: '秒',
+      prerequisites: [
+        {
+          field: "type",
+          options: {
+            equal: [0],
+          },
+        },
+      ],
+    },
+    {
       name: "data",
       label: "数据",
       type: "Code",
