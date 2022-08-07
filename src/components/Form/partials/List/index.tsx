@@ -34,7 +34,7 @@ export const Card = ({ children, field, add, remove }) => {
   )
 }
 
-export default ({ name, list, initialValue = [{}] }) => {
+export default ({ name, list = [], initialValue = [{}] }) => {
   return (
     <Form.List name={name} initialValue={initialValue}>
       {(fields, { add, remove }, { errors }) => (

@@ -1,6 +1,8 @@
 import React from 'react'
+import { PlusOutlined } from '@ant-design/icons';
+import styles from './index.module.less'
 
-export const ColumnTitle = ({ title, orderKey, orderKeys, setOrderKeys }) => {
+export const ColumnTitle = ({ title, orderKey, orderKeys, setOrderKeys, openColumn }) => {
   const handleDragStart = (e) => {
     e.dataTransfer.setData("dragColumnKey", orderKey);
   }
@@ -30,5 +32,12 @@ export const ColumnTitle = ({ title, orderKey, orderKeys, setOrderKeys }) => {
       return result
     })
   }
-  return <div onDragStart={handleDragStart} onDragOver={handleDragOver} onDrop={handleDrop} draggable>{title}</div>
+
+
+  return (
+    <div className={styles.column_title} onDragStart={handleDragStart} onDragOver={handleDragOver} onDrop={handleDrop} draggable>
+      <span>{title}</span>
+      <span className={`quad-circle ${styles.add_btn}`} onClick={openColumn}><PlusOutlined /></span>
+    </div>
+  )
 }

@@ -20,6 +20,13 @@ export default ({
     span: 8,
   },
   labelAlign = 'right',
+  footer = (
+    <Form.Item wrapperCol={{ span: 6, offset: 18 }}>
+      <Button type="primary" htmlType="submit">
+        Submit
+      </Button>
+    </Form.Item>
+  )
 }) => {
   const [formData, setFormData] = useState(initialValues);
   const handleValuesChange = (changedValues, allValues) => {
@@ -41,11 +48,7 @@ export default ({
       onFinishFailed={onFinishFailed}
     >
       {filter(formItems, formData)?.map(renderFormItem)}
-      <Form.Item wrapperCol={{ span: 6, offset: 18 }}>
-        <Button type="primary" htmlType="submit">
-          Submit
-        </Button>
-      </Form.Item>
+      {footer}
     </Form>
   );
 };

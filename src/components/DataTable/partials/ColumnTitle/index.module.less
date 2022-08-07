@@ -1,0 +1,13 @@
+.column_title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  >.add_btn {
+    cursor: pointer;
+  }
+  &:not(:hover) {
+    >.add_btn {
+      display: none;
+    }
+  }
+}

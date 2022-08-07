@@ -6,8 +6,9 @@ import Upload from '@/components/Form/partials/Upload';
 import Button from '@/components/Button';
 import { EditableCell, ColumnTitle } from './partials';
 import { useDataTable, useRowSelection, useBinds, useHandlers } from '@/hooks';
-import { InfoCircleOutlined, FormOutlined, DeleteOutlined } from '@ant-design/icons';
+import { InfoCircleOutlined, FormOutlined, DeleteOutlined, PlusOutlined, UploadOutlined } from '@ant-design/icons';
 import { convertToFormItems } from './helpers';
+import { tableColumn } from '@/mock/tableColumn';
 import styles from './index.module.less'
 
 export default ({ id, dataSource: { type, url, method, params, data, preprocess } = {}, binds = [], handlers = [], size = "small", scroll = { x: 'calc(700px + 50%)', y: 240 }, bordered = true }) => {
@@ -15,6 +16,7 @@ export default ({ id, dataSource: { type, url, method, params, data, preprocess 
   const { title, dataSource, pagination, properties, orderKeys: defaultOrderKeys, loading } = useDataTable({ type, url, method, params, data, preprocess })
   const [orderKeys = defaultOrderKeys, setOrderKeys] = useState();
   const formItems = convertToFormItems(properties, orderKeys)
+  debugger
   const rowSelection = useRowSelection()
 
   const [visible, setVisible] = useState(false)
@@ -35,6 +37,16 @@ export default ({ id, dataSource: { type, url, method, params, data, preprocess 
   const importData = () => {
     console.log('导入')
   }
+  const [columnVisible, setColumnVisible] = useState(false)
+  const openColumn = () => {
+    setColumnVisible(true)
+  }
+  const handleColumnOk = () => {
+    setColumnVisible(false)
+  }
+  const handleColumnCancel = () => {
+    setColumnVisible(false)
+  }
   const renderTitle = (currentPageData) => {
     return (
       <div className={styles.title}>
@@ -46,9 +58,9 @@ export default ({ id, dataSource: { type, url, method, params, data, preprocess 
         <div className={styles.title__right}>
           <Button title="批量xx" onClick={handleBatch} />
           <Upload showUploadList={false}>
-            <Button title="导入" onClick={importData} />
+            <Button title="导入" onClick={importData} icon={<UploadOutlined />} />
           </Upload>
-          <Button title="新增" onClick={open} />
+          <Button title="新增" onClick={open} icon={<PlusOutlined />} />
           <FieldsFilter checked={checked} options={options} onChange={setChecked} />
         </div>
       </div>
@@ -63,7 +75,7 @@ export default ({ id, dataSource: { type, url, method, params, data, preprocess 
         const render = (value, record, idx) => {
           return <EditableCell type={type} value={value} {...attrs} />
         }
-        columns.push({ title: <ColumnTitle title={title} orderKey={orderKey} orderKeys={orderKeys} setOrderKeys={setOrderKeys} />, dataIndex: orderKey, render });
+        columns.push({ title: <ColumnTitle title={title} orderKey={orderKey} orderKeys={orderKeys} setOrderKeys={setOrderKeys} openColumn={openColumn} />, dataIndex: orderKey, render });
       }
     }
   });
@@ -101,6 +113,7 @@ export default ({ id, dataSource: { type, url, method, params, data, preprocess 
         bordered={bordered}
       />
       <FormModal title={title} value={record} visible={visible} children={formItems} onOk={handleCancel} onCancel={handleCancel} />
+      <FormModal title="添加字段" value={{ type: 0, set: [4] }} visible={columnVisible} children={tableColumn} onOk={handleColumnOk} onCancel={handleColumnCancel} />
     </div>
   )
 };

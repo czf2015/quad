@@ -162,6 +162,7 @@ export const renderFormItem = ({
         break
       case "ATTACHMENT":
         formItem = <Upload action={action} fileList={fileList} accept={accept} listType={listType} limit={limit} />
+        break
       case "FormList":
         return <FormList name={name} list={schema} disabled={disabled} {...attrs} />
       default:
