@@ -1,6 +1,6 @@
 import * as charts from "@/components/Chart";
 import DataTable from "./components/DataTable";
-import Form from "./components/Form";
+import Form from "./components/Form/Wrapper";
 import {
   BarChartOutlined,
   LineChartOutlined,
