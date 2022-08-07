@@ -6,11 +6,12 @@ import { formProps } from './config'
 const mock = {
   type: 0,
   method: 'post',
-  url: "/api/mock",
+  url: "/api/mock/getTableData.json",
   params: {
     offset: 0,
     limit: 10,
   },
+  interval: 0,
   data: `{
   "title": "标题",
   "description": "描述",

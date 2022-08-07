@@ -15,7 +15,7 @@ const getData = (responseData, preprocess) => {
   return data
 }
 
-export const useDataTable = ({ type, url, method = 'post', params, interval, data: jsonData, preprocess }) => {
+export const useDataTable = ({ type, url, method = 'post', params, interval, data: jsonData, preprocess } = {}) => {
   const [page, setPage] = useState({
     current: 1,
     pageSize: 10,

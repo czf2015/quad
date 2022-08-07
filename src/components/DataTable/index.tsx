@@ -11,9 +11,8 @@ import { convertToFormItems } from './helpers';
 import { tableColumn } from '@/mock/tableColumn';
 import styles from './index.module.less'
 
-export default ({ id, dataSource: { type, url, method, params, interval, data, preprocess } = {}, binds = [], handlers = [], size = "small", scroll = { x: 'calc(700px + 50%)', y: 240 }, bordered = true }) => {
-  console.log({ binds, handlers })
-  const { title, dataSource, pagination, properties, orderKeys: defaultOrderKeys, loading } = useDataTable({ type, url, method, params, interval, data, preprocess })
+export default ({ size = "small", scroll = { x: 'calc(700px + 50%)', y: 240 }, bordered = true, updateEntity, ...entity }) => {
+  const { title, dataSource, pagination, properties, orderKeys: defaultOrderKeys, loading } = useDataTable(entity.dataSource)
   const [orderKeys = defaultOrderKeys, setOrderKeys] = useState();
   const formItems = convertToFormItems(properties, orderKeys)
   const rowSelection = useRowSelection()
@@ -94,8 +93,8 @@ export default ({ id, dataSource: { type, url, method, params, interval, data, p
     }
   })
 
-  const rootRef = useBinds(binds)
-  useHandlers(handlers)
+  const rootRef = useBinds(entity.binds)
+  useHandlers({ entity, updateEntity })
 
   return (
     <div ref={rootRef}>

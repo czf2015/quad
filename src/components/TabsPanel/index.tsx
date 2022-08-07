@@ -7,7 +7,6 @@ export default ({ tabs, defaultActiveKey = 0, style = { marginTop: -12, height: 
   const onChange = (e) => {
     setActiveKey(e.target.value)
   }
-
   return (
     <div className={styles.container} style={style}>
       <div className={styles.tabs}>
@@ -16,13 +15,9 @@ export default ({ tabs, defaultActiveKey = 0, style = { marginTop: -12, height: 
         </Radio.Group>
       </div>
       <div className={styles.panel}>
-        {tabs.map(({ content, key }) => (
-          <div style={{ display: key == activeKey ? '' : 'none' }} key={key}>
-            {content}
-          </div>
-        ))}
+        {tabs.map(({ content, key }) => <div style={{ display: key == activeKey ? 'block' : 'none' }} key={key}>{content}</div>)}
         {children}
       </div>
-    </div>
+    </div >
   )
 }

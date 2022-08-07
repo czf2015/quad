@@ -38,7 +38,7 @@ export const DisplayViewer = ({ entities = [], updateEntity, removeEntity, split
       }
       return (
         <Wrapper id={id} name={name} {...attrs} style={style} removeEntity={removeEntity} updateEntity={updateEntity} handleDrop={handleDrop} key={id} setActive={setActive}>
-          <Widget id={id} {...attrs} slots={slots} />
+          <Widget id={id} name={name} updateEntity={updateEntity} {...attrs} slots={slots} />
         </Wrapper>
       )
     }
@@ -53,7 +53,7 @@ export const DisplayViewer = ({ entities = [], updateEntity, removeEntity, split
           if (item.name == 'Block') {
             return (
               <>
-                <Block {...item} store={store} zoom={zoom} removeEntity={removeEntity} splitBlock={splitBlock} pullBlock={pullBlock} handleDrop={handleDrop} setActive={setActive} key={item.id}>
+                <Block {...item} store={store} zoom={zoom} updateEntity={updateEntity} removeEntity={removeEntity} splitBlock={splitBlock} pullBlock={pullBlock} handleDrop={handleDrop} setActive={setActive} key={item.id}>
                   {item?.widgets?.map(widgetId => {
                     const widget = entities.find(entity => entity.id == widgetId)
                     return renderWidget(widget)

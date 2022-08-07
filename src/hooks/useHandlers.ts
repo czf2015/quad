@@ -1,6 +1,8 @@
 import { useEffect, useRef } from "react";
+import { update} from "@/utils/object";
 
-export const useHandlers = (handlers) => {
+
+export const useHandlers = ({ entity, updateEntity }) => {
   const handlersRef = useRef({})
   const clear = () => {
     Object.keys(handlersRef.current).forEach(type => {
@@ -11,10 +13,12 @@ export const useHandlers = (handlers) => {
   }
   const renew = () => {
     handlersRef.current = {}
-    handlers?.forEach(item => {
+    entity.handlers?.forEach(item => {
       if (item.enable) {
-        const IIFE = new Function(`return ${item.handle}`)
-        const handler = IIFE()
+        const handle = new Function(`return ${item.handle}`)()
+        const handler = (params) => {
+          updateEntity(entity.id, update(entity, handle(params)))
+        }
         window.$eventBus.on(item.type, handler)
         if (!handlersRef.current[item.type]) {
           handlersRef.current[item.type] = []
@@ -27,5 +31,5 @@ export const useHandlers = (handlers) => {
     clear()
     renew()
     return clear
-  }, [handlers])
+  }, [entity.handlers])
 }
