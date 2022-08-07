@@ -12,6 +12,7 @@
     "@loadable/component": "^5.15.2",
     "antd": "^4.21.7",
     "antd-img-crop": "^4.2.3",
+    "axios": "^0.27.2",
     "codemirror": "5.65.6",
     "echarts": "^5.3.3",
     "rc-resize-observer": "^1.2.0",

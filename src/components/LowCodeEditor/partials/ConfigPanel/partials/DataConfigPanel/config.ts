@@ -47,19 +47,19 @@ export const formProps = {
       options: [
         {
           label: "POST",
-          value: 0,
+          value: 'post',
         },
         {
           label: "GET",
-          value: 1,
+          value: 'get',
         },
         {
           label: "PUT",
-          value: 2,
+          value: 'put',
         },
         {
           label: "DELETE",
-          value: 3,
+          value: 'delete',
         },
       ],
       required: true,

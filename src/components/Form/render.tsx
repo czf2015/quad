@@ -72,7 +72,7 @@ export const renderFormItem = ({
         formItem = (
           <Input.TextArea
             size={size}
-            autoSize={{ minRows: 4, maxRows: 10 }}
+            autoSize={{ minRows: 3, maxRows: 10 }}
             placeholder={placeholder}
             disabled={disabled}
             allowClear
@@ -152,16 +152,15 @@ export const renderFormItem = ({
         formItem = <JsonEdit disabled={disabled} />;
         break;
       case "Code":
-        formItem = <CodeEdit name={name} disabled={disabled} />;
-        break;
-      case "FormList":
-        formItem = <FormList name={name} list={schema} disabled={disabled} />
+        formItem = <CodeEdit disabled={disabled} />;
         break;
       case "RATE":
         formItem = <Rate disabled={disabled} />
         break
       case "ATTACHMENT":
         formItem = <Upload action={action} fileList={fileList} />
+      case "FormList":
+        return <FormList name={name} list={schema} disabled={disabled} {...attrs} />
       default:
         break;
     }

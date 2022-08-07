@@ -1,4 +1,5 @@
 // @ts-nocheck
+import { useState } from "react";
 import { useSnapShot } from "./useSnapShot";
 import { useRestore } from "./useRestore";
 
@@ -420,6 +421,8 @@ export const useEntities = (initialEntities = [], isPrinted) => {
     });
   };
 
+  const [active, setActive] = useState({ id: 1, name: 'Block', key: 'style' })
+
   return {
     entities,
     prev,
@@ -434,5 +437,7 @@ export const useEntities = (initialEntities = [], isPrinted) => {
     pullBlock,
     dragWidget,
     dragEntity,
+    active,
+    setActive,
   };
 };

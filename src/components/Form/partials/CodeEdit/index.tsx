@@ -1,19 +1,15 @@
 // @ts-nocheck
-import React, { useState } from 'react'
-import { Code, Form } from '@/plugins/ui'
+import React from 'react'
+import { Code } from '@/plugins/ui'
 
-export default ({ name, value, }) => {
-  const form = Form.useFormInstance()
-  const [inputValue, setInputValue] = useState(value)
-
+export default ({ value, onChange }) => {
   const handleChange = (editor: any, data: any, value: string) => {
-    setInputValue(value)
-    form?.setFieldsValue?.({ [name]: value })
+    onChange(value)
   }
 
   return (
     <Code
-      value={inputValue}
+      value={value}
       onChange={handleChange}
       height='150px'
     />

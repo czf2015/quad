@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { /* VirtualTable as  */Table, Popconfirm } from '@/plugins/ui';
+import { /* VirtualTable as  */Table, Popconfirm, message } from '@/plugins/ui';
 import FormModal from "@/components/FormModal";
 import FieldsFilter from '@/components/Form/partials/FieldsFilter';
 import Button from '@/components/Button';
@@ -8,10 +8,9 @@ import { useDataTable, useRowSelection } from '@/hooks';
 import { InfoCircleOutlined, FormOutlined, DeleteOutlined } from '@ant-design/icons';
 import { convertToFormItems } from './helpers';
 import styles from './index.module.less'
-import { fetchData } from './mock'
 
-export default ({ query = fetchData, params, size = "small", scroll = { x: 'calc(700px + 50%)', y: 240 }, bordered = true }) => {
-  const { title, dataSource, pagination, properties, orderKeys: defaultOrderKeys, loading } = useDataTable(query, params)
+export default ({ /* query = fetchData,  */data: { type = 0, url, method, params, preprocess } = {}, size = "small", scroll = { x: 'calc(700px + 50%)', y: 240 }, bordered = true }) => {
+  const { title, dataSource, pagination, properties, orderKeys: defaultOrderKeys, loading } = useDataTable({ url, method, params, preprocess })
   const [orderKeys = defaultOrderKeys, setOrderKeys] = useState();
   const formItems = convertToFormItems(properties, orderKeys)
   const rowSelection = useRowSelection()

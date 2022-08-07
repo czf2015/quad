@@ -115,7 +115,7 @@ export const columns = [
   },
 ];
 
-export const fetchData = async ({ limit, offset }) => {
+export const fetchData = async ({ limit = 10, offset = 0 } = {}) => {
   const list = [];
   for (let i = 0; i < limit; i++) {
     list.push({
@@ -140,49 +140,52 @@ export const fetchData = async ({ limit, offset }) => {
   }
 
   return {
-    total: 100,
-    list,
-    properties: {
-      name: {
-        label: '姓名',
-        type: 'TEXT',
-        required: true,
+    code: '0000',
+    data: {
+      total: 100,
+      list,
+      properties: {
+        name: {
+          label: '姓名',
+          type: 'TEXT',
+          required: true,
+        },
+        age: {
+          label: '年龄',
+          type: 'NUMBER',
+        },
+        date: {
+          label: '日期',
+          type: 'DATE'
+        },
+        time: {
+          label: '时间',
+          type: 'TIME'
+        },
+        rate: {
+          label: '评分',
+          type: 'RATE',
+        },
+        tags: {
+          label: '标签',
+          type: 'TAGS',
+          options: [{ label: '棒！', value: 'good' }, { label: '差！', value: 'bad' }]
+        },
+        avatar: {
+          label: '头像',
+          type: 'ATTACHMENT'
+        },
+        enable: {
+          label: '开启',
+          type: 'ONOFF'
+        },
+        activities: {
+          label: '活动',
+          type: 'SELECT',
+          options: [{ label: '打羽毛球', value: 0 }, { label: '跳绳', value: 1 }]
+        },
       },
-      age: {
-        label: '年龄',
-        type: 'NUMBER',
-      },
-      date: {
-        label: '日期',
-        type: 'DATE'
-      },
-      time: {
-        label: '时间',
-        type: 'TIME'
-      },
-      rate: {
-        label: '评分',
-        type: 'RATE',
-      },
-      tags: {
-        label: '标签',
-        type: 'TAGS',
-        options: [{ label: '棒！', value: 'good' }, { label: '差！', value: 'bad' }]
-      },
-      avatar: {
-        label: '头像',
-        type: 'ATTACHMENT'
-      },
-      enable: {
-        label: '开启',
-        type: 'ONOFF'
-      },
-      activities: {
-        label: '活动',
-        type: 'SELECT',
-        options: [{ label: '打羽毛球', value: 0}, { label: '跳绳', value: 1}]
-      },
-    },
-    order: ['age', 'name', 'date', 'time', 'rate', 'tags', 'avatar', 'enable', 'activities'],
-  };
+      order: ['age', 'name', 'date', 'time', 'rate', 'tags', 'avatar', 'enable', 'activities'],
+    }
+  }
 };

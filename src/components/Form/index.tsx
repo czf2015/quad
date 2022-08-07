@@ -1,12 +1,13 @@
 // @ts-nocheck
 import React, { useState } from "react";
-import { Form } from "@/plugins/ui";
+import { Form, Button } from "@/plugins/ui";
 import { renderFormItem } from "./render";
 import { filter } from "./helpers";
+import { tableColumn } from "@/mock/tableColumn";
 
 export default ({
   initialValues,
-  children: formItems,
+  children: formItems = tableColumn,
   onFinish = console.success,
   onFinishFailed = console.error,
   disabled = false,
@@ -40,6 +41,11 @@ export default ({
       onFinishFailed={onFinishFailed}
     >
       {filter(formItems, formData)?.map(renderFormItem)}
+      <Form.Item wrapperCol={{ span: 6, offset: 18 }}>
+        <Button type="primary" htmlType="submit">
+          Submit
+        </Button>
+      </Form.Item>
     </Form>
   );
 };

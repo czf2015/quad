@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
+import { message } from "antd";
+import request from '@/plugins/request';
+// import { fetchData } from "@/components/DataTable/mock";
 
-export const useDataTable = (query, params) => {
+export const useDataTable = ({ url, method, params, preprocess }) => {
   const [page, setPage] = useState({
     current: 1,
     pageSize: 10,
@@ -13,14 +16,26 @@ export const useDataTable = (query, params) => {
   const [data, setData] = useState({ total: 0, list: [] });
   useEffect(() => {
     setLoading(true);
-    query({ ...params, offset: (page.current - 1) * page.pageSize, limit: page.pageSize })
+    // fetchData(params)
+    request({ url, method, params: { ...params, offset: (page.current - 1) * page.pageSize, limit: page.pageSize }, })
+      .then(responseData => {
+        if (preprocess) {
+          try {
+            const IIFE = new Function(`return ${preprocess}`)
+            return IIFE()(responseData)
+          } catch (e) {
+            message.error(e)
+          }
+        }
+        return responseData.data
+      })
       .then((data) => {
         setData(data);
       })
       .finally(() => {
         setLoading(false);
       });
-  }, [params, page]);
+  }, [url, method, params, preprocess, page]);
 
   const {
     title = '列表',

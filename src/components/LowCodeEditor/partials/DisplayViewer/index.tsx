@@ -6,7 +6,7 @@ import { useStore } from '@/hooks'
 import styles from './index.module.less'
 
 
-export const DisplayViewer = ({ entities = [], updateEntity, removeEntity, splitBlock, pullBlock, dragWidget, dragEntity, pid = 0, width, height, zoom }) => {
+export const DisplayViewer = ({ entities = [], updateEntity, removeEntity, splitBlock, pullBlock, dragWidget, dragEntity, setActive, pid = 0, width, height, zoom }) => {
   useEffect(() => {
     document.oncontextmenu = function (event) {
       event.preventDefault();
@@ -37,7 +37,7 @@ export const DisplayViewer = ({ entities = [], updateEntity, removeEntity, split
         slots[key] = render(blocks[key])
       }
       return (
-        <Wrapper id={id} name={name} {...attrs} style={style} removeEntity={removeEntity} updateEntity={updateEntity} handleDrop={handleDrop} key={id}>
+        <Wrapper id={id} name={name} {...attrs} style={style} removeEntity={removeEntity} updateEntity={updateEntity} handleDrop={handleDrop} key={id} setActive={setActive}>
           <Widget id={id} {...attrs} slots={slots} />
         </Wrapper>
       )
@@ -53,7 +53,7 @@ export const DisplayViewer = ({ entities = [], updateEntity, removeEntity, split
           if (item.name == 'Block') {
             return (
               <>
-                <Block {...item} store={store} zoom={zoom} removeEntity={removeEntity} splitBlock={splitBlock} pullBlock={pullBlock} handleDrop={handleDrop} key={item.id}>
+                <Block {...item} store={store} zoom={zoom} removeEntity={removeEntity} splitBlock={splitBlock} pullBlock={pullBlock} handleDrop={handleDrop} setActive={setActive} key={item.id}>
                   {item?.widgets?.map(widgetId => {
                     const widget = entities.find(entity => entity.id == widgetId)
                     return renderWidget(widget)

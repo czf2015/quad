@@ -6,9 +6,9 @@ export const tabList = [
       {
         name: "target",
         label: "绑定对象",
-        rules: [{ required: true, message: "请输入消息类型！" }],
+        // rules: [{ required: true, message: "请选择绑定对象！" }],
         type: "Select",
-        placeholder: "请输入消息类型",
+        placeholder: "请选择绑定对象",
       },
       {
         name: "event",
@@ -22,6 +22,7 @@ export const tabList = [
         type: "Select",
         mode: "tags",
         options: [{ label: "打开弹窗", value: "OPEN_DRAWER" }],
+        placeholder: '请输入消息类型！'
       },
       {
         name: "description",

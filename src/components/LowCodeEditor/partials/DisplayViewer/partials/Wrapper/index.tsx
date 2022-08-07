@@ -14,6 +14,7 @@ export const Wrapper = ({
   title = '图表名称',
   removeEntity,
   updateEntity,
+  setActive,
   handleDrop,
   style = { width: 400, height: 300 },
   children,
@@ -40,6 +41,10 @@ export const Wrapper = ({
     setDropdownOverlayVisible(false)
     copyText(id)
   }
+  const handleConfig = (key = 'style') => () => {
+    setDropdownOverlayVisible(false)
+    setActive({ id, name, key })
+  }
   const menu = (
     <Menu
       items={[
@@ -54,7 +59,7 @@ export const Wrapper = ({
         {
           key: '1',
           label: (
-            <a onClick={() => setDropdownOverlayVisible(false)}>
+            <a onClick={handleConfig('style')}>
               <img src="/icons/Styles.svg" style={{ width: 16, height: 16 }} />{/* 样式 */}
             </a>
           ),
@@ -62,7 +67,7 @@ export const Wrapper = ({
         {
           key: '2',
           label: (
-            <a onClick={() => setDropdownOverlayVisible(false)}>
+            <a onClick={handleConfig("data")}>
               <img src="/icons/Datasource.svg" style={{ width: 16, height: 16 }} />{/* 数据 */}
             </a>
           ),
@@ -70,7 +75,7 @@ export const Wrapper = ({
         {
           key: '3',
           label: (
-            <a onClick={() => setDropdownOverlayVisible(false)}>
+            <a onClick={handleConfig('interact')}>
               <img src="/icons/Interact.svg" style={{ width: 16, height: 16 }} />{/* 交互 */}
             </a>
           ),

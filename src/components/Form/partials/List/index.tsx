@@ -4,7 +4,7 @@ import JsonEdit from '@/components/Form/partials/JsonEdit'
 import CodeEdit from '@/components/Form/partials/CodeEdit'
 import { Button, Form, Input, Select, Switch } from '@/plugins/ui'
 import { useToggle } from '@/hooks'
-import { DeleteOutlined, HolderOutlined, PlusOutlined, RightOutlined, EditOutlined } from '@ant-design/icons'
+import { DeleteOutlined, HolderOutlined, PlusOutlined, RightOutlined } from '@ant-design/icons'
 import styles from './index.module.less'
 
 export const Card = ({ children, field, add, remove }) => {
@@ -34,9 +34,9 @@ export const Card = ({ children, field, add, remove }) => {
   )
 }
 
-export default ({ name, list }) => {
+export default ({ name, list, initialValue = [{}] }) => {
   return (
-    <Form.List name={name}>
+    <Form.List name={name} initialValue={initialValue}>
       {(fields, { add, remove }, { errors }) => (
         <div className={styles.card_list}>
           {fields.map((field) => (
@@ -46,22 +46,23 @@ export default ({ name, list }) => {
                   {...field}
                   {...attrs}
                   name={[field.name, name]}
+                  key={name}
                 >
                   {type == 'Select'
                     ? <Select mode={mode} options={options} placeholder={placeholder} size="small" />
                     : type == 'TextArea'
-                      ? <Input.TextArea options={options} placeholder={placeholder} size="small" />
+                      ? <Input.TextArea placeholder={placeholder} autoSize={{ minRows: 3, maxRows: 10 }} size="small" />
                       : type == 'Json'
                         ? <JsonEdit />
                         : type == 'Code'
                           ? <CodeEdit />
-                          : <Input options={options} placeholder={placeholder} size="small" />}
+                          : <Input placeholder={placeholder} size="small" />}
                 </Form.Item>
               ))}
             </Card>
           ))}
           <Button type="dashed" onClick={add} className={styles.add_btn}><PlusOutlined /></Button>
-          <Form.Item>
+          <Form.Item className={styles.errors}>
             <Form.ErrorList errors={errors} />
           </Form.Item>
         </div>

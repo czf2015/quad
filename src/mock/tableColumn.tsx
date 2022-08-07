@@ -23,6 +23,11 @@ export const tableColumn = [
     type: "Input",
   },
   {
+    name: "description",
+    label: "描述",
+    type: "TextArea",
+  },
+  {
     name: "field",
     label: "字段",
     required: true,
@@ -136,11 +141,6 @@ export const tableColumn = [
         type: "Input",
       },
     ],
-  },
-  {
-    name: "description",
-    label: "描述",
-    type: "TextArea",
   },
   // {
   //   name: "disabled",

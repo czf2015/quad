@@ -9,9 +9,10 @@ const { TabPane } = Tabs
 
 
 export default ({ page: { content: initialEntities, ...initialBaseInfo } }) => {
-  const { entities, ...attrs } = useEntities(initialEntities/* , true */)
+  const { entities, active, ...attrs } = useEntities(initialEntities/* , true */)
   const store = useStore(initialBaseInfo)
   const [mode, setMode] = useState(0) // 空白状态：0  查看状态: 1 编辑状态：2 
+  const entity = entities.find(item => item.id == active?.id)
 
   const zoom = 1440 / store('width')
 
@@ -50,7 +51,7 @@ export default ({ page: { content: initialEntities, ...initialBaseInfo } }) => {
       </Tabs>
     ),
     content: <DisplayViewer entities={entities} width={store('width')} height={store('height')} zoom={zoom} {...attrs} />,
-    right: <ConfigPanel />
+    right: <ConfigPanel entity={entity} active={active} {...attrs} />
   }
   const footer = (
     <>
