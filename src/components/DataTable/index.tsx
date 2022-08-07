@@ -10,8 +10,8 @@ import { InfoCircleOutlined, FormOutlined, DeleteOutlined } from '@ant-design/ic
 import { convertToFormItems } from './helpers';
 import styles from './index.module.less'
 
-export default ({ data = {}, size = "small", scroll = { x: 'calc(700px + 50%)', y: 240 }, bordered = true }) => {
-  const { title, dataSource, pagination, properties, orderKeys: defaultOrderKeys, loading } = useDataTable(data)
+export default ({ dataSource: { type, url, method, params, data, preprocess } = {}, size = "small", scroll = { x: 'calc(700px + 50%)', y: 240 }, bordered = true }) => {
+  const { title, dataSource, pagination, properties, orderKeys: defaultOrderKeys, loading } = useDataTable({ type, url, method, params, data, preprocess })
   const [orderKeys = defaultOrderKeys, setOrderKeys] = useState();
   const formItems = convertToFormItems(properties, orderKeys)
   const rowSelection = useRowSelection()

@@ -15,7 +15,7 @@ const getData = (responseData, preprocess) => {
   return data
 }
 
-export const useDataTable = ({ type, url, method = 'post', params, data: json, preprocess }) => {
+export const useDataTable = ({ type, url, method = 'post', params, data: jsonData, preprocess }) => {
   const [page, setPage] = useState({
     current: 1,
     pageSize: 10,
@@ -29,7 +29,7 @@ export const useDataTable = ({ type, url, method = 'post', params, data: json, p
   useEffect(() => {
     if (type == 1) {
       try {
-        const responseData = JSON.parse(json)
+        const responseData = JSON.parse(jsonData)
         setData(getData(responseData, preprocess))
       } catch (e) {
         message.error(e)

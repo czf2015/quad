@@ -67,7 +67,7 @@ export const Wrapper = ({
         {
           key: '2',
           label: (
-            <a onClick={handleConfig("data")}>
+            <a onClick={handleConfig("dataSource")}>
               <img src="/icons/Datasource.svg" style={{ width: 16, height: 16 }} />{/* 数据 */}
             </a>
           ),

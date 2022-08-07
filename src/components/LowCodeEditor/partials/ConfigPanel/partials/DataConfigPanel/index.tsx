@@ -21,10 +21,9 @@ const mock = {
   preprocess: "(res) => {\n  console.log(res)\n  return res.data\n}",
 }
 
-export const DataConfigPanel = ({ id, data: initialValues = mock, updateEntity }) => {
-  const handleSubmit = (data) => {
-    console.log(data)
-    updateEntity(id, { data })
+export const DataConfigPanel = ({ id, dataSource: initialValues = mock, updateEntity }) => {
+  const handleSubmit = (dataSource) => {
+    updateEntity(id, { dataSource })
     message.success('已提交变更！')
   }
   return (

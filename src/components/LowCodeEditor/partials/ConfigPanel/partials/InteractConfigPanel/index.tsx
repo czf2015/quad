@@ -4,7 +4,7 @@ import FormList from '@/components/Form/partials/List'
 import TabsPanel from '@/components/TabsPanel'
 import { tabList } from './config'
 
-const interact = {
+const mock = {
   binds: [
     {
       title: "",
@@ -30,10 +30,9 @@ const interact = {
   ],
 }
 
-export const InteractConfigPanel = ({  id, interact: initialValues = interact, updateEntity }) => {
-  const handleSubmit = (interact) => {
-    console.log(interact)
-    updateEntity(id, { interact })
+export const InteractConfigPanel = ({  id, interact: initialValues = mock, updateEntity }) => {
+  const handleSubmit = ({ binds, handlers }) => {
+    updateEntity(id, { binds, handlers })
     message.success('已提交变更！')
   }
 

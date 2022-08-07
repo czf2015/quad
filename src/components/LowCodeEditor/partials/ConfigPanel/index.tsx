@@ -10,7 +10,7 @@ const tabList = [
     ConfigPanel: StyleConfigPanel,
   }, {
     tab: '数据',
-    key: 'data',
+    key: 'dataSource',
     ConfigPanel: DataConfigPanel,
   }, {
     tab: '交互',
