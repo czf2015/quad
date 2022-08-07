@@ -91,6 +91,7 @@ export const formProps = {
       name: "interval",
       label: "刷新间隔",
       type: "InputNumber",
+      min: 0,
       addonAfter: '秒',
       prerequisites: [
         {
