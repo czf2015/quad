@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Upload } from 'antd';
+import ImgCrop from 'antd-img-crop';
 
 export default ({
   action = "https://www.mocky.io/v2/5cc8019d300000980a055e76",
@@ -12,9 +13,8 @@ export default ({
     },
   ],
   accept,
-  listType,
-  showUploadList,
-  children,
+  listType = "picture-card",
+  limit = { total: 1 },
 }) => {
   const [fileList, setFileList] = useState(defaultFileList);
 
@@ -41,16 +41,17 @@ export default ({
   };
 
   return (
-    <Upload
-      accept={accept}
-      action={action}
-      listType={listType}
-      fileList={fileList}
-      showUploadList={showUploadList}
-      onChange={onChange}
-      onPreview={onPreview}
-    >
-      {children}
-    </Upload>
+    <ImgCrop rotate>
+      <Upload
+        accept={accept}
+        action={action}
+        listType={listType}
+        fileList={fileList}
+        onChange={onChange}
+        onPreview={onPreview}
+      >
+        {fileList.length < limit.total ? '+ Upload' : ''}
+      </Upload>
+    </ImgCrop>
   );
 };

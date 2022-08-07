@@ -1,9 +1,21 @@
 import { useState, useEffect } from "react";
 import { message } from "antd";
 import request from '@/plugins/request';
-// import { fetchData } from "@/components/DataTable/mock";
 
-export const useDataTable = ({ url, method, params, preprocess }) => {
+const getData = (responseData, preprocess) => {
+  let data = responseData.data
+  if (preprocess) {
+    try {
+      const IIFE = new Function(`return ${preprocess}`)
+      data = IIFE()(responseData)
+    } catch (e) {
+      message.error(e)
+    }
+  }
+  return data
+}
+
+export const useDataTable = ({ type, url, method = 'post', params, data: json, preprocess }) => {
   const [page, setPage] = useState({
     current: 1,
     pageSize: 10,
@@ -15,27 +27,31 @@ export const useDataTable = ({ url, method, params, preprocess }) => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState({ total: 0, list: [] });
   useEffect(() => {
-    setLoading(true);
-    // fetchData(params)
-    request({ url, method, params: { ...params, offset: (page.current - 1) * page.pageSize, limit: page.pageSize }, })
-      .then(responseData => {
-        if (preprocess) {
-          try {
-            const IIFE = new Function(`return ${preprocess}`)
-            return IIFE()(responseData)
-          } catch (e) {
-            message.error(e)
-          }
-        }
-        return responseData.data
+    if (type == 1) {
+      try {
+        const responseData = JSON.parse(json)
+        setData(getData(responseData, preprocess))
+      } catch (e) {
+        message.error(e)
+      }
+    } else {
+      setLoading(true);
+      request({
+        url,
+        method,
+        [method == 'post' || method == 'put' ? 'data' : 'params']: { ...params, offset: (page.current - 1) * page.pageSize, limit: page.pageSize },
       })
-      .then((data) => {
-        setData(data);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, [url, method, params, preprocess, page]);
+        .then(responseData => {
+          setData(getData(responseData, preprocess))
+        })
+        .catch((e) => {
+          message.error(e)
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
+  }, [type, url, method, params, preprocess, page]);
 
   const {
     title = '列表',

@@ -5,19 +5,19 @@ import { formProps } from './config'
 
 const mock = {
   type: 0,
-  method: 0,
-  url: "",
+  method: 'post',
+  url: "/api/mock",
   params: {
     offset: 0,
     limit: 10,
   },
-  data: {
-    title: "标题",
-    description: "描述",
-    params: {
-      id: 1,
-    },
-  },
+  data: `{
+  "title": "标题",
+  "description": "描述",
+  "params": {
+    "id": 1
+  }
+}`,
   preprocess: "(res) => {\n  console.log(res)\n  return res.data\n}",
 }
 

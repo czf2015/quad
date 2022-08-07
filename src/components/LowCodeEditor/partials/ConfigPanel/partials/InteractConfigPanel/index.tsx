@@ -11,7 +11,7 @@ const interact = {
       target: "", //
       event: "onClick", // 下拉
       // id: "", // 组件id, 自动获取
-      type: "", // 下拉选择
+      type: undefined, // 下拉选择
       // payload: '', // 自动获取
       description: "", // ...
       enable: true,

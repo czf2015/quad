@@ -90,7 +90,7 @@ export const formProps = {
     {
       name: "data",
       label: "数据",
-      type: "Json",
+      type: "Code",
       prerequisites: [
         {
           field: "type",
@@ -104,14 +104,6 @@ export const formProps = {
       name: "preprocess",
       label: "预处理",
       type: "Code",
-      //   prerequisites: [
-      //     {
-      //       field: "type",
-      //       options: {
-      //         equal: [0],
-      //       },
-      //     },
-      //   ],
     },
   ],
 };

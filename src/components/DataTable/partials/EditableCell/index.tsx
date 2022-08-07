@@ -1,7 +1,7 @@
 // @ts-nocheck
 import React, { useState } from 'react'
 import { Input, InputNumber, Switch, Select, Rate, DatePicker, TimePicker } from '@/plugins/ui'
-import Upload from '@/components/Form/partials/Upload'
+import Upload from '@/components/Form/partials/Upload/ImageUpload'
 import Tags from '@/components/Form/partials/Tags'
 import { renderTags } from '@/components/DataTable/render'
 import { Moment } from '@/plugins/moment'

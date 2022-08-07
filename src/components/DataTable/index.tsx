@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { /* VirtualTable as  */Table, Popconfirm, message } from '@/plugins/ui';
+import React, { useState } from 'react';
+import { /* VirtualTable as  */Table, Popconfirm } from '@/plugins/ui';
 import FormModal from "@/components/FormModal";
 import FieldsFilter from '@/components/Form/partials/FieldsFilter';
+import Upload from '@/components/Form/partials/Upload';
 import Button from '@/components/Button';
 import { EditableCell, ColumnTitle } from './partials';
 import { useDataTable, useRowSelection } from '@/hooks';
@@ -9,8 +10,8 @@ import { InfoCircleOutlined, FormOutlined, DeleteOutlined } from '@ant-design/ic
 import { convertToFormItems } from './helpers';
 import styles from './index.module.less'
 
-export default ({ /* query = fetchData,  */data: { type = 0, url, method, params, preprocess } = {}, size = "small", scroll = { x: 'calc(700px + 50%)', y: 240 }, bordered = true }) => {
-  const { title, dataSource, pagination, properties, orderKeys: defaultOrderKeys, loading } = useDataTable({ url, method, params, preprocess })
+export default ({ data = {}, size = "small", scroll = { x: 'calc(700px + 50%)', y: 240 }, bordered = true }) => {
+  const { title, dataSource, pagination, properties, orderKeys: defaultOrderKeys, loading } = useDataTable(data)
   const [orderKeys = defaultOrderKeys, setOrderKeys] = useState();
   const formItems = convertToFormItems(properties, orderKeys)
   const rowSelection = useRowSelection()
@@ -43,7 +44,9 @@ export default ({ /* query = fetchData,  */data: { type = 0, url, method, params
         </div>
         <div className={styles.title__right}>
           <Button title="批量xx" onClick={handleBatch} />
-          <Button title="导入" onClick={importData} />
+          <Upload showUploadList={false}>
+            <Button title="导入" onClick={importData} />
+          </Upload>
           <Button title="新增" onClick={open} />
           <FieldsFilter checked={checked} options={options} onChange={setChecked} />
         </div>

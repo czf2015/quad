@@ -4,7 +4,7 @@ import { LockOutlined } from "@ant-design/icons";
 import { Form, Input, Select, Switch, Radio, Checkbox, InputNumber, Rate } from "@/plugins/ui";
 import JsonEdit from '@/components/Form/partials/JsonEdit'
 import CodeEdit from '@/components/Form/partials/CodeEdit'
-import Upload from './partials/Upload'
+import Upload from './partials/Upload/ImageUpload'
 import Cascader from './partials/Cascader'
 import TreeSelect from "./partials/TreeSelect";
 import FormList from "./partials/List";
@@ -29,7 +29,10 @@ export const renderFormItem = ({
   step,
   schema,
   action,
+  accept,
+  listType,
   fileList,
+  limit,
   ...attrs
 }) => {
   let formItem = (
@@ -158,7 +161,7 @@ export const renderFormItem = ({
         formItem = <Rate disabled={disabled} />
         break
       case "ATTACHMENT":
-        formItem = <Upload action={action} fileList={fileList} />
+        formItem = <Upload action={action} fileList={fileList} accept={accept} listType={listType} limit={limit} />
       case "FormList":
         return <FormList name={name} list={schema} disabled={disabled} {...attrs} />
       default:

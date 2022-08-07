@@ -81,17 +81,15 @@ import { ROOT_PATH } from '@/config'
 //   }
 // );
 
-const request = async ({ method = "get", url, params, data = params, ...rest } = {}) => {
+const request = async ({ method = "get", url, params, data, ...rest } = {}) => {
   return await axios
     .request({ method, url, params, data, ...rest })
-    // .then(({ data: responseData = {} } = {}) => {
-    //   if (responseData.code == "0000" && responseData.data) {
-    //     return responseData;
-    //   }
-    //   return Promise.reject(
-    //     responseData.reason || responseData.msg || responseData.err_msg
-    //   );
-    // });
+    .then(({ data: responseData = {} } = {}) => {
+      if (responseData.code == "0000" && responseData.data) {
+        return responseData;
+      }
+      return Promise.reject(responseData.msg);
+    });
 };
 
 export const getMockData = (id) =>
