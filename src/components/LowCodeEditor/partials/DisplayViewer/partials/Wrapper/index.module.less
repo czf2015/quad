@@ -1,52 +1,54 @@
 .wrapper {
   position: relative;
-  z-index: 99;
-  > .card_title {
+  z-index: 9;
+
+  >.holder_btn {
     position: absolute;
     top: -12px;
     left: -12px;
-    line-height: 24px;
-    text-indent: 2em;
-    font-weight: bold;
-  }
-  > .holder_btn {
-    position: absolute;
-    top: -12px;
-    left: -12px;
+
     &:hover {
       cursor: move;
     }
   }
-  > .delete_btn {
+
+  >.delete_btn {
     position: absolute;
     bottom: -12px;
     left: -12px;
+
     &:hover {
       // color: #e33e38;
     }
   }
-  > .more_btn {
+
+  >.more_btn {
     position: absolute;
     top: -12px;
     right: -12px;
+
     &:hover {
       color: #40a9ff;
       cursor: pointer;
     }
   }
-  > .expand_btn {
+
+  >.expand_btn {
     position: absolute;
     bottom: -12px;
     right: -12px;
+
     &:hover {
       cursor: nw-resize;
     }
   }
+
   &:not(:hover):not(.dropdown_overlay) {
-    > .holder_btn,
-    > .delete_btn,
-    > .more_btn,
-    > .expand_btn {
+
+    >.holder_btn,
+    >.delete_btn,
+    >.more_btn,
+    >.expand_btn {
       display: none;
     }
   }

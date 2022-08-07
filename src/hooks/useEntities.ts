@@ -338,7 +338,7 @@ export const useEntities = (initialEntities = [], isPrinted) => {
     setEntities((entities) => {
       if (dropEntity?.name == "Block") {
         if (dropEntity.id == dragBlock.id) {
-          if (dropEntity?.widgets.length > 0) {
+          if (dropEntity?.widgets?.length > 0) {
             const widgets = [];
             dropEntity.widgets.forEach((widgetId) => {
               if (widgetId != dragId) {
