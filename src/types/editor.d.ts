@@ -88,10 +88,10 @@ enum enumDataType {
   MANUAL,
 }
 enum enumRequestMethod {
-  POST,
-  GET,
-  PUT,
-  DELETE,
+  POST = 'post',
+  GET = 'get',
+  PUT = 'put',
+  DELETE = 'delete',
 }
 interface IRequestParams {
   [propName: string]: any
@@ -109,8 +109,8 @@ interface IComponentProps extends IEntity {
   slots?: ISlots;
   classNames?: IClassNames;
   dataSource?: IDataSource;
-  handlers?: dispatchType[];
   binds?: IBind[];
+  handlers?: dispatchType[];
 }
 enum IConfigPanelTabKey {
   STYLE, // 样式

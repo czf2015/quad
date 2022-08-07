@@ -30,8 +30,8 @@ export const useSnapShot = (initialSnapShotRecord: snapShotRecordType, isPrinted
     setOffset(offset => offset - 1)
     return snapShotRecords[offset - 1]
   }
-  const restart = () => {
-    track(`restartSnapShot`)
+  const renew = () => {
+    track(`renewSnapShot`)
     setOffset(offset => {
       offset += 1
       setSnapShotRecords(snapShotRecords => {
@@ -55,5 +55,5 @@ export const useSnapShot = (initialSnapShotRecord: snapShotRecordType, isPrinted
     }
   }, [offset])
 
-  return { steps, len, offset, take, forward, backward, restart }
+  return { steps, len, offset, take, forward, backward, renew }
 }

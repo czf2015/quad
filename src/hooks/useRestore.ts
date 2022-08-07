@@ -6,8 +6,8 @@ export const useRestore = (initialState, snapShot) => {
   const prev = snapShot.offset
   const next = snapShot.len - 1 - snapShot.offset
 
-  const restart = () => {
-    setState(snapShot.restart())
+  const renew = () => {
+    setState(snapShot.renew())
   }
 
   const undo = () => {
@@ -32,5 +32,5 @@ export const useRestore = (initialState, snapShot) => {
     }
   }, [])
 
-  return { state, setState, prev, next, restart, undo, redo, stage }
+  return { state, setState, prev, next, renew, undo, redo, stage }
 }

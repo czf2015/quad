@@ -6,7 +6,8 @@ export const tabList = [
       {
         name: "target",
         label: "绑定对象",
-        // rules: [{ required: true, message: "请选择绑定对象！" }],
+        options: [{ label: '表格标题', value: 'title' }],
+        rules: [{ required: true, message: "请选择绑定对象！" }],
         type: "Select",
         placeholder: "请选择绑定对象",
       },
@@ -14,13 +15,14 @@ export const tabList = [
         name: "event",
         label: "事件类型",
         type: "Select",
-        options: [{ label: "单击", value: "onClick" }],
+        options: [{ label: "单击", value: "click" }],
       },
       {
         name: "type",
         label: "消息类型",
         type: "Select",
         mode: "tags",
+        rules: [{ required: true, message: "请输入消息类型！" }],
         options: [{ label: "打开弹窗", value: "OPEN_DRAWER" }],
         placeholder: '请输入消息类型！'
       },

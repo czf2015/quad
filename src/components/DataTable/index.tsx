@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { /* VirtualTable as  */Table, Popconfirm } from '@/plugins/ui';
 import FormModal from "@/components/FormModal";
 import FieldsFilter from '@/components/Form/partials/FieldsFilter';
 import Upload from '@/components/Form/partials/Upload';
 import Button from '@/components/Button';
 import { EditableCell, ColumnTitle } from './partials';
-import { useDataTable, useRowSelection } from '@/hooks';
+import { useDataTable, useRowSelection, useBinds, useHandlers } from '@/hooks';
 import { InfoCircleOutlined, FormOutlined, DeleteOutlined } from '@ant-design/icons';
 import { convertToFormItems } from './helpers';
 import styles from './index.module.less'
 
-export default ({ dataSource: { type, url, method, params, data, preprocess } = {}, size = "small", scroll = { x: 'calc(700px + 50%)', y: 240 }, bordered = true }) => {
+export default ({ id, dataSource: { type, url, method, params, data, preprocess } = {}, binds = [], handlers = [], size = "small", scroll = { x: 'calc(700px + 50%)', y: 240 }, bordered = true }) => {
+  console.log({ binds, handlers })
   const { title, dataSource, pagination, properties, orderKeys: defaultOrderKeys, loading } = useDataTable({ type, url, method, params, data, preprocess })
   const [orderKeys = defaultOrderKeys, setOrderKeys] = useState();
   const formItems = convertToFormItems(properties, orderKeys)
@@ -38,7 +39,7 @@ export default ({ dataSource: { type, url, method, params, data, preprocess } = 
     return (
       <div className={styles.title}>
         <div className={styles.title__left}>
-          <span>{title}</span>
+          <span data-bind="title" data-payload={title}>{title}</span>
           <InfoCircleOutlined style={{ margin: '0 4px' }} />
           <span>共{pagination.total}条{rowSelection.total > 0 ? `, 已选中${rowSelection.total}条` : ''}</span>
         </div>
@@ -82,8 +83,11 @@ export default ({ dataSource: { type, url, method, params, data, preprocess } = 
     }
   })
 
+  const rootRef = useBinds(binds)
+  useHandlers(handlers)
+
   return (
-    <>
+    <div ref={rootRef}>
       <Table
         className={styles.data_table}
         title={renderTitle}
@@ -97,6 +101,6 @@ export default ({ dataSource: { type, url, method, params, data, preprocess } = 
         bordered={bordered}
       />
       <FormModal title={title} value={record} visible={visible} children={formItems} onOk={handleCancel} onCancel={handleCancel} />
-    </>
+    </div>
   )
 };

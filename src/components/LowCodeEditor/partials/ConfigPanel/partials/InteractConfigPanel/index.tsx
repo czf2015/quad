@@ -9,7 +9,7 @@ const mock = {
     {
       title: "",
       target: "", //
-      event: "onClick", // 下拉
+      event: "click", // 下拉
       // id: "", // 组件id, 自动获取
       type: undefined, // 下拉选择
       // payload: '', // 自动获取
@@ -22,7 +22,7 @@ const mock = {
       title: "",
       id: "", // 非必填
       type: "",
-      enable: false,
+      enable: true,
       handle: `(params) => {
         console.log(params)
       }`,
