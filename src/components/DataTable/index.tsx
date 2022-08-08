@@ -12,6 +12,7 @@ import { tableColumn } from '@/mock/tableColumn';
 import styles from './index.module.less'
 
 export default ({ size = "small", scroll = { x: 'calc(700px + 50%)', y: 240 }, bordered = true, updateEntity, ...entity }) => {
+  debugger
   const { title, dataSource, pagination, properties, orderKeys: defaultOrderKeys, loading } = useDataTable(entity.dataSource)
   const [orderKeys = defaultOrderKeys, setOrderKeys] = useState();
   const formItems = convertToFormItems(properties, orderKeys)

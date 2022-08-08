@@ -38,7 +38,7 @@ export const DisplayViewer = ({ entities = [], updateEntity, removeEntity, split
       }
       return (
         <Wrapper id={id} name={name} {...attrs} style={style} removeEntity={removeEntity} updateEntity={updateEntity} handleDrop={handleDrop} key={id} editable={editable} active={active} setActive={setActive}>
-          <Widget id={id} name={name} updateEntity={updateEntity} {...attrs} slots={slots} />
+          <Widget id={id} name={name} updateEntity={updateEntity} editable={editable} store={store} {...attrs} slots={slots} />
         </Wrapper>
       )
     }

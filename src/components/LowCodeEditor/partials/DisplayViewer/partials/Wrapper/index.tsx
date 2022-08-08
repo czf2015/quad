@@ -43,7 +43,8 @@ export const Wrapper = ({
     setDropdownOverlayVisible(false)
     copyText(id)
   }
-  const handleConfig = (key = 'style') => () => {
+  const handleConfig = (key = 'style') => (e) => {
+    e.stopPropagation()
     setDropdownOverlayVisible(false)
     setActive({ id, name, key })
   }
@@ -90,6 +91,7 @@ export const Wrapper = ({
   useHandlers({ entity: { id, title, mode, style, ...extra }, updateEntity })
 
   const select = () => {
+    debugger
     setActive(active => ({ ...active, id }))
   }
 

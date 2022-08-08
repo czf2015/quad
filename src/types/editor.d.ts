@@ -101,6 +101,7 @@ interface IDataSource {
   url?: string;
   method?: enumRequestMethod;
   params?: IRequestParams;
+  interval?: number;
   data?: any;
   proprocess?: Function;
 }
@@ -112,6 +113,9 @@ interface IComponentProps extends IEntity {
   binds?: IBind[];
   handlers?: dispatchType[];
   mode?: 'card' | 'plain';
+  meta: {
+    binds: ISelectOption[],
+  }
 }
 enum IConfigPanelTabKey {
   STYLE, // 样式

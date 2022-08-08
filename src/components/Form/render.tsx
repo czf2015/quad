@@ -9,6 +9,7 @@ import Cascader from './partials/Cascader'
 import TreeSelect from "./partials/TreeSelect";
 import FormList from "./partials/List";
 import Multiple from "./partials/Multiple";
+import InputText from "./partials/InputText";
 import { CaretDownOutlined } from "@ant-design/icons";
 import DatePicker from "./partials/DatePicker";
 
@@ -55,6 +56,25 @@ export const renderFormItem = ({
     formItem = render({ name, options, placeholder, prefix, ...attrs });
   } else {
     switch (type) {
+      case "InputText":
+      case "Text":
+        formItem = (
+          <InputText
+            placeholder={placeholder}
+            disabled={disabled}
+            min={min}
+            max={max}
+            step={step}
+            size={size}
+            prefix={prefix}
+            suffix={suffix}
+            addonBefore={addonBefore}
+            addonAfter={addonAfter}
+            style={{ width: 120 }}
+            allowClear
+          />
+        );
+        break;
       case "InputNumber":
       case "Number":
         formItem = (

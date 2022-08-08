@@ -22,7 +22,7 @@ export const Create = ({ disabled, create, value = { lang: 'zh', timezone: 'Chin
     <>
       <Button title="新增" disabled={disabled} onClick={open} icon={<PlusOutlined />} />
       <Modal title="新增页面" visible={visible} onOk={handleOk} onCancel={handleCancel} width={720} bodyStyle={{ height: 640, overflow: 'auto' }}>
-        <Form initialValues={value} {...formProps} />
+        <Form initialValues={value} footer={null} {...formProps} />
       </Modal>
     </>
   )

@@ -10,7 +10,7 @@ export default {
   },
   content,
   width: 1440/*  * 2 */,
-  height: 1080 * 4,
+  height: 1080/*  * 4 */,
   tags: [],
   path: '/custom/demo',
   query: {

@@ -1,7 +1,8 @@
 import * as charts from "@/components/Chart";
-import DataTable from "./components/DataTable";
-import Drawer from "./components/Drawer";
-import Form from "./components/Form/Wrapper";
+import DataTable from "@/components/DataTable";
+import Drawer from "@/components/Drawer";
+import Form from "@/components/Form/Wrapper";
+import Button from "@/components/Button";
 import {
   BarChartOutlined,
   LineChartOutlined,
@@ -27,6 +28,7 @@ export const components = {
   DataTable,
   Form,
   Drawer,
+  Button,
 };
 
 export const icons = {

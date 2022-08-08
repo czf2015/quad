@@ -1,55 +1,40 @@
 import React, { useState } from 'react';
-import { Button, Drawer, Radio, Space } from 'antd';
+import { Drawer } from 'antd';
+import DropZone from '@/components/DropZone';
 
-export default () => {
-  const [visible, setVisible] = useState(false);
-  const [placement, setPlacement] = useState('right');
-
-  const showDrawer = () => {
-    setVisible(true);
-  };
-
-  const onChange = (e) => {
-    setPlacement(e.target.value);
-  };
-
+export default ({
+  id,
+  pid,
+  name,
+  title = "Drawer with extra actions",
+  blocks = {
+    title: 'demo1',
+    content: 'demo2',
+  },
+  slots,
+  extra,
+  width = 500,
+  visible = true,
+  placement = 'right',
+  getContainer = (triggerNode) => document.getElementById('display_viewer'),
+  updateEntity,
+  ...attrs
+}) => {
   const onClose = () => {
-    setVisible(false);
+    updateEntity(id, { visible: false })
   };
 
   return (
-    <>
-      <Space>
-        <Radio.Group value={placement} onChange={onChange}>
-          <Radio value="top">top</Radio>
-          <Radio value="right">right</Radio>
-          <Radio value="bottom">bottom</Radio>
-          <Radio value="left">left</Radio>
-        </Radio.Group>
-        <Button type="primary" onClick={showDrawer}>
-          Open
-        </Button>
-      </Space>
-      <Drawer
-        title="Drawer with extra actions"
-        placement={placement}
-        width={500}
-        onClose={onClose}
-        visible={visible}
-        getContainer={(triggerNode) => document.getElementById('display_viewer')}
-        extra={
-          <Space>
-            <Button onClick={onClose}>Cancel</Button>
-            <Button type="primary" onClick={onClose}>
-              OK
-            </Button>
-          </Space>
-        }
-      >
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-      </Drawer>
-    </>
+    <Drawer
+      title={slots.title || <DropZone pid={id} id={blocks.title} title={title} updateEntity={updateEntity} {...attrs} style={{ top: 12, width: width - 96, height: 24 }}>{title}</DropZone>}
+      extra={extra}
+      visible={visible}
+      onClose={onClose}
+      width={width}
+      placement={placement}
+      getContainer={getContainer}
+    >
+      {slots.content || <DropZone pid={id} id={blocks.content} title={title} updateEntity={updateEntity} {...attrs} style={{ width: width - 48, height: 400 }}>请拖放</DropZone>}
+    </Drawer>
   );
 };
