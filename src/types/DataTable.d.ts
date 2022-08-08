@@ -3,8 +3,8 @@ import { CSSProperties } from "react";
 enum enumFormItemType {
   TEXT,
   NUMBER,
-  ONOFF,
-  SINGLE,
+  SWITCH,
+  RADIO,
   MULTIPLE,
   DATE,
   TIME,
@@ -59,13 +59,13 @@ interface INumberFormItem extends IFormItem {
   step?: number;
 }
 
-interface IOnOffFormItem extends IFormItem {
-  type: enumFormItemType.ONOFF;
+interface ISwitchFormItem extends IFormItem {
+  type: enumFormItemType.SWITCH;
   value: boolean;
 }
 
-interface ISingleFormItem extends IFormItem {
-  type: enumFormItemType.SINGLE;
+interface IRadioFormItem extends IFormItem {
+  type: enumFormItemType.RADIO;
   vaue: number | string;
   options: optionType[];
 }

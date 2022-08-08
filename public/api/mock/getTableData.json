@@ -2407,28 +2407,28 @@
     "properties": {
       "name": {
         "label": "姓名",
-        "type": "TEXT",
+        "type": "Text",
         "required": true
       },
       "age": {
         "label": "年龄",
-        "type": "NUMBER"
+        "type": "Number"
       },
       "date": {
         "label": "日期",
-        "type": "DATE"
+        "type": "Date"
       },
       "time": {
         "label": "时间",
-        "type": "TIME"
+        "type": "Time"
       },
       "rate": {
         "label": "评分",
-        "type": "RATE"
+        "type": "Rate"
       },
       "tags": {
         "label": "标签",
-        "type": "TAGS",
+        "type": "Tags",
         "options": [
           {
             "label": "棒！",
@@ -2442,15 +2442,15 @@
       },
       "avatar": {
         "label": "头像",
-        "type": "ATTACHMENT"
+        "type": "Attachment"
       },
       "enable": {
         "label": "开启",
-        "type": "ONOFF"
+        "type": "Switch"
       },
       "activities": {
         "label": "活动",
-        "type": "SELECT",
+        "type": "Select",
         "options": [
           {
             "label": "打羽毛球",

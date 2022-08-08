@@ -7,26 +7,39 @@
 
 // @ts-nocheck
 import React from "react";
-import { DatePicker } from "antd";
+import { DatePicker, TimePicker } from "antd";
 import moment from "moment";
 
-const { RangePicker } = DatePicker;
-
-export default ({ onChange, ranges, disabledDate, disabledTime }) => {
-  return (
-    <RangePicker
-      ranges={ranges}
+export default ({ onChange, mode = 'range', picker = 'date', ranges, disabledDate, disabledTime }) => {
+  if (picker == 'time') {
+    return mode == 'range' ? <TimePicker.RangePicker ranges={ranges} onChange={onChange} disabledTime={disabledTime} /> : <TimePicker onChange={onChange} disabledTime={disabledTime} />
+  } else {
+    return mode == 'range' ? (
+      <DatePicker.RangePicker
+        picker={picker}
+        ranges={ranges}
+        disabledDate={disabledDate}
+        disabledTime={disabledTime}
+        showTime={{
+          hideDisabledOptions: true,
+          defaultValue: [
+            moment("00:00:00", "HH:mm:ss"),
+            moment("11:59:59", "HH:mm:ss"),
+          ],
+        }}
+        format="YYYY/MM/DD HH:mm:ss"
+        onChange={onChange}
+      />
+    ) : <DatePicker
+      picker={picker}
       disabledDate={disabledDate}
       disabledTime={disabledTime}
       showTime={{
         hideDisabledOptions: true,
-        defaultValue: [
-          moment("00:00:00", "HH:mm:ss"),
-          moment("11:59:59", "HH:mm:ss"),
-        ],
+        defaultValue: moment(),
       }}
       format="YYYY/MM/DD HH:mm:ss"
       onChange={onChange}
-    />
-  );
+    />;
+  }
 };

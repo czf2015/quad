@@ -111,6 +111,7 @@ interface IComponentProps extends IEntity {
   dataSource?: IDataSource;
   binds?: IBind[];
   handlers?: dispatchType[];
+  mode?: 'card' | 'plain';
 }
 enum IConfigPanelTabKey {
   STYLE, // 样式

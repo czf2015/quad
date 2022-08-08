@@ -7,7 +7,7 @@ import { renderTags } from '@/components/DataTable/render'
 import { Moment } from '@/plugins/moment'
 
 
-export const EditableCell = ({ type = 'TEXT', value = '', options = [], action, mode = 'multiple', allowClear }) => {
+export const EditableCell = ({ type = 'Text', value = '', options = [], action, mode = 'multiple', allowClear }) => {
   const [editMode, setEditMode] = useState(0)
   const edit = () => {
     setEditMode(1)
@@ -22,27 +22,27 @@ export const EditableCell = ({ type = 'TEXT', value = '', options = [], action, 
   }
 
   switch (type) {
-    case 'TEXT':
+    case 'Text':
       return editMode == 1 ? <Input value={inputValue} onChange={handleChange} onBlur={handleBlur} /> : <div onClick={edit}>{inputValue}</div>
-    case 'NUMBER':
+    case 'Number':
       return editMode == 1 ? <InputNumber value={inputValue} onChange={setInputValue} onBlur={handleBlur} /> : <div onClick={edit}>{inputValue}</div>
-    case 'SELECT':
+    case 'Select':
       return editMode == 1 ? <Select mode={mode} options={options} value={inputValue} onChange={setInputValue} onBlur={handleBlur} /> : <div onClick={edit}>{renderTags(inputValue, options)}</div>
-    case 'DATE':
+    case 'Date':
       return editMode == 1 ? <DatePicker value={Moment.normalize(inputValue)} onChange={(date, dateString) => {
         setInputValue(dateString)
       }} onBlur={handleBlur} allowClear={false} /> : <div onClick={edit}>{inputValue}</div>
-    case 'TIME':
+    case 'Time':
       return editMode == 1 ? <TimePicker value={Moment.normalize(inputValue, 'HH:mm:ss')} onChange={(time: moment, timeString: string) => {
         setInputValue(timeString)
       }} minuteStep={15} secondStep={10} onBlur={handleBlur} allowClear={false} /> : <div onClick={edit}>{inputValue}</div>;
-    case 'ONOFF':
+    case 'Switch':
       return <Switch checked={inputValue} onChange={setInputValue} onBlur={handleBlur} />
-    case 'TAGS':
+    case 'Tags':
       return <Tags checked={inputValue} options={options} onChange={setInputValue} />
-    case 'RATE':
+    case 'Rate':
       return <Rate value={inputValue} onChange={setInputValue} allowClear={allowClear} />
-    case 'ATTACHMENT':
+    case 'Attachment':
       return <Upload action={action} fileList={inputValue} />
     default:
       break

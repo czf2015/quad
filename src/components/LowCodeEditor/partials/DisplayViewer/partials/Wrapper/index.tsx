@@ -17,6 +17,7 @@ export const Wrapper = ({
   setActive,
   handleDrop,
   style = { width: 400, height: 300 },
+  mode = /Chart/.test(name) ? 'card' : 'plain',
   children,
 }: IWrapperProps) => {
   const remove = (e) => {
@@ -33,8 +34,6 @@ export const Wrapper = ({
     updateEntity(id, { style: { ...style, width: style.width + dragMove.x, height: style.height + dragMove.y } })
   }
   const { onDragOver, ...attrs } = useDragMove(handleDragMove, zoom)
-
-  const isCardStyle = /Chart/.test(name)
 
   const [dropdownOverlayVisible, setDropdownOverlayVisible] = useState(false)
   const copy = () => {
@@ -86,7 +85,7 @@ export const Wrapper = ({
 
 
   return (
-    <div id={id} className={`${styles.wrapper} ${dropdownOverlayVisible ? styles.dropdown_overlay : ''} ${isCardStyle ? 'quad-card' : ''}`} onDragOver={onDragOver} onDrop={onDrop} style={style}>
+    <div id={id} className={`${styles.wrapper} ${dropdownOverlayVisible ? styles.dropdown_overlay : ''} ${mode == 'card' ? 'quad-card' : ''}`} onDragOver={onDragOver} onDrop={onDrop} style={style}>
       <HolderOutlined className={`${styles.holder_btn} quad-circle`} draggable onDragStart={onDragStart} />
       <Dropdown overlay={menu} placement="right" onVisibleChange={setDropdownOverlayVisible}>
         <MoreOutlined className={`${styles.more_btn} quad-circle`} />

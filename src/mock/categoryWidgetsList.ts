@@ -11,14 +11,33 @@ export default [
         description: "",
       },
       {
-        name: "Form",
-        title: "表单",
+        name: "Statistics",
+        title: "统计值",
         icon: "",
         description: "",
       },
       {
-        name: "Statistics",
-        title: "统计值",
+        name: "Button",
+        title: "按钮",
+        icon: "",
+        description: "",
+      },
+      {
+        name: "Menu",
+        title: "菜单",
+        icon: "",
+        description: "",
+      },
+    ],
+  },
+  {
+    category: "form",
+    title: "表单",
+    description: "",
+    items: [
+      {
+        name: "Form",
+        title: "表单",
         icon: "",
         description: "",
       },
@@ -41,7 +60,7 @@ export default [
         description: "",
       },
       {
-        name: "Single",
+        name: "Radio",
         title: "单选",
         icon: "",
         description: "",
@@ -115,18 +134,6 @@ export default [
       {
         name: "RichText",
         title: "富文本",
-        icon: "",
-        description: "",
-      },
-      {
-        name: "Button",
-        title: "按钮",
-        icon: "",
-        description: "",
-      },
-      {
-        name: "Menu",
-        title: "菜单",
         icon: "",
         description: "",
       },

@@ -8,13 +8,16 @@ import Upload from './partials/Upload/ImageUpload'
 import Cascader from './partials/Cascader'
 import TreeSelect from "./partials/TreeSelect";
 import FormList from "./partials/List";
+import Multiple from "./partials/Multiple";
 import { CaretDownOutlined } from "@ant-design/icons";
+import DatePicker from "./partials/DatePicker";
 
 export const renderFormItem = ({
   name,
   type,
   mode,
   options,
+  defaultValue,
   placeholder,
   prefix,
   suffix,
@@ -33,6 +36,7 @@ export const renderFormItem = ({
   listType,
   fileList,
   limit,
+  picker,
   ...attrs
 }) => {
   let formItem = (
@@ -52,7 +56,7 @@ export const renderFormItem = ({
   } else {
     switch (type) {
       case "InputNumber":
-      case "NUMBER":
+      case "Number":
         formItem = (
           <InputNumber
             placeholder={placeholder}
@@ -71,7 +75,7 @@ export const renderFormItem = ({
         );
         break;
       case "TextArea":
-      case "RICHTEXT":
+      case "RichText":
         formItem = (
           <Input.TextArea
             size={size}
@@ -83,7 +87,6 @@ export const renderFormItem = ({
         );
         break;
       case "Switch":
-      case "ONOFF":
         formItem = <Switch size={size} disabled={disabled} />;
         break;
       case "TreeSelect":
@@ -98,7 +101,6 @@ export const renderFormItem = ({
         );
         break;
       case "Select":
-      case "SELECT":
         formItem = (
           <Select
             mode={mode}
@@ -111,7 +113,7 @@ export const renderFormItem = ({
           />
         );
         break;
-      case "TAGS":
+      case "Tags":
         formItem = (
           <Select
             mode="tags"
@@ -136,10 +138,13 @@ export const renderFormItem = ({
         );
         break;
       case "Radio":
-        formItem = <Radio.Group size={size} options={options} disabled={disabled} />;
+        formItem = <Radio.Group size={size} options={options} disabled={disabled} defaultValue={defaultValue} />;
         break;
       case "Checkbox":
         formItem = <Checkbox.Group size={size} options={options} disabled={disabled} />;
+        break;
+      case 'Multiple':
+        formItem = <Multiple mode={mode} size={size} options={options} disabled={disabled} />;
         break;
       case "Password":
         formItem = (
@@ -157,11 +162,15 @@ export const renderFormItem = ({
       case "Code":
         formItem = <CodeEdit disabled={disabled} />;
         break;
-      case "RATE":
+      case "Rate":
         formItem = <Rate disabled={disabled} />
         break
-      case "ATTACHMENT":
+      case "Attachment":
         formItem = <Upload action={action} fileList={fileList} accept={accept} listType={listType} limit={limit} />
+        break
+      case 'DatePicker':
+      case 'Date':
+        formItem = <DatePicker mode={mode} picker={picker} {...attrs} />
         break
       case "FormList":
         return <FormList name={name} list={schema} disabled={disabled} {...attrs} />

@@ -5,12 +5,12 @@ import ImgCrop from 'antd-img-crop';
 export default ({
   action = "https://www.mocky.io/v2/5cc8019d300000980a055e76",
   fileList: defaultFileList = [
-    {
-      uid: '-1',
-      name: 'image.png',
-      status: 'done',
-      url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    },
+    // {
+    //   uid: '-1',
+    //   name: 'image.png',
+    //   status: 'done',
+    //   url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+    // },
   ],
   accept,
   listType = "picture-card",
