@@ -60,12 +60,9 @@ export const renderFormItem = ({
       case "Text":
         formItem = (
           <InputText
+            options={options}
             placeholder={placeholder}
             disabled={disabled}
-            min={min}
-            max={max}
-            step={step}
-            size={size}
             prefix={prefix}
             suffix={suffix}
             addonBefore={addonBefore}

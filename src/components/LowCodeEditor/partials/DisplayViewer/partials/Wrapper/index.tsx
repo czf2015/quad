@@ -91,7 +91,6 @@ export const Wrapper = ({
   useHandlers({ entity: { id, title, mode, style, ...extra }, updateEntity })
 
   const select = () => {
-    debugger
     setActive(active => ({ ...active, id }))
   }
 

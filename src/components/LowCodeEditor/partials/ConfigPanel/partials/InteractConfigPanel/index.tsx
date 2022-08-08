@@ -5,6 +5,7 @@ import TabsPanel from '@/components/TabsPanel'
 
 export const InteractConfigPanel = ({ id, updateEntity, meta = { }, ...interact }) => {
   const handleSubmit = (values) => {
+    console.log({ id, values })
     updateEntity(id, values)
     message.success('已提交变更！')
   }
@@ -17,7 +18,7 @@ export const InteractConfigPanel = ({ id, updateEntity, meta = { }, ...interact 
         {
           name: "target",
           label: "绑定对象",
-          options: meta?.binds || [],
+          options: meta?.binds,
           rules: [{ required: true, message: "请选择绑定对象！" }],
           type: "Select",
           placeholder: "请选择绑定对象",
@@ -60,8 +61,13 @@ export const InteractConfigPanel = ({ id, updateEntity, meta = { }, ...interact 
         {
           name: "type",
           label: "消息类型",
+          type: "Text",
           rules: [{ required: true, message: "请输入消息类型！" }],
-          type: "Input",
+          options: [
+            { label: "OPEN_MODAL", value: "OPEN_MODAL" },
+            { label: "OPEN_DRAWER", value: "OPEN_DRAWER" },
+            { label: "MESSAGE", value: "MESSAGE" },
+          ],
           placeholder: "请输入消息类型",
         },
         {

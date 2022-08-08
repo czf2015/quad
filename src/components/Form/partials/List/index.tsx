@@ -1,8 +1,9 @@
 import React from 'react'
 import InputEdit from '@/components/Form/partials/TextEdit'
+import InputText from '@/components/Form/partials/InputText'
 import JsonEdit from '@/components/Form/partials/JsonEdit'
 import CodeEdit from '@/components/Form/partials/CodeEdit'
-import { Button, Form, Input, Select, Switch } from '@/plugins/ui'
+import { Button, Form, Input, Select, Switch, InputNumber } from '@/plugins/ui'
 import { useToggle } from '@/hooks'
 import { DeleteOutlined, HolderOutlined, PlusOutlined, RightOutlined } from '@ant-design/icons'
 import styles from './index.module.less'
@@ -41,24 +42,44 @@ export default ({ name, list = [], initialValue = [] }) => {
         <div className={styles.card_list}>
           {fields.map((field) => (
             <Card key={field.key} field={field} add={add} remove={() => remove(field.name)}>
-              {list.map(({ name, type, mode, options, placeholder, ...attrs }) => (
-                <Form.Item
-                  {...field}
-                  {...attrs}
-                  name={[field.name, name]}
-                  key={name}
-                >
-                  {type == 'Select'
-                    ? <Select mode={mode} options={options} placeholder={placeholder} size="small" />
-                    : type == 'TextArea'
-                      ? <Input.TextArea placeholder={placeholder} autoSize={{ minRows: 3, maxRows: 10 }} size="small" />
-                      : type == 'Json'
-                        ? <JsonEdit />
-                        : type == 'Code'
-                          ? <CodeEdit />
-                          : <Input placeholder={placeholder} size="small" />}
-                </Form.Item>
-              ))}
+              {list.map(({ name, type, mode, options, placeholder, ...attrs }) => {
+                let formItem
+                switch (type) {
+                  case 'InputText':
+                  case 'Text':
+                    formItem = <InputText options={options} placeholder={placeholder} size="small" />
+                    break
+                  case 'TextArea':
+                    formItem = <Input.TextArea placeholder={placeholder} autoSize={{ minRows: 3, maxRows: 10 }} size="small" />
+                    break
+                  case 'InputNumber':
+                  case 'Number':
+                    formItem = <InputNumber {...attrs} placeholder={placeholder} size="small" />
+                    break
+                  case 'Select':
+                    formItem = <Select mode={mode} options={options} placeholder={placeholder} size="small" />
+                    break
+                  case 'Json':
+                    formItem = <JsonEdit />
+                    break
+                  case 'Code':
+                    formItem = <CodeEdit />
+                    break
+                  default:
+                    formItem = <Input placeholder={placeholder} size="small" />
+                    break
+                }
+                return (
+                  <Form.Item
+                    {...field}
+                    {...attrs}
+                    name={[field.name, name]}
+                    key={name}
+                  >
+                    {formItem}
+                  </Form.Item>
+                )
+              })}
             </Card>
           ))}
           <Button type="dashed" onClick={add} className={styles.add_btn}><PlusOutlined /></Button>

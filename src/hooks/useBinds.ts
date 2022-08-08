@@ -16,7 +16,7 @@ export const useBinds = (binds, id) => {
       if (item.enable) {
         const el = rootRef.current.querySelector(`[data-bind=${item.target}]`);
         if (el) {
-          const type = item.type[0];
+          const type = item.type;
           const handler = () => {
             window.$eventBus.emit(type, {
               ...item,
