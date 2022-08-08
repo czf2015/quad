@@ -1,7 +1,7 @@
 // @ts-nocheck
 import React, { useState } from "react";
 import { Dropdown, Menu } from '@/plugins/ui'
-import { useDragMove } from "@/hooks";
+import { useDragMove, useBinds, useHandlers } from "@/hooks";
 import { copyText } from '@/utils/dom'
 import { HolderOutlined, DeleteOutlined, MoreOutlined, ExpandAltOutlined, CopyOutlined } from '@ant-design/icons'
 import styles from "./index.module.less";
@@ -19,6 +19,7 @@ export const Wrapper = ({
   style = { width: 400, height: 300 },
   mode = /Chart/.test(name) ? 'card' : 'plain',
   children,
+  ...extra
 }: IWrapperProps) => {
   const remove = (e) => {
     e.stopPropagation();
@@ -83,9 +84,11 @@ export const Wrapper = ({
     />
   );
 
+  const rootRef = useBinds(extra.binds)
+  useHandlers({ entity: { id, title, mode, style, ...extra }, updateEntity })
 
   return (
-    <div id={id} className={`${styles.wrapper} ${dropdownOverlayVisible ? styles.dropdown_overlay : ''} ${mode == 'card' ? 'quad-card' : ''}`} onDragOver={onDragOver} onDrop={onDrop} style={style}>
+    <div ref={rootRef} id={id} className={`${styles.wrapper} ${dropdownOverlayVisible ? styles.dropdown_overlay : ''} ${mode == 'card' ? 'quad-card' : ''}`} onDragOver={onDragOver} onDrop={onDrop} style={style}>
       <HolderOutlined className={`${styles.holder_btn} quad-circle`} draggable onDragStart={onDragStart} />
       <Dropdown overlay={menu} placement="right" onVisibleChange={setDropdownOverlayVisible}>
         <MoreOutlined className={`${styles.more_btn} quad-circle`} />

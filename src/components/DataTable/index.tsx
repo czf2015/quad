@@ -1,11 +1,11 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { /* VirtualTable as  */Table, Popconfirm } from '@/plugins/ui';
 import FormModal from "@/components/FormModal";
 import FieldsFilter from '@/components/Form/partials/FieldsFilter';
 import Upload from '@/components/Form/partials/Upload';
 import Button from '@/components/Button';
 import { EditableCell, ColumnTitle } from './partials';
-import { useDataTable, useRowSelection, useBinds, useHandlers } from '@/hooks';
+import { useDataTable, useRowSelection, useBinds } from '@/hooks';
 import { InfoCircleOutlined, FormOutlined, DeleteOutlined, PlusOutlined, UploadOutlined } from '@ant-design/icons';
 import { convertToFormItems } from './helpers';
 import { tableColumn } from '@/mock/tableColumn';
@@ -93,11 +93,8 @@ export default ({ size = "small", scroll = { x: 'calc(700px + 50%)', y: 240 }, b
     }
   })
 
-  const rootRef = useBinds(entity.binds)
-  useHandlers({ entity, updateEntity })
-
   return (
-    <div ref={rootRef}>
+    <>
       <Table
         className={styles.data_table}
         title={renderTitle}
@@ -112,6 +109,6 @@ export default ({ size = "small", scroll = { x: 'calc(700px + 50%)', y: 240 }, b
       />
       <FormModal title={title} value={record} visible={visible} children={formItems} onOk={handleCancel} onCancel={handleCancel} />
       <FormModal title="添加字段" value={{ type: 0, set: [4] }} visible={columnVisible} children={tableColumn} onOk={handleColumnOk} onCancel={handleColumnCancel} />
-    </div>
+    </>
   )
 };
