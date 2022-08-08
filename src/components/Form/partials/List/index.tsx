@@ -9,7 +9,7 @@ import styles from './index.module.less'
 
 export const Card = ({ children, field, add, remove }) => {
   const [collapsed, toggleCollapsed] = useToggle(false)
-  const [enableState, toggleEnableState] = useToggle(true)
+  const [enableState, toggleEnableState] = useToggle(false)
 
   return (
     <div className={`${styles.card} ${enableState ? styles.enabled : ''} ${collapsed ? styles.collapsed : ''}`}>
@@ -27,14 +27,14 @@ export const Card = ({ children, field, add, remove }) => {
         {...field}
         name={[field.name, "enable"]}
       >
-        <Switch size="small" checked={enableState} onChange={toggleEnableState} checkedChildren="启用" unCheckedChildren="停用" defaultChecked />
+        <Switch size="small" checked={enableState} onChange={toggleEnableState} checkedChildren="启用" unCheckedChildren="停用" />
       </Form.Item>
       <span className={`${styles.collapse_btn} quad-circle`}><RightOutlined rotate={collapsed ? 90 : -90} onClick={toggleCollapsed} className={styles.collapse_btn} /></span>
     </div>
   )
 }
 
-export default ({ name, list = [], initialValue = [{}] }) => {
+export default ({ name, list = [], initialValue = [] }) => {
   return (
     <Form.List name={name} initialValue={initialValue}>
       {(fields, { add, remove }, { errors }) => (

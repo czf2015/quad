@@ -6,7 +6,6 @@ import { tabList } from './config'
 
 export const InteractConfigPanel = ({ id, updateEntity, ...interact }) => {
   const handleSubmit = (values) => {
-    console.log({ id, values })
     updateEntity(id, values)
     message.success('已提交变更！')
   }
@@ -17,6 +16,7 @@ export const InteractConfigPanel = ({ id, updateEntity, ...interact }) => {
       key,
       content: (
         <Form
+          name={key}
           initialValues={{ [key]: interact[key] }}
           layout="vertical"
           labelCol={{

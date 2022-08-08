@@ -1,5 +1,4 @@
 export const appendFormItems = (formItems, dragWidgetName) => {
-  console.log(dragWidgetName);
   switch (dragWidgetName) {
     case "Text":
       formItems.push({
