@@ -36,6 +36,7 @@ export default ({ page: { content: initialEntities, ...initialBaseInfo } }) => {
       <Console store mode={mode} save={save} edit={edit} />
     </>
   )
+  const content = mode == 0 ? null : <DisplayViewer entities={entities} width={store('width')} height={store('height')} zoom={zoom} active={active} editable={mode == 2} {...attrs} />
   const main = {
     left: (
       <Tabs defaultActiveKey="Widgets" style={{ height: '100%', background: '#fff' }} centered>
@@ -50,7 +51,7 @@ export default ({ page: { content: initialEntities, ...initialBaseInfo } }) => {
         </TabPane>
       </Tabs>
     ),
-    content: <DisplayViewer entities={entities} width={store('width')} height={store('height')} zoom={zoom} {...attrs} />,
+    content,
     right: <ConfigPanel entity={entity} active={active} {...attrs} />
   }
   const footer = (

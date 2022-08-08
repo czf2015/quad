@@ -6,7 +6,7 @@ import { useStore } from '@/hooks'
 import styles from './index.module.less'
 
 
-export const DisplayViewer = ({ entities = [], updateEntity, removeEntity, splitBlock, pullBlock, dragWidget, dragEntity, setActive, pid = 0, width, height, zoom }) => {
+export const DisplayViewer = ({ entities = [], updateEntity, removeEntity, splitBlock, pullBlock, dragWidget, dragEntity, editable, active, setActive, pid = 0, width, height, zoom }) => {
   useEffect(() => {
     document.oncontextmenu = function (event) {
       event.preventDefault();
@@ -37,7 +37,7 @@ export const DisplayViewer = ({ entities = [], updateEntity, removeEntity, split
         slots[key] = render(blocks[key])
       }
       return (
-        <Wrapper id={id} name={name} {...attrs} style={style} removeEntity={removeEntity} updateEntity={updateEntity} handleDrop={handleDrop} key={id} setActive={setActive}>
+        <Wrapper id={id} name={name} {...attrs} style={style} removeEntity={removeEntity} updateEntity={updateEntity} handleDrop={handleDrop} key={id} editable={editable} active={active} setActive={setActive}>
           <Widget id={id} name={name} updateEntity={updateEntity} {...attrs} slots={slots} />
         </Wrapper>
       )
@@ -53,7 +53,7 @@ export const DisplayViewer = ({ entities = [], updateEntity, removeEntity, split
           if (item.name == 'Block') {
             return (
               <>
-                <Block {...item} store={store} zoom={zoom} updateEntity={updateEntity} removeEntity={removeEntity} splitBlock={splitBlock} pullBlock={pullBlock} handleDrop={handleDrop} setActive={setActive} key={item.id}>
+                <Block {...item} store={store} zoom={zoom} updateEntity={updateEntity} removeEntity={removeEntity} splitBlock={splitBlock} pullBlock={pullBlock} handleDrop={handleDrop} editable={editable} setActive={setActive} key={item.id}>
                   {item?.widgets?.map(widgetId => {
                     const widget = entities.find(entity => entity.id == widgetId)
                     return renderWidget(widget)
@@ -70,9 +70,9 @@ export const DisplayViewer = ({ entities = [], updateEntity, removeEntity, split
   }
 
   return (
-    <div className={styles.display_viewer} style={{ width, height }}>
-      <Scale len={width} gap={5} direction='left' />
-      <Scale len={height} gap={5} direction='down' />
+    <div id="display_viewer" className={styles.display_viewer} style={{ width, height }}>
+      {editable && <Scale len={width} gap={5} direction='left' />}
+      {editable && <Scale len={height} gap={5} direction='down' />}
       {render(pid)}
     </div>
   )

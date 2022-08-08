@@ -14,6 +14,8 @@ export const Wrapper = ({
   title = '图表名称',
   removeEntity,
   updateEntity,
+  editable,
+  active,
   setActive,
   handleDrop,
   style = { width: 400, height: 300 },
@@ -87,15 +89,25 @@ export const Wrapper = ({
   const rootRef = useBinds(extra.binds)
   useHandlers({ entity: { id, title, mode, style, ...extra }, updateEntity })
 
-  return (
-    <div ref={rootRef} id={id} className={`${styles.wrapper} ${dropdownOverlayVisible ? styles.dropdown_overlay : ''} ${mode == 'card' ? 'quad-card' : ''}`} onDragOver={onDragOver} onDrop={onDrop} style={style}>
+  const select = () => {
+    setActive(active => ({ ...active, id }))
+  }
+
+  const editTools = editable ? (
+    <>
       <HolderOutlined className={`${styles.holder_btn} quad-circle`} draggable onDragStart={onDragStart} />
       <Dropdown overlay={menu} placement="right" onVisibleChange={setDropdownOverlayVisible}>
         <MoreOutlined className={`${styles.more_btn} quad-circle`} />
       </Dropdown>
       <ExpandAltOutlined className={`${styles.expand_btn} quad-circle`} rotate={90} {...attrs} />
       <DeleteOutlined className={`${styles.delete_btn} quad-circle`} onClick={remove} />
+    </>
+  ) : null
+
+  return (
+    <div ref={rootRef} id={id} className={`${styles.wrapper} ${dropdownOverlayVisible ? styles.dropdown_overlay : ''} ${mode == 'card' ? 'quad-card' : ''} ${active?.id == id ? styles.actived : ''} ${editable ? styles.editable : ''}`} onClick={select} onDragOver={onDragOver} onDrop={onDrop} style={style}>
       {children}
+      {editTools}
     </div>
   );
 };

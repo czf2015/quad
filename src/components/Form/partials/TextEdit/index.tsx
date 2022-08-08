@@ -28,7 +28,7 @@ export default ({ name = 'title', value, ...attrs }) => {
   return (
     <>
       <Form.Item name={name} style={{ display: contentEditable ? '' : 'none', border: 'none' }} {...attrs}>
-        <Input size="small" ref={ref} style={{ width: 160, outline: '1px solid #40a9ff' }} value={inputValue} onChange={handleChange} onBlur={handleBlur} allowClear />
+        <Input size="small" ref={ref} style={{ width: 160, outline: '1px solid var(--quad-primary-color)' }} value={inputValue} onChange={handleChange} onBlur={handleBlur} allowClear />
       </Form.Item>
       <div style={{ display: contentEditable ? 'none' : 'inline-block', marginTop: 8 }} >
         <span>{inputValue}</span>

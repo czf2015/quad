@@ -3,14 +3,16 @@
   display: flex;
   align-content: flex-start;
   flex-wrap: wrap;
-  outline: 1px dashed #40a9ff;
+  &.editable {
+    outline: 1px dashed var(--quad-primary-color);
+  }
 
   > .scissor_btn {
     position: absolute;
     top: 4px;
     right: 32px;
     &:hover {
-      color: #40a9ff;
+      color: var(--quad-primary-color);
     }
   }
 
@@ -39,9 +41,9 @@
 
       > :last-child {
         height: 4px;
-        border-top: 1px dashed #40a9ff;
+        border-top: 1px dashed var(--quad-primary-color);
         &:hover {
-          border-top: 1px solid #40a9ff;
+          border-top: 1px solid var(--quad-primary-color);
         }
       }
     }
@@ -60,9 +62,9 @@
 
       > :last-child {
         width: 4px;
-        border-left: 1px dashed #40a9ff;
+        border-left: 1px dashed var(--quad-primary-color);
         &:hover {
-          border-left: 1px solid #40a9ff;
+          border-left: 1px solid var(--quad-primary-color);
         }
       }
     }
@@ -82,13 +84,13 @@
   > .clip_horizontal {
     position: absolute;
     width: 100%;
-    border-bottom: 1px dashed #40a9ff;
+    border-bottom: 1px dashed var(--quad-primary-color);
   }
 
   > .clip_vertical {
     position: absolute;
     height: 100%;
-    border-right: 1px dashed #40a9ff;
+    border-right: 1px dashed var(--quad-primary-color);
   }
 
   &:not(:hover):not(.contextmenu),

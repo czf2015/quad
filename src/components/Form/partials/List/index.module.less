@@ -9,12 +9,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #40a9ff;
-    outline: 1px dashed #40a9ff;
+    color: var(--quad-primary-color);
+    outline: 1px dashed var(--quad-primary-color);
     cursor: pointer;
     &:hover {
       color: #fff;
-      background-color: #40a9ff;
+      background-color: var(--quad-primary-color);
     }
   }
 
@@ -29,7 +29,7 @@
       position: absolute;
       top: -12px;
       left: calc(50% - 12px);
-      color: #40a9ff;
+      color: var(--quad-primary-color);
       cursor: pointer;
       transform: scale(0.75);
     }
@@ -53,7 +53,7 @@
       position: absolute;
       bottom: -12px;
       left: calc(50% - 12px);
-      color: #40a9ff;
+      color: var(--quad-primary-color);
       cursor: pointer;
       transform: scale(0.75);
     }
@@ -89,17 +89,17 @@
 
     &:hover {
       > .title {
-        color: #40a9ff;
+        color: var(--quad-primary-color);
       }
       > .holder_btn {
-        color: #40a9ff;
+        color: var(--quad-primary-color);
       }
       > .delete_btn {
         color: red;
       }
       :global {
         label {
-          color: #40a9ff;
+          color: var(--quad-primary-color);
         }
       }
       &:not(.enabled) {

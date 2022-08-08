@@ -16,10 +16,6 @@
     position: absolute;
     bottom: -12px;
     left: -12px;
-
-    &:hover {
-      // color: #e33e38;
-    }
   }
 
   >.more_btn {
@@ -28,7 +24,7 @@
     right: -12px;
 
     &:hover {
-      color: #40a9ff;
+      color: var(--quad-primary-color);
       cursor: pointer;
     }
   }
@@ -41,6 +37,10 @@
     &:hover {
       cursor: nw-resize;
     }
+  }
+
+  &.actived.editable {
+    outline: 1px solid var(--quad-primary-color);
   }
 
   &:not(:hover):not(.dropdown_overlay) {

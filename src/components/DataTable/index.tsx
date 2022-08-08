@@ -84,7 +84,7 @@ export default ({ size = "small", scroll = { x: 'calc(700px + 50%)', y: 240 }, b
     render(record) {
       return (
         <>
-          <FormOutlined onClick={() => open(record)} style={{ color: '#40a9ff', cursor: 'pointer' }} />
+          <FormOutlined onClick={() => open(record)} style={{ color: 'var(--quad-primary-color)', cursor: 'pointer' }} />
           <Popconfirm title="确认是否删除?" onConfirm={console.log}>
             <DeleteOutlined style={{ marginLeft: 16, color: 'red' }} />
           </Popconfirm>

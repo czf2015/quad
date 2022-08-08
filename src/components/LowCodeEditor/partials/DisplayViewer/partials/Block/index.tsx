@@ -53,7 +53,7 @@ const Boundary = ({ pull, quad, zoom }) => {
   )
 }
 
-export const Block = ({ name, id, pid, title = '', quad, hasBlock = false, store, zoom, style, splitBlock, removeEntity, pullBlock, handleDrop, children }: IBlockProps) => {
+export const Block = ({ editable, name, id, pid, title = '', quad, hasBlock = false, store, zoom, style, splitBlock, removeEntity, pullBlock, handleDrop, children }: IBlockProps) => {
   const [haltClip, setHaltClipClip] = useState(false)
   const onMenuClick: MenuProps['onClick'] = e => {
     setHaltClipClip(false)
@@ -91,14 +91,19 @@ export const Block = ({ name, id, pid, title = '', quad, hasBlock = false, store
   }
   const onDrop = handleDrop(id)
 
-  return (
-    <div id={id} className={`${styles.block} ${haltClip ? styles.contextmenu : ''} ${hasBlock ? styles.hasBlock : ''}`} style={style} onMouseMove={onMouseMove} onDragOver={onDragOver} onDrop={onDrop} ref={ref}>
+  const editTools = editable ?
+    <>
       <DeleteOutlined className={`${styles.delete_btn} quad-circle`} onClick={remove} />
       <Boundary pull={pull} quad={quad} zoom={zoom} />
       {store('hiddenClip')
         ? <ScissorOutlined className={`${styles.scissor_btn} quad-circle`} onClick={() => store('hiddenClip', false)} />
         : <Clip isHorizontal={store('isHorizontal')} offset={offset} menuItems={menuItems} onClick={split} onVisibleChange={setHaltClipClip} onMenuClick={onMenuClick} />}
+    </> : null
+
+  return (
+    <div id={id} className={`${styles.block} ${haltClip ? styles.contextmenu : ''} ${hasBlock ? styles.hasBlock : ''} ${editable ? style.editable : ''}`} style={style} onMouseMove={onMouseMove} onDragOver={onDragOver} onDrop={onDrop} ref={ref}>
       {children}
+      {editTools}
     </div>
   )
 }

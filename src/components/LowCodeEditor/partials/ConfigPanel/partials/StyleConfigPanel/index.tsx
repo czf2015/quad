@@ -34,7 +34,7 @@ const style = `.wrapper {
     top: 0;
     right: 0;
     &:hover {
-      color: #40a9ff;
+      color: var(--quad-primary-color);
       cursor: pointer;
     }
   }

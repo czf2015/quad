@@ -12,6 +12,7 @@ export const Create = ({ disabled, create, value = { lang: 'zh', timezone: 'Chin
   }
   const handleOk = () => {
     setVisible(false)
+    create()
   }
   const handleCancel = () => {
     setVisible(false)

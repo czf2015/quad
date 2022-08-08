@@ -1,50 +1,54 @@
 import React, { useState } from 'react';
-import { Button, Drawer } from '@/plugins/ui';
+import { Button, Drawer, Radio, Space } from 'antd';
 
 export default () => {
   const [visible, setVisible] = useState(false);
-  const [childrenDrawer, setChildrenDrawer] = useState(false);
+  const [placement, setPlacement] = useState('right');
 
   const showDrawer = () => {
     setVisible(true);
+  };
+
+  const onChange = (e) => {
+    setPlacement(e.target.value);
   };
 
   const onClose = () => {
     setVisible(false);
   };
 
-  const showChildrenDrawer = () => {
-    setChildrenDrawer(true);
-  };
-
-  const onChildrenDrawerClose = () => {
-    setChildrenDrawer(false);
-  };
-
   return (
     <>
-      <Button type="primary" onClick={showDrawer}>
-        Open drawer
-      </Button>
+      <Space>
+        <Radio.Group value={placement} onChange={onChange}>
+          <Radio value="top">top</Radio>
+          <Radio value="right">right</Radio>
+          <Radio value="bottom">bottom</Radio>
+          <Radio value="left">left</Radio>
+        </Radio.Group>
+        <Button type="primary" onClick={showDrawer}>
+          Open
+        </Button>
+      </Space>
       <Drawer
-        title="Multi-level drawer"
-        width={520}
-        closable={false}
+        title="Drawer with extra actions"
+        placement={placement}
+        width={500}
         onClose={onClose}
         visible={visible}
+        getContainer={(triggerNode) => document.getElementById('display_viewer')}
+        extra={
+          <Space>
+            <Button onClick={onClose}>Cancel</Button>
+            <Button type="primary" onClick={onClose}>
+              OK
+            </Button>
+          </Space>
+        }
       >
-        <Button type="primary" onClick={showChildrenDrawer}>
-          Two-level drawer
-        </Button>
-        <Drawer
-          title="Two-level Drawer"
-          width={320}
-          closable={false}
-          onClose={onChildrenDrawerClose}
-          visible={childrenDrawer}
-        >
-          This is two-level drawer
-        </Drawer>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
       </Drawer>
     </>
   );
