@@ -39,7 +39,7 @@ export const Open = ({ disabled, open }) => {
         enterButton
       />
     ),
-    filterIcon: (filtered) => <FilterOutlined style={{ color: filtered ? '#1890ff' : undefined }} />,
+    filterIcon: (filtered) => <FilterOutlined style={{ color: filtered ? 'var(--quad-primary-color)' : undefined }} />,
     onFilter: (value, record) => record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
     onFilterDropdownVisibleChange: (visible) => {
       if (visible) {
