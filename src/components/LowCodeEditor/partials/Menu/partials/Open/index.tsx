@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { Popconfirm, Input, Modal, Table } from "@/plugins/ui";
 import { renderTags } from "@/components/DataTable/render";
 import Button from '@/components/Button'
-import { FolderOpenOutlined, DeleteOutlined, FilterOutlined } from '@ant-design/icons'
+import { FolderOpenOutlined, DeleteOutlined, FilterOutlined, EyeOutlined } from '@ant-design/icons'
 import { data } from './config';
 
 
@@ -91,7 +91,7 @@ export const Open = ({ disabled, open }) => {
         }
         return (
           <>
-            <FolderOpenOutlined onClick={view} style={{ color: 'var(--quad-primary-color)', cursor: 'pointer' }} />
+            <EyeOutlined onClick={view} style={{ color: 'var(--quad-primary-color)', cursor: 'pointer' }} />
             <Popconfirm title="确认是否删除?" onConfirm={console.log}>
               <DeleteOutlined style={{ marginLeft: 16, color: 'red' }} />
             </Popconfirm>
