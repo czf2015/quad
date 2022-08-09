@@ -73,7 +73,6 @@ export default [
     pid: 0b111,
     title: "页面-编辑区-右侧-中间显示区",
     quad: "left",
-    // widgets: ['0b1110-1'],
     style: {
       top: 64,
       left: 216,
@@ -94,32 +93,4 @@ export default [
       height: 1016,
     },
   },
-  // {
-  //   pid: 0b1110,
-  //   id: '0b1110-1',
-  //   name: "Drawer",
-  //   title: "抽屉",
-  //   blocks: {
-  //     title: 'demo1',
-  //     content: 'demo2',
-  //   },
-  //   style: {
-  //   },
-  // },
-  // {
-  //   pid: 'demo1',
-  //   id: 'demo1-1',
-  //   name: "Form",
-  //   title: "抽屉-标题",
-  //   style: {
-  //   },
-  // },
-  // {
-  //   pid: 'demo2',
-  //   id: 'demo2-1',
-  //   name: "DataTable",
-  //   title: "抽屉-内容",
-  //   style: {
-  //   },
-  // },
 ];
