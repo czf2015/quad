@@ -4,6 +4,8 @@ import { useSnapShot } from "./useSnapShot";
 import { useRestore } from "./useRestore";
 import { update } from "@/utils/object";
 
+const defaultActive = { id: 1, name: 'Block', key: 'style' }
+
 export const useEntities = (initialEntities = [], isPrinted) => {
   const snapShot = useSnapShot(initialEntities, isPrinted);
   const {
@@ -16,6 +18,7 @@ export const useEntities = (initialEntities = [], isPrinted) => {
     redo,
     stage,
   } = useRestore(initialEntities, snapShot);
+  const [active, setActive] = useState(defaultActive)
 
   // 更新
   const updateEntity = (id, updates) => {
@@ -77,6 +80,7 @@ export const useEntities = (initialEntities = [], isPrinted) => {
       snapShot.take(result, `remove entity of block: ${id}`);
       return result;
     });
+    setActive(active => active.id == id ? defaultActive : active)
   };
   // 分割
   const splitBlock = (id, isHorizontal = false, offset) => {
@@ -138,6 +142,8 @@ export const useEntities = (initialEntities = [], isPrinted) => {
       );
       return result;
     });
+    // TODO: id生成改为uuid
+    setActive(active => active.id == id ? { ...acitve, id: id * 2 } : active)
   };
   // 拉伸
   const pullBlock = (id, dragMove) => {
@@ -295,9 +301,9 @@ export const useEntities = (initialEntities = [], isPrinted) => {
 
   const dragWidget = (dragName, dropId) => {
     const dropEntity = entities.find((item) => item.id == dropId);
+    const dragWidgetId = Date.now();
     setEntities((entities) => {
       const result = [];
-      const dragWidgetId = Date.now();
       entities.forEach((entity) => {
         if (dropEntity?.name == "Block") {
           if (entity.id == dropEntity.id) {
@@ -344,6 +350,7 @@ export const useEntities = (initialEntities = [], isPrinted) => {
       }
       return result;
     });
+    setActive({ id: dragWidgetId, name: dragName, key: 'style' })
   };
 
   const dragEntity = (dragId, dropId) => {
@@ -434,9 +441,8 @@ export const useEntities = (initialEntities = [], isPrinted) => {
       }
       return [...entities];
     });
+    setActive({ id: dragId, name: dragWidget.name, key: 'style' })
   };
-
-  const [active, setActive] = useState({ id: 1, name: 'Block', key: 'style' })
 
   return {
     entities,
@@ -454,5 +460,6 @@ export const useEntities = (initialEntities = [], isPrinted) => {
     dragEntity,
     active,
     setActive,
+    setEntities
   };
 };

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Drawer } from 'antd';
 import DropZone from '@/components/DropZone';
 
@@ -8,13 +8,13 @@ export default ({
   name,
   title = "Drawer with extra actions",
   blocks = {
-    title: 'demo1',
-    content: 'demo2',
+    title: 'title',
+    content: 'content',
   },
   slots,
   extra,
   width = 500,
-  visible = true,
+  visible = false,
   placement = 'right',
   getContainer = (triggerNode) => document.getElementById('display_viewer'),
   updateEntity,
@@ -23,7 +23,7 @@ export default ({
   const onClose = () => {
     updateEntity(id, { visible: false })
   };
-
+  
   return (
     <Drawer
       title={slots.title || <DropZone pid={id} id={blocks.title} title={title} updateEntity={updateEntity} {...attrs} style={{ top: 12, width: width - 96, height: 24 }}>{title}</DropZone>}

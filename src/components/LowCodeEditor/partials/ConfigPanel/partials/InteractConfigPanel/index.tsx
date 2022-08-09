@@ -2,8 +2,9 @@ import React from 'react'
 import { Form, Button, message } from '@/plugins/ui'
 import FormList from '@/components/Form/partials/List'
 import TabsPanel from '@/components/TabsPanel'
+import { EVENT_OPTIONS, MESSAGE_OPTIONS } from '@/constants/OPTIONS'
 
-export const InteractConfigPanel = ({ id, updateEntity, meta = { }, ...interact }) => {
+export const InteractConfigPanel = ({ id, updateEntity, meta = {}, ...interact }) => {
   const handleSubmit = (values) => {
     updateEntity(id, values)
     console.log(values)
@@ -27,24 +28,14 @@ export const InteractConfigPanel = ({ id, updateEntity, meta = { }, ...interact 
           name: "event",
           label: "事件类型",
           type: "Select",
-          options: [
-            { label: "单击", value: "click" },
-            { label: "右键", value: "contextmenu" },
-            { label: "鼠标移入", value: "mouseenter" },
-            { label: "鼠标移出", value: "mouseleave" },
-            { label: "鼠标悬动", value: "mouseover" },
-          ],
+          options: EVENT_OPTIONS,
         },
         {
           name: "type",
           label: "消息类型",
           type: "Text",
           rules: [{ required: true, message: "请输入消息类型！" }],
-          options: [
-            { label: "OPEN_MODAL", value: "OPEN_MODAL" },
-            { label: "OPEN_DRAWER", value: "OPEN_DRAWER" },
-            { label: "MESSAGE", value: "MESSAGE" },
-          ],
+          options: MESSAGE_OPTIONS,
           placeholder: '请输入消息类型！'
         },
         {
@@ -63,11 +54,7 @@ export const InteractConfigPanel = ({ id, updateEntity, meta = { }, ...interact 
           label: "消息类型",
           type: "Text",
           rules: [{ required: true, message: "请输入消息类型！" }],
-          options: [
-            { label: "OPEN_MODAL", value: "OPEN_MODAL" },
-            { label: "OPEN_DRAWER", value: "OPEN_DRAWER" },
-            { label: "MESSAGE", value: "MESSAGE" },
-          ],
+          options: MESSAGE_OPTIONS,
           placeholder: "请输入消息类型",
         },
         {

@@ -56,9 +56,9 @@ export default ({ size = "small", scroll = { x: 'calc(700px + 50%)', y: 240 }, b
         <div className={styles.title__right}>
           <Button type="primary" /* onClick={handleBatch}  */ data-bind="batch">批量操作</Button>
           <Upload showUploadList={false}>
-            <Button title="导入" onClick={importData} icon={<UploadOutlined />} />
+            <Button type="primary" onClick={importData} icon={<UploadOutlined />} style={{ marginLeft: 4 }}>导入</Button>
           </Upload>
-          <Button title="新增" onClick={open} icon={<PlusOutlined />} />
+          <Button type="primary" onClick={open} icon={<PlusOutlined />} style={{ marginLeft: 4 }}>新增</Button>
           <FieldsFilter checked={checked} options={options} onChange={setChecked} />
         </div>
       </div>

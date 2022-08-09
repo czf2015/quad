@@ -17,7 +17,13 @@ export const useHandlers = ({ id, handlers, updateEntity }) => {
         try {
           const handle = new Function(`return ${item.handle}`)();
           const handler = (params) => {
-            updateEntity(id, (entities) => handle({ ...params, payload: entities?.find(item => item.id == params?.id)?.meta?.payloads[params.target] }));
+            updateEntity(id, (entities) =>
+              handle({
+                ...params,
+                payload: entities?.find((item) => item.id == params?.id)?.meta
+                  ?.payloads[params.target],
+              })
+            );
           };
           window.$eventBus.on(item.type, handler);
           if (!handlersRef.current[item.type]) {
@@ -25,7 +31,7 @@ export const useHandlers = ({ id, handlers, updateEntity }) => {
           }
           handlersRef.current[item.type].push(handler);
         } catch (e) {
-          message.error(e)
+          message.error(e);
         }
       }
     });

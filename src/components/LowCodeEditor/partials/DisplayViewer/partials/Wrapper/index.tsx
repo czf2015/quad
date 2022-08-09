@@ -12,6 +12,7 @@ export const Wrapper = ({
   pid,
   zoom,
   title = '图表名称',
+  setEntities,
   removeEntity,
   updateEntity,
   editable,
@@ -23,7 +24,12 @@ export const Wrapper = ({
   children,
   binds,
   handlers,
+  occupied = false,
 }: IWrapperProps) => {
+  // TODO:
+  if (occupied) {
+    return <>{children}</>
+  }
   const remove = (e) => {
     e.stopPropagation();
     removeEntity(id);
@@ -88,8 +94,8 @@ export const Wrapper = ({
     />
   );
 
-  const rootRef = useBinds({ id, binds })
-  useHandlers({ id, handlers, updateEntity })
+  const rootRef = useBinds({ id, binds, updateEntity, setEntities })
+  useHandlers({ id, handlers, updateEntity, })
 
   const select = () => {
     setActive(active => ({ ...active, id }))

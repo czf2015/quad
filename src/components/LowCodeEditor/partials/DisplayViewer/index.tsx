@@ -6,7 +6,7 @@ import { useStore } from '@/hooks'
 import styles from './index.module.less'
 
 
-export const DisplayViewer = ({ entities = [], updateEntity, removeEntity, splitBlock, pullBlock, dragWidget, dragEntity, editable, active, setActive, pid = 0, width, height, zoom }) => {
+export const DisplayViewer = ({ entities = [], setEntities, updateEntity, removeEntity, splitBlock, pullBlock, dragWidget, dragEntity, editable, active, setActive, pid = 0, width, height, zoom }) => {
   useEffect(() => {
     document.oncontextmenu = function (event) {
       event.preventDefault();
@@ -34,16 +34,30 @@ export const DisplayViewer = ({ entities = [], updateEntity, removeEntity, split
     if (Widget) {
       const slots = {}
       for (let key in blocks) {
-        slots[key] = render(blocks[key])
+        slots[key] = renderSlot(blocks[key])
       }
       return (
-        <Wrapper id={id} name={name} {...attrs} style={style} removeEntity={removeEntity} updateEntity={updateEntity} handleDrop={handleDrop} key={id} editable={editable} active={active} setActive={setActive}>
+        <Wrapper id={id} name={name} {...attrs} style={style} setEntities={setEntities} removeEntity={removeEntity} updateEntity={updateEntity} handleDrop={handleDrop} key={id} editable={editable} active={active} setActive={setActive}>
           <Widget id={id} name={name} updateEntity={updateEntity} editable={editable} store={store} {...attrs} slots={slots} />
         </Wrapper>
       )
     }
 
     return null
+  }
+
+  const renderSlot = (id) => {
+    const item = entities.find(item => item.id == id)
+    return (
+      <>
+        <Block {...item} store={store} zoom={zoom} updateEntity={updateEntity} removeEntity={removeEntity} splitBlock={splitBlock} pullBlock={pullBlock} handleDrop={handleDrop} editable={editable} setActive={setActive} key={item.id}>
+          {item?.widgets?.map(widgetId => {
+            const widget = entities.find(entity => entity.id == widgetId)
+            return renderWidget(widget)
+          })} </Block>
+        {item?.widgets?.length > 0 ? null : render(item.id)}
+      </>
+    )
   }
 
   const render = (pid) => {
