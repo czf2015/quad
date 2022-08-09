@@ -6,20 +6,16 @@
  */
 
 // @ts-nocheck
-import React, { useState, } from "react";
+import React, { useState } from "react";
 import { Select } from "antd";
 
 export default ({ id, options = [], value, onChange, ...attrs }) => {
   const [inputValue, setInputValue] = useState(typeof value == 'undefined' ? [] : [value])
 
   const handleChange = (values = []) => {
+    setInputValue(values.length > 0 ? values.slice(-1) : [])
     onChange(values[values.length - 1])
-    if (values.length > 0) {
-      setInputValue(values.slice(-1))
-    } else {
-      setInputValue([])
-    }
   }
 
-  return <Select  {...attrs} mode="tags" options={options} value={inputValue} onChange={handleChange} />
+  return <Select {...attrs} mode="tags" options={options} value={inputValue} onChange={handleChange}  />
 }

@@ -9,5 +9,5 @@ export const EVENT_OPTIONS = [
 export const MESSAGE_OPTIONS = [
   { label: "OPEN_MODAL", value: "OPEN_MODAL" },
   { label: "OPEN_DRAWER", value: "OPEN_DRAWER" },
-  { label: "MESSAGE", value: "MESSAGE" },
+  { label: "OPEN_MESSAGE", value: "OPEN_MESSAGE" },
 ];
