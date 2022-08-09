@@ -28,12 +28,6 @@ export default [
         icon: "",
         description: "",
       },
-      // {
-      //   name: "Drawer",
-      //   title: "抽屉",
-      //   icon: "",
-      //   description: "",
-      // },
     ],
   },
   {
