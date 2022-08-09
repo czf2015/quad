@@ -21,7 +21,8 @@ export const Wrapper = ({
   style = { width: 400, height: 300 },
   mode = /Chart/.test(name) ? 'card' : 'plain',
   children,
-  ...extra
+  binds,
+  handlers,
 }: IWrapperProps) => {
   const remove = (e) => {
     e.stopPropagation();
@@ -87,8 +88,8 @@ export const Wrapper = ({
     />
   );
 
-  const rootRef = useBinds(extra.binds)
-  useHandlers({ entity: { id, title, mode, style, ...extra }, updateEntity })
+  const rootRef = useBinds({ id, binds })
+  useHandlers({ id, handlers, updateEntity })
 
   const select = () => {
     setActive(active => ({ ...active, id }))

@@ -10,7 +10,7 @@ import styles from './index.module.less'
 
 export const Card = ({ children, field, add, remove }) => {
   const [collapsed, toggleCollapsed] = useToggle(false)
-  const [enableState, toggleEnableState] = useToggle(false)
+  const [enableState, toggleEnableState] = useToggle(true)
 
   return (
     <div className={`${styles.card} ${enableState ? styles.enabled : ''} ${collapsed ? styles.collapsed : ''}`}>
@@ -26,18 +26,19 @@ export const Card = ({ children, field, add, remove }) => {
       <Form.Item
         className={styles.enable_btn}
         {...field}
+        valuePropName="checked"
         name={[field.name, "enable"]}
       >
-        <Switch size="small" checked={enableState} onChange={toggleEnableState} checkedChildren="启用" unCheckedChildren="停用" />
+        <Switch size="small" checkedChildren="启用" unCheckedChildren="停用" />
       </Form.Item>
       <span className={`${styles.collapse_btn} quad-circle`}><RightOutlined rotate={collapsed ? 90 : -90} onClick={toggleCollapsed} className={styles.collapse_btn} /></span>
     </div>
   )
 }
 
-export default ({ name, list = [], initialValue = [] }) => {
+export default ({ name, list = [] }) => {
   return (
-    <Form.List name={name} initialValue={initialValue}>
+    <Form.List name={name}>
       {(fields, { add, remove }, { errors }) => (
         <div className={styles.card_list}>
           {fields.map((field) => (
@@ -47,7 +48,7 @@ export default ({ name, list = [], initialValue = [] }) => {
                 switch (type) {
                   case 'InputText':
                   case 'Text':
-                    formItem = <InputText options={options} placeholder={placeholder} size="small" />
+                    formItem = <InputText {...attrs} options={options} placeholder={placeholder} size="small" />
                     break
                   case 'TextArea':
                     formItem = <Input.TextArea placeholder={placeholder} autoSize={{ minRows: 3, maxRows: 10 }} size="small" />

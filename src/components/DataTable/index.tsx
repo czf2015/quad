@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import { /* VirtualTable as  */Table, Popconfirm } from '@/plugins/ui';
+import React, { useEffect, useState } from 'react';
+import { /* VirtualTable as  */Table, Popconfirm, Button } from '@/plugins/ui';
 import FormModal from "@/components/FormModal";
 import FieldsFilter from '@/components/Form/partials/FieldsFilter';
 import Upload from '@/components/Form/partials/Upload';
-import Button from '@/components/Button';
 import { EditableCell, ColumnTitle } from './partials';
-import { useDataTable, useRowSelection, useBinds } from '@/hooks';
+import { useDataTable, useRowSelection } from '@/hooks';
 import { InfoCircleOutlined, FormOutlined, DeleteOutlined, PlusOutlined, UploadOutlined } from '@ant-design/icons';
 import { convertToFormItems } from './helpers';
 import { tableColumn } from '@/mock/tableColumn';
 import styles from './index.module.less'
+
 
 export default ({ size = "small", scroll = { x: 'calc(700px + 50%)', y: 240 }, bordered = true, updateEntity, ...entity }) => {
   const { title, dataSource, pagination, properties, orderKeys: defaultOrderKeys, loading } = useDataTable(entity.dataSource)
@@ -49,12 +49,12 @@ export default ({ size = "small", scroll = { x: 'calc(700px + 50%)', y: 240 }, b
     return (
       <div className={styles.title}>
         <div className={styles.title__left}>
-          <span data-bind="title" data-payload={title}>{title}</span>
+          <span>{title}</span>
           <InfoCircleOutlined style={{ margin: '0 4px' }} />
           <span>共{pagination.total}条{rowSelection.total > 0 ? `, 已选中${rowSelection.total}条` : ''}</span>
         </div>
         <div className={styles.title__right}>
-          <Button title="批量xx" onClick={handleBatch} />
+          <Button type="primary" /* onClick={handleBatch}  */ data-bind="batch">批量操作</Button>
           <Upload showUploadList={false}>
             <Button title="导入" onClick={importData} icon={<UploadOutlined />} />
           </Upload>
@@ -92,6 +92,20 @@ export default ({ size = "small", scroll = { x: 'calc(700px + 50%)', y: 240 }, b
       )
     }
   })
+
+  useEffect(() => {
+    updateEntity?.(entity?.id, {
+      meta: {
+        binds: [{
+          label: '批量操作',
+          value: 'batch'
+        }],
+        payloads: {
+          batch: rowSelection.selectedRowKeys,
+        }
+      }
+    })
+  }, [rowSelection.selectedRowKeys])
 
   return (
     <>

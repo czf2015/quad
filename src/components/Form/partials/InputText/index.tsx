@@ -10,7 +10,7 @@ import React, { useState, } from "react";
 import { Select } from "antd";
 
 export default ({ id, options = [], value, onChange, ...attrs }) => {
-  const [inputValue, setInputValue] = useState(value ? [] : [value])
+  const [inputValue, setInputValue] = useState(typeof value == 'undefined' ? [] : [value])
 
   const handleChange = (values = []) => {
     onChange(values[values.length - 1])

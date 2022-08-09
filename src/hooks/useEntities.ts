@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useSnapShot } from "./useSnapShot";
 import { useRestore } from "./useRestore";
+import { update } from "@/utils/object";
 
 export const useEntities = (initialEntities = [], isPrinted) => {
   const snapShot = useSnapShot(initialEntities, isPrinted);
@@ -17,18 +18,32 @@ export const useEntities = (initialEntities = [], isPrinted) => {
   } = useRestore(initialEntities, snapShot);
 
   // 更新
-  const updateEntity = (id, updated) => {
-    setEntities((entities) => {
-      const result = [];
-      entities.forEach((item) => {
-        if (item.id == id) {
-          result.push({ ...item, ...updated });
-        } else {
-          result.push({ ...item });
-        }
+  const updateEntity = (id, updates) => {
+    if (typeof updates == 'function') {
+      setEntities((entities) => {
+        const result = [];
+        entities.forEach((item) => {
+          if (item.id == id) {
+            result.push({ ...item, ...update(item, updates(entities)) });
+          } else {
+            result.push({ ...item });
+          }
+        });
+        return result;
+      })
+    } else {
+      setEntities((entities) => {
+        const result = [];
+        entities.forEach((item) => {
+          if (item.id == id) {
+            result.push({ ...item, ...update(item, updates) });
+          } else {
+            result.push({ ...item });
+          }
+        });
+        return result;
       });
-      return result;
-    });
+    }
   };
   // 删除
   const removeEntity = (id, isBlock = false) => {

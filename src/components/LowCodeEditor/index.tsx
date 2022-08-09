@@ -11,7 +11,7 @@ const { TabPane } = Tabs
 export default ({ page: { content: initialEntities, ...initialBaseInfo } }) => {
   const { entities, active, ...attrs } = useEntities(initialEntities/* , true */)
   const store = useStore(initialBaseInfo)
-  const [mode, setMode] = useState(0) // 空白状态：0  查看状态: 1 编辑状态：2 
+  const [mode, setMode] = useState(2) // 空白状态：0  查看状态: 1 编辑状态：2 
   const entity = entities.find(item => item.id == active?.id)
 
   const zoom = 1440 / store('width')

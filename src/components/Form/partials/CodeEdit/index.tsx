@@ -4,7 +4,7 @@ import { Code } from '@/plugins/ui'
 
 export default ({ value, onChange }) => {
   const handleChange = (editor: any, data: any, value: string) => {
-    onChange(value)
+    onChange?.(value)
   }
 
   return (

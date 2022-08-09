@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-export const useBinds = (binds, id) => {
+export const useBinds = ({ id, binds }) => {
   const rootRef = useRef();
   const bindsRef = useRef({});
   const clear = () => {
@@ -21,7 +21,6 @@ export const useBinds = (binds, id) => {
             window.$eventBus.emit(type, {
               ...item,
               id,
-              payload: el.dataset.payload,
             });
           };
           el.addEventListener(item.event, handler);

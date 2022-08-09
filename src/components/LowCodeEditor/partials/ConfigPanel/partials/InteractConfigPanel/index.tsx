@@ -5,8 +5,8 @@ import TabsPanel from '@/components/TabsPanel'
 
 export const InteractConfigPanel = ({ id, updateEntity, meta = { }, ...interact }) => {
   const handleSubmit = (values) => {
-    console.log({ id, values })
     updateEntity(id, values)
+    console.log(values)
     message.success('已提交变更！')
   }
 

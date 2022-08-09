@@ -1,7 +1,7 @@
+import { message } from "antd";
 import { useEffect, useRef } from "react";
-import { update } from "@/utils/object";
 
-export const useHandlers = ({ entity, updateEntity }) => {
+export const useHandlers = ({ id, handlers, updateEntity }) => {
   const handlersRef = useRef({});
   const clear = () => {
     Object.keys(handlersRef.current).forEach((type) => {
@@ -12,17 +12,21 @@ export const useHandlers = ({ entity, updateEntity }) => {
   };
   const renew = () => {
     handlersRef.current = {};
-    entity.handlers?.forEach((item) => {
+    handlers?.forEach((item) => {
       if (item.enable) {
-        const handle = new Function(`return ${item.handle}`)();
-        const handler = (params) => {
-          updateEntity(entity.id, update(entity, handle(params)));
-        };
-        window.$eventBus.on(item.type, handler);
-        if (!handlersRef.current[item.type]) {
-          handlersRef.current[item.type] = [];
+        try {
+          const handle = new Function(`return ${item.handle}`)();
+          const handler = (params) => {
+            updateEntity(id, (entities) => handle({ ...params, payload: entities?.find(item => item.id == params?.id)?.meta?.payloads[params.target] }));
+          };
+          window.$eventBus.on(item.type, handler);
+          if (!handlersRef.current[item.type]) {
+            handlersRef.current[item.type] = [];
+          }
+          handlersRef.current[item.type].push(handler);
+        } catch (e) {
+          message.error(e)
         }
-        handlersRef.current[item.type].push(handler);
       }
     });
   };
@@ -30,5 +34,5 @@ export const useHandlers = ({ entity, updateEntity }) => {
     clear();
     renew();
     return clear;
-  }, [entity.handlers]);
+  }, [handlers]);
 };
