@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React, { useState } from "react";
+import React from "react";
 import Form from '@/components/Form'
 import { appendFormItems } from './helpers'
 import styles from './index.module.less'
@@ -7,7 +7,6 @@ import styles from './index.module.less'
 export default ({
   title,
   initialValues,
-  // children,
   onFinish = console.success,
   onFinishFailed = console.error,
   disabled = false,
@@ -21,26 +20,19 @@ export default ({
   },
   labelAlign = 'right',
   footer,
+  formItems = [],
+  updateEntity,
+  id,
 }) => {
-  const [formItems, setFormItems] = useState([])
   const onDragOver = (e) => {
     e.preventDefault()
   }
   const handleDrop = (e) => {
     e.stopPropagation()
-    // 从左侧面板拖拽组件到显示区域(位置)
     const dragWidgetName = e.dataTransfer.getData("dragWidgetName");
     if (dragWidgetName) {
-      // dragWidget(dragWidgetName, dropId)
-      setFormItems(formItems => {
-        appendFormItems(formItems, dragWidgetName)
-        return [...formItems]
-      })
-    }
-    // 拖拽某显示区内组件到特定区域（位置）
-    const dragWidgetId = e.dataTransfer.getData("dragWidgetId");
-    if (dragWidgetId) {
-      // dragEntity(dragWidgetId, dropId)
+      appendFormItems(formItems, dragWidgetName)
+      updateEntity(id, { formItems: [...formItems] })
     }
   }
   return (
