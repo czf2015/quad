@@ -23,6 +23,7 @@ export default ({
   formItems = [],
   updateEntity,
   id,
+  editable,
 }) => {
   const onDragOver = (e) => {
     e.preventDefault()
@@ -38,7 +39,7 @@ export default ({
   return (
     <div className={styles.form_wrapper}>
       <h4>{title}</h4>
-      <div className={styles.placement} onDragOver={onDragOver} onDrop={handleDrop}>
+      <div className={styles.placement} style={{ outline: editable ? '1px dashed var(--quad-primary-color)' : 'none'}} onDragOver={onDragOver} onDrop={handleDrop}>
         <Form
           children={formItems}
           footer={footer}
