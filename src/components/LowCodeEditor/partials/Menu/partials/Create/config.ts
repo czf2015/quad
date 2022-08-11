@@ -1,4 +1,12 @@
 export const formProps = {
+  initialValues: {
+    lang: "zh",
+    timezone: "China Standard Time",
+    width: 1440,
+    height: 1080,
+    keywords: ["低代码"],
+    template: 0,
+  },
   disabled: false,
   requiredMark: true,
   layout: "horizontal",
@@ -14,7 +22,7 @@ export const formProps = {
       name: "path",
       label: "路径",
       type: "Input",
-      required: true,
+      rules: [{ required: true, message: '请输入路径参数!' }],
     },
     {
       name: "query",
@@ -42,12 +50,12 @@ export const formProps = {
       label: "页面宽度",
       type: "InputNumber",
       addonAfter: "px",
-      required: true,
+      rules: [{ required: true, message: '请输入页面宽度!' }],
       prerequisites: [
         {
           field: "template",
           options: {
-            all: [0],
+            equal: [0],
           },
         },
       ],
@@ -57,12 +65,12 @@ export const formProps = {
       label: "页面高度",
       type: "InputNumber",
       addonAfter: "px",
-      required: true,
+      rules: [{ required: true, message: '请输入页面高度!' }],
       prerequisites: [
         {
           field: "template",
           options: {
-            all: [0],
+            equal: [0],
           },
         },
       ],

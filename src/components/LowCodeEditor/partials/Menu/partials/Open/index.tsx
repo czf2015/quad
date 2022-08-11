@@ -1,13 +1,21 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Popconfirm, Input, Modal, Table } from "@/plugins/ui";
 import { renderTags } from "@/components/DataTable/render";
 import Button from '@/components/Button'
 import { FolderOpenOutlined, DeleteOutlined, FilterOutlined, EyeOutlined } from '@ant-design/icons'
-import { data } from './config';
 
 
-export const Open = ({ disabled, open }) => {
+export const Open = ({ disabled, open, service }) => {
   const [visible, setVisible] = useState(false)
+  const [dataSource, setDataSource] = useState([])
+  const refresh = () => {
+    if (visible) {
+      service.getList().then(({ data: { list } }) => {
+        setDataSource(list)
+      })
+    }
+  }
+  useEffect(refresh, [visible])
   const openModal = () => {
     setVisible(true)
   }
@@ -81,18 +89,22 @@ export const Open = ({ disabled, open }) => {
     },
     {
       title: "操作",
-      dataIndex: "operation",
+      dataIndex: "id",
       align: 'center',
       width: 120,
       render: (_, record: { key: React.Key }) => {
         const view = () => {
-          open()
-          setVisible(false)
+          open(record.id).then(() => {
+            setVisible(false)
+          })
+        }
+        const remove = () => {
+          service.delete({ id: record.id }).then(refresh)
         }
         return (
           <>
             <EyeOutlined onClick={view} style={{ color: 'var(--quad-primary-color)', cursor: 'pointer' }} />
-            <Popconfirm title="确认是否删除?" onConfirm={console.log}>
+            <Popconfirm title="确认是否删除?" onConfirm={remove}>
               <DeleteOutlined style={{ marginLeft: 16, color: 'red' }} />
             </Popconfirm>
           </>
@@ -105,7 +117,7 @@ export const Open = ({ disabled, open }) => {
     <>
       <Button title="打开" disabled={disabled} onClick={openModal} icon={<FolderOpenOutlined />} />
       <Modal title={<div style={{ color: 'var(--quad-primary-color)' }}><FolderOpenOutlined /><span style={{ marginLeft: 4 }}>打开页面</span></div>} visible={visible} onCancel={handleCancel} width={'75%'} bodyStyle={{ maxHeight: 720, overflow: 'auto', padding: '0px 16px 32px 16px' }} footer={null}>
-        <Table columns={columns} dataSource={data} onChange={onChange} pagination={false} size="small" sticky />
+        <Table columns={columns} dataSource={dataSource} onChange={onChange} pagination={false} size="small" sticky />
       </Modal>
     </>
   )

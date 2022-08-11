@@ -5,13 +5,13 @@ import { Save } from './partials'
 import styles from './index.module.less'
 
 
-export const Console = ({ mode = 0, save, edit, preview, publish, share }) => {
+export const Console = ({ mode = 0, page, save, edit, preview, publish, share }) => {
   const isEditMode = mode == 2
 
   return (
     <div className={styles.console}>
       {isEditMode
-        ? <Save save={save} />
+        ? <Save initialValues={page} onFinish={save} />
         : (
           <>
             <Button title="编辑" onClick={edit} type="text" icon={<FormOutlined />} />

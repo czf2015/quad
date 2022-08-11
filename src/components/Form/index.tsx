@@ -20,10 +20,11 @@ export default ({
     span: 8,
   },
   labelAlign = 'right',
+  bodyStyle,
   footer = (
     <Form.Item wrapperCol={{ span: 6, offset: 18 }}>
       <Button type="primary" htmlType="submit">
-        Submit
+        确认
       </Button>
     </Form.Item>
   )
@@ -47,7 +48,9 @@ export default ({
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
     >
-      {filter(formItems, formData)?.map(renderFormItem)}
+      <div style={bodyStyle}>
+        {filter(formItems, formData)?.map(renderFormItem)}
+      </div>
       {footer}
     </Form>
   );

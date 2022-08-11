@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { useState } from 'react'
 
-export const useStore = (initialState) => {
+export const useStore = (initialState = {}) => {
   const [state, setState] = useState(initialState)
 
   const store = (key, value) => {

@@ -4,7 +4,7 @@ import { message, Modal } from "antd";
 // import { storage } from "@/config";
 import { REQUEST_TIMEOUT } from "@/constants/TIME";
 // import { jumpToLogin } from './url'
-import { ROOT_PATH } from '@/config'
+import { ROOT_PATH } from "@/config";
 
 // axios.defaults.timeout = REQUEST_TIMEOUT;
 
@@ -84,15 +84,18 @@ import { ROOT_PATH } from '@/config'
 const request = async ({ method = "get", url, params, data, ...rest } = {}) => {
   return await axios
     .request({ method, url, params, data, ...rest })
-    .then(({ data: responseData = {} } = {}) => {
-      if (responseData.code == "0000" && responseData.data) {
-        return responseData;
+    .then(({ status, data = {} } = {}) => {
+      if (status == 200) {
+        return data;
       }
-      return Promise.reject(responseData.msg);
-    });
+      return Promise.reject(data);
+    })
 };
 
 export const getMockData = (id) =>
-  axios.request({ method: 'get', url: `${ROOT_PATH}/api/v2/data/${id}.json` }).then(res => res.data).catch((err) => ({}));
+  axios
+    .request({ method: "get", url: `${ROOT_PATH}/api/v2/data/${id}.json` })
+    .then((res) => res.data)
+    .catch((err) => ({}));
 
-export default request
+export default request;
