@@ -45,6 +45,14 @@
     }
   }
 
+  .exit {
+    position: fixed;
+    top: 12px;
+    right: 12px;
+    display: none;
+    cursor: pointer;
+  }
+
   &.collapsed {
     >.main {
       >.content {
@@ -56,6 +64,7 @@
       }
     }
   }
+
 
   &.preview {
     >.header {
@@ -75,6 +84,9 @@
       >.content {
         width: 100%;
       }
+    }
+    >.exit {
+      display: inline-block;
     }
   }
 

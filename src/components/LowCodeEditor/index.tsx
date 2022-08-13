@@ -84,6 +84,9 @@ export default ({ /* page: { content: initialEntities, ...initialBaseInfo },  */
   const preview = () => {
     setIsPreview(true)
   }
+  const exit = () => {
+    setIsPreview(false)
+  }
   const header = (
     <>
       <Menu mode={mode} open={open} create={create} service={service} />
@@ -123,6 +126,6 @@ export default ({ /* page: { content: initialEntities, ...initialBaseInfo },  */
   }
 
   return (
-    <Layout slots={slots} zoom={zoom} isPreview={isPreview} />
+    <Layout slots={slots} zoom={zoom} isPreview={isPreview} exit={exit} />
   )
 }

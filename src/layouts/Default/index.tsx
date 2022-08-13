@@ -4,7 +4,7 @@ import { /* useResponsive,  */useToggle } from '@/hooks'
 import { LeftOutlined } from '@ant-design/icons'
 import styles from './index.module.less'
 
-export default ({ slots: { header, main, footer }, zoom, isPreview = true }) => {
+export default ({ slots: { header, main, footer }, zoom, isPreview = true, exit }) => {
   // const ref = useResponsive({ width: 1920, height: 1080 }, false)
   const [leftPanelCollapsed, toggleLeftPanelCollapsed] = useToggle(false)
 
@@ -22,6 +22,7 @@ export default ({ slots: { header, main, footer }, zoom, isPreview = true }) => 
         </div>
       </div>
       {/* <div className={styles.footer}>{footer}</div> */}
+      <span className={styles.exit} onClick={exit}>退出</span>
     </div>
   )
 }
