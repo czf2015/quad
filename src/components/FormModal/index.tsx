@@ -2,7 +2,7 @@ import React from 'react'
 import { Modal, Button, Form } from '@/plugins/ui'
 import CustomForm from '@/components/Form'
 
-export default ({ title, visible, onOk, onCancel, width = 720, bodyStyle = { height: 640, overflow: 'auto' }, destroyOnClose = true, ...attrs }) => {
+export default ({ title, visible, onOk, onCancel, width = 720, bodyStyle = { height: 560, overflow: 'auto' }, destroyOnClose = true, ...attrs }) => {
   const footer = (
     <Form.Item wrapperCol={{ offset: 16 }} style={{ marginTop: 8 }}>
       <Button onClick={onCancel}>
