@@ -27,7 +27,7 @@ const defaultEntities = [
 
 export default ({ service, }) => {
   const [page, setPage] = useState({ width: 1440, height: 1080 })
-  const [mode, setMode] = useState(1) // 空白状态：0  查看状态: 1 编辑状态：2 
+  const [mode, setMode] = useState(0) // 空白状态：0  查看状态: 1 编辑状态：2 
   const editable = mode == 2
   const { entities, active, ...attrs } = useEntities(defaultEntities, editable, true)
   const entity = entities?.find(item => item.id == active?.id)
@@ -36,7 +36,6 @@ export default ({ service, }) => {
 
   const open = (id) => {
     return service.getDetails({ id }).then((/* { data: { content, ...page } } = {} */) => {
-      debugger
       setPage(page)
       attrs?.setEntities(page.content || defaultEntities)
     }).then(() => {
