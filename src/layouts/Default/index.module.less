@@ -1,9 +1,7 @@
 .layout {
-  width: 1920px;
   height: 100vh;
-  overflow: hidden;
 
-  > .header {
+  >.header {
     position: fixed;
     top: 0;
     left: 0;
@@ -15,39 +13,28 @@
     align-items: center;
   }
 
-  > .main {
+  >.main {
     position: fixed;
     top: 64px;
     left: 0;
+    padding-top: 12px;
     width: 100%;
     height: calc(100vh - 64px);
+    display: flex;
+    justify-content: space-between;
     background-color: #f5f7fa;
 
-    > .left {
-      position: fixed;
-      top: 76px;
-      left: 0;
+    >.left {
       width: 216px;
-      height: 100%;
     }
 
-    > .content {
-      position: fixed;
-      top: 76px;
-      left: 222px;
-      width: 1440px;
-      height: 100%;
+    >.content {
+      width: calc(100% - 560px);
       overflow: auto;
-      transform-origin: left top;
     }
 
-    > .right {
-      position: fixed;
-      top: 76px;
-      right: 0;
-      width: calc(100% - 1668px);
-      min-width: 252px;
-      height: 100%;
+    >.right {
+      width: 320px;
     }
   }
 

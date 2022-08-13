@@ -6,7 +6,7 @@ import { update } from "@/utils/object";
 
 const defaultActive = { id: 1, name: 'Block', key: 'style' }
 
-export const useEntities = (initialEntities = [], isPrinted) => {
+export const useEntities = (initialEntities = [], editable = false, isPrinted) => {
   const snapShot = useSnapShot(initialEntities, isPrinted);
   const {
     state: entities,
@@ -300,6 +300,9 @@ export const useEntities = (initialEntities = [], isPrinted) => {
   };
 
   const dragWidget = (dragName, dropId) => {
+    if (!editable) {
+      return
+    }
     const dropEntity = entities.find((item) => item.id == dropId);
     const dragWidgetId = Date.now();
     setEntities((entities) => {

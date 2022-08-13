@@ -30,6 +30,7 @@ export const DataConfigPanel = ({ id, dataSource: initialValues = mock, updateEn
   return (
     <Form
       initialValues={initialValues}
+      bodyStyle={{ padding: '0 8px'}}
       {...formProps}
       onFinish={handleSubmit}
     />
