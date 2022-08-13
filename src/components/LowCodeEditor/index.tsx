@@ -3,8 +3,7 @@ import React, { useState } from 'react'
 import { Tabs } from '@/plugins/ui'
 import Layout from '@/layouts/Default'
 import { Menu, Restore, Console, Assets, Widgets, Outline, DisplayViewer, ConfigPanel, Tips, Status, Formatters } from './partials'
-import { useEntities, useStore } from '@/hooks'
-import page from '@/mock/page'
+import { useEntities } from '@/hooks'
 
 const { TabPane } = Tabs
 
@@ -26,12 +25,11 @@ const defaultEntities = [
 ]
 
 
-export default ({ /* page: { content: initialEntities, ...initialBaseInfo },  */service, }) => {
+export default ({ service, }) => {
   const [page, setPage] = useState({ width: 1440, height: 1080 })
   const [mode, setMode] = useState(1) // 空白状态：0  查看状态: 1 编辑状态：2 
   const editable = mode == 2
   const { entities, active, ...attrs } = useEntities(defaultEntities, editable, true)
-  const store = useStore(/* initialBaseInfo */)
   const entity = entities?.find(item => item.id == active?.id)
 
   const zoom = /* 1440 / page.width */1
