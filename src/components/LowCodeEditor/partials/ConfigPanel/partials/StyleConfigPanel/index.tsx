@@ -1,7 +1,8 @@
 // @ts-nocheck
-import React from 'react'
-import { Code } from '@/plugins/ui';
-import styles from './index.module.less'
+import React from "react";
+import { Code } from "@/plugins/ui";
+import styles from "./index.module.less";
+import BlockPanel from "./partials/BlockPanel";
 
 const style = `.wrapper {
   position: relative;
@@ -57,17 +58,38 @@ const style = `.wrapper {
   }`
 
 
-export const StyleConfigPanel = ({ /* style */ }) => {
-  return (
-    <div className={styles.container}>
-      <Code
-        value={style}
-        options={{
-          mode: 'css',
-        }}
-        onChange={(editor: any, data: any, value: string) => { }}
-        onBeforeChange={(editor: any, data: any, value: string) => { }}
-      />
-    </div>
-  )
-}
+// export const StyleConfigPanel = ({ /* style */ }) => {
+//   return (
+//     <div className={styles.container}>
+//       <Code
+//         value={style}
+//         options={{
+//           mode: 'css',
+//         }}
+//         onChange={(editor: any, data: any, value: string) => { }}
+//         onBeforeChange={(editor: any, data: any, value: string) => { }}
+//       />
+//     </div>
+//   )
+// }
+
+
+// 样式配置面板
+export const StyleConfigPanel = () => {
+  const blockConfig = {
+    constraintsSource: { hor: 0, ver: 2 },
+    layerSource: { overflow: 0, opacity: 1, z: 1, hidden: false },
+    fill: [
+      { fill_type: "color", background: "#FFFFFF", z: 1 },
+      { fill_type: "color", background: "#19E1D3", z: 1 },
+      { fill_type: "color", background: "#181C25", z: 1 },
+    ],
+    stroke: {
+      style: 'solid',
+      color: '#E01F1F',
+      width: 1
+    }
+  };
+
+  return <BlockPanel blockConfig={blockConfig} />;
+};
