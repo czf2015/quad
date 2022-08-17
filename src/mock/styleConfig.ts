@@ -1,25 +1,35 @@
 export const blockStyle = {
-  padding: 0,
   constraints: {
     horizontal: 0,
     vertical: 2,
   },
-  transform: {
-    scale: 1,
-    rotate: 0,
-  },
-  fill: [
-    {
-      background: "transparent",
-      z: 1,
+  fill: {
+    image: [
+      {
+        url: '',
+        position: {
+          left: 0, // 0-100百分比
+          top: 0, // ...
+        },
+        repeat: 'no-repeat',
+        size: {
+          width: {
+            type: 0, // 0 百分比 1 像素 2 auto,
+            value: 100, // 0-100%, px, auto
+          },
+          height: {
+            type: 0, // 0 百分比 1 像素 2 auto,
+            value: 100, // 0-100%, px, auto
+          }
+        }
+      },
+    ],
+    color: {
+      hex: "",
+      alpha: 0, // 0-100之间，可以有小数
     },
-  ],
-  stroke: {
-    style: 'solid',
-    color: '#E01F1F',
-    width: 1
   },
-  overflow: 0,
+  overflow: 'auto', // 
   opacity: 1,
   z: 1,
   hidden: false,
@@ -38,8 +48,18 @@ export const widgetStyle = {
     color: "#ccc",
     thickness: 1,
   },
-  borderRadius: "",
-  boxShadow: "",
+  borderRadius: {
+    type: 0, // 0 像素值 1 百分比
+    value: 4, // px %
+  }, // 或数组为top right bottom left
+  boxShadow: {
+    type: 'none',
+    offsetX: 2,
+    offsetY: 2,
+    blur: 2,
+    spread: 4,
+    color: '#ccc'
+  },
   // constraints: {
   //   horizontal: 0,
   //   vertical: 2,
@@ -54,15 +74,40 @@ export const widgetStyle = {
   fontWeight: "normal",
   fontFamily: "",
   transform: {
-    scale: 1,
+    scaleX: 1,
+    scaleY: 1,
     rotate: 0,
   },
-  fill: [
-    {
-      background: "transparent",
-      z: 1,
+  transformOrigin: {
+    top: 50,
+    left: 50,
+  },
+  fill: {
+    image: [
+      {
+        url: '',
+        position: {
+          left: 0, // 0-100百分比
+          top: 0, // ...
+        },
+        repeat: 'no-repeat',
+        size: {
+          width: {
+            type: 0, // 0 百分比 1 像素 2 auto,
+            value: 100, // 0-100%, px, auto
+          },
+          height: {
+            type: 0, // 0 百分比 1 像素 2 auto,
+            value: 100, // 0-100%, px, auto
+          }
+        }
+      },
+    ],
+    color: {
+      hex: "",
+      alpha: 0, // 0-100之间，可以有小数
     },
-  ],
+  },
   stroke: {
     type: "solid",
     thickness: 1,
