@@ -36,22 +36,33 @@ export const blockStyle = {
 };
 
 export const widgetStyle = {
-  position: 2,
-  top: 0,
-  left: 0,
+  // 位置
+  position: 'absolute',
+  top: {
+    type: 0, // 0 百分比 1 像素值
+    value: 0
+  }, // 0-100 百分比 
+  left: {
+    type: 0, // 0 百分比 1 像素值
+    value: 0
+  }, // 0-100 百分比
+  // 盒子
   margin: 12,
   padding: 12,
-  width: 200,
-  height: 200,
-  border: {
-    type: "solid",
-    color: "#ccc",
-    thickness: 1,
-  },
+  width: {
+    type: 0, // 0 百分比 1 像素值
+    value: 0
+  }, // 0-100 百分比200,
+  height: {
+    type: 0, // 0 百分比 1 像素值
+    value: 0
+  }, // 0-100 百分比
+  // --------------圆角------------
   borderRadius: {
     type: 0, // 0 像素值 1 百分比
     value: 4, // px %
   }, // 或数组为top right bottom left
+  // -----------------阴影-----------
   boxShadow: {
     type: 'none',
     offsetX: 2,
@@ -64,6 +75,7 @@ export const widgetStyle = {
   //   horizontal: 0,
   //   vertical: 2,
   // },
+  // ========文字属性========
   textIndent: 0,
   textAlign: 0,
   baseline: 0,
@@ -73,15 +85,23 @@ export const widgetStyle = {
   fontSize: 14,
   fontWeight: "normal",
   fontFamily: "",
+  // --------变形------------
   transform: {
     scaleX: 1,
     scaleY: 1,
     rotate: 0,
   },
   transformOrigin: {
-    top: 50,
-    left: 50,
+    top: {
+      type: 0, // 0 百分比 1 像素值
+      value: 0
+    }, // 0-100 百分比
+    left: {
+      type: 0, // 0 百分比 1 像素值
+      value: 0
+    }, // 0-100 百分比
   },
+  // 填充
   fill: {
     image: [
       {
@@ -108,12 +128,14 @@ export const widgetStyle = {
       alpha: 0, // 0-100之间，可以有小数
     },
   },
+  // 描边
   stroke: {
     type: "solid",
     thickness: 1,
     color: "#ccc",
-  },
-  // overflow: 0,
+  },// 或数组top right bottom left
+  // 图层
+  overflow: 0,
   opacity: 1,
   z: 1,
   hidden: false,
