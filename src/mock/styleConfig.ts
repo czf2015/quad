@@ -15,9 +15,9 @@ export const blockStyle = {
     },
   ],
   stroke: {
-    type: "solid",
-    thickness: 1,
-    color: "#ccc",
+    style: 'solid',
+    color: '#E01F1F',
+    width: 1
   },
   overflow: 0,
   opacity: 1,

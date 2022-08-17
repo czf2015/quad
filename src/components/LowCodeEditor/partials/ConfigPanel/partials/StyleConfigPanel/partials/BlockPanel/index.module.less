@@ -1,0 +1,210 @@
+.constraints {
+  .content {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+
+    .diagrams {
+      height: 80px;
+      width: 80px;
+      border: 1px solid #ccc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .rect {
+        height: 50px;
+        width: 50px;
+        border: 1px solid #ccc;
+        position: relative;
+
+        .top {
+          width: 3px;
+          height: 12px;
+          background-color: black;
+          position: absolute;
+          left: 50%;
+          top: -12px;
+          transform: translateX(-50%);
+          cursor: pointer;
+        }
+        .top:hover {
+          background-color: aqua;
+        }
+
+        .bottom {
+          width: 3px;
+          height: 12px;
+          background-color: black;
+          position: absolute;
+          left: 50%;
+          bottom: -12px;
+          transform: translateX(-50%);
+          cursor: pointer;
+        }
+        .bottom:hover {
+          background-color: aqua;
+        }
+
+        .left {
+          width: 12px;
+          height: 3px;
+          background-color: black;
+          position: absolute;
+          top: 50%;
+          left: -12px;
+          transform: translateY(-50%);
+          cursor: pointer;
+        }
+        .left:hover {
+          background-color: aqua;
+        }
+
+        .right {
+          width: 12px;
+          height: 3px;
+          background-color: black;
+          position: absolute;
+          top: 50%;
+          right: -12px;
+          transform: translateY(-50%);
+          cursor: pointer;
+        }
+        .right:hover {
+          background-color: aqua;
+        }
+
+        .hor {
+          width: 18px;
+          height: 3px;
+          background-color: black;
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          cursor: pointer;
+        }
+        .hor:hover {
+          background-color: aqua;
+        }
+
+        .ver {
+          height: 18px;
+          width: 3px;
+          background-color: black;
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          cursor: pointer;
+        }
+        .ver:hover {
+          background-color: aqua;
+        }
+      }
+    }
+
+    .selectWrap {
+      border: 1px solid #ccc;
+      margin-top: 4px;
+      :global {
+        .ant-select {
+          width: 90px;
+        }
+        .ant-select:not(.ant-select-customize-input) .ant-select-selector {
+          border: none;
+        }
+      }
+    }
+  }
+}
+
+.layer {
+  .content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+
+    .eyes {
+      cursor: pointer;
+    }
+
+    .item {
+      margin-right: 12px;
+    }
+  }
+}
+
+.fill {
+  .title {
+    display: flex;
+    justify-content: space-between;
+
+    .icon {
+      cursor: pointer;
+    }
+  }
+
+  .content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+
+    .icon {
+      cursor: pointer;
+    }
+  }
+}
+
+.input_group {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  background-color: #f7f7f9;
+  border-radius: 4px;
+
+  .color_input {
+    width: 22px;
+    padding: 0px;
+    border: none;
+  }
+
+  .value_input {
+    width: 100px;
+    margin-left: 8px;
+  }
+
+  :global {
+    .ant-input[type="color"] {
+      height: 25px !important;
+    }
+
+    .ant-input {
+      height: 25px;
+      border: none;
+      background-color: #f7f7f9;
+    }
+
+    .ant-input-number {
+      border: none;
+    }
+
+    .ant-input-number {
+      border: none;
+    }
+  }
+}
+
+.stroke {
+  .content {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+  }
+
+  .radio {
+    margin-top: 12px;
+  }
+}
