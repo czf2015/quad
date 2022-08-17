@@ -19,7 +19,7 @@ export default ({store}) => {
 
   return (
     <div className={styles.stroke}>
-      <span>边线</span>
+      <h4>边线</h4>
       <div className={styles.content}>
         <FillColorGroup bgColor={store('color')} handleColorChange={handleColorChange} />
         <Tooltip title="边线宽度">
@@ -30,7 +30,7 @@ export default ({store}) => {
           <Radio value='none'>none</Radio>
           <Radio value='solid'>solid</Radio>
           <Radio value='dashed'>dashed</Radio>
-        </Radio.Group>
+      </Radio.Group>
     </div>
   )
 }

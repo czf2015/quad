@@ -57,7 +57,7 @@ export default ({ store }) => {
   return (
     <div className={styles.fill}>
       <div className={styles.title}>
-        <span>填充</span>
+        <h4>填充</h4>
         <div className={styles.icon} onClick={handleAdd}>
           {addIcon()}
         </div>

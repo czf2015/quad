@@ -91,5 +91,9 @@ export const StyleConfigPanel = () => {
     }
   };
 
-  return <BlockPanel blockConfig={blockConfig} />;
+  return (
+    <div className={styles.container}>
+      <BlockPanel blockConfig={blockConfig} />
+    </div>
+  )
 };

@@ -64,7 +64,7 @@ const AlignDiagrams = ({ store }) => {
 export default ({ store }) => {
   return (
     <div className={styles.constraints}>
-      <div>对齐方式</div>
+      <h4>对齐方式</h4>
       <div className={styles.content}>
         <AlignDiagrams store={store} />
         <AlignSelect store={store} />
