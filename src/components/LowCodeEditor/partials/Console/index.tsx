@@ -8,7 +8,7 @@ import styles from './index.module.less'
 export const Console = ({ mode = 0, page, save, edit, preview, publish, share }) => {
   const isEditMode = mode == 2
 
-  return (
+  return mode == 0 ? null : (
     <div className={styles.console}>
       {isEditMode
         ? <Save initialValues={page} onFinish={save} />

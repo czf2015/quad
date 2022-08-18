@@ -20,23 +20,24 @@ export const InteractConfigPanel = ({ id, updateEntity, meta = {}, ...interact }
           name: "target",
           label: "绑定对象",
           options: meta?.binds,
-          rules: [{ required: true, message: "请选择绑定对象！" }],
           type: "Select",
           placeholder: "请选择绑定对象",
+          rules: [{ required: true, message: "请选择绑定对象！" }],
         },
         {
           name: "event",
           label: "事件类型",
           type: "Select",
           options: EVENT_OPTIONS,
+          rules: [{ required: true, message: "请选择事件类型！" }],
         },
         {
           name: "type",
           label: "消息类型",
           type: "Text",
-          rules: [{ required: true, message: "请输入消息类型！" }],
           options: MESSAGE_OPTIONS,
-          placeholder: '请输入消息类型！'
+          placeholder: '请输入消息类型！',
+          rules: [{ required: true, message: "请输入消息类型！" }],
         },
         {
           name: "description",
@@ -53,9 +54,9 @@ export const InteractConfigPanel = ({ id, updateEntity, meta = {}, ...interact }
           name: "type",
           label: "消息类型",
           type: "Text",
-          rules: [{ required: true, message: "请输入消息类型！" }],
           options: MESSAGE_OPTIONS,
           placeholder: "请输入消息类型",
+          rules: [{ required: true, message: "请输入消息类型！" }],
         },
         {
           name: "id",

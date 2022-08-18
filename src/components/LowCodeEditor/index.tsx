@@ -35,9 +35,9 @@ export default ({ service, }) => {
   const zoom = /* 1440 / page.width */1
 
   const open = (id) => {
-    return service.getDetails({ id }).then((/* { data: { content, ...page } } = {} */) => {
+    return service.getDetails({ id }).then(({ data: { content, ...page } } = {}) => {
       setPage(page)
-      attrs?.setEntities(page.content || defaultEntities)
+      attrs?.setEntities(content || defaultEntities)
     }).then(() => {
       setMode(1)
     })

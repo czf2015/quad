@@ -1,6 +1,7 @@
 import React from 'react';
 import { Drawer } from 'antd';
 import DropZone from '@/components/DropZone';
+import styles from './index.module.less'
 
 export default ({
   id,
@@ -26,6 +27,7 @@ export default ({
   
   return (
     <Drawer
+      className={styles.drawer}
       title={slots.title || <DropZone pid={id} id={blocks.title} title={title} updateEntity={updateEntity} {...attrs} style={{ top: 12, width: width - 96, height: 24 }}>{title}</DropZone>}
       extra={extra}
       visible={visible}
