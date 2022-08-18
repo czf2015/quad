@@ -11,16 +11,27 @@ export const formProps = {
   labelAlign: "right",
   children: [
     {
+      name: 'id',
+      type: 'Input',
+      hidden: true,
+    },
+    {
       name: "version",
       label: "版本号",
       type: "Input",
-      placeholder: "请输入版本号",
+      rules: [{ required: true, message: "请输入版本号信息" }],
     },
     {
-      name: "tags",
-      label: "标签",
-      type: "Select",
-      mode: "tags",
+      name: "path",
+      label: "路径",
+      type: "Input",
+      rules: [{ required: true, message: "请输入页面路径" }],
+    },
+    {
+      name: "remark",
+      label: "备注",
+      type: "TextArea",
+      placeholder: "版本信息",
     },
   ],
 };

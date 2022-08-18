@@ -20,4 +20,8 @@ export class PageService {
   static delete(params) {
     return Api.delete(params);
   }
+
+  static publish(params) {
+    return Api.publish(params);
+  }
 }

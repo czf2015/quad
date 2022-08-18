@@ -22,4 +22,8 @@ export class PageApi {
   static delete(params) {
     return request({ method: "delete", url, params });
   }
+
+  static publish(data) {
+    return request({ method: "post", url: `${url}/publish`, data });
+  }
 }

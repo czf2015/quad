@@ -16,8 +16,8 @@ export const Console = ({ mode = 0, page, save, edit, preview, publish, share })
           <>
             <Button title="编辑" onClick={edit} type="text" icon={<FormOutlined />} />
             <Button title="预览" onClick={preview} type="text" icon={<EyeOutlined />} />
-            <Publish onFinish={publish} />
-            <Button title="分享" onClick={share} type="text" icon={<SendOutlined />} />
+            <Publish initialValues={page} publish={publish} />
+            {/* <Button title="分享" onClick={share} type="text" icon={<SendOutlined />} /> */}
           </>
         )}
     </div>

@@ -38,6 +38,7 @@ export const renderFormItem = ({
   fileList,
   limit,
   picker,
+  hidden = false,
   ...attrs
 }) => {
   let formItem = (
@@ -197,7 +198,7 @@ export const renderFormItem = ({
   }
 
   return needFormItem ? (
-    <Form.Item name={name} {...attrs} key={name}>
+    <Form.Item name={name} style={{ display: hidden ? 'none' : undefined }} {...attrs} key={name}>
       {formItem}
     </Form.Item>
   ) : <React.Fragment key={name}>{formItem}</React.Fragment>

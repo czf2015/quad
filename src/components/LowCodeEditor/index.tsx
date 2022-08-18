@@ -82,11 +82,14 @@ export default ({ service, }) => {
   const exit = () => {
     setIsPreview(false)
   }
+  const publish = (values) => {
+    return service?.publish(values)
+  }
   const header = (
     <>
       <Menu mode={mode} open={open} create={create} service={service} />
       <Restore mode={mode} {...attrs} />
-      <Console mode={mode} save={save} edit={edit} page={page} service={service} preview={preview} />
+      <Console mode={mode} save={save} edit={edit} page={page} service={service} preview={preview} publish={publish} />
     </>
   )
   const content = mode == 0 ? null : <DisplayViewer entities={entities} width={page.width} height={page.height} zoom={zoom} active={active} editable={editable} {...attrs} />
