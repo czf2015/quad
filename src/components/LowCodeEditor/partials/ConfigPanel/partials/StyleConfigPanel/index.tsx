@@ -1,8 +1,9 @@
 // @ts-nocheck
-import React from "react";
-import { Code } from "@/plugins/ui";
-import styles from "./index.module.less";
-import BlockPanel from "./partials/BlockPanel";
+import React from 'react';
+import { Code } from '@/plugins/ui';
+import { blockStyle } from '@/mock/styleConfig';
+import BlockPanel from './partials/BlockPanel';
+import styles from './index.module.less';
 
 const style = `.wrapper {
   position: relative;
@@ -55,8 +56,7 @@ const style = `.wrapper {
       display: none;
     }
   }
-  }`
-
+  }`;
 
 // export const StyleConfigPanel = ({ /* style */ }) => {
 //   return (
@@ -73,27 +73,47 @@ const style = `.wrapper {
 //   )
 // }
 
-
 // 样式配置面板
 export const StyleConfigPanel = () => {
-  const blockConfig = {
-    constraintsSource: { hor: 0, ver: 2 },
-    layerSource: { overflow: 0, opacity: 1, z: 1, hidden: false },
-    fill: [
-      { fill_type: "color", background: "#FFFFFF", z: 1 },
-      { fill_type: "color", background: "#19E1D3", z: 1 },
-      { fill_type: "color", background: "#181C25", z: 1 },
-    ],
-    stroke: {
-      style: 'solid',
-      color: '#E01F1F',
-      width: 1
-    }
-  };
+  // const blockConfig = {
+  //   constraintsSource: { hor: 0, ver: 2 },
+  //   layerSource: { overflow: 0, opacity: 1, z: 1, hidden: false },
+  //   fill: {
+  //     image: [
+  //       {
+  //         url: '',
+  //         position: {
+  //           left: 0, // 0-100百分比
+  //           top: 0, // ...
+  //         },
+  //         repeat: 'no-repeat',
+  //         size: {
+  //           width: {
+  //             type: 0, // 0 百分比 1 像素 2 auto,
+  //             value: 100, // 0-100%, px, auto
+  //           },
+  //           height: {
+  //             type: 0, // 0 百分比 1 像素 2 auto,
+  //             value: 100, // 0-100%, px, auto
+  //           },
+  //         },
+  //       },
+  //     ],
+  //     color: {
+  //       hex: '#FFFFFF',
+  //       alpha: 0, // 0-100之间，可以有小数
+  //     },
+  //   },
+  //   // fill: [
+  //   //   { fill_type: 'color', background: '#FFFFFF', z: 1 },
+  //   //   { fill_type: 'color', background: '#19E1D3', z: 1 },
+  //   //   { fill_type: 'color', background: '#181C25', z: 1 },
+  //   // ],
+  // };
 
   return (
     <div className={styles.container}>
-      <BlockPanel blockConfig={blockConfig} />
+      <BlockPanel blockStyle={blockStyle} />
     </div>
-  )
+  );
 };

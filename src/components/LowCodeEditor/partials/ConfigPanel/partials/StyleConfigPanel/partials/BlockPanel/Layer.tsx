@@ -1,27 +1,26 @@
 // @ts-nocheck
-import React from "react";
-import { Select, InputNumber, Tooltip } from "antd";
-import { openEyes, closeEyes, opacityIcon, zIcon } from "../../icons";
-import { OVERFLOW_OPTION } from "./config";
-import { handleOption } from "./helpers";
-import styles from "./index.module.less";
+import React from 'react';
+import { Select, InputNumber, Tooltip } from 'antd';
+import { Eyes } from '../common/Eyes';
+import { opacityIcon, zIcon } from '../../icons';
+import { OVERFLOW_OPTIONS } from './config';
+import styles from './index.module.less';
 
 export default ({ store }) => {
-  const renderEyes = store("hidden") ? openEyes : closeEyes;
   const handleEyes = () => {
-    store("hidden", !store("hidden"));
+    store('hidden', !store('hidden'));
   };
 
   const handleOverflow = (value) => {
-    store("overflow", value);
+    store('overflow', value);
   };
 
   const handleZIndexBlur = (e) => {
-    store("z", e.target.value);
+    store('z', e.target.value);
   };
 
   const handleOpacityBlur = (e) => {
-    store("opacity", e.target.value);
+    store('opacity', e.target.value);
   };
 
   return (
@@ -30,9 +29,9 @@ export default ({ store }) => {
       <div className={styles.content}>
         <Tooltip title="溢出">
           <Select
-            value={store("overflow")}
+            value={store('overflow')}
             className={styles.item}
-            options={handleOption(OVERFLOW_OPTION)}
+            options={OVERFLOW_OPTIONS}
             onChange={handleOverflow}
           />
         </Tooltip>
@@ -43,7 +42,7 @@ export default ({ store }) => {
             min={0}
             controls={false}
             formatter={(value) => `${value}%`}
-            defaultValue={store("opacity")}
+            defaultValue={store('opacity')}
             prefix={opacityIcon()}
             onBlur={handleOpacityBlur}
           />
@@ -53,14 +52,12 @@ export default ({ store }) => {
             className={styles.item}
             min={0}
             controls={false}
-            defaultValue={store("z")}
+            defaultValue={store('z')}
             prefix={zIcon()}
             onBlur={handleZIndexBlur}
           />
         </Tooltip>
-        <div className={styles.eyes} onClick={handleEyes}>
-          {renderEyes()}
-        </div>
+        <Eyes hidden={store('hidden')} handleEyes={handleEyes} />
       </div>
     </div>
   );
