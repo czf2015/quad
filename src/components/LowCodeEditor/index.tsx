@@ -13,7 +13,6 @@ const defaultEntities = [
     id: 0b1,
     pid: 0b0,
     title: "页面",
-    hasBlock: true,
     style: {
       top: 0,
       left: 0,

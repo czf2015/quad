@@ -103,9 +103,9 @@ export const Open = ({ disabled, open, service }) => {
         }
         return (
           <>
-            <EyeOutlined onClick={view} style={{ color: 'var(--quad-primary-color)', cursor: 'pointer' }} />
+            <EyeOutlined onClick={view} style={{ color: '#40a9ff'}} />
             <Popconfirm title="确认是否删除?" onConfirm={remove}>
-              <DeleteOutlined style={{ marginLeft: 16, color: 'red' }} />
+              <DeleteOutlined style={{ marginLeft: 16, color: '#e33e38' }} />
             </Popconfirm>
           </>
         )
