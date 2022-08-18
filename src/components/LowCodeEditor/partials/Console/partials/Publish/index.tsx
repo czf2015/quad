@@ -35,7 +35,7 @@ export const Publish = ({ initialValues, publish }) => {
     })
     .catch(err => {
       toggleVisible()
-      setPublishResult(generatePublishResult({ status: 'error', title: '发布失败', /* extra: <Button onClick={toggleVisible}>关闭</Button>, */ err, ...values }))
+      setPublishResult(generatePublishResult({ status: 'error', title: '发布失败', extra: <Button onClick={toggleVisible}>关闭</Button>, err, ...values }))
     })
 
   const [open, formModal] = useFormModal({ title: '发布页面', initialValues, onFinish, bodyStyle: { height: 200 }, ...formProps })
