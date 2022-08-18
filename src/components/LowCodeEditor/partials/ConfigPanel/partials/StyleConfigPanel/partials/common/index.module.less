@@ -1,0 +1,50 @@
+.input_group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 180px;
+  padding: 5px;
+  background-color: #f7f7f9;
+  border-radius: 6px;
+
+  .color_input {
+    width: 22px;
+    padding: 0px;
+    border: none;
+  }
+
+  .value_input {
+    width: 70px;
+  }
+
+  .number_input {
+    width: 65px;
+  }
+
+  :global {
+    .ant-input[type='color'] {
+      height: 25px !important;
+    }
+
+    .ant-input {
+      height: 25px;
+      border: none;
+      background-color: #f7f7f9;
+    }
+
+    .ant-input-number {
+      border: none;
+      background-color: #f7f7f9;
+    }
+  }
+}
+
+.bg_image {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .input {
+    width: 240px;
+  }
+}

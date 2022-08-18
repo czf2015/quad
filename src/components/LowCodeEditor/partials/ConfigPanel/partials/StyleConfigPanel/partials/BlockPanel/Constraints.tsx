@@ -1,19 +1,19 @@
 // @ts-nocheck
-import React from "react";
-import { Select, Tooltip } from "@/plugins/ui";
-import { constraintsConfig } from "./config";
-import { handleOption, handleDiagramsConfig } from "./helpers";
-import styles from "./index.module.less";
+import React from 'react';
+import { Select, Tooltip } from '@/plugins/ui';
+import { constraintsConfig } from './config';
+import { handleOption, handleDiagramsConfig } from './helpers';
+import styles from './index.module.less';
 
 const AlignSelect = ({ store }) => {
   const { horizontal, vertical } = constraintsConfig;
 
   const handleHorChange = (value) => {
-    store("hor", value);
+    store('constraints', { horizontal: value });
   };
 
   const handleVerChange = (value) => {
-    store("ver", value);
+    store('constraints', { vertical: value });
   };
 
   return (
@@ -23,7 +23,7 @@ const AlignSelect = ({ store }) => {
         <Tooltip placement="top" title={horizontal.tooltip}>
           <Select
             options={handleOption(horizontal.options)}
-            value={store("hor")}
+            value={store('constraints')?.horizontal}
             onChange={handleHorChange}
           />
         </Tooltip>
@@ -33,7 +33,7 @@ const AlignSelect = ({ store }) => {
         <Tooltip placement="top" title={vertical.tooltip}>
           <Select
             options={handleOption(vertical.options)}
-            value={store("ver")}
+            value={store('constraints')?.vertical}
             onChange={handleVerChange}
           />
         </Tooltip>
@@ -46,14 +46,9 @@ const AlignDiagrams = ({ store }) => {
   return (
     <div className={styles.diagrams}>
       <div className={styles.rect}>
-        {handleDiagramsConfig(styles, store("hor"), store("ver"), store).map(
+        {handleDiagramsConfig(styles, store('constraints')?.horizontal, store('constraints')?.vertical, store).map(
           ({ className, style, method }, index) => (
-            <div
-              key={index}
-              className={className}
-              style={style}
-              onClick={method}
-            />
+            <div key={index} className={className} style={style} onClick={method} />
           )
         )}
       </div>

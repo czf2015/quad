@@ -21,12 +21,14 @@ export const blockStyle = {
             type: 0, // 0 百分比 1 像素 2 auto,
             value: 100, // 0-100%, px, auto
           }
-        }
+        },
+        hidden: false
       },
     ],
     color: {
-      hex: "",
+      hex: "#FFFFFF",
       alpha: 0, // 0-100之间，可以有小数
+      hidden: false
     },
   },
   overflow: 'auto', // 
