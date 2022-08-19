@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Segmented } from 'antd';
 import { BgColorsOutlined, FileImageOutlined } from '@ant-design/icons';
-import { ColorSelect, Eyes, BgImage } from '../common';
+import { ColorPicker, Eyes, BgImage } from '../common';
 import { addIcon, minusIcon } from '../../icons';
 import styles from './index.module.less';
 
@@ -22,7 +22,7 @@ const ColorModel = ({ store }) => {
 
   return (
     <div className={styles.color_content}>
-      <ColorSelect
+      <ColorPicker
         bgColor={store('fill')?.color?.hex}
         disabled={!store('fill')?.color?.hidden}
         number={store('fill')?.color?.alpha}
