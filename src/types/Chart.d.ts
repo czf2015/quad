@@ -23,7 +23,10 @@ type radialGradientType = {
   colorStops: colorStopType[];
 };
 
+type indexType = number
+
 interface ChartOption {
+  title: string;
   type: "BarChart" | "PieChart";
   layout: "horizontal" | "vertical"; // 水平或垂直 TB BT LR RL
   group: string;
@@ -34,7 +37,7 @@ interface ChartOption {
       label: string;
       field: string;
       sort: 0 | 1 | -1; // 原序 正序 倒序
-      scale: 0; //
+      scale: 0; // 
       unit: string;
     },
     {
@@ -47,27 +50,12 @@ interface ChartOption {
   ];
   coordinate: {
     type: "cartesian2d" | "polar" = "cartesian2d";
-    xAxis: {
-      index: number = 0;
-      unique?: string;
-    };
-    yAxis: {
-      index: number = 1;
-      unique?: string;
-    };
+    xAxis?: indexType;
+    yAxis?: indexType;
   };
   animation: {
     enable: boolean;
     duration: number;
   };
   colors: (colorType | linearGradientType | radialGradientType)[];
-  title: string;
-  style: {
-    // width: number;
-    // height: number;
-    // margin: number;
-    // padding: number;
-    // border:
-    // borderRadius
-  };
 }
