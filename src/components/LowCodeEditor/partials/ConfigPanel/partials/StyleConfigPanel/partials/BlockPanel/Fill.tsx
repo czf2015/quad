@@ -21,7 +21,7 @@ const ColorModel = ({ store }) => {
   };
 
   return (
-    <div className={styles.content}>
+    <div className={styles.color_content}>
       <ColorSelect
         bgColor={store('fill')?.color?.hex}
         disabled={!store('fill')?.color?.hidden}
@@ -32,6 +32,16 @@ const ColorModel = ({ store }) => {
       <Eyes hidden={store('fill')?.color?.hidden} handleEyes={handleEyes} />
     </div>
   );
+};
+
+const ImageModel = ({ store }) => {
+  return store('fill')?.image?.map((item, index) => {
+    return (
+      <div className={styles.image_content} key={index}>
+        <BgImage />
+      </div>
+    );
+  });
 };
 
 export default ({ store }) => {
@@ -64,25 +74,7 @@ export default ({ store }) => {
         )}
       </div>
       {model == 'color' && <ColorModel store={store} />}
-      {model == 'image' && <BgImage />}
+      {model == 'image' && <ImageModel store={store} />}
     </div>
   );
 };
-
-{
-  /* {store('fill').map(({ background }, index) => {
-        return (
-          <div className={styles.content} key={index}>
-            <ColorSelect bgColor={background} index={index} handleColorChange={handleColorChange} />
-            <div
-              className={styles.icon}
-              onClick={() => {
-                handleMinus(index);
-              }}
-            >
-              {minusIcon()}
-            </div>
-          </div>
-        );
-      })} */
-}
