@@ -4,6 +4,7 @@ import Modal from "@/components/Modal";
 import Drawer from "@/components/Drawer";
 import Form from "@/components/Form/Wrapper";
 import Button from "@/components/Button";
+import ColorPicker from "./components/ColorPicker";
 import {
   BarChartOutlined,
   LineChartOutlined,
@@ -31,6 +32,7 @@ export const components = {
   Modal,
   Drawer,
   Button,
+  ColorPicker,
 };
 
 export const icons = {

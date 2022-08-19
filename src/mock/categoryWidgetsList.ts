@@ -143,6 +143,12 @@ export default [
         icon: "",
         description: "",
       },
+      {
+        name: "ColorPicker",
+        title: "颜色选择器",
+        icon: "",
+        description: "",
+      },
     ],
   },
   {
