@@ -10,7 +10,11 @@ export default [
     component: loadable(() => import("@/pages/low-code-editor")),
   },
   {
-    key: 'custom-page',
-    component: loadable(() => import("@/pages/custom-page")),
+    path: '/publish-console',
+    component: loadable(() => import("@/pages/publish-console")),
+  },
+  {
+    key: 'publish-page',
+    component: loadable(() => import("@/pages/publish-page")),
   }
 ];
