@@ -25,37 +25,34 @@ type radialGradientType = {
 
 type indexType = number
 
+interface IDimension {
+  label: string;
+  field: string;
+  sort: 0 | 1 | -1; // 原序 正序 倒序
+  scale: 0; // 
+  unit: string;
+}
+
+interface ICoordinate {
+  type: "cartesian2d" | "polar" = "cartesian2d";
+  xAxis?: indexType;
+  yAxis?: indexType;
+}
+
+interface IAnimation {
+  enable: boolean;
+  duration: number;
+}
+
 interface ChartOption {
   title: string;
   type: "BarChart" | "PieChart";
-  layout: "horizontal" | "vertical"; // 水平或垂直 TB BT LR RL
-  group: string;
-  stack: string;
+  layout?: "horizontal" | "vertical" | 'TB' | 'BT' | 'LR' | 'RL'; // 水平或垂直 
+  group?: string;
+  stack?: string;
   percentage: boolean; // 是否百分比值
-  dimensions: [
-    {
-      label: string;
-      field: string;
-      sort: 0 | 1 | -1; // 原序 正序 倒序
-      scale: 0; // 
-      unit: string;
-    },
-    {
-      label: string;
-      field: string;
-      sort: 0 | 1 | -1; // 原序 正序 倒序
-      scale: 0; //
-      unit: string;
-    }
-  ];
-  coordinate: {
-    type: "cartesian2d" | "polar" = "cartesian2d";
-    xAxis?: indexType;
-    yAxis?: indexType;
-  };
-  animation: {
-    enable: boolean;
-    duration: number;
-  };
+  dimensions: IDimension[];
+  coordinate: ICoordinate;
+  animation: IAnimation;
   colors: (colorType | linearGradientType | radialGradientType)[];
 }
