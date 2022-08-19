@@ -24,4 +24,8 @@ export class PageService {
   static publish(params) {
     return Api.publish(params);
   }
+
+  static getPublishPage(params) {
+    return Api.getPublishPage(params)
+  }
 }

@@ -26,4 +26,8 @@ export class PageApi {
   static publish(data) {
     return request({ method: "post", url: `${url}/publish`, data });
   }
+
+  static getPublishPage(params) {
+    return request({ method: "get", url: `${url}/publish`, params });
+  }
 }

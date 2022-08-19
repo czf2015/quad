@@ -6,7 +6,7 @@ import { update } from "@/utils/object";
 
 const defaultActive = { id: 1, name: 'Block', key: 'style' }
 
-export const useEntities = (initialEntities = [], editable = false, isPrinted) => {
+export const useEntities = (initialEntities = [], editable = false, isPrinted = false) => {
   const snapShot = useSnapShot(initialEntities, isPrinted);
   const {
     state: entities,
