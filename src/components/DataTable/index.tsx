@@ -7,7 +7,7 @@ import { EditableCell, ColumnTitle } from './partials';
 import { useDataTable, useRowSelection } from '@/hooks';
 import { InfoCircleOutlined, FormOutlined, DeleteOutlined, PlusOutlined, UploadOutlined } from '@ant-design/icons';
 import { convertToFormItems } from './helpers';
-import { tableColumn } from '@/mock/tableColumn';
+import { tableColumn } from '@/config/table';
 import styles from './index.module.less'
 
 

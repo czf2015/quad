@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Form, Button } from "@/plugins/ui";
 import { renderFormItem } from "./render";
 import { filter } from "./helpers";
-import { tableColumn } from "@/mock/tableColumn";
+import { tableColumn } from "@/config/table";
 
 export default ({
   initialValues,

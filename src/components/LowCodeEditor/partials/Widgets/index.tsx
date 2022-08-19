@@ -3,7 +3,7 @@ import React from 'react'
 import { Collapse } from '@/plugins/ui'
 import { Widget } from './partials'
 import styles from './index.module.less'
-import mock from '@/mock/categoryWidgetsList'
+import mock from '@/config/widgets'
 
 interface IWidgetsProps {
   categories: IWidgetCategory[]

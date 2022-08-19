@@ -28,5 +28,8 @@ interface ChartOption {
     enable: boolean;
     duration: number;
   }
-  coordinate: ''
+  coordinate: '',
+  darkMode: boolean;
+  color: [];
+  
 }

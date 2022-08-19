@@ -155,14 +155,3 @@ export const tableColumn = [
   //   defaultValue: true,
   // },
 ];
-
-export const columns = [
-  {
-    title: '',
-    dataIndex: '',
-    key: '',
-    width: 120,
-    fixed: 'left',
-    children: []
-  }
-]
