@@ -19,24 +19,24 @@ const AlignSelect = ({ store }) => {
   return (
     <div>
       <div className={styles.selectWrap}>
-        {horizontal.icon()}
         <Tooltip placement="top" title={horizontal.tooltip}>
-          <Select
-            options={handleOption(horizontal.options)}
-            value={store('constraints')?.horizontal}
-            onChange={handleHorChange}
-          />
+          {horizontal.icon()}
         </Tooltip>
+        <Select
+          options={handleOption(horizontal.options)}
+          value={store('constraints')?.horizontal}
+          onChange={handleHorChange}
+        />
       </div>
       <div className={styles.selectWrap}>
-        {vertical.icon()}
         <Tooltip placement="top" title={vertical.tooltip}>
-          <Select
-            options={handleOption(vertical.options)}
-            value={store('constraints')?.vertical}
-            onChange={handleVerChange}
-          />
+          {vertical.icon()}
         </Tooltip>
+        <Select
+          options={handleOption(vertical.options)}
+          value={store('constraints')?.vertical}
+          onChange={handleVerChange}
+        />
       </div>
     </div>
   );
@@ -46,11 +46,14 @@ const AlignDiagrams = ({ store }) => {
   return (
     <div className={styles.diagrams}>
       <div className={styles.rect}>
-        {handleDiagramsConfig(styles, store('constraints')?.horizontal, store('constraints')?.vertical, store).map(
-          ({ className, style, method }, index) => (
-            <div key={index} className={className} style={style} onClick={method} />
-          )
-        )}
+        {handleDiagramsConfig(
+          styles,
+          store('constraints')?.horizontal,
+          store('constraints')?.vertical,
+          store
+        ).map(({ className, style, method }, index) => (
+          <div key={index} className={className} style={style} onClick={method} />
+        ))}
       </div>
     </div>
   );

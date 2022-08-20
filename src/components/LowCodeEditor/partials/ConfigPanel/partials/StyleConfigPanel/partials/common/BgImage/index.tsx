@@ -2,7 +2,7 @@
 import React from 'react';
 import { FolderViewOutlined } from '@ant-design/icons';
 import { Input } from 'antd';
-import { Eyes } from './Eyes';
+import { Eyes } from '../Eyes';
 import styles from './index.module.less';
 
 export const BgImage = () => {

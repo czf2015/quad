@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { useState } from 'react'
-import { update } from '@/utils/object'
+import { update, copy } from '@/utils/object'
 
 export const useStore = (initialState = {}) => {
   const [state, setState] = useState(initialState)
@@ -10,7 +10,7 @@ export const useStore = (initialState = {}) => {
       return state
     }
     if (typeof value == 'undefined') {
-      return state[key]
+      return copy(state[key])
     }
     setState(state => {
       return {

@@ -1,88 +1,73 @@
 // @ts-nocheck
 import React, { useState } from 'react';
-import { Segmented } from 'antd';
-import { BgColorsOutlined, FileImageOutlined } from '@ant-design/icons';
-import { ColorSelect, Eyes, BgImage } from '../common';
+import { ColorPicker, Eyes, BgImage } from '../common';
 import { addIcon, minusIcon } from '../../icons';
 import styles from './index.module.less';
 
-const ColorModel = ({ store }) => {
+const ColorModel = ({ store, config, index, state }) => {
   // 子组件颜色值符合输入条件处理
   const handleColorChange = (value) => {
-    store('fill', { color: { hex: value } });
+    const updateConfig = { type: config?.type, value: value, hidden: config?.hidden };
+    state.splice(index, 1, updateConfig);
+    store('fill', state);
   };
 
   const handleEyes = () => {
-    store('fill', { color: { hidden: !store('fill')?.color?.hidden } });
+    const updateConfig = { type: config?.type, value: config?.value, hidden: !config?.hidden };
+    state.splice(index, 1, updateConfig);
+    store('fill', state);
   };
 
-  const handleBlur = (value) => {
-    store('fill', { color: { alpha: value } });
+  const handleMinus = () => {
+    state.splice(index, 1);
+    store('fill', state);
   };
 
   return (
-    <div className={styles.content}>
-      <ColorSelect
-        bgColor={store('fill')?.color?.hex}
-        disabled={!store('fill')?.color?.hidden}
-        number={store('fill')?.color?.alpha}
-        handleColorChange={handleColorChange}
-        handleBlur={handleBlur}
-      />
-      <Eyes hidden={store('fill')?.color?.hidden} handleEyes={handleEyes} />
+    <div className={styles.color_content}>
+      <ColorPicker bgColor={config?.value} disabled={config?.hidden} handleColorChange={handleColorChange} />
+      <div className={styles.icon_group}>
+        <Eyes hidden={store('fill')?.color?.hidden} handleEyes={handleEyes} />
+        <span className={styles.icon} onClick={handleMinus}>
+          {minusIcon()}
+        </span>
+      </div>
+    </div>
+  );
+};
+
+const ImageModel = ({ store }) => {
+  return (
+    <div className={styles.image_content}>
+      <BgImage />
     </div>
   );
 };
 
 export default ({ store }) => {
-  const [model, setModel] = useState('color');
+  const fillState = store('fill');
 
   const handleAdd = () => {
-    fillList.unshift({ fill_type: 'color', background: '#FFFFFF', z: 1 });
-    store('fill', fillList);
-  };
-
-  const handleModelChange = (e) => {
-    setModel(e);
+    fillState.unshift({ type: 'color', value: '#FFFFFF', hidden: false });
+    store('fill', fillState);
   };
 
   return (
     <div className={styles.fill}>
-      <h4>填充</h4>
       <div className={styles.title}>
-        <Segmented
-          options={[
-            { label: <BgColorsOutlined />, value: 'color' },
-            { label: <FileImageOutlined />, value: 'image' },
-          ]}
-          onChange={handleModelChange}
-        />
-        {model == 'image' && (
-          <div className={styles.icon} onClick={handleAdd}>
-            {addIcon()}
-          </div>
-        )}
+        <h4>填充</h4>
+        <div className={styles.icon} onClick={handleAdd}>
+          {addIcon()}
+        </div>
       </div>
-      {model == 'color' && <ColorModel store={store} />}
-      {model == 'image' && <BgImage />}
+      {store('fill')?.map((item, index) => {
+        switch (item.type) {
+          case 'color':
+            return <ColorModel key={index} store={store} config={item} index={index} state={fillState} />;
+          case 'image':
+            return <ImageModel store={store} key={index} index={index} />;
+        }
+      })}
     </div>
   );
 };
-
-{
-  /* {store('fill').map(({ background }, index) => {
-        return (
-          <div className={styles.content} key={index}>
-            <ColorSelect bgColor={background} index={index} handleColorChange={handleColorChange} />
-            <div
-              className={styles.icon}
-              onClick={() => {
-                handleMinus(index);
-              }}
-            >
-              {minusIcon()}
-            </div>
-          </div>
-        );
-      })} */
-}

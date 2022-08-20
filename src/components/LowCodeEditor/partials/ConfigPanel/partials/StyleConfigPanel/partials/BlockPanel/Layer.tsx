@@ -1,7 +1,7 @@
 // @ts-nocheck
 import React from 'react';
 import { Select, InputNumber, Tooltip } from 'antd';
-import { Eyes } from '../common/Eyes';
+import { Eyes } from '../common';
 import { opacityIcon, zIcon } from '../../icons';
 import { OVERFLOW_OPTIONS } from './config';
 import styles from './index.module.less';

@@ -105,15 +105,18 @@
     }
 
     .selectWrap {
-      border: 1px solid #ccc;
       margin-top: 4px;
+      background-color: var(--quad-form-default-background-color);
+      border-radius: 6px;
+      width: 120px;
+
       :global {
         .ant-select {
           width: 100px;
         }
-        .ant-select:not(.ant-select-customize-input) .ant-select-selector {
-          border: none;
-        }
+      }
+      &:hover {
+        background-color: var(--quad-form-active-background-color);
       }
     }
   }
@@ -148,15 +151,25 @@
     }
   }
 
-  .content {
+  .color_content {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: 12px;
 
-    .icon {
-      cursor: pointer;
+    .icon_group {
+      width: 50px;
+      display: flex;
+      justify-content: space-between;
+
+      .icon {
+        cursor: pointer;
+      }
     }
+  }
+
+  .image_content {
+    margin-top: 12px;
   }
 }
 
