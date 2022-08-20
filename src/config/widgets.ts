@@ -149,6 +149,12 @@ export default [
         icon: "",
         description: "",
       },
+      {
+        name: "ColorGradient",
+        title: "颜色渐变",
+        icon: "",
+        description: "",
+      },
     ],
   },
   {

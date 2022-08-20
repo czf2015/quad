@@ -48,11 +48,11 @@ interface ChartOption {
   title: string;
   type: "BarChart" | "PieChart";
   layout?: "horizontal" | "vertical" | 'TB' | 'BT' | 'LR' | 'RL'; // 水平或垂直 
+  dimensions: IDimension[];
+  percentage: boolean; // 是否百分比值 
+  coordinate: ICoordinate;            
   group?: string;
   stack?: string;
-  percentage: boolean; // 是否百分比值
-  dimensions: IDimension[];
-  coordinate: ICoordinate;
   animation: IAnimation;
   colors: (colorType | linearGradientType | radialGradientType)[];
 }
