@@ -4,8 +4,8 @@ import Eye from '@/components/Form/partials/CustomSwitch'
 import ColorGradient from '@/components/ColorGradient'
 import { getRadialGradient, getLinearGradient } from '@/components/ColorGradient/helpers'
 import uuid from '@/plugins/uuid'
-import { PlusOutlined, MinusOutlined, CopyOutlined } from '@ant-design/icons';
 import { copyText } from '@/utils/dom'
+import { PlusOutlined, MinusOutlined, CopyOutlined } from '@ant-design/icons';
 import styles from './index.module.less';
 
 
@@ -61,7 +61,7 @@ export default ({ title = '填充', store }) => {
           }
 
           const copy = () => copyText(value)
-          
+
           return (
             <div className={styles.item_wrapper} key={id}>
               <div className={styles.input_group}>
