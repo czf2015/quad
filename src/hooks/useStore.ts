@@ -7,7 +7,15 @@ export const useStore = (initialState = {}) => {
 
   const store = (key, value) => {
     if (typeof key == 'undefined') {
-      return state
+      if (typeof value == 'undefined') {
+        return copy(state)
+      }
+      setState(state => {
+        return {
+          ...state,
+          ...value,
+        }
+      })
     }
     if (typeof value == 'undefined') {
       return copy(state[key])
