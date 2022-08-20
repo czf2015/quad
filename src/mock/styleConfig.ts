@@ -63,16 +63,19 @@ export const blockStyle = {
   },
   fill: [
     {
+      id: '1',
       type: 'color',
       value: '#FFFFFF',
       hidden: false
     },
     {
+      id: '2',
       type: 'color',
       value: '#FFFFFF',
       hidden: false
     },
     {
+      id: '3',
       type: 'image',
       url: '',
       position: {
@@ -93,6 +96,7 @@ export const blockStyle = {
       hidden: false
     },
     {
+      id: '4',
       type: 'linear',
       x1: 0,
       y1: 0,
@@ -106,6 +110,7 @@ export const blockStyle = {
       repeat: 'no-repeat'
     },
     {
+      id: '5',
       type: 'radial',
       cx: 0,
       cy: 0,
