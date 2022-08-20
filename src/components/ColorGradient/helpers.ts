@@ -9,6 +9,7 @@ export const getInputDigitalProps = (store, field) => {
     controls: false,
     prefix: `${field}:`,
     size: "small",
+    bordered: false,
   };
 };
 

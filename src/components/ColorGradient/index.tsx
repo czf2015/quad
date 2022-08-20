@@ -33,8 +33,7 @@ const defaultColor = {
   repeat: 'no-repeat'
 }
 
-export default ({ color = defaultColor }) => {
-  const store = useStore(color)
+export default ({ store }) => {
   const handleTypeChange = (value) => {
     store('type', value)
   }

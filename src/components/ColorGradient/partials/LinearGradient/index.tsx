@@ -11,12 +11,12 @@ export const LinearGradient = ({ store }) => {
       <div className={styles.effect} style={{ background: getLinearGradient(store()) }}></div>
       <div className={styles.range}>
         <div className={styles.flex}>
-          <span>起始</span>
+          <span className={styles.label}>起始</span>
           <InputDigital {...getInputDigitalProps(store, 'x1')} />
           <InputDigital {...getInputDigitalProps(store, 'y1')} />
         </div>
         <div className={styles.flex}>
-          <span>终止</span>
+          <span className={styles.label}>终止</span>
           <InputDigital {...getInputDigitalProps(store, 'x2')} />
           <InputDigital {...getInputDigitalProps(store, 'y2')} />
         </div>

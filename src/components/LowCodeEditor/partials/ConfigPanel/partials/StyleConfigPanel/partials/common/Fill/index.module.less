@@ -4,46 +4,56 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 12px;
-
-    .icon {
-      cursor: pointer;
-    }
   }
 
-  .color_content {
+  .item_wrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: 12px;
 
-    .input {
-      margin: 8px;
-      width: 80px !important;
+    >.input_group {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #f5f7fa;
+      border-radius: 4px;
+
+      .color_mode {
+        height: 28px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &:hover {
+          outline: 1px solid #1890ff;
+        }
+
+        .effect {
+          margin-left: 8px;
+          width: 16px;
+          height: 16px;
+          display: inline-block;
+        }
+
+        >.input {
+          margin: 8px;
+          width: 160px;
+        }
+      }
+
+
+
+      >.copy {
+        background-color: #eee;
+        border: none;
+      }
     }
-    .effect {
-      margin-left: 8px;
-      width: 16px;
-      height: 16px;
-      display: inline-block;
-    }
-    .icon_group {
+
+    >.icon_group {
       width: 50px;
       display: flex;
       justify-content: space-between;
-
-      .icon {
-        cursor: pointer;
-      }
     }
   }
-
-  .image_content {
-    margin-top: 12px;
-  }
-}
-
-.flex {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }

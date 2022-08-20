@@ -1,72 +1,86 @@
 import React from 'react'
-import { Dropdown, Input } from 'antd';
+import { Button, Tooltip, Dropdown, Input } from 'antd';
+import Eye from '@/components/Form/partials/CustomSwitch'
 import ColorGradient from '@/components/ColorGradient'
-import { ColorPicker, Eyes } from '../';
-import { addIcon, minusIcon } from '../../../icons';
+import { getRadialGradient, getLinearGradient } from '@/components/ColorGradient/helpers'
+import uuid from '@/plugins/uuid'
+import { PlusOutlined, MinusOutlined, CopyOutlined } from '@ant-design/icons';
+import { copyText } from '@/utils/dom'
 import styles from './index.module.less';
 
-const ColorModel = ({ store, config, index, state }) => {
-  // 子组件颜色值符合输入条件处理
-  const handleColorChange = (value) => {
-    const updateConfig = { type: config?.type, value: value, hidden: config?.hidden };
-    state.splice(index, 1, updateConfig);
-    store('fill', state);
-  };
 
-  const handleEyes = () => {
-    const updateConfig = { type: config?.type, value: config?.value, hidden: !config?.hidden };
-    state.splice(index, 1, updateConfig);
-    store('fill', state);
-  };
+export default ({ title = '填充', store }) => {
+  const fill = store('fill');
 
-  const handleMinus = () => {
-    state.splice(index, 1);
-    store('fill', state);
-  };
-
-  return (
-    <div className={styles.color_content}>
-      {/* <ColorPicker bgColor={config?.value} disabled={config?.hidden} handleColorChange={handleColorChange} /> */}
-      <div className={styles.flex}>
-        <Dropdown overlay={<ColorGradient />} trigger={['click']} >
-          <span className={styles.effect} style={{ background: /* store('fill')?.color?.value */'red' }}></span>
-        </Dropdown>
-        <Input className={styles.input}  /* value={color} onChange={handleChange}  */ size="small" />
-      </div>
-      <div className={styles.icon_group}>
-        <Eyes hidden={store('fill')?.color?.hidden} handleEyes={handleEyes} />
-        <span className={styles.icon} onClick={handleMinus}>
-          {minusIcon()}
-        </span>
-      </div>
-    </div>
-  );
-};
-
-export default ({ store }) => {
-  const fillState = store('fill');
-
-  const handleAdd = () => {
-    fillState.unshift({ type: 'color', value: '#FFFFFF', hidden: false });
-    store('fill', fillState);
+  const add = () => {
+    store('fill', [{ type: 'color', value: '#FFFFFF', hidden: false, id: uuid() }, ...fill])
   };
 
   return (
     <div className={styles.fill}>
       <div className={styles.title}>
-        <h4>填充</h4>
-        <div className={styles.icon} onClick={handleAdd}>
-          {addIcon()}
-        </div>
+        <h4>{title}</h4>
+        <PlusOutlined onClick={add} />
       </div>
       <div>
-        {store('fill')?.map((item, index) => {
-          switch (item.type) {
-            case 'color':
-              return <ColorModel key={index} store={store} config={item} index={index} state={fillState} />;
-            // case 'image':
-            //   return <ImageModel store={store} key={index} index={index} />;
+        {fill.map((item) => {
+          const { type, value: defaultValue, id, hidden } = item
+
+          const remove = () => {
+            store('fill', fill.filter((item) => item.id != id))
           }
+
+          const subStore = (key, value) => {
+            if (typeof key == 'undefined') {
+              if (typeof value == 'undefined') {
+                return item
+              }
+              return
+            }
+            if (typeof value == 'undefined') {
+              return item[key]
+            }
+            const select = fill.find(item => item.id == id)
+            if (select) {
+              select[key] = value
+            }
+            store('fill', fill)
+          }
+
+          let value/*  = defaultValue */
+          switch (type) {
+            case 'linear':
+              value = getLinearGradient(item)
+              break
+            case 'radial':
+              value = getRadialGradient(item)
+              break
+            default:
+              value = defaultValue
+              break
+          }
+
+          const copy = () => copyText(value)
+          
+          return (
+            <div className={styles.item_wrapper} key={id}>
+              <div className={styles.input_group}>
+                <div className={styles.color_mode}>
+                  <Dropdown overlay={<ColorGradient store={subStore} />} trigger={['click']} >
+                    <span className={styles.effect} style={{ background: value }}></span>
+                  </Dropdown>
+                  <Input className={styles.input} value={value} disabled={type == 'linear' || type == 'radial'} size="small" bordered={false} />
+                </div>
+                <Tooltip title="复制">
+                  <Button icon={<CopyOutlined />} className={styles.copy} size="small" onClick={copy} />
+                </Tooltip>
+              </div>
+              <div className={styles.icon_group}>
+                <Eye value={!hidden} onChange={() => subStore('hidden', !hidden)} />
+                <MinusOutlined onClick={remove} />
+              </div>
+            </div>
+          );
         })}
       </div>
     </div>

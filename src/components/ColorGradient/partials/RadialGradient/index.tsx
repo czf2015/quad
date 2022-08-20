@@ -10,12 +10,12 @@ export const RadialGradient = ({ store }) => {
       <div className={styles.effect} style={{ background: getRadialGradient(store()) }}></div>
       <div className={styles.range}>
         <div className={styles.flex}>
-          <span>圆心</span>
+          <span className={styles.label}>圆心</span>
           <InputDigital {...getInputDigitalProps(store, 'cx')} />
           <InputDigital {...getInputDigitalProps(store, 'cy')} />
         </div>
         <div className={styles.flex}>
-          <span>轴半径</span>
+          <span className={styles.label}>轴半径</span>
           <InputDigital {...getInputDigitalProps(store, 'rx')} />
           <InputDigital {...getInputDigitalProps(store, 'ry')} />
         </div>

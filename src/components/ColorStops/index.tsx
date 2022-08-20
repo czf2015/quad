@@ -1,8 +1,8 @@
 import React from 'react'
 import { InputNumber, Input, Select } from 'antd';
 import ColorPicker from '@/components/ColorPicker'
-import { PlusOutlined, MinusOutlined } from '@ant-design/icons';
 import uuid from '@/plugins/uuid'
+import { PlusOutlined, MinusOutlined } from '@ant-design/icons';
 import styles from './index.module.less'
 
 const options = [
@@ -17,7 +17,7 @@ const options = [
 ]
 
 export default ({ title = '色标点', store }) => {
-  const colorStops = store('colorStops')
+  const colorStops = store('colorStops') || []
   const add = () => {
     store('colorStops', [...colorStops, { type: 0, offset: 1, color: '#ccc', id: uuid() }])
   }
@@ -39,7 +39,7 @@ export default ({ title = '色标点', store }) => {
         <PlusOutlined onClick={add} />
       </h4>
       <div className={styles.content}>
-        {colorStops.map(({ id, type, color, offset }) => {
+        {colorStops?.map(({ id, type, color, offset }) => {
           return (
             <div className={styles.flex} key={id}>
               <ColorPicker value={color} onChange={handleColorStopChange('color', id)} />
