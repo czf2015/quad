@@ -3,8 +3,9 @@ import { useState } from "react";
 import { useSnapShot } from "./useSnapShot";
 import { useRestore } from "./useRestore";
 import { update } from "@/utils/object";
+import uuid from '@/plugins/uuid'
 
-const defaultActive = { id: 1, name: 'Block', key: 'style' }
+const defaultActive = { id: uuid(), name: 'Block', key: 'style' }
 
 export const useEntities = (initialEntities = [], editable = false, isPrinted = false) => {
   const snapShot = useSnapShot(initialEntities, isPrinted);
@@ -86,15 +87,20 @@ export const useEntities = (initialEntities = [], editable = false, isPrinted = 
   const splitBlock = (id, isHorizontal = false, offset) => {
     setEntities((entities) => {
       const result = [];
+      let first_child_id
       entities.forEach((item) => {
         if (item.id == id) {
           // 子区域
           [0, 1].forEach((idx) => {
+            const child_id = uuid()
+            if (typeof first_child_id == 'undefined') {
+              first_child_id = child_id
+            }
             result.push({
               name: "Block",
-              id: id * 2 + idx,
+              id: child_id,
               pid: id,
-              title: `区域${id * 2 + idx}`,
+              title: `区域${child_id}`,
               quad: isHorizontal
                 ? idx > 0
                   ? "bottom"
@@ -129,7 +135,7 @@ export const useEntities = (initialEntities = [], editable = false, isPrinted = 
           });
           result.push({ ...item, hasBlock: true, widgets: [] });
         } else if (item.pid == id) {
-          result.push({ ...item, pid: id * 2 });
+          result.push({ ...item, pid: first_child_id });
         } else {
           result.push({ ...item });
         }
@@ -143,7 +149,7 @@ export const useEntities = (initialEntities = [], editable = false, isPrinted = 
       return result;
     });
     // TODO: id生成改为uuid
-    setActive(active => active.id == id ? { ...acitve, id: id * 2 } : active)
+    setActive(active => active.id == id ? { ...acitve, first_child_id } : active)
   };
   // 拉伸
   const pullBlock = (id, dragMove) => {
@@ -304,7 +310,7 @@ export const useEntities = (initialEntities = [], editable = false, isPrinted = 
       return
     }
     const dropEntity = entities.find((item) => item.id == dropId);
-    const dragWidgetId = Date.now();
+    const dragWidgetId = uuid();
     setEntities((entities) => {
       const result = [];
       entities.forEach((entity) => {
