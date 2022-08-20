@@ -3,7 +3,8 @@ import React from 'react';
 import { Divider } from 'antd';
 import Constraints from './Constraints';
 import Layer from './Layer';
-import Fill from './Fill';
+// import Fill from './Fill';
+import Fill from '../common/Fill';
 import Stroke from './Stroke';
 import { useStore } from '@/hooks';
 

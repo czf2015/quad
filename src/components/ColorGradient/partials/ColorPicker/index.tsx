@@ -5,14 +5,14 @@ import styles from './index.module.less'
 
 export const ColorPicker = ({ store }) => {
   const handleChange = (value) => {
-    store('color', value)
+    store('value', value)
   }
 
   return (
     <div className={styles.color_picker}>
-      <div className={styles.effect} style={{ background: store('color') }}></div>
+      <div className={styles.effect} style={{ background: store('value') }}></div>
       <div className={styles.range}>
-        <Picker value={store('color')} onChange={handleChange} />
+        <Picker value={store('value')} onChange={handleChange} />
       </div>
     </div>
   )

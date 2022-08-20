@@ -112,7 +112,7 @@ export const StyleConfigPanel = () => {
   // };
 
   return (
-    <div className={styles.container}>
+    <div id="style-config-panel" className={styles.container}>
       <BlockPanel blockStyle={blockStyle} />
     </div>
   );

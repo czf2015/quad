@@ -92,6 +92,32 @@ export const blockStyle = {
       },
       hidden: false
     },
+    {
+      type: 'linear',
+      x1: 0,
+      y1: 0,
+      x2: 1,
+      y2: 1,
+      colorStops: [
+        { type: 0, offset: 0, color: 'red' },
+        { type: 0, offset: 50, color: 'green' },
+        { type: 0, offset: 100, color: 'blue' },
+      ],
+      repeat: 'no-repeat'
+    },
+    {
+      type: 'radial',
+      cx: 0,
+      cy: 0,
+      rx: 1,
+      ry: 1,
+      colorStops: [
+        { type: 0, offset: 0, color: 'red' },
+        { type: 0, offset: 50, color: 'green' },
+        { type: 0, offset: 100, color: 'blue' },
+      ],
+      repeat: 'no-repeat'
+    }
   ],
   overflow: 'auto', // 
   opacity: 1,
