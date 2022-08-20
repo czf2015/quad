@@ -1,55 +1,98 @@
+// export const blockStyle = {
+//   constraints: {
+//     horizontal: 0,
+//     vertical: 2,
+//   },
+//   fill: {
+//     image: [
+//       {
+//         url: '',
+//         position: {
+//           left: 0, // 0-100百分比
+//           top: 0, // ...
+//         },
+//         repeat: 'no-repeat',
+//         size: {
+//           width: {
+//             type: 0, // 0 百分比 1 像素 2 auto,
+//             value: 100, // 0-100%, px, auto
+//           },
+//           height: {
+//             type: 0, // 0 百分比 1 像素 2 auto,
+//             value: 100, // 0-100%, px, auto
+//           }
+//         },
+//         hidden: false
+//       },
+//       {
+//         url: '',
+//         position: {
+//           left: 0, // 0-100百分比
+//           top: 0, // ...
+//         },
+//         repeat: 'no-repeat',
+//         size: {
+//           width: {
+//             type: 0, // 0 百分比 1 像素 2 auto,
+//             value: 100, // 0-100%, px, auto
+//           },
+//           height: {
+//             type: 0, // 0 百分比 1 像素 2 auto,
+//             value: 100, // 0-100%, px, auto
+//           }
+//         },
+//         hidden: false
+//       },
+//     ],
+//     color: {
+//       hex: "#FFFFFF",
+//       alpha: 0, // 0-100之间，可以有小数
+//       hidden: false
+//     },
+//   },
+//   overflow: 'auto', // 
+//   opacity: 1,
+//   z: 1,
+//   hidden: false,
+// };
+
 export const blockStyle = {
   constraints: {
     horizontal: 0,
     vertical: 2,
   },
-  fill: {
-    image: [
-      {
-        url: '',
-        position: {
-          left: 0, // 0-100百分比
-          top: 0, // ...
-        },
-        repeat: 'no-repeat',
-        size: {
-          width: {
-            type: 0, // 0 百分比 1 像素 2 auto,
-            value: 100, // 0-100%, px, auto
-          },
-          height: {
-            type: 0, // 0 百分比 1 像素 2 auto,
-            value: 100, // 0-100%, px, auto
-          }
-        },
-        hidden: false
-      },
-      {
-        url: '',
-        position: {
-          left: 0, // 0-100百分比
-          top: 0, // ...
-        },
-        repeat: 'no-repeat',
-        size: {
-          width: {
-            type: 0, // 0 百分比 1 像素 2 auto,
-            value: 100, // 0-100%, px, auto
-          },
-          height: {
-            type: 0, // 0 百分比 1 像素 2 auto,
-            value: 100, // 0-100%, px, auto
-          }
-        },
-        hidden: false
-      },
-    ],
-    color: {
-      hex: "#FFFFFF",
-      alpha: 0, // 0-100之间，可以有小数
+  fill: [
+    {
+      type: 'color',
+      value: '#FFFFFF',
       hidden: false
     },
-  },
+    {
+      type: 'color',
+      value: '#FFFFFF',
+      hidden: false
+    },
+    {
+      type: 'image',
+      url: '',
+      position: {
+        left: 0, // 0-100百分比
+        top: 0, // ...
+      },
+      repeat: 'no-repeat',
+      size: {
+        width: {
+          type: 0, // 0 百分比 1 像素 2 原比例,
+          value: 100, // 0-100%, px, auto
+        },
+        height: {
+          type: 0, // 0 百分比 1 像素 2 auto,
+          value: 100, // 0-100%, px, auto
+        }
+      },
+      hidden: false
+    },
+  ],
   overflow: 'auto', // 
   opacity: 1,
   z: 1,

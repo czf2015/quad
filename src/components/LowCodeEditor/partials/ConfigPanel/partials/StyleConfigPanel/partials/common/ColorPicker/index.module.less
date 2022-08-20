@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 180px;
+  width: 130px;
   padding: 5px;
   background-color: #f7f7f9;
   border-radius: 6px;
@@ -14,7 +14,7 @@
   }
 
   .value_input {
-    width: 70px;
+    width: 100px;
   }
 
   .number_input {
@@ -28,7 +28,6 @@
 
     .ant-input {
       height: 25px;
-      border: none;
       background-color: #f7f7f9;
     }
 
@@ -39,12 +38,34 @@
   }
 }
 
-.bg_image {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.color_picker {
+  position: relative;
 
-  .input {
-    width: 240px;
+  .swatch {
+    padding: 3px;
+    background-color: #ffffff;
+    border-radius: 1px;
+    display: inline-block;
+    cursor: pointer;
+
+    .color {
+      width: 20px;
+      height: 20px;
+      border-radius: 2px;
+      background-color: aqua;
+    }
+  }
+
+  .popover {
+    position: absolute;
+    z-index: 2;
+
+    .cover {
+      position: fixed;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+    }
   }
 }

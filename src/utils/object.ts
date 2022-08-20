@@ -8,3 +8,14 @@ export const update = (raw, updates) => {
   }
   return updates;
 };
+
+export const copy = (value) => {
+  switch (Object.prototype.toString.call(value)) {
+    case '[object Object]':
+      return { ...value }
+    case '[object Array]':
+      return [...value]
+    default:
+      return value
+  }
+}
