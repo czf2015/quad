@@ -39,7 +39,7 @@ export default [
         name: 'axis',
         label: '坐标轴',
         type: 'Select',
-        options: convertEnumsToOptions(CHART_LAYOUT_TYPES),
+        options: convertEnumsToOptions(CHART_TYPES),
         prerequisites: [
           {
             field: 'type',
@@ -53,7 +53,7 @@ export default [
         name: 'percentage',
         label: '百分化',
         type: 'Switch',
-        options: convertEnumsToOptions(CHART_LAYOUT_TYPES),
+        options: convertEnumsToOptions(CHART_TYPES),
         prerequisites: [
           {
             field: 'type',
@@ -67,7 +67,7 @@ export default [
         name: 'scale',
         label: '量尺',
         type: 'Select',
-        options: convertEnumsToOptions(CHART_LAYOUT_TYPES),
+        options: convertEnumsToOptions(CHART_TYPES),
         prerequisites: [
           {
             field: 'type',
@@ -81,7 +81,7 @@ export default [
         name: 'sort',
         label: '排序',
         type: 'Radio',
-        options: convertEnumsToOptions(CHART_LAYOUT_TYPES),
+        options: convertEnumsToOptions(CHART_TYPES),
       },
 
     ]
@@ -90,7 +90,7 @@ export default [
     name: 'group',
     label: '分组',
     type: 'Select',
-    options: convertEnumsToOptions(CHART_LAYOUT_TYPES),
+    options: convertEnumsToOptions(CHART_TYPES),
     prerequisites: [
       {
         field: 'type',
@@ -104,7 +104,7 @@ export default [
     name: 'stack',
     label: '堆叠',
     type: 'Select',
-    options: convertEnumsToOptions(CHART_LAYOUT_TYPES),
+    options: convertEnumsToOptions(CHART_TYPES),
     prerequisites: [
       {
         field: 'type',
