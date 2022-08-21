@@ -69,13 +69,21 @@ export const Wrapper = ({
         {
           key: '1',
           label: (
+            <a onClick={handleConfig('custom')}>
+              <img src="/icons/Custom.svg" style={{ width: 16, height: 16 }} />{/* 样式 */}
+            </a>
+          ),
+        },
+        {
+          key: '2',
+          label: (
             <a onClick={handleConfig('style')}>
               <img src="/icons/Styles.svg" style={{ width: 16, height: 16 }} />{/* 样式 */}
             </a>
           ),
         },
         {
-          key: '2',
+          key: '3',
           label: (
             <a onClick={handleConfig("dataSource")}>
               <img src="/icons/Datasource.svg" style={{ width: 16, height: 16 }} />{/* 数据 */}
@@ -83,7 +91,7 @@ export const Wrapper = ({
           ),
         },
         {
-          key: '3',
+          key: '4',
           label: (
             <a onClick={handleConfig('interact')}>
               <img src="/icons/Interact.svg" style={{ width: 16, height: 16 }} />{/* 交互 */}
