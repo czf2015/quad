@@ -60,6 +60,9 @@ export default ({ name, list = [] }) => {
                   case 'Select':
                     formItem = <Select mode={mode} options={options} placeholder={placeholder} size="small" />
                     break
+                  case 'Switch':
+                    formItem = <Switch {...attrs} />
+                    break
                   case 'Json':
                     formItem = <JsonEdit />
                     break

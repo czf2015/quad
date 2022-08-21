@@ -191,7 +191,7 @@ export const renderFormItem = ({
         formItem = <DatePicker mode={mode} picker={picker} {...attrs} />
         break
       case "FormList":
-        return <FormList name={name} list={schema} disabled={disabled} {...attrs} />
+        formItem = <FormList name={name} list={schema} disabled={disabled} {...attrs} />
       default:
         break;
     }
