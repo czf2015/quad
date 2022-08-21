@@ -6,7 +6,7 @@ import { CHART_TYPES, CHART_LAYOUT_TYPES } from '@/constants/CHART';
 const convertEnumsToOptions = (enums) =>
   enums.map((label, idx) => ({ label, value: Number(idx) }));
 
-export const Customize = ({ title = '定制', store }) => {
+export const CustomConfigPanel = ({ store }) => {
   const formItems = [
     {
       name: 'title',
@@ -153,8 +153,7 @@ export const Customize = ({ title = '定制', store }) => {
   ]
 
   return (
-    <div className={styles.customize}>
-      <h4>{title}</h4>
+    <div className={styles.custom_config_panel}>
       <Form children={formItems} wrapperCol={{span: 20}} labelCol={{span: 4}} />
     </div>
   )
