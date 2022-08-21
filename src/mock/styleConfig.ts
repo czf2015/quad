@@ -129,7 +129,7 @@ export const widgetStyle = {
     rotate: 0,
   },
   transformOrigin: {
-    top: {
+    top: { 
       type: 0, // 0 百分比 1 像素值
       value: 0
     }, // 0-100 百分比

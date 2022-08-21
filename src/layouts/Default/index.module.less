@@ -1,7 +1,7 @@
 .layout {
   height: 100vh;
 
-  > .header {
+  >.header {
     position: fixed;
     top: 0;
     left: 0;
@@ -13,7 +13,7 @@
     align-items: center;
   }
 
-  > .main {
+  >.main {
     position: fixed;
     top: 64px;
     left: 0;
@@ -22,26 +22,34 @@
     height: calc(100vh - 64px);
     display: flex;
     justify-content: space-between;
-    background-color: #f5f7fa;
+    background-color: var(--quad-primary-background-color);
 
-    > .left {
+    >.left {
       width: 216px;
     }
 
-    > .content {
+    >.content {
       width: calc(100% - 560px);
       overflow: auto;
     }
 
-    > .right {
+    >.right {
       position: relative;
       width: 320px;
 
-      > .collapse_btn {
+      >.collapse_btn {
         position: absolute;
         top: calc(50% - 12px);
         left: -12px;
+        width: 12px;
+        height: 48px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         font-size: 12px;
+        color: #aaa;
+        background-color: #fff;
+        clip-path: polygon(0% 20%, 100% 0%, 100% 100%, 0% 80%);
       }
     }
   }
@@ -55,13 +63,14 @@
   }
 
   &.collapsed {
-    > .main {
-      > .content {
-        width: calc(100% - 240px;);
+    >.main {
+      >.content {
+        width: calc(100% - 240px; );
       }
 
-      > .right {
+      >.right {
         width: 0;
+
         > :last-child {
           display: none;
         }
@@ -70,25 +79,26 @@
   }
 
   &.preview {
-    > .header {
+    >.header {
       display: none;
     }
 
-    > .main {
+    >.main {
       top: 0;
       padding-top: 0;
       height: 100%;
 
-      > .left,
-      > .right {
+      >.left,
+      >.right {
         display: none;
       }
 
-      > .content {
+      >.content {
         width: 100%;
       }
     }
-    > .exit {
+
+    >.exit {
       display: inline-block;
     }
   }
