@@ -30,29 +30,40 @@ interface IDimension {
   field: string;
   sort: 0 | 1 | -1; // 原序 正序 倒序
   scale: 0; // 
+  percentage: boolean;
   unit: string;
 }
 
-interface ICoordinate {
-  type: "cartesian2d" | "polar" = "cartesian2d";
+type cartesian2dCoordinateType = {
+  type: "cartesian2d";
   xAxis?: indexType;
   yAxis?: indexType;
 }
 
-interface IAnimation {
-  enable: boolean;
-  duration: number;
+type polarCoordinateType = {
+  type: "polar";
+  angle?: indexType;
+  radius?: indexType;
 }
+
+type categoryCoordinate {
+  type: "category";
+  category?: indexType;
+  value?: indexType;
+}
+
+type coordinateType = cartesian2dCoordinateType | polarCoordinateType | categoryCoordinateType
+
+type animationType = number
 
 interface ChartOption {
   title: string;
   type: "BarChart" | "PieChart";
   layout?: "horizontal" | "vertical" | 'TB' | 'BT' | 'LR' | 'RL'; // 水平或垂直 
   dimensions: IDimension[];
-  percentage: boolean; // 是否百分比值 
-  coordinate: ICoordinate;            
+  coordinate: coordinateType;
   group?: string;
   stack?: string;
-  animation: IAnimation;
-  colors: (colorType | linearGradientType | radialGradientType)[];
+  animation?: animationType;
+  color: (colorType | linearGradientType | radialGradientType)[];
 }
