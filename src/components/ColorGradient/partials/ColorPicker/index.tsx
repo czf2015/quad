@@ -1,6 +1,5 @@
 import React from 'react'
-import Picker from '@/components/ColorPicker'
-import styles from './index.module.less'
+import Picker from '@/components/Form/partials/ColorPicker'
 
 
 export const ColorPicker = ({ store }) => {
@@ -9,11 +8,6 @@ export const ColorPicker = ({ store }) => {
   }
 
   return (
-    <div className={styles.color_picker}>
-      <div className={styles.effect} style={{ background: store('value') }}></div>
-      <div className={styles.range}>
-        <Picker value={store('value')} onChange={handleChange} />
-      </div>
-    </div>
+    <Picker value={store('value')} onChange={handleChange} />
   )
 }

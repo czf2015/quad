@@ -11,6 +11,9 @@ export default ({ value = 'blue', onChange }) => {
   const handleChange = (e) => {
     setColor(e.target.value)
   }
+  const handleBlur = (e) => {
+    onChange?.(e.target.value)
+  }
   const handleColorChange = ({ hex }) => {
     onChange?.(hex)
     setColor(hex)
@@ -19,7 +22,7 @@ export default ({ value = 'blue', onChange }) => {
   return (
     <div className={styles.color_picker}>
       <span className={styles.effect} style={{ background: color }} onClick={open}></span>
-      <Input className={styles.input} value={color} onChange={handleChange} size="small" />
+      <Input className={styles.input} value={color} onChange={handleChange} onBlur={handleBlur} size="small" />
 
       <div className={styles.popover} style={{ display: visible ? 'block' : 'none' }}>
         <div className={styles.cover} onClick={close} />

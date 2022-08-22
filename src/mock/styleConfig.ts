@@ -45,9 +45,9 @@ export const blockStyle = {
       x2: 1,
       y2: 1,
       colorStops: [
-        { type: 0, offset: 0, color: 'red' },
-        { type: 0, offset: 50, color: 'green' },
-        { type: 0, offset: 100, color: 'blue' },
+        { type: 0, offset: 0, color: 'red', id: '1' },
+        { type: 0, offset: 50, color: 'green', id: '2' },
+        { type: 0, offset: 100, color: 'blue', id: '3' },
       ],
       repeat: 'no-repeat',
       hidden: false
@@ -60,9 +60,9 @@ export const blockStyle = {
       rx: 1,
       ry: 1,
       colorStops: [
-        { type: 0, offset: 0, color: 'red' },
-        { type: 0, offset: 50, color: 'green' },
-        { type: 0, offset: 100, color: 'blue' },
+        { type: 0, offset: 0, color: 'red', id: '1' },
+        { type: 0, offset: 50, color: 'green', id: '2' },
+        { type: 0, offset: 100, color: 'blue', id: '3' },
       ],
       repeat: 'no-repeat',
       rotate: 0,

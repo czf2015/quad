@@ -62,6 +62,12 @@ export default ({ title = '填充', store }) => {
 
           const copy = () => copyText(value)
 
+          const handleBlur = (e) => {
+            if (type != 'linear' && type !== 'radial') {
+              subStore('value', e.target.value)
+            }
+          }
+
           return (
             <div className={styles.item_wrapper} key={id}>
               <div className={styles.input_group}>
@@ -69,7 +75,7 @@ export default ({ title = '填充', store }) => {
                   <Popover content={<ColorGradient store={subStore} />} placement="leftBottom" trigger='click' >
                     <span className={styles.effect} style={{ background: value }}></span>
                   </Popover>
-                  <Input className={styles.input} value={value} disabled={type == 'linear' || type == 'radial'} size="small" bordered={false} />
+                  <Input className={styles.input} defaultValue={value} disabled={type == 'linear' || type == 'radial'} size="small" onBlur={handleBlur} bordered={false} />
                 </div>
                 <Tooltip title="复制">
                   <Button icon={<CopyOutlined />} className={styles.copy} size="small" onClick={copy} />

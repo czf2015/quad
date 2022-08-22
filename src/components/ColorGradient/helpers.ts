@@ -31,7 +31,7 @@ export const getLinearGradient = ({
       ({ type, offset, color }) => `${color} ${offset}${type == 1 ? "px" : "%"}`
     )
     .join(", ")})`;
-  return `${color} ${top} ${left}/${width} ${height} ${repeat}`;
+  return `${color} ${top} ${left}/${width} ${height}`;
 };
 
 export const getRadialGradient = ({
@@ -42,7 +42,6 @@ export const getRadialGradient = ({
   colorStops = [],
   repeat = "no-repeat",
 }) => {
-  debugger
   const color = `${repeat ? 'repeating-' : ''}radial-gradient(${rx * 100}% ${ry * 100}% at ${cx * 100}% ${
     cy * 100
   }%, ${colorStops
@@ -50,5 +49,5 @@ export const getRadialGradient = ({
       ({ type, offset, color }) => `${color} ${offset}${type == 1 ? "px" : "%"}`
     )
     .join(", ")})`;
-  return `${color} ${repeat}`;
+  return color;
 };
