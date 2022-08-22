@@ -99,3 +99,5 @@ export const getMockData = (id) =>
     .catch((err) => ({}));
 
 export default request;
+
+window.$request = request

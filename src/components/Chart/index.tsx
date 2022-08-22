@@ -49,7 +49,6 @@ const General = forwardRef(({
   }, [option]);
 
   useEffect(() => {
-    debugger
     updateEntity?.(id, {
       meta: {
         custom: [
