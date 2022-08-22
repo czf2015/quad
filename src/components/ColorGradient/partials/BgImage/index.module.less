@@ -1,0 +1,40 @@
+.bg_image {
+  border: 1px solid #ccc;
+  position: relative;
+
+  .mask {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 289px;
+    height: 200px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(24, 28, 37, 0.5);
+    overflow: hidden;
+
+    .btn {
+      width: 100px;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      color: #fff;
+      border: 1px solid var(--quad-primary-border-color);
+      border-radius: 4px;
+      cursor: pointer;
+      &:active {
+        border-color: #fff;
+      }
+    }
+  }
+
+  .config_panel {
+    padding: 12px;
+
+    .row_wrap {
+      display: flex;
+      justify-content: flex-start;
+    }
+  }
+}

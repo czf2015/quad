@@ -1,40 +1,50 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
 import { Button, Tooltip, Popover, Input, message } from 'antd';
-import Eye from '@/components/Form/partials/CustomSwitch'
-import ColorGradient from '@/components/ColorGradient'
+import Eye from '@/components/Form/partials/CustomSwitch';
+import ColorGradient from '@/components/ColorGradient';
 import { usePropsState } from '@/hooks';
-import { getRadialGradient, getLinearGradient } from '@/components/ColorGradient/helpers'
-import uuid from '@/plugins/uuid'
-import { copyText } from '@/utils/dom'
-import { dragSort } from '@/utils/array'
+import { getRadialGradient, getLinearGradient } from '@/components/ColorGradient/helpers';
+import uuid from '@/plugins/uuid';
+import { copyText } from '@/utils/dom';
+import { dragSort } from '@/utils/array';
 import { HolderOutlined, PlusOutlined, MinusOutlined, CopyOutlined } from '@ant-design/icons';
 import styles from './index.module.less';
 
 const CustomInput = ({ type, value, onBlur }) => {
-  const [inputValue, setInputValue] = usePropsState(value)
+  const [inputValue, setInputValue] = usePropsState(value);
   const handleChange = (e) => {
-    setInputValue(e.target.value)
-  }
+    setInputValue(e.target.value);
+  };
   const handleBlur = (e) => {
     if (type == 'color') {
       const reg = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/;
       if (reg.test(e.target.value)) {
-        onBlur?.(e)
+        onBlur?.(e);
       } else {
-        setInputValue(value)
-        message.error('非法颜色值！')
+        setInputValue(value);
+        message.error('非法颜色值！');
       }
     }
-  }
+  };
 
-  return <Input className={styles.input} value={inputValue} disabled={type == 'linear' || type == 'radial'} size="small" onChange={handleChange} onBlur={handleBlur} bordered={false} />
-}
+  return (
+    <Input
+      className={styles.input}
+      value={inputValue}
+      disabled={type == 'linear' || type == 'radial'}
+      size="small"
+      onChange={handleChange}
+      onBlur={handleBlur}
+      bordered={false}
+    />
+  );
+};
 
 export default ({ title = '填充', store }) => {
   const fill = store('fill');
 
   const add = () => {
-    store('fill', [{ type: 'color', value: '#FFFFFF', hidden: false, id: uuid() }, ...fill])
+    store('fill', [{ type: 'color', value: '#FFFFFF', hidden: false, id: uuid() }, ...fill]);
   };
 
   return (
@@ -45,66 +55,76 @@ export default ({ title = '填充', store }) => {
       </div>
       <div>
         {fill.map((item) => {
-          const { type, value: defaultValue, id, hidden } = item
+          const { type, value: defaultValue, id, hidden } = item;
 
           const remove = () => {
-            store('fill', fill.filter((item) => item.id != id))
-          }
+            store(
+              'fill',
+              fill.filter((item) => item.id != id)
+            );
+          };
 
           const subStore = (key, value) => {
             if (typeof key == 'undefined') {
               if (typeof value == 'undefined') {
-                return item
+                return item;
               }
-              store('fill', fill.map(item => item.id == id ? value : item))
+              store(
+                'fill',
+                fill.map((item) => (item.id == id ? value : item))
+              );
             } else {
               if (typeof value == 'undefined') {
-                return item[key]
+                return item[key];
               }
-              const select = fill.find(item => item.id == id)
+              const select = fill.find((item) => item.id == id);
               if (select) {
-                select[key] = value
+                select[key] = value;
               }
-              store('fill', fill)
+              store('fill', fill);
             }
-          }
+          };
 
-          let value/*  = defaultValue */
+          let value; /*  = defaultValue */
           switch (type) {
             case 'linear':
-              value = getLinearGradient(item)
-              break
+              value = getLinearGradient(item);
+              break;
             case 'radial':
-              value = getRadialGradient(item)
-              break
+              value = getRadialGradient(item);
+              break;
             default:
-              value = defaultValue
-              break
+              value = defaultValue;
+              break;
           }
 
-          const copy = () => copyText(value)
+          const copy = () => copyText(value);
 
           const handleBlur = (e) => {
-            subStore('value', e.target.value)
-          }
+            subStore('value', e.target.value);
+          };
 
           const handleDragStart = (dragId) => (e) => {
-            e.dataTransfer.setData("dragId", dragId);
+            e.dataTransfer.setData('dragId', dragId);
           };
           const handleDragOver = (e) => {
-            e.preventDefault()
+            e.preventDefault();
           };
           const handleDrop = (dropId) => (e) => {
-            const dragId = e.dataTransfer.getData("dragId");
-            store('fill', dragSort(store('fill'), dragId, dropId))
-          }
+            const dragId = e.dataTransfer.getData('dragId');
+            store('fill', dragSort(store('fill'), dragId, dropId));
+          };
 
           return (
             <div className={styles.item_wrapper} key={id} onDragOver={handleDragOver} onDrop={handleDrop(id)}>
               <HolderOutlined className={styles.holder_btn} draggable onDragStart={handleDragStart(id)} />
               <div className={styles.input_group}>
                 <div className={styles.color_mode}>
-                  <Popover content={<ColorGradient store={subStore} />} placement="leftBottom" trigger='click' >
+                  <Popover
+                    content={<ColorGradient store={subStore} />}
+                    placement="leftBottom"
+                    trigger="click"
+                  >
                     <span className={styles.effect} style={{ background: value }}></span>
                   </Popover>
                   <CustomInput type={type} value={value} onBlur={handleBlur} />
@@ -122,5 +142,5 @@ export default ({ title = '填充', store }) => {
         })}
       </div>
     </div>
-  )
-}
+  );
+};

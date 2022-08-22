@@ -1,4 +1,8 @@
 .constraints {
+  .title {
+    font-weight: 700px;
+  }
+
   .content {
     display: flex;
     justify-content: space-between;
@@ -29,7 +33,7 @@
           cursor: pointer;
         }
         .top:hover {
-          background-color: #409eff;
+          background-color: var(--quad-primary-border-color);
         }
 
         .bottom {
@@ -43,7 +47,7 @@
           cursor: pointer;
         }
         .bottom:hover {
-          background-color: #409eff;
+          background-color: var(--quad-primary-border-color);
         }
 
         .left {
@@ -57,7 +61,7 @@
           cursor: pointer;
         }
         .left:hover {
-          background-color: #409eff;
+          background-color: var(--quad-primary-border-color);
         }
 
         .right {
@@ -71,7 +75,7 @@
           cursor: pointer;
         }
         .right:hover {
-          background-color: #409eff;
+          background-color: var(--quad-primary-border-color);
         }
 
         .hor {
@@ -85,7 +89,7 @@
           cursor: pointer;
         }
         .hor:hover {
-          background-color: #409eff;
+          background-color: var(--quad-primary-border-color);
         }
 
         .ver {
@@ -99,16 +103,19 @@
           cursor: pointer;
         }
         .ver:hover {
-          background-color: #409eff;
+          background-color: var(--quad-primary-border-color);
         }
       }
     }
 
     .selectWrap {
-      margin-top: 4px;
-      background-color: var(--quad-form-default-background-color);
-      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      margin-top: 6px;
+      background-color: var(--quad-primary-background-color);
+      border-radius: 4px;
       width: 120px;
+      height: 28px;
 
       :global {
         .ant-select {
@@ -117,12 +124,17 @@
       }
       &:hover {
         background-color: var(--quad-form-active-background-color);
+        outline: 1px solid var(--quad-primary-border-color);
       }
     }
   }
 }
 
 .layer {
+  .title {
+    font-weight: 700px;
+  }
+
   .content {
     display: flex;
     justify-content: space-between;
