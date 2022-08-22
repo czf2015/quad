@@ -17,7 +17,6 @@ export const useHandlers = ({ id, handlers, updateEntity }) => {
         try {
           const handle = new Function(`return ${item.handle}`)();
           const handler = (params) => {
-            debugger
             updateEntity(id, (entities) => {
               return handle({
                 ...params,
