@@ -47,7 +47,7 @@ export default ({ title = '色标点', store }) => {
             <div className={styles.flex} key={id}>
               <ColorPicker value={color} onChange={handleColorStopChange('color', id)} />
               <Input.Group compact>
-                <InputNumber className={styles.input} size="small" value={offset} onChange={handleColorStopChange('offset', id)} min={0} max={type == 1 ? undefined : 100} controls={false} />
+                <InputNumber className={styles.input} size="small" value={offset} onChange={handleColorStopChange('offset', id)} min={0} controls={false} />
                 <Select options={options} value={type} onChange={handleColorStopChange('type', id)} size="small" />
               </Input.Group>
               <MinusOutlined onClick={() => remove(id)} />
