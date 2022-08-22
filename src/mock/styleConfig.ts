@@ -49,7 +49,8 @@ export const blockStyle = {
         { type: 0, offset: 50, color: 'green' },
         { type: 0, offset: 100, color: 'blue' },
       ],
-      repeat: 'no-repeat'
+      repeat: 'no-repeat',
+      hidden: false
     },
     {
       id: '5',
@@ -63,7 +64,9 @@ export const blockStyle = {
         { type: 0, offset: 50, color: 'green' },
         { type: 0, offset: 100, color: 'blue' },
       ],
-      repeat: 'no-repeat'
+      repeat: 'no-repeat',
+      rotate: 0,
+      hidden: false
     }
   ],
   overflow: 'auto', // 

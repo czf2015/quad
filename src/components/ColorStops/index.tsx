@@ -1,5 +1,5 @@
 import React from 'react'
-import { InputNumber, Input, Select } from 'antd';
+import { InputNumber, Input, Select, Switch } from 'antd';
 import ColorPicker from '@/components/ColorPicker'
 import uuid from '@/plugins/uuid'
 import { PlusOutlined, MinusOutlined } from '@ant-design/icons';
@@ -31,11 +31,14 @@ export default ({ title = '色标点', store }) => {
     }
     store('colorStops', colorStops)
   }
+  const handleRepeatChange = (checked) => {
+    store('repeat', checked)
+  }
 
   return (
     <div className={styles.color_stops}>
       <h4 className={styles.flex}>
-        <span>{title}</span>
+        <span>{title}<Switch checkedChildren="重复" defaultChecked={store('repeat')} onChange={handleRepeatChange} style={{ margin: '0 28px 0 4px' }} /></span>
         <PlusOutlined onClick={add} />
       </h4>
       <div className={styles.content}>

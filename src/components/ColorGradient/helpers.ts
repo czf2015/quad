@@ -26,7 +26,7 @@ export const getLinearGradient = ({
   const left = `${x * 100}%`;
   const width = `${Math.abs(x2 - x) * 100}%`;
   const height = `${Math.abs(y2 - y) * 100}%`;
-  const color = `linear-gradient(${angle}deg, ${colorStops
+  const color = `${repeat ? 'repeating-' : ''}linear-gradient(${angle}deg, ${colorStops
     .map(
       ({ type, offset, color }) => `${color} ${offset}${type == 1 ? "px" : "%"}`
     )
@@ -42,7 +42,8 @@ export const getRadialGradient = ({
   colorStops = [],
   repeat = "no-repeat",
 }) => {
-  const color = `radial-gradient(${rx * 100}% ${ry * 100}% at ${cx * 100}% ${
+  debugger
+  const color = `${repeat ? 'repeating-' : ''}radial-gradient(${rx * 100}% ${ry * 100}% at ${cx * 100}% ${
     cy * 100
   }%, ${colorStops
     .map(
