@@ -19,7 +19,7 @@ const options = [
 export default ({ title = '色标点', store }) => {
   const colorStops = store('colorStops') || []
   const add = () => {
-    store('colorStops', [...colorStops, { type: 0, offset: 1, color: '#ccc', id: uuid() }])
+    store('colorStops', [...colorStops, { type: 0, offset: 0, color: '#ccc', id: uuid() }])
   }
   const remove = (id) => {
     store('colorStops', colorStops.filter((item) => item.id != id))
