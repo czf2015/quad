@@ -12,7 +12,7 @@ const judgePrerequiste = (prerequisite, formData = {}) => {
   const v1 = formData[field];
 
   if (options) {
-    if (options?.include?.some((v2) => !contain(v1, v2))) {
+    if (options?.include?.every((v2) => !contain(v1, v2))) {
       return false
     }
     if (options?.exclude?.some((v2) => contain(v1, v2))) {

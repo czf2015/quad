@@ -3,6 +3,7 @@ export const CHART_TYPES = [
   '折线图',
   '散点图',
   '饼状图',
+  '树图',
 ]
 
 export const CHART_LAYOUT_TYPES = ["horizontal", "vertical", 'TB', 'BT', 'LR', 'RL']

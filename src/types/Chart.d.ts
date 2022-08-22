@@ -32,6 +32,7 @@ interface IDimension {
   scale: 0; // 
   percentage: boolean;
   unit: string;
+  axis?: string;
 }
 
 type cartesian2dCoordinateType = {

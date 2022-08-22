@@ -82,7 +82,37 @@ const General = forwardRef(({
             name: 'layout',
             label: '布局',
             type: 'Select',
-            options: convertEnumsToOptions(CHART_LAYOUT_TYPES)
+            options: [
+              { label: '水平', value: 'horizontal' },
+              { label: '垂直', value: 'vertical' },
+            ],
+            prerequisites: [
+              {
+                field: 'type',
+                options: {
+                  include: [0, 1, 2]
+                }
+              }
+            ]
+          },
+          {
+            name: 'layout',
+            label: '布局',
+            type: 'Select',
+            options: [
+              { label: '从左到右', value: 'LR' },
+              { label: '从右到左', value: 'RL' },
+              { label: '从上到下', value: 'TB' },
+              { label: '从下到上', value: 'BT' },
+            ],
+            prerequisites: [
+              {
+                field: 'type',
+                options: {
+                  exclude: [0, 1, 2]
+                }
+              }
+            ]
           },
           {
             name: 'dimensions',
@@ -119,7 +149,7 @@ const General = forwardRef(({
               },
               {
                 name: 'scale',
-                label: '量尺',
+                label: '变换',
                 type: 'Select',
                 options: [
                   {
@@ -131,7 +161,7 @@ const General = forwardRef(({
                     value: 1
                   },
                   {
-                    label: '幂数',
+                    label: '指数',
                     value: 2
                   }
                 ],

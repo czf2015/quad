@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Tooltip, Dropdown, Input } from 'antd';
+import { Button, Tooltip, Popover, Input } from 'antd';
 import Eye from '@/components/Form/partials/CustomSwitch'
 import ColorGradient from '@/components/ColorGradient'
 import { getRadialGradient, getLinearGradient } from '@/components/ColorGradient/helpers'
@@ -66,9 +66,9 @@ export default ({ title = '填充', store }) => {
             <div className={styles.item_wrapper} key={id}>
               <div className={styles.input_group}>
                 <div className={styles.color_mode}>
-                  <Dropdown overlay={<ColorGradient store={subStore} />} trigger={['click']} >
+                  <Popover content={<ColorGradient store={subStore} />} placement="leftBottom" trigger='click' >
                     <span className={styles.effect} style={{ background: value }}></span>
-                  </Dropdown>
+                  </Popover>
                   <Input className={styles.input} value={value} disabled={type == 'linear' || type == 'radial'} size="small" bordered={false} />
                 </div>
                 <Tooltip title="复制">
