@@ -61,18 +61,19 @@ export const Open = ({ disabled, open, service }) => {
     {
       title: "页面标题",
       dataIndex: "title",
-      width: "30%",
+      width: "20%",
       ...getColumnSearchProps('title'),
     },
     {
       title: "页面路径",
       dataIndex: "path",
-      width: "30%",
+      width: "20%",
       ...getColumnSearchProps('path')
     },
     {
       title: "标签",
       dataIndex: "tags",
+      width: '20%',
       filters: [
         {
           text: "Park",
@@ -86,6 +87,16 @@ export const Open = ({ disabled, open, service }) => {
       onFilter: (value, record) => record.tags.includes(value),
       filterSearch: true,
       render: (tags, record, idx) => renderTags(tags, [{ label: 'Park', value: 0 }, { label: 'Store', value: 1 }, { label: 'Bank', value: 2 }, { label: 'School', value: 3 }]),
+    },
+    {
+      title: "创建时间",
+      dataIndex: "create_time",
+      // width: "30%",
+    },
+    {
+      title: "更新时间",
+      dataIndex: "update_time",
+      // width: "30%",
     },
     {
       title: "操作",

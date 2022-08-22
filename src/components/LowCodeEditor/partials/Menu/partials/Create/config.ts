@@ -19,6 +19,12 @@ export const formProps = {
   labelAlign: "right",
   children: [
     {
+      name: "title",
+      label: "标题",
+      type: "Input",
+      placeholder: "请输入页面标题",
+    },
+    {
       name: "path",
       label: "路径",
       type: "Input",
@@ -74,12 +80,6 @@ export const formProps = {
           },
         },
       ],
-    },
-    {
-      name: "title",
-      label: "标题",
-      type: "Input",
-      placeholder: "请输入页面标题",
     },
     {
       name: "icon",
