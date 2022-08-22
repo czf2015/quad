@@ -8,61 +8,77 @@ type colorStopType = {
 
 type linearGradientType = {
   type: "linear";
-  x: offsetType;
-  y: offsetType;
+  x1: offsetType;
+  y1: offsetType;
   x2: offsetType;
   y2: offsetType;
   colorStops: colorStopType[];
 };
-
+type angleType = number
 type radialGradientType = {
   type: "radial";
-  x: offsetType;
-  y: offsetType;
-  r: offsetType;
+  cx: offsetType;
+  cy: offsetType;
+  rx: offsetType;
+  ry: offsetType;
+  angle: angleType;
   colorStops: colorStopType[];
 };
 
-type indexType = number
-
+enum enumTransform {
+  RAW,
+  POWER,
+  LOG
+}
+type scaleType = {
+  transform: enumTransform; // 
+  base: number
+}
+enum enumSort {
+  ORIGINAL,
+  POSITIVE,
+  NEGATIVE,
+}
+type axisType = 'xAxis' | 'yAxis' | 'angle' | 'radius'
 interface IDimension {
-  label: string;
+  axis?: axisType;
   field: string;
-  sort: 0 | 1 | -1; // 原序 正序 倒序
-  scale: 0; // 
+  label: string;
+  sort: enumSort; // 原序 正序 倒序
+  scale: scaleType;
   percentage: boolean;
   unit: string;
-  axis?: string;
 }
-
-type cartesian2dCoordinateType = {
-  type: "cartesian2d";
-  xAxis?: indexType;
-  yAxis?: indexType;
-}
-
-type polarCoordinateType = {
-  type: "polar";
-  angle?: indexType;
-  radius?: indexType;
-}
-
-type categoryCoordinate {
-  type: "category";
-  category?: indexType;
-  value?: indexType;
-}
-
-type coordinateType = cartesian2dCoordinateType | polarCoordinateType | categoryCoordinateType
 
 type animationType = number
+
+// type indexType = number
+// type cartesian2dCoordinateType = {
+//   type: "cartesian2d";
+//   xAxis?: indexType;
+//   yAxis?: indexType;
+// }
+
+// type polarCoordinateType = {
+//   type: "polar";
+//   angle?: indexType;
+//   radius?: indexType;
+// }
+
+// type categoryCoordinate {
+//   type: "category";
+//   category?: indexType;
+//   value?: indexType;
+// }
+
+// type coordinateType = cartesian2dCoordinateType | polarCoordinateType | categoryCoordinateType
 
 interface ChartOption {
   title: string;
   type: "BarChart" | "PieChart";
   layout?: "horizontal" | "vertical" | 'TB' | 'BT' | 'LR' | 'RL'; // 水平或垂直 
   dimensions: IDimension[];
-  coordinate: coordinateType;
+  // coordinate: coordinateType;
   group?: string;
   stack?: string;
   animation?: animationType;

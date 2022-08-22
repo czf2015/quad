@@ -89,10 +89,10 @@ export const InteractConfigPanel = ({ id, updateEntity, meta = {}, ...interact }
           }}
           onFinish={handleSubmit}
         >
-          <FormList name={key} list={schema} />
+          <FormList name={key} schema={schema} />
           <Form.Item wrapperCol={{ span: 6, offset: 18 }}>
             <Button type="primary" htmlType="submit">
-              Submit
+              提交
             </Button>
           </Form.Item>
         </Form>

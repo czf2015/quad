@@ -124,15 +124,22 @@ const General = forwardRef(({
                 name: 'axis',
                 label: '坐标轴',
                 type: 'Select',
-                options: convertEnumsToOptions(CHART_TYPES),
-                prerequisites: [
+                options: [
                   {
-                    field: 'type',
-                    options: {
-                      include: [0, 1, 2]
-                    }
+                    label: 'X 轴',
+                    value: 0,
+                  },
+                  {
+                    label: 'Y 轴',
+                    value: 1,
                   }
-                ]
+                ],
+              },
+              {
+                name: 'field',
+                label: '取值',
+                type: 'Select',
+                options: convertEnumsToOptions(CHART_TYPES),
               },
               {
                 name: 'percentage',
@@ -149,30 +156,38 @@ const General = forwardRef(({
               },
               {
                 name: 'scale',
-                label: '变换',
-                type: 'Select',
-                options: [
-                  {
-                    label: '原始',
-                    value: 0
-                  },
-                  {
-                    label: '对数',
-                    value: 1
-                  },
-                  {
-                    label: '指数',
-                    value: 2
-                  }
-                ],
-                prerequisites: [
-                  {
-                    field: 'type',
-                    options: {
-                      include: [0, 1, 2]
+                label: '标尺',
+                type: 'Compact',
+                // prerequisites: [
+                //   {
+                //     field: 'type',
+                //     options: {
+                //       include: [0, 1, 2]
+                //     }
+                //   }
+                // ]
+                schema: [{
+                  name: 'transform',
+                  type: 'Select',
+                  options: [
+                    {
+                      label: '原始',
+                      value: 0
+                    },
+                    {
+                      label: '对数',
+                      value: 1
+                    },
+                    {
+                      label: '指数',
+                      value: 2
                     }
-                  }
-                ]
+                  ],
+                },
+                {
+                  name: 'base',
+                  type: 'InputNumber',
+                }]
               },
               {
                 name: 'sort',
@@ -193,7 +208,7 @@ const General = forwardRef(({
                   }
                 ],
               },
-        
+
             ]
           },
           {

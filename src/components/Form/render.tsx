@@ -8,6 +8,7 @@ import Upload from './partials/Upload/ImageUpload'
 import Cascader from './partials/Cascader'
 import TreeSelect from "./partials/TreeSelect";
 import FormList from "./partials/List";
+import Compact from "./partials/Compact";
 import Multiple from "./partials/Multiple";
 import InputText from "./partials/InputText";
 import { CaretDownOutlined } from "@ant-design/icons";
@@ -41,7 +42,7 @@ export const renderFormItem = ({
   hidden = false,
   ...attrs
 }) => {
-  let formItem = (
+  let item = (
     <Input
       size={size}
       prefix={prefix}
@@ -54,12 +55,12 @@ export const renderFormItem = ({
     />
   );
   if (typeof render == "function") {
-    formItem = render({ name, options, placeholder, prefix, ...attrs });
+    item = render({ name, options, placeholder, prefix, ...attrs });
   } else {
     switch (type) {
       case "InputText":
       case "Text":
-        formItem = (
+        item = (
           <InputText
             options={options}
             placeholder={placeholder}
@@ -75,7 +76,7 @@ export const renderFormItem = ({
         break;
       case "InputNumber":
       case "Number":
-        formItem = (
+        item = (
           <InputNumber
             placeholder={placeholder}
             disabled={disabled}
@@ -94,7 +95,7 @@ export const renderFormItem = ({
         break;
       case "TextArea":
       case "RichText":
-        formItem = (
+        item = (
           <Input.TextArea
             size={size}
             autoSize={{ minRows: 3, maxRows: 10 }}
@@ -105,10 +106,10 @@ export const renderFormItem = ({
         );
         break;
       case "Switch":
-        formItem = <Switch size={size} disabled={disabled} />;
+        item = <Switch size={size} disabled={disabled} />;
         break;
       case "TreeSelect":
-        formItem = (
+        item = (
           <TreeSelect
             size={size}
             placeholder={placeholder || "请选择"}
@@ -119,7 +120,7 @@ export const renderFormItem = ({
         );
         break;
       case "Select":
-        formItem = (
+        item = (
           <Select
             mode={mode}
             size={size}
@@ -132,7 +133,7 @@ export const renderFormItem = ({
         );
         break;
       case "Tags":
-        formItem = (
+        item = (
           <Select
             mode="tags"
             size={size}
@@ -145,7 +146,7 @@ export const renderFormItem = ({
         );
         break;
       case "Cascader":
-        formItem = (
+        item = (
           <Cascader
             size={size}
             options={options}
@@ -156,16 +157,16 @@ export const renderFormItem = ({
         );
         break;
       case "Radio":
-        formItem = <Radio.Group size={size} options={options} disabled={disabled} defaultValue={defaultValue} />;
+        item = <Radio.Group size={size} options={options} disabled={disabled} defaultValue={defaultValue} />;
         break;
       case "Checkbox":
-        formItem = <Checkbox.Group size={size} options={options} disabled={disabled} />;
+        item = <Checkbox.Group size={size} options={options} disabled={disabled} />;
         break;
       case 'Multiple':
-        formItem = <Multiple mode={mode} size={size} options={options} disabled={disabled} />;
+        item = <Multiple mode={mode} size={size} options={options} disabled={disabled} />;
         break;
       case "Password":
-        formItem = (
+        item = (
           <Input.Password
             size={size}
             placeholder={placeholder}
@@ -175,23 +176,27 @@ export const renderFormItem = ({
         );
         break;
       case "Json":
-        formItem = <JsonEdit disabled={disabled} />;
+        item = <JsonEdit disabled={disabled} />;
         break;
       case "Code":
-        formItem = <CodeEdit disabled={disabled} />;
+        item = <CodeEdit disabled={disabled} />;
         break;
       case "Rate":
-        formItem = <Rate disabled={disabled} />
+        item = <Rate disabled={disabled} />
         break
       case "Attachment":
-        formItem = <Upload action={action} fileList={fileList} accept={accept} listType={listType} limit={limit} />
+        item = <Upload action={action} fileList={fileList} accept={accept} listType={listType} limit={limit} />
         break
       case 'DatePicker':
       case 'Date':
-        formItem = <DatePicker mode={mode} picker={picker} {...attrs} />
+        item = <DatePicker mode={mode} picker={picker} {...attrs} />
         break
       case "FormList":
-        formItem = <FormList name={name} list={schema} disabled={disabled} {...attrs} />
+        item = <FormList name={name} schema={schema} disabled={disabled} {...attrs} />
+        break
+      case "Compact":
+        item = <Compact name={name} schema={schema} disabled={disabled} {...attrs} />
+        break
       default:
         break;
     }
@@ -199,7 +204,7 @@ export const renderFormItem = ({
 
   return needFormItem ? (
     <Form.Item name={name} style={{ display: hidden ? 'none' : undefined }} {...attrs} key={name}>
-      {formItem}
+      {item}
     </Form.Item>
-  ) : <React.Fragment key={name}>{formItem}</React.Fragment>
+  ) : <React.Fragment key={name}>{item}</React.Fragment>
 }

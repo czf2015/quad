@@ -3,6 +3,7 @@ import InputEdit from '@/components/Form/partials/TextEdit'
 import InputText from '@/components/Form/partials/InputText'
 import JsonEdit from '@/components/Form/partials/JsonEdit'
 import CodeEdit from '@/components/Form/partials/CodeEdit'
+import Compact from '@/components/Form/partials/Compact'
 import { Button, Form, Input, Select, Switch, InputNumber } from '@/plugins/ui'
 import { useToggle } from '@/hooks'
 import { DeleteOutlined, HolderOutlined, PlusOutlined, RightOutlined } from '@ant-design/icons'
@@ -36,41 +37,45 @@ export const Card = ({ children, field, add, remove }) => {
   )
 }
 
-export default ({ name, list = [] }) => {
+export default ({ name, schema = [] }) => {
   return (
     <Form.List name={name}>
       {(fields, { add, remove }, { errors }) => (
         <div className={styles.card_list}>
           {fields.map((field) => (
             <Card key={field.key} field={field} add={add} remove={() => remove(field.name)}>
-              {list.map(({ name, type, mode, options, placeholder, ...attrs }) => {
-                let formItem
+              {schema?.map(({ name, type, mode, options, placeholder, schema = [], ...attrs }) => {
+                let item
                 switch (type) {
                   case 'InputText':
                   case 'Text':
-                    formItem = <InputText {...attrs} options={options} placeholder={placeholder} size="small" />
+                    item = <InputText {...attrs} options={options} placeholder={placeholder} size="small" />
                     break
                   case 'TextArea':
-                    formItem = <Input.TextArea placeholder={placeholder} autoSize={{ minRows: 3, maxRows: 10 }} size="small" />
+                    item = <Input.TextArea placeholder={placeholder} autoSize={{ minRows: 3, maxRows: 10 }} size="small" />
                     break
                   case 'InputNumber':
                   case 'Number':
-                    formItem = <InputNumber {...attrs} placeholder={placeholder} size="small" />
+                    item = <InputNumber {...attrs} placeholder={placeholder} size="small" />
                     break
                   case 'Select':
-                    formItem = <Select mode={mode} options={options} placeholder={placeholder} size="small" />
+                    item = <Select mode={mode} options={options} placeholder={placeholder} size="small" />
                     break
                   case 'Switch':
-                    formItem = <Switch {...attrs} />
+                    item = <Switch {...attrs} />
                     break
                   case 'Json':
-                    formItem = <JsonEdit />
+                    item = <JsonEdit />
                     break
                   case 'Code':
-                    formItem = <CodeEdit />
+                    item = <CodeEdit />
                     break
+                  case "Compact":
+                    return <Compact  {...field}
+                    {...attrs} key={name} name={[field.name, name]} schema={schema} />
+                    // break
                   default:
-                    formItem = <Input placeholder={placeholder} size="small" />
+                    item = <Input placeholder={placeholder} size="small" />
                     break
                 }
                 return (
@@ -80,7 +85,7 @@ export default ({ name, list = [] }) => {
                     name={[field.name, name]}
                     key={name}
                   >
-                    {formItem}
+                    {item}
                   </Form.Item>
                 )
               })}
