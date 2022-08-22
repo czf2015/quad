@@ -10,6 +10,7 @@ export default ({
   children: formItems = tableColumn,
   onFinish = console.success,
   onFinishFailed = console.error,
+  onChange,
   disabled = false,
   requiredMark = true,
   layout = 'horizontal',
@@ -33,6 +34,7 @@ export default ({
   const handleValuesChange = (changedValues, allValues) => {
     console.log({ changedValues, allValues })
     setFormData(allValues);
+    onChange?.(allValues)
   }
 
   return (
