@@ -5,7 +5,7 @@ import { useRestore } from "./useRestore";
 import { update } from "@/utils/object";
 import uuid from '@/plugins/uuid'
 
-const defaultActive = { id: uuid(), name: 'Block', key: 'style' }
+const defaultActive = { id: uuid(), name: 'Block', key: 'custom' }
 
 export const useEntities = (initialEntities = [], editable = false, isPrinted = false) => {
   const snapShot = useSnapShot(initialEntities, isPrinted);
@@ -359,7 +359,7 @@ export const useEntities = (initialEntities = [], editable = false, isPrinted = 
       }
       return result;
     });
-    setActive({ id: dragWidgetId, name: dragName, key: 'style' })
+    setActive({ id: dragWidgetId, name: dragName, key: 'custom' })
   };
 
   const dragEntity = (dragId, dropId) => {
@@ -450,7 +450,7 @@ export const useEntities = (initialEntities = [], editable = false, isPrinted = 
       }
       return [...entities];
     });
-    setActive({ id: dragId, name: dragWidget.name, key: 'style' })
+    setActive({ id: dragId, name: dragWidget.name, key: 'custom' })
   };
 
   return {
