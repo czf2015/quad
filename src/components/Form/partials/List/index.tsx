@@ -71,8 +71,7 @@ export default ({ name, schema = [] }) => {
                     item = <CodeEdit />
                     break
                   case "Compact":
-                    return <Compact  {...field}
-                    {...attrs} key={name} name={[field.name, name]} schema={schema} />
+                    return <Compact  {...field} {...attrs} key={name} name={[field.name, name]} schema={schema} />
                     // break
                   default:
                     item = <Input placeholder={placeholder} size="small" />

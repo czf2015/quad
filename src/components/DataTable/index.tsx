@@ -98,11 +98,11 @@ export default ({ size = "small", scroll = { x: 'calc(700px + 50%)', y: 240 }, b
       meta: {
         binds: [{
           label: '批量操作',
-          value: 'batch'
+          value: 'batch',
         }],
         payloads: {
           batch: rowSelection.selectedRowKeys,
-        }
+        },
       }
     })
   }, [rowSelection.selectedRowKeys])
