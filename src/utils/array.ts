@@ -10,6 +10,9 @@ export const chunk = (arr, size) => {
 }
 
 export const dragSort = (arr, dragId, dropId) => {
+  if (dropId == dragId) {
+    return arr
+  }
   const result = []
   let flag = 0
   const dragItem = arr.find(item => item.id == dragId)
