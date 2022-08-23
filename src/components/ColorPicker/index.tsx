@@ -1,13 +1,13 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Input } from '@/plugins/ui'
 import { ChromePicker as ColorPicker } from 'react-color'
-import { useVisible } from '@/hooks'
+import { useVisible, usePropsState } from '@/hooks'
 import styles from './index.module.less'
 
 export default ({ value = 'blue', onChange }) => {
   const { visible, open, close } = useVisible(false)
 
-  const [color, setColor] = useState(value)
+  const [color, setColor] = usePropsState(value)
   const handleChange = (e) => {
     setColor(e.target.value)
   }

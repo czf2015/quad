@@ -68,8 +68,7 @@ const General = forwardRef(({
           {
             name: 'color',
             label: '颜色',
-            type: 'ColorPicker',
-            mode: 'multiple'
+            type: 'Colors',
           },
           {
             name: 'animation',

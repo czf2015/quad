@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { Button, Tooltip, Popover, Input, message } from 'antd';
 import Eye from '@/components/Form/partials/CustomSwitch'
 import ColorGradient from '@/components/ColorGradient'
+import { usePropsState } from '@/hooks';
 import { getRadialGradient, getLinearGradient } from '@/components/ColorGradient/helpers'
 import uuid from '@/plugins/uuid'
 import { copyText } from '@/utils/dom'
@@ -9,7 +10,7 @@ import { PlusOutlined, MinusOutlined, CopyOutlined } from '@ant-design/icons';
 import styles from './index.module.less';
 
 const CustomInput = ({ type, value, onBlur }) => {
-  const [inputValue, setInputValue] = useState()
+  const [inputValue, setInputValue] = usePropsState()
   const handleChange = (e) => {
     setInputValue(e.target.value)
   }
@@ -24,9 +25,7 @@ const CustomInput = ({ type, value, onBlur }) => {
       }
     }
   }
-  useEffect(() => {
-    setInputValue(value)
-  }, [value])
+
   return <Input className={styles.input} value={inputValue} disabled={type == 'linear' || type == 'radial'} size="small" onChange={handleChange} onBlur={handleBlur} bordered={false} />
 }
 
