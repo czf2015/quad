@@ -6,7 +6,7 @@ import { useStore } from '@/hooks'
 import styles from './index.module.less'
 
 
-export const DisplayViewer = ({ entities = [], setEntities, updateEntity, removeEntity, splitBlock, pullBlock, dragWidget, dragEntity, editable = false, active, setActive, pid = 0, width, height, zoom = 1 }) => {
+export const DisplayViewer = ({ entities = [], setEntities, updateEntity, removeEntity, splitBlock, pullBlock, dragWidget, dragEntity, editable = false, active, setActive, pid, width, height, zoom = 1 }) => {
   useEffect(() => {
     document.oncontextmenu = function (event) {
       event.preventDefault();

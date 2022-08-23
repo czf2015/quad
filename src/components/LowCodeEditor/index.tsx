@@ -4,14 +4,14 @@ import { Tabs } from '@/plugins/ui'
 import Layout from '@/layouts/Default'
 import { Menu, Restore, Console, Assets, Widgets, Outline, DisplayViewer, ConfigPanel, Tips, Status, Formatters } from './partials'
 import { useEntities } from '@/hooks'
+import uuid from '@/plugins/uuid'
 
 const { TabPane } = Tabs
 
 const defaultEntities = [
   {
     name: "Block",
-    id: 0b1,
-    pid: 0b0,
+    id: uuid(),
     title: "页面",
     style: {
       top: 0,
@@ -48,8 +48,7 @@ export default ({ service, }) => {
       attrs?.setEntities([
         {
           name: "Block",
-          id: 0b1,
-          pid: 0b0,
+          id: uuid(),
           title: "页面",
           style: {
             top: 0,

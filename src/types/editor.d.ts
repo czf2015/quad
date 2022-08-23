@@ -1,6 +1,6 @@
 import { CSSProperties, ReactNode } from "react";
 
-type idType = number | string;
+type idType = string;
 type actionType = string;
 type payloadType = number | string | boolean | Array | Object | Function;
 interface IMessage {
@@ -38,7 +38,7 @@ interface IWidgetCategory {
 
 interface IEntity extends IWidget {
   id: idType;
-  pid: idType;
+  pid?: idType;
   store?: Function; //
   updateEntity: Function;
   removeEntity: Function;

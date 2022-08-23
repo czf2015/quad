@@ -68,10 +68,10 @@ const defaultOptions = {
   // lineWrapping: true,
 }
 
-export const Code = ({ value, onChange, onBeforeChange, options = defaultOptions, width = 'auto', height = 'auto' }) => {
+export const Code = ({ value, onChange, onBeforeChange, onBlur, options = defaultOptions, width = 'auto', height = 'auto' }) => {
   return (
     <CodeMirror
-      value={value}
+      defaultValue={value}
       options={{
         ...defaultOptions,
         ...options,
@@ -82,6 +82,7 @@ export const Code = ({ value, onChange, onBeforeChange, options = defaultOptions
       }}
       onChange={onChange}
       onBeforeChange={onBeforeChange}
+      onBlur={onBlur}
     />
   )
 }
