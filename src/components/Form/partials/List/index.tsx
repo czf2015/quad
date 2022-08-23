@@ -9,12 +9,24 @@ import { useToggle } from '@/hooks'
 import { DeleteOutlined, HolderOutlined, PlusOutlined, RightOutlined } from '@ant-design/icons'
 import styles from './index.module.less'
 
-export const Card = ({ children, field, add, remove }) => {
+export const Card = ({ children, field, add, remove, move }) => {
   const [collapsed, toggleCollapsed] = useToggle(false)
   const [enableState, toggleEnableState] = useToggle(true)
 
+  const handleDragStart = (e) => {
+    e.dataTransfer.setData("dragId", field.fieldKey);
+  };
+  const handleDragOver = (e) => {
+    e.preventDefault()
+  };
+  const handleDrop = (e) => {
+    const dragId = e.dataTransfer.getData("dragId");
+    move(field.fieldKey, dragId)
+  }
+
+
   return (
-    <div className={`${styles.card} ${enableState ? styles.enabled : ''} ${collapsed ? styles.collapsed : ''}`}>
+    <div className={`${styles.card} ${enableState ? styles.enabled : ''} ${collapsed ? styles.collapsed : ''}`}  draggable onDragStart={handleDragStart} onDragOver={handleDragOver} onDrop={handleDrop}>
       <div className={`${styles.insert_btn} quad-circle`} onClick={add}><PlusOutlined /></div>
       <header className={styles.title}>
         <InputEdit {...field} name={[field.name, "title"]} />
@@ -40,62 +52,64 @@ export const Card = ({ children, field, add, remove }) => {
 export default ({ name, schema = [] }) => {
   return (
     <Form.List name={name}>
-      {(fields, { add, remove }, { errors }) => (
-        <div className={styles.card_list}>
-          {fields.map((field) => (
-            <Card key={field.key} field={field} add={add} remove={() => remove(field.name)}>
-              {schema?.map(({ name, type, mode, options, placeholder, schema = [], ...attrs }) => {
-                let item
-                switch (type) {
-                  case 'InputText':
-                  case 'Text':
-                    item = <InputText {...attrs} options={options} placeholder={placeholder} size="small" />
-                    break
-                  case 'TextArea':
-                    item = <Input.TextArea placeholder={placeholder} autoSize={{ minRows: 3, maxRows: 10 }} size="small" />
-                    break
-                  case 'InputNumber':
-                  case 'Number':
-                    item = <InputNumber {...attrs} placeholder={placeholder} size="small" />
-                    break
-                  case 'Select':
-                    item = <Select mode={mode} options={options} placeholder={placeholder} size="small" />
-                    break
-                  case 'Switch':
-                    item = <Switch {...attrs} />
-                    break
-                  case 'Json':
-                    item = <JsonEdit />
-                    break
-                  case 'Code':
-                    item = <CodeEdit />
-                    break
-                  case "Compact":
-                    return <Compact  {...field} {...attrs} key={name} name={[field.name, name]} schema={schema} />
+      {(fields, { add, remove, move }, { errors }) => {
+        return (
+          <div className={styles.card_list}>
+            {fields.map((field) => (
+              <Card key={field.key} field={field} add={add} remove={() => remove(field.name)} move={move}>
+                {schema?.map(({ name, type, mode, options, placeholder, schema = [], ...attrs }) => {
+                  let item
+                  switch (type) {
+                    case 'InputText':
+                    case 'Text':
+                      item = <InputText {...attrs} options={options} placeholder={placeholder} size="small" />
+                      break
+                    case 'TextArea':
+                      item = <Input.TextArea placeholder={placeholder} autoSize={{ minRows: 3, maxRows: 10 }} size="small" />
+                      break
+                    case 'InputNumber':
+                    case 'Number':
+                      item = <InputNumber {...attrs} placeholder={placeholder} size="small" />
+                      break
+                    case 'Select':
+                      item = <Select mode={mode} options={options} placeholder={placeholder} size="small" />
+                      break
+                    case 'Switch':
+                      item = <Switch {...attrs} />
+                      break
+                    case 'Json':
+                      item = <JsonEdit />
+                      break
+                    case 'Code':
+                      item = <CodeEdit />
+                      break
+                    case "Compact":
+                      return <Compact  {...field} {...attrs} key={name} name={[field.name, name]} schema={schema} />
                     // break
-                  default:
-                    item = <Input placeholder={placeholder} size="small" />
-                    break
-                }
-                return (
-                  <Form.Item
-                    {...field}
-                    {...attrs}
-                    name={[field.name, name]}
-                    key={name}
-                  >
-                    {item}
-                  </Form.Item>
-                )
-              })}
-            </Card>
-          ))}
-          <Button type="dashed" onClick={add} className={styles.add_btn}><PlusOutlined /></Button>
-          <Form.Item className={styles.errors}>
-            <Form.ErrorList errors={errors} />
-          </Form.Item>
-        </div>
-      )}
+                    default:
+                      item = <Input placeholder={placeholder} size="small" />
+                      break
+                  }
+                  return (
+                    <Form.Item
+                      {...field}
+                      {...attrs}
+                      name={[field.name, name]}
+                      key={name}
+                    >
+                      {item}
+                    </Form.Item>
+                  )
+                })}
+              </Card>
+            ))}
+            <Button type="dashed" onClick={add} className={styles.add_btn}><PlusOutlined /></Button>
+            <Form.Item className={styles.errors}>
+              <Form.ErrorList errors={errors} />
+            </Form.Item>
+          </div>
+        )
+      }}
     </Form.List>
   );
 };
