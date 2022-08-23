@@ -7,10 +7,18 @@
   }
 
   .item_wrapper {
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: 12px;
+    >.holder_btn {
+      position: absolute;
+      top: 8px;
+      left: -12px;  
+      // font-size: 12px;
+      cursor: move;
+    }
 
     >.input_group {
       display: flex;

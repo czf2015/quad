@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import ColorPicker from '@/components/ColorPicker'
 import Eye from '@/components/Form/partials/CustomSwitch'
 import uuid from '@/plugins/uuid'
-import { PlusOutlined, MinusOutlined } from '@ant-design/icons';
+import { dragSort } from '@/utils/array'
+import { HolderOutlined, PlusOutlined, MinusOutlined } from '@ant-design/icons';
 import styles from './index.module.less'
 
 
@@ -36,6 +37,17 @@ export default ({ value = [], onChange }) => {
     })
   }
 
+  const handleDragStart = (dragId) => (e) => {
+    e.dataTransfer.setData("dragId", dragId);
+  };
+  const handleDragOver = (e) => {
+    e.preventDefault()
+  };
+  const handleDrop = (dropId) => (e) => {
+    const dragId = e.dataTransfer.getData("dragId");
+    setColors(colors => dragSort(colors, dragId, dropId))
+  }
+
   return (
     <div className={styles.colors}>
       <h4 className={styles.title}>
@@ -44,7 +56,8 @@ export default ({ value = [], onChange }) => {
       <div className={styles.content}>
         {colors?.map(({ value, id, hidden }) => {
           return (
-            <div className={styles.flex} key={id}>
+            <div className={styles.flex} key={id} onDragOver={handleDragOver} onDrop={handleDrop(id)}>
+              <HolderOutlined className={styles.holder_btn} draggable onDragStart={handleDragStart(id)} />              
               <ColorPicker value={value} onChange={handleColorChange('color', id)} />
               <Eye value={!hidden} onChange={handleColorChange('hidden', id)} />
               <MinusOutlined onClick={() => remove(id)} />

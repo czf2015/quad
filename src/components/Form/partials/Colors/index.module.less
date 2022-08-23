@@ -5,13 +5,18 @@
     flex-direction: row-reverse;
   }
   .flex {
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
     height: 32px;
-    .input {
-      width: 64px;
+    >.holder_btn {
+      position: absolute;
+      top: 10px;
+      left: -12px;  
+      // font-size: 12px;
+      cursor: move;
     }
   }
 }

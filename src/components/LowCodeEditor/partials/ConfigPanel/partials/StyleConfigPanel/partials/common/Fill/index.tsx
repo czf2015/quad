@@ -6,7 +6,8 @@ import { usePropsState } from '@/hooks';
 import { getRadialGradient, getLinearGradient } from '@/components/ColorGradient/helpers'
 import uuid from '@/plugins/uuid'
 import { copyText } from '@/utils/dom'
-import { PlusOutlined, MinusOutlined, CopyOutlined } from '@ant-design/icons';
+import { dragSort } from '@/utils/array'
+import { HolderOutlined, PlusOutlined, MinusOutlined, CopyOutlined } from '@ant-design/icons';
 import styles from './index.module.less';
 
 const CustomInput = ({ type, value, onBlur }) => {
@@ -87,8 +88,20 @@ export default ({ title = '填充', store }) => {
             subStore('value', e.target.value)
           }
 
+          const handleDragStart = (dragId) => (e) => {
+            e.dataTransfer.setData("dragId", dragId);
+          };
+          const handleDragOver = (e) => {
+            e.preventDefault()
+          };
+          const handleDrop = (dropId) => (e) => {
+            const dragId = e.dataTransfer.getData("dragId");
+            store('fill', dragSort(store('fill'), dragId, dropId))
+          }
+
           return (
-            <div className={styles.item_wrapper} key={id}>
+            <div className={styles.item_wrapper} key={id}  onDragOver={handleDragOver} onDrop={handleDrop(id)}>
+              <HolderOutlined className={styles.holder_btn} draggable onDragStart={handleDragStart(id)} />  
               <div className={styles.input_group}>
                 <div className={styles.color_mode}>
                   <Popover content={<ColorGradient store={subStore} />} placement="leftBottom" trigger='click' >

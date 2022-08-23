@@ -35,7 +35,7 @@ export const Wrapper = ({
     removeEntity(id);
   };
 
-  const onDragStart = (e) => {
+  const handleDragStart = (e) => {
     e.dataTransfer.setData("dragWidgetId", id);
   };
   const onDrop = handleDrop(id)
@@ -111,7 +111,7 @@ export const Wrapper = ({
 
   const editTools = editable ? (
     <>
-      <HolderOutlined className={`${styles.holder_btn} quad-circle`} draggable onDragStart={onDragStart} />
+      <HolderOutlined className={`${styles.holder_btn} quad-circle`} draggable onDragStart={handleDragStart} />
       <Dropdown overlay={menu} placement="right" onVisibleChange={setDropdownOverlayVisible}>
         <MoreOutlined className={`${styles.more_btn} quad-circle`} />
       </Dropdown>
