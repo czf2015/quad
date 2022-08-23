@@ -93,7 +93,7 @@ const General = forwardRef(({
                   include: [0, 1, 2]
                 }
               }
-            ]
+            ],
           },
           {
             name: 'layout',
@@ -112,7 +112,7 @@ const General = forwardRef(({
                   exclude: [0, 1, 2]
                 }
               }
-            ]
+            ],
           },
           {
             name: 'dimensions',
@@ -171,7 +171,7 @@ const General = forwardRef(({
                   type: 'Select',
                   options: [
                     {
-                      label: '原始',
+                      label: '线性',
                       value: 0
                     },
                     {

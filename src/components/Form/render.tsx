@@ -40,6 +40,7 @@ export const renderFormItem = ({
   limit,
   picker,
   hidden = false,
+  key = name,
   ...attrs
 }) => {
   let item = (
@@ -203,8 +204,8 @@ export const renderFormItem = ({
   }
 
   return needFormItem ? (
-    <Form.Item name={name} style={{ display: hidden ? 'none' : undefined }} {...attrs} key={name}>
+    <Form.Item name={name} style={{ display: hidden ? 'none' : undefined }} {...attrs} key={key}>
       {item}
     </Form.Item>
-  ) : <React.Fragment key={name}>{item}</React.Fragment>
+  ) : <React.Fragment key={key}>{item}</React.Fragment>
 }

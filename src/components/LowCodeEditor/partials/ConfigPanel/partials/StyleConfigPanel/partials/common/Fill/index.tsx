@@ -1,5 +1,5 @@
-import React from 'react'
-import { Button, Tooltip, Popover, Input } from 'antd';
+import React, { useEffect, useState } from 'react'
+import { Button, Tooltip, Popover, Input, message } from 'antd';
 import Eye from '@/components/Form/partials/CustomSwitch'
 import ColorGradient from '@/components/ColorGradient'
 import { getRadialGradient, getLinearGradient } from '@/components/ColorGradient/helpers'
@@ -7,6 +7,28 @@ import uuid from '@/plugins/uuid'
 import { copyText } from '@/utils/dom'
 import { PlusOutlined, MinusOutlined, CopyOutlined } from '@ant-design/icons';
 import styles from './index.module.less';
+
+const CustomInput = ({ type, value, onBlur }) => {
+  const [inputValue, setInputValue] = useState()
+  const handleChange = (e) => {
+    setInputValue(e.target.value)
+  }
+  const handleBlur = (e) => {
+    if (type == 'color') {
+      const reg = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/;
+      if (reg.test(e.target.value)) {
+        onBlur?.(e)
+      } else {
+        setInputValue(value)
+        message.error('非法颜色值！')
+      }
+    }
+  }
+  useEffect(() => {
+    setInputValue(value)
+  }, [value])
+  return <Input className={styles.input} value={inputValue} disabled={type == 'linear' || type == 'radial'} size="small" onChange={handleChange} onBlur={handleBlur} bordered={false} />
+}
 
 
 export default ({ title = '填充', store }) => {
@@ -63,9 +85,7 @@ export default ({ title = '填充', store }) => {
           const copy = () => copyText(value)
 
           const handleBlur = (e) => {
-            if (type != 'linear' && type !== 'radial') {
-              subStore('value', e.target.value)
-            }
+            subStore('value', e.target.value)
           }
 
           return (
@@ -75,7 +95,7 @@ export default ({ title = '填充', store }) => {
                   <Popover content={<ColorGradient store={subStore} />} placement="leftBottom" trigger='click' >
                     <span className={styles.effect} style={{ background: value }}></span>
                   </Popover>
-                  <Input className={styles.input} defaultValue={value} disabled={type == 'linear' || type == 'radial'} size="small" onBlur={handleBlur} bordered={false} />
+                  <CustomInput type={type} value={value} onBlur={handleBlur} />
                 </div>
                 <Tooltip title="复制">
                   <Button icon={<CopyOutlined />} className={styles.copy} size="small" onClick={copy} />

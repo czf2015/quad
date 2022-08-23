@@ -9,9 +9,6 @@
 import React from "react";
 import { Select } from "antd";
 import { CaretDownOutlined } from "@ant-design/icons";
-import "./index.less";
-
-const { Option } = Select;
 
 export default ({
   mode = null, // "multiple", // 'tags'
@@ -23,26 +20,19 @@ export default ({
       style={{ color: "var(--xdrsec-select-suffix-icon-color)" }}
     />
   ),
-  option = [],
+  options = [],
   ...attrs
 }) => {
   return (
     <Select
-      className="custom-select"
       mode={mode}
       allowClear={allowClear}
       disabled={disabled}
-      // suffixIcon={suffixIcon}
+      suffixIcon={suffixIcon}
       size={size}
       getPopupContainer={(triggerNode) => triggerNode.parentNode}
+      options={options}
       {...attrs}
-    >
-      {option &&
-        option.map(({ title, value }) => (
-          <Option key={value} value={value}>
-            {title}
-          </Option>
-        ))}
-    </Select>
+    />
   );
 };
