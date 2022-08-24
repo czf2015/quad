@@ -30,7 +30,6 @@ const CustomInput = ({ type, value, onBlur }) => {
   return <Input className={styles.input} value={inputValue} disabled={type == 'linear' || type == 'radial'} size="small" onChange={handleChange} onBlur={handleBlur} bordered={false} />
 }
 
-
 export default ({ title = '填充', store }) => {
   const fill = store('fill');
 
