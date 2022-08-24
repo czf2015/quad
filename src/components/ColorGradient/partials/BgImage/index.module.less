@@ -1,5 +1,5 @@
 .bg_image {
-  border: 1px solid #ccc;
+  width: 290px;
   position: relative;
 
   .mask {
@@ -30,11 +30,33 @@
   }
 
   .config_panel {
-    padding: 12px;
-
     .row_wrap {
       display: flex;
-      justify-content: flex-start;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 12px;
+
+      .input {
+        width: 248px;
+      }
+
+      .select_warp {
+        display: flex;
+        justify-content: space-between;
+        width: 248px;
+
+        .num_input1 {
+          width: 120px;
+        }
+
+        .num_input2 {
+          width: 55px;
+        }
+
+        .select {
+          width: 66px;
+        }
+      }
     }
   }
 }
