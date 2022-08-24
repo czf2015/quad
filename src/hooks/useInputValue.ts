@@ -6,10 +6,18 @@ export const useInputValue = (propsValue) => {
   const [resetInput, setResetInput] = useState(1);
 
   const handleInputChange = (e) => {
-    setInputValue(e.target.value);
+    if (typeof e == 'object') {
+      setInputValue(e.target.value);
+    } else {
+      setInputValue(e)
+    }
   }
 
-  useEffect(() => { setInputValue(propsValue) }, [propsValue, resetInput]);
+  useEffect(() => {
+    setInputValue(propsValue)
+  },
+    [propsValue, resetInput]
+  );
 
   return {
     inputValue,

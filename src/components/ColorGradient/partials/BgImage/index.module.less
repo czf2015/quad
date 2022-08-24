@@ -1,0 +1,70 @@
+.bg_image {
+  width: 290px;
+  position: relative;
+
+  .mask {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 289px;
+    height: 200px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(24, 28, 37, 0.5);
+    overflow: hidden;
+
+    .btn {
+      width: 100px;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      color: #fff;
+      border: 1px solid var(--quad-primary-border-color);
+      border-radius: 4px;
+      cursor: pointer;
+      &:active {
+        border-color: #fff;
+      }
+    }
+  }
+
+  .config_panel {
+    .row_wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 12px;
+
+      .input {
+        width: 248px;
+      }
+
+      .select_warp {
+        display: flex;
+        justify-content: space-between;
+        width: 248px;
+
+        .num_input1 {
+          width: 120px;
+        }
+
+        .num_input2 {
+          width: 55px;
+        }
+
+        .select {
+          width: 66px;
+        }
+      }
+    }
+
+    .repeat_wrap {
+      margin-top: 12px;
+      .repeat_select {
+        width: 120px;
+        margin-left: 10px;
+      }
+    }
+  }
+}

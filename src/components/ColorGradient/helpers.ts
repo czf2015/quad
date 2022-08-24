@@ -26,13 +26,12 @@ export const getLinearGradient = ({
   const left = `${x * 100}%`;
   const width = `${Math.abs(x2 - x) * 100}%`;
   const height = `${Math.abs(y2 - y) * 100}%`;
-  const color = `${
-    repeat ? "repeating-" : ""
-  }linear-gradient(${angle}deg, ${colorStops
-    .map(
-      ({ type, offset, color }) => `${color} ${offset}${type == 1 ? "px" : "%"}`
-    )
-    .join(", ")})`;
+  const color = `${repeat ? "repeating-" : ""
+    }linear-gradient(${angle}deg, ${colorStops
+      .map(
+        ({ type, offset, color }) => `${color} ${offset}${type == 1 ? "px" : "%"}`
+      )
+      .join(", ")})`;
   return `${color} ${top} ${left}/${width} ${height}`;
 };
 
@@ -44,13 +43,12 @@ export const getRadialGradient = ({
   colorStops = [],
   repeat = "no-repeat",
 }) => {
-  const color = `${repeat ? "repeating-" : ""}radial-gradient(${rx * 100}% ${
-    ry * 100
-  }% at ${cx * 100}% ${cy * 100}%, ${colorStops
-    .map(
-      ({ type, offset, color }) => `${color} ${offset}${type == 1 ? "px" : "%"}`
-    )
-    .join(", ")})`;
+  const color = `${repeat ? "repeating-" : ""}radial-gradient(${rx * 100}% ${ry * 100
+    }% at ${cx * 100}% ${cy * 100}%, ${colorStops
+      .map(
+        ({ type, offset, color }) => `${color} ${offset}${type == 1 ? "px" : "%"}`
+      )
+      .join(", ")})`;
   return color;
 };
 
