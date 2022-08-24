@@ -25,7 +25,7 @@ export default ({ store }) => {
 
   return (
     <div className={styles.layer}>
-      <h4>图层</h4>
+      <h4 className={styles.title}>图层</h4>
       <div className={styles.content}>
         <Tooltip title="溢出">
           <Select

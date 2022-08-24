@@ -5,6 +5,7 @@ import Constraints from './Constraints';
 import Layer from './Layer';
 // import Fill from './Fill';
 import Fill from '../common/Fill';
+import { BgImage } from '@/components/ColorGradient/partials';
 import Stroke from './Stroke';
 import { useStore } from '@/hooks';
 

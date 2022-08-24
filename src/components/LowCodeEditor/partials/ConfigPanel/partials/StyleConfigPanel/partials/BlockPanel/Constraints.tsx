@@ -23,6 +23,7 @@ const AlignSelect = ({ store }) => {
           {horizontal.icon()}
         </Tooltip>
         <Select
+          size="small"
           options={handleOption(horizontal.options)}
           value={store('constraints')?.horizontal}
           onChange={handleHorChange}
@@ -33,6 +34,7 @@ const AlignSelect = ({ store }) => {
           {vertical.icon()}
         </Tooltip>
         <Select
+          size="small"
           options={handleOption(vertical.options)}
           value={store('constraints')?.vertical}
           onChange={handleVerChange}
@@ -62,7 +64,7 @@ const AlignDiagrams = ({ store }) => {
 export default ({ store }) => {
   return (
     <div className={styles.constraints}>
-      <h4>对齐方式</h4>
+      <h4 className={styles.title}>对齐方式</h4>
       <div className={styles.content}>
         <AlignDiagrams store={store} />
         <AlignSelect store={store} />
