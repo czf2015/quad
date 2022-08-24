@@ -11,3 +11,22 @@ export const MESSAGE_OPTIONS = [
   { label: "OPEN_DRAWER", value: "OPEN_DRAWER" },
   { label: "OPEN_MESSAGE", value: "OPEN_MESSAGE" },
 ];
+
+export const BACKGROUND_OPTIONS = [
+  {
+    label: "颜色",
+    value: "color",
+  },
+  {
+    label: "图像",
+    value: "image",
+  },
+  {
+    label: "线性渐变",
+    value: "linear",
+  },
+  {
+    label: "径向渐变",
+    value: "radial",
+  },
+];
