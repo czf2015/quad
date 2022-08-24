@@ -24,8 +24,6 @@ const BlockPanel = ({ blockStyle }) => {
     <>
       <Constraints store={store} />
       <Divider />
-      <BgImage store={store} />
-      <Divider />
       <Layer store={store} />
       <Divider />
       <Fill store={store} />

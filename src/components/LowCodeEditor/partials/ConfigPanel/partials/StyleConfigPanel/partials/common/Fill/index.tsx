@@ -7,12 +7,14 @@ import { getRadialGradient, getLinearGradient } from '@/components/ColorGradient
 import uuid from '@/plugins/uuid';
 import { copyText } from '@/utils/dom';
 import { dragSort } from '@/utils/array';
+import { update } from '@/utils/object';
 import { HolderOutlined, PlusOutlined, MinusOutlined, CopyOutlined } from '@ant-design/icons';
 import styles from './index.module.less';
 
 const CustomInput = ({ type, value, onBlur }) => {
   const [inputValue, setInputValue] = usePropsState(value);
   const handleChange = (e) => {
+    debugger;
     setInputValue(e.target.value);
   };
   const handleBlur = (e) => {
@@ -24,6 +26,8 @@ const CustomInput = ({ type, value, onBlur }) => {
         setInputValue(value);
         message.error('非法颜色值！');
       }
+    } else {
+      onBlur?.(e);
     }
   };
 
@@ -55,7 +59,7 @@ export default ({ title = '填充', store }) => {
       </div>
       <div>
         {fill.map((item) => {
-          const { type, value: defaultValue, id, hidden } = item;
+          const { type, value: defaultValue, id, hidden, url } = item;
 
           const remove = () => {
             store(
@@ -71,7 +75,7 @@ export default ({ title = '填充', store }) => {
               }
               store(
                 'fill',
-                fill.map((item) => (item.id == id ? value : item))
+                fill.map((item) => (item.id == id ? { ...item, ...update(item, value) } : item))
               );
             } else {
               if (typeof value == 'undefined') {
@@ -79,7 +83,7 @@ export default ({ title = '填充', store }) => {
               }
               const select = fill.find((item) => item.id == id);
               if (select) {
-                select[key] = value;
+                select[key] = typeof value == 'object' ? { ...select[key], ...update(select[key], value) } : value;
               }
               store('fill', fill);
             }
@@ -93,6 +97,9 @@ export default ({ title = '填充', store }) => {
             case 'radial':
               value = getRadialGradient(item);
               break;
+            case 'image':
+              value = url;
+              break;
             default:
               value = defaultValue;
               break;
@@ -101,7 +108,11 @@ export default ({ title = '填充', store }) => {
           const copy = () => copyText(value);
 
           const handleBlur = (e) => {
-            subStore('value', e.target.value);
+            if (type == 'image') {
+              subStore('url', e.target.value);
+            } else {
+              subStore('value', e.target.value);
+            }
           };
 
           const handleDragStart = (dragId) => (e) => {
@@ -120,12 +131,11 @@ export default ({ title = '填充', store }) => {
               <HolderOutlined className={styles.holder_btn} draggable onDragStart={handleDragStart(id)} />
               <div className={styles.input_group}>
                 <div className={styles.color_mode}>
-                  <Popover
-                    content={<ColorGradient store={subStore} />}
-                    placement="leftBottom"
-                    trigger="click"
-                  >
-                    <span className={styles.effect} style={{ background: value }}></span>
+                  <Popover content={<ColorGradient store={subStore} />} placement="leftBottom" trigger="click">
+                    <span
+                      className={styles.effect}
+                      style={{ background: type == 'image' ? `url(${value}) no-repeat center/cover` : value }}
+                    ></span>
                   </Popover>
                   <CustomInput type={type} value={value} onBlur={handleBlur} />
                 </div>

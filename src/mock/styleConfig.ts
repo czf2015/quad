@@ -19,7 +19,7 @@ export const blockStyle = {
     {
       id: '3',
       type: 'image',
-      url: '',
+      url: 'https://gw.alipayobjects.com/zos/antfincdn/LlvErxo8H9/photo-1503185912284-5271ff81b9a8.webp',
       position: {
         left: 0, // 0-100百分比
         top: 0, // ...
