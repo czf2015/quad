@@ -56,16 +56,17 @@ export default ({ title = '填充', store }) => {
               if (typeof value == 'undefined') {
                 return item
               }
-              return
+              store('fill', fill.map(item => item.id == id ? value : item))
+            } else {
+              if (typeof value == 'undefined') {
+                return item[key]
+              }
+              const select = fill.find(item => item.id == id)
+              if (select) {
+                select[key] = value
+              }
+              store('fill', fill)
             }
-            if (typeof value == 'undefined') {
-              return item[key]
-            }
-            const select = fill.find(item => item.id == id)
-            if (select) {
-              select[key] = value
-            }
-            store('fill', fill)
           }
 
           let value/*  = defaultValue */
@@ -99,8 +100,8 @@ export default ({ title = '填充', store }) => {
           }
 
           return (
-            <div className={styles.item_wrapper} key={id}  onDragOver={handleDragOver} onDrop={handleDrop(id)}>
-              <HolderOutlined className={styles.holder_btn} draggable onDragStart={handleDragStart(id)} />  
+            <div className={styles.item_wrapper} key={id} onDragOver={handleDragOver} onDrop={handleDrop(id)}>
+              <HolderOutlined className={styles.holder_btn} draggable onDragStart={handleDragStart(id)} />
               <div className={styles.input_group}>
                 <div className={styles.color_mode}>
                   <Popover content={<ColorGradient store={subStore} />} placement="leftBottom" trigger='click' >

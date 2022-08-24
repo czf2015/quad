@@ -34,8 +34,64 @@ const defaultColor = {
 }
 
 export default ({ store }) => {
-  const handleTypeChange = (value) => {
-    store('type', value)
+  const handleTypeChange = (type) => {
+    const oldStore = store()
+    switch (type) {
+      case 'color':
+        store(undefined, { ...oldStore, type, value: '#ccc', hidden: false, })
+        break
+      case 'linear':
+        store(undefined, {
+          ...oldStore,
+          type,
+          x1: 0,
+          y1: 0,
+          x2: 1,
+          y2: 1,
+          colorStops: [],
+          repeat: 'no-repeat',
+          hidden: false,
+        })
+        break
+      case 'radial':
+        store(undefined, {
+          ...oldStore,
+          type,
+          cx: 0,
+          cy: 0,
+          rx: 0.5,
+          ry: 0.5,
+          colorStops: [],
+          repeat: 'no-repeat',
+          hidden: false,
+        })
+        break
+      case 'image':
+        store(undefined, {
+          ...oldStore,
+          type,
+          url: '',
+          position: {
+            left: 0, // 0-100百分比
+            top: 0, // ...
+          },
+          size: {
+            width: {
+              type: 0, // 0 百分比 1 像素 2 原比例,
+              value: 100, // 0-100%, px, auto
+            },
+            height: {
+              type: 0, // 0 百分比 1 像素 2 auto,
+              value: 100, // 0-100%, px, auto
+            }
+          },
+          repeat: 'no-repeat',
+          hidden: false,
+        })
+        break
+      default:
+        break
+    }
   }
 
   const type = store('type')
