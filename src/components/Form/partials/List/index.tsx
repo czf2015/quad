@@ -26,10 +26,10 @@ export const Card = ({ children, field, add, remove, move }) => {
 
 
   return (
-    <div className={`${styles.card} ${enableState ? styles.enabled : ''} ${collapsed ? styles.collapsed : ''}`}  draggable onDragStart={handleDragStart} onDragOver={handleDragOver} onDrop={handleDrop}>
+    <div className={`${styles.card} ${enableState ? styles.enabled : ''} ${collapsed ? styles.collapsed : ''}`} draggable onDragStart={handleDragStart} onDragOver={handleDragOver} onDrop={handleDrop}>
       <div className={`${styles.insert_btn} quad-circle`} onClick={add}><PlusOutlined /></div>
       <header className={styles.title}>
-        <InputEdit {...field} name={[field.name, "title"]} />
+        <InputEdit name={[field.name, "title"]} />
       </header>
       <main>
         {children}
@@ -84,7 +84,7 @@ export default ({ name, schema = [] }) => {
                       item = <CodeEdit />
                       break
                     case "Compact":
-                      return <Compact  {...field} {...attrs} key={name} name={[field.name, name]} schema={schema} />
+                      return <Compact  {...attrs} key={name} name={[field.name, name]} schema={schema} />
                     // break
                     default:
                       item = <Input placeholder={placeholder} size="small" />
@@ -92,7 +92,6 @@ export default ({ name, schema = [] }) => {
                   }
                   return (
                     <Form.Item
-                      {...field}
                       {...attrs}
                       name={[field.name, name]}
                       key={name}

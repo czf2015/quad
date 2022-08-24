@@ -8,6 +8,7 @@ import Upload from './partials/Upload/ImageUpload'
 import Cascader from './partials/Cascader'
 import TreeSelect from "./partials/TreeSelect";
 import FormList from "./partials/List";
+import FormTable from "./partials/Table";
 import Compact from "./partials/Compact";
 import Multiple from "./partials/Multiple";
 import InputText from "./partials/InputText";
@@ -196,6 +197,9 @@ export const renderFormItem = ({
       case "FormList":
         item = <FormList name={name} schema={schema} disabled={disabled} {...attrs} />
         break
+      case "FormTable":
+          item = <FormTable name={name} schema={schema} disabled={disabled} {...attrs} />
+          break
       case "Compact":
         item = <Compact name={name} schema={schema} disabled={disabled} {...attrs} />
         break

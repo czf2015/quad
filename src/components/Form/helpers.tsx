@@ -50,3 +50,11 @@ export const filter = (
     return ret;
   });
 };
+
+export const getInitialValues = (initialValues, formItems) => {
+  const result = {}
+  formItems.forEach(({ name, checked, value = checked, defaultChecked, defaultValue = defaultChecked || value }) => {
+    result[name] = defaultValue
+  })
+  return Object.assign(result, initialValues)
+}
