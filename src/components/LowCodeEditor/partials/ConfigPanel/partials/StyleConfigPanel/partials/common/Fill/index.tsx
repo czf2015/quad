@@ -11,7 +11,7 @@ import { HolderOutlined, PlusOutlined, MinusOutlined, CopyOutlined } from '@ant-
 import styles from './index.module.less';
 
 const CustomInput = ({ type, value, onBlur }) => {
-  const [inputValue, setInputValue] = usePropsState()
+  const [inputValue, setInputValue] = usePropsState(value)
   const handleChange = (e) => {
     setInputValue(e.target.value)
   }
