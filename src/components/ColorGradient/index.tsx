@@ -1,6 +1,7 @@
 import React from 'react'
 import { Select } from '@/plugins/ui'
-import { LinearGradient, RadialGradient, ColorPicker, handleTypeChange } from './partials'
+import { LinearGradient, RadialGradient, ColorPicker } from './partials'
+import { handleTypeChange } from './helpers'
 import { BACKGROUND_OPTIONS } from '@/constants/OPTIONS'
 import styles from './index.module.less'
 
