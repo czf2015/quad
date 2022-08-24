@@ -6,6 +6,10 @@ export default [
     redirect: "/low-code-editor",
   },
   {
+    path: "/demo/:componentName",
+    component: loadable(() => import("@/pages/demo")),
+  },
+  {
     path: "/low-code-editor",
     component: loadable(() => import("@/pages/low-code-editor")),
   },

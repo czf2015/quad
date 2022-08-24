@@ -1,0 +1,86 @@
+.drag_wrapper {
+  // position: relative;
+  position: fixed;
+  margin: 200px;
+  width: 200px;
+  height: 200px;
+  background: #ccc;
+  > .circle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    outline: 2px solid var(--quad-primary-color);
+    z-index: 999;
+    &:nth-child(1) {
+      top: -5px;
+      left: -5px;
+      cursor: nw-resize;
+    }
+    &:nth-child(2) {
+      top: -5px;
+      right: -5px;
+      cursor: ne-resize;
+    }
+    &:nth-child(3) {
+      bottom: -5px;
+      right: -5px;
+      cursor: nw-resize;
+    }
+    &:nth-child(4) {
+      bottom: -5px;
+      left: -5px;
+      cursor: ne-resize;
+    }
+  }
+  > .line__top {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 5px;
+    border-top: 2px solid var(--quad-primary-color);
+    cursor: ns-resize;
+  }
+  > .line__bottom {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 5px;
+    border-bottom: 2px solid var(--quad-primary-color);
+    cursor: ns-resize;
+  }
+  > .line__left {
+    position: absolute;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    border-left: 2px solid var(--quad-primary-color);
+    cursor: ew-resize;
+  }
+  > .line__right {
+    position: absolute;
+    right: 0;
+    width: 5px;
+    height: 100%;
+    border-right: 2px solid var(--quad-primary-color);
+    cursor: ew-resize;
+  }
+  > .rotate {
+    position: absolute;
+    // top: calc(50% - 12px);
+    bottom: -32px;
+    left: calc(50% - 12px);
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color: var(--quad-primary-color);
+    background: #ccc;
+    cursor: pointer;
+    &:hover {
+      // display: none;
+    }
+  }
+}
