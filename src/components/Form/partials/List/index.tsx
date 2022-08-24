@@ -14,14 +14,14 @@ export const Card = ({ children, field, add, remove, move }) => {
   const [enableState, toggleEnableState] = useToggle(true)
 
   const handleDragStart = (e) => {
-    e.dataTransfer.setData("dragId", field.fieldKey);
+    e.dataTransfer.setData("dragId", field.name);
   };
   const handleDragOver = (e) => {
     e.preventDefault()
   };
   const handleDrop = (e) => {
     const dragId = e.dataTransfer.getData("dragId");
-    move(field.fieldKey, dragId)
+    move(Number(dragId), field.name)
   }
 
 
