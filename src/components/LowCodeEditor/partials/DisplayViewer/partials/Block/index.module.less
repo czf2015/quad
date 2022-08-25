@@ -4,7 +4,7 @@
   align-content: flex-start;
   flex-wrap: wrap;
   &.editable {
-    outline: 1px dashed var(--quad-primary-color);
+    // outline: 1px dashed var(--quad-primary-color);
   }
 
   > .scissor_btn {
@@ -29,13 +29,12 @@
 
   > .boundary {
     position: absolute;
+    z-index: 9;
     &.top {
       bottom: -4px;
       width: 100%;
       height: 8px;
-      &:hover {
-        cursor: ns-resize;
-      }
+      cursor: ns-resize;
 
       > :first-child {
         height: 4px;
@@ -54,9 +53,7 @@
       display: flex;
       width: 8px;
       height: 100%;
-      &:hover {
-        cursor: ew-resize;
-      }
+      cursor: ew-resize;
 
       > :first-child {
         width: 4px;

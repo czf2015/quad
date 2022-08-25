@@ -58,22 +58,22 @@ export const Wrapper = ({
   const menu = (
     <Menu
       items={[
-        // {
-        //   key: '0',
-        //   label: (
-        //     <a onClick={copy}>
-        //       <CopyOutlined fontSize={32} />{/* 复制 */}
-        //     </a>
-        //   ),
-        // },
-        // {
-        //   key: '1',
-        //   label: (
-        //     <a onClick={handleConfig('custom')}>
-        //       <img src="/icons/Custom.svg" style={{ width: 16, height: 16 }} />{/* 样式 */}
-        //     </a>
-        //   ),
-        // },
+        {
+          key: '0',
+          label: (
+            <a onClick={copy}>
+              <CopyOutlined fontSize={32} />{/* 复制 */}
+            </a>
+          ),
+        },
+        {
+          key: '1',
+          label: (
+            <a onClick={handleConfig('custom')}>
+              <img src="/icons/Custom.svg" style={{ width: 16, height: 16 }} />{/* 样式 */}
+            </a>
+          ),
+        },
         {
           key: '2',
           label: (
@@ -111,15 +111,11 @@ export const Wrapper = ({
 
   const editTools = editable ? (
     <>
-      {/* <HolderOutlined className={`${styles.holder_btn} quad-circle`} draggable onDragStart={handleDragStart} /> */}
-      <div className={`${styles.holder_btn} quad-circle`} draggable onDragStart={handleDragStart}>
-        <img src="/icons/Custom.svg" style={{ width: 16, height: 16 }} />
-      </div>
+      <HolderOutlined className={`${styles.holder_btn} quad-circle`} draggable onDragStart={handleDragStart} />
       <Dropdown overlay={menu} placement="right" onVisibleChange={setDropdownOverlayVisible}>
         <MoreOutlined className={`${styles.more_btn} quad-circle`} />
       </Dropdown>
-      {/* <ExpandAltOutlined className={`${styles.expand_btn} quad-circle`} rotate={90} {...attrs} /> */}
-      <CopyOutlined className={`${styles.expand_btn} quad-circle`} {...attrs} />
+      <ExpandAltOutlined className={`${styles.expand_btn} quad-circle`} rotate={90} {...attrs} />
       <DeleteOutlined className={`${styles.delete_btn} quad-circle`} onClick={remove} />
     </>
   ) : null
