@@ -4,8 +4,8 @@ import Modal from "@/components/Modal";
 import Drawer from "@/components/Drawer";
 import Form from "@/components/Form/Wrapper";
 import Button from "@/components/Button";
-import ColorPicker from "./components/ColorPicker";
-import ColorGradient from "./components/ColorGradient";
+import ColorPicker from "@/components/ColorPicker";
+import ColorGradient from "@/components/ColorGradient";
 import {
   BarChartOutlined,
   LineChartOutlined,
