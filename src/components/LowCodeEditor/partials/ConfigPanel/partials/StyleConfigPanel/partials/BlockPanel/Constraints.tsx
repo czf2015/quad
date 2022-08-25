@@ -5,6 +5,20 @@ import { constraintsConfig } from './config';
 import { handleOption, handleDiagramsConfig } from './helpers';
 import styles from './index.module.less';
 
+const AlignDiagrams = ({ store }) => {
+  return (
+    <div className={styles.diagrams}>
+      <div className={styles.rect}>
+        {handleDiagramsConfig(styles, store('constraints')?.horizontal, store('constraints')?.vertical, store).map(
+          ({ className, style, method }, index) => (
+            <div key={index} className={className} style={style} onClick={method} />
+          )
+        )}
+      </div>
+    </div>
+  );
+};
+
 const AlignSelect = ({ store }) => {
   const { horizontal, vertical } = constraintsConfig;
 
@@ -39,23 +53,6 @@ const AlignSelect = ({ store }) => {
           value={store('constraints')?.vertical}
           onChange={handleVerChange}
         />
-      </div>
-    </div>
-  );
-};
-
-const AlignDiagrams = ({ store }) => {
-  return (
-    <div className={styles.diagrams}>
-      <div className={styles.rect}>
-        {handleDiagramsConfig(
-          styles,
-          store('constraints')?.horizontal,
-          store('constraints')?.vertical,
-          store
-        ).map(({ className, style, method }, index) => (
-          <div key={index} className={className} style={style} onClick={method} />
-        ))}
       </div>
     </div>
   );
