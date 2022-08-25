@@ -21,7 +21,7 @@ export default ({ }) => {
           setBlocks(blocks => blocks.map(item => item.id == entity.id ? typeof newVal == 'function' ? newVal(entity) : newVal : item))
         }
         return (
-          <DragWrapper entity={entity} updateEntity={updateEntity} key={entity.id}></DragWrapper>
+          <DragWrapper {...entity} updateEntity={updateEntity} key={entity.id}></DragWrapper>
         )
       })}
     </div>

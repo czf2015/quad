@@ -1,6 +1,10 @@
 import { useRef } from "react";
 
-export const useDragRect = (updateEntity, draggable) => {
+export const useDragRect = (
+  { id, style: { left = 0, top = 0, width = 0, height = 0 } = {}, rotate = 0 },
+  updateEntity,
+  draggable
+) => {
   const ref = useRef(null);
 
   const dragRef = useRef({
@@ -13,84 +17,97 @@ export const useDragRect = (updateEntity, draggable) => {
   const handleDrag = (dragMove) => {
     switch (dragRef.current.flag) {
       case "top_left":
-        updateEntity((state) => ({
-          ...state,
-          width: state.width - dragMove.x,
-          height: state.height - dragMove.y,
-          left: state.left + dragMove.x,
-          top: state.top + dragMove.y,
-        }));
+        updateEntity(id, {
+          style: {
+            left: left + dragMove.x,
+            top: top + dragMove.y,
+            width: width - dragMove.x,
+            height: height - dragMove.y,
+          },
+        });
         break;
       case "top_right":
-        updateEntity((state) => ({
-          ...state,
-          width: state.width + dragMove.x,
-          height: state.height - dragMove.y,
-          top: state.top + dragMove.y,
-        }));
+        updateEntity(id, {
+          style: {
+            top: top + dragMove.y,
+            width: width + dragMove.x,
+            height: height - dragMove.y,
+          },
+        });
         break;
       case "bottom_right":
-        updateEntity((state) => ({
-          ...state,
-          width: state.width + dragMove.x,
-          height: state.height + dragMove.y,
-        }));
+        updateEntity(id, {
+          style: {
+            width: width + dragMove.x,
+            height: height + dragMove.y,
+          },
+        });
         break;
       case "bottom_left":
-        updateEntity((state) => ({
-          ...state,
-          width: state.width - dragMove.x,
-          height: state.height + dragMove.y,
-          left: state.left + dragMove.x,
-        }));
+        updateEntity(id, {
+          style: {
+            left: left + dragMove.x,
+            width: width - dragMove.x,
+            height: height + dragMove.y,
+          },
+        });
         break;
       case "top":
-        updateEntity((state) => ({
-          ...state,
-          height: state.height - dragMove.y,
-          top: state.top + dragMove.y,
-        }));
+        updateEntity(id, {
+          style: {
+            top: top + dragMove.y,
+            height: height - dragMove.y,
+          },
+        });
         break;
       case "right":
-        updateEntity((state) => ({ ...state, width: state.width + dragMove.x }));
+        updateEntity(id, {
+          style: {
+            width: width + dragMove.x,
+          },
+        });
         break;
       case "bottom":
-        updateEntity((state) => ({ ...state, height: state.height + dragMove.y }));
+        updateEntity(id, {
+          style: {
+            height: height + dragMove.y,
+          },
+        });
         break;
       case "left":
-        updateEntity((state) => ({
-          ...state,
-          width: state.width - dragMove.x,
-          left: state.left + dragMove.x,
-        }));
+        updateEntity(id, {
+          style: {
+            left: left + dragMove.x,
+            width: width - dragMove.x,
+          },
+        });
         break;
       case "move":
-        updateEntity((state) => {
-          return {
-            ...state,
-            left: state?.left + dragMove?.x,
-            top: state?.top + dragMove?.y,
-          };
+        updateEntity(id, {
+          style: {
+            left: left + dragMove?.x,
+            top: top + dragMove?.y,
+          },
         });
         break;
       case "rotate":
-        updateEntity((state) => {
-          const rect = ref.current.getBoundingClientRect();
-          const r = rect.height / 2 + 20;
-          const rad = (state.rotate / 180) * Math.PI;
-          const sin = Math.sin(rad);
-          const cos = Math.cos(rad);
-          const rx = r * sin + dragMove.x;
-          const ry = r * cos - dragMove.y;
-          const rotate = state.rotate + (Math.acos((r + dragMove.x * sin - dragMove.y * cos) / Math.sqrt(rx ** 2 + ry ** 2) ) * 180) / Math.PI;
-          console.log({
-            ...state,
-            rotate,
-          })
-          return {
-            ...state,
-            rotate,
-          };
+        const rect = ref.current.getBoundingClientRect();
+        const r = rect.height / 2 + 20;
+        const rad = (rotate / 180) * Math.PI;
+        const sin = Math.sin(rad);
+        const cos = Math.cos(rad);
+        const rx = r * sin + dragMove.x;
+        const ry = r * cos - dragMove.y;
+        const _rotate =
+          rotate +
+          (Math.acos(
+            (r + dragMove.x * sin - dragMove.y * cos) /
+              Math.sqrt(rx ** 2 + ry ** 2)
+          ) *
+            180) /
+            Math.PI;
+        updateEntity(id, {
+          rotate: _rotate,
         });
         break;
       default:

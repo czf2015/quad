@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React, { useEffect } from 'react'
-import { Block, Wrapper, Scale } from './partials'
+import { Block, Wrapper, Scale, DragBlock } from './partials'
 import { components } from '@/register'
 import { useStore } from '@/hooks'
 import styles from './index.module.less'
@@ -50,7 +50,7 @@ export const DisplayViewer = ({ entities = [], setEntities, updateEntity, remove
     const item = entities.find(item => item.id == id)
     return (
       <>
-        <Block {...item} store={store} zoom={zoom} updateEntity={updateEntity} removeEntity={removeEntity} splitBlock={splitBlock} pullBlock={pullBlock} handleDrop={handleDrop} editable={editable} setActive={setActive} key={item.id}>
+        <Block {...item} store={store} zoom={zoom} setEntities={setEntities} updateEntity={updateEntity} removeEntity={removeEntity} splitBlock={splitBlock} pullBlock={pullBlock} handleDrop={handleDrop} editable={editable} setActive={setActive} key={item.id}>
           {item?.widgets?.map(widgetId => {
             const widget = entities.find(entity => entity.id == widgetId)
             return renderWidget(widget)
@@ -67,14 +67,29 @@ export const DisplayViewer = ({ entities = [], setEntities, updateEntity, remove
           if (item.name == 'Block') {
             return (
               <>
-                <Block {...item} store={store} zoom={zoom} updateEntity={updateEntity} removeEntity={removeEntity} splitBlock={splitBlock} pullBlock={pullBlock} handleDrop={handleDrop} editable={editable} setActive={setActive} key={item.id}>
+                <Block {...item} store={store} zoom={zoom} setEntities={setEntities} updateEntity={updateEntity} removeEntity={removeEntity} splitBlock={splitBlock} pullBlock={pullBlock} handleDrop={handleDrop} editable={editable} setActive={setActive} key={item.id}>
                   {item?.widgets?.map(widgetId => {
                     const widget = entities.find(entity => entity.id == widgetId)
                     return renderWidget(widget)
-                  })} </Block>
+                  })}
+                  {entities.filter(entity => entity.pid == item.id && entity.name == 'DragBlock').map(item => {
+                    return (
+                      <>
+                        <DragBlock {...item} store={store} zoom={zoom} setEntities={setEntities} updateEntity={updateEntity} removeEntity={removeEntity} splitBlock={splitBlock} pullBlock={pullBlock} handleDrop={handleDrop} editable={editable} setActive={setActive} key={item.id}>
+                          {item?.widgets?.map(widgetId => {
+                            const widget = entities.find(entity => entity.id == widgetId)
+                            return renderWidget(widget)
+                          })} </DragBlock>
+                        {item?.widgets?.length > 0 ? null : render(item.id)}
+                      </>
+                    )
+                  })}
+                </Block>
                 {item?.widgets?.length > 0 ? null : render(item.id)}
               </>
             )
+          } else if (item.name == 'DragBlock') {
+            return null
           }
 
           return renderWidget(item)

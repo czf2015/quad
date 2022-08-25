@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import { Button, Dropdown, Menu } from '@/plugins/ui'
 import { DeleteOutlined, ScissorOutlined } from '@ant-design/icons'
-import { useClip, useDragMove } from '@/hooks'
+import { useClip, useDragMove, useDragZone } from '@/hooks'
 import styles from './index.module.less'
 
 const menuItems = [
@@ -53,7 +53,7 @@ const Boundary = ({ pull, quad, zoom }) => {
   )
 }
 
-export const Block = ({ editable, name, id, pid, title = '', quad, hasBlock = false, store, zoom, style, splitBlock, removeEntity, pullBlock, handleDrop, children }: IBlockProps) => {
+export const Block = ({ editable, name, id, pid, title = '', quad, hasBlock = false, store, zoom, style, splitBlock, setEntities, removeEntity, pullBlock, handleDrop, children }: IBlockProps) => {
   const [haltClip, setHaltClipClip] = useState(false)
   const onMenuClick: MenuProps['onClick'] = e => {
     setHaltClipClip(false)
@@ -100,8 +100,18 @@ export const Block = ({ editable, name, id, pid, title = '', quad, hasBlock = fa
         : <Clip isHorizontal={store('isHorizontal')} offset={offset} menuItems={menuItems} onClick={split} onVisibleChange={setHaltClipClip} onMenuClick={onMenuClick} />}
     </> : null
 
+  const handleDragZone = (entity, flag) => {
+    setEntities(entities => {
+      if (flag) {
+        return [...entities, entity]
+      }
+      return entities.map(item => item.id == entity.id ? entity : item)
+    })
+  }
+  const attrs = useDragZone(handleDragZone, 25, id)
+
   return (
-    <div id={id} className={`${styles.block} ${haltClip ? styles.contextmenu : ''} ${hasBlock ? styles.hasBlock : ''} ${editable ? styles.editable : ''}`} style={style} onMouseMove={onMouseMove} onDragOver={onDragOver} onDrop={onDrop} ref={ref}>
+    <div id={id} className={`${styles.block} ${haltClip ? styles.contextmenu : ''} ${hasBlock ? styles.hasBlock : ''} ${editable ? styles.editable : ''}`} style={style} onMouseMove={onMouseMove} onDragOver={onDragOver} onDrop={onDrop} ref={ref} {...attrs}>
       {children}
       {editTools}
     </div>

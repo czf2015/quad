@@ -1,16 +1,26 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import uuid from "@/plugins/uuid";
 
-export const useDragZone = (handle, interval = 25) => {
+export const useDragZone = (handle, interval = 25, pid) => {
   const zoneRef = useRef({ dragging: false });
+  const rootRef = useRef(null);
 
-  const getEntity = (e, zoneRef) => {
+  useEffect(() => {
+    const rootEle = document.getElementById("display_viewer");
+    rootRef.current = rootEle.getBoundingClientRect();
+  }, []);
+
+  const getEntity = (e) => {
     return {
+      pid,
       id: zoneRef.current.id,
-      left: zoneRef.current.pageX,
-      top: zoneRef.current.pageY,
-      width: e.pageX - zoneRef.current.pageX,
-      height: e.pageY - zoneRef.current.pageY,
+      name: "DragBlock",
+      style: {
+        left: zoneRef.current.pageX - rootRef.current.left,
+        top: zoneRef.current.pageY - rootRef.current.top,
+        width: e.pageX - zoneRef.current.pageX,
+        height: e.pageY - zoneRef.current.pageY,
+      },
       active: true,
       rotate: 0,
     };
@@ -24,7 +34,7 @@ export const useDragZone = (handle, interval = 25) => {
       zoneRef.current.id = uuid();
       zoneRef.current.pageX = e.pageX;
       zoneRef.current.pageY = e.pageY;
-      handle(getEntity(e, zoneRef), true);
+      handle(getEntity(e), true);
     }
   };
   const onMouseMove = (e) => {
@@ -33,14 +43,15 @@ export const useDragZone = (handle, interval = 25) => {
       const now = Date.now();
       if (now - zoneRef.current.now > interval) {
         zoneRef.current.now = now;
-        handle(getEntity(e, zoneRef), false);
+        handle(getEntity(e), false);
       }
     }
   };
   const onMouseUp = (e) => {
+    console.log('pppppppp')
     e.stopPropagation();
     zoneRef.current.dragging = false;
-    handle(getEntity(e, zoneRef), false);
+    handle(getEntity(e), false);
   };
 
   return { onMouseDown, onMouseMove, onMouseUp };

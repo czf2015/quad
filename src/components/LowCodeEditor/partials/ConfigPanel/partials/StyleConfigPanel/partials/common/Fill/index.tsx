@@ -13,7 +13,6 @@ import styles from './index.module.less';
 const CustomInput = ({ type, value, onBlur }) => {
   const [inputValue, setInputValue] = usePropsState(value);
   const handleChange = (e) => {
-    debugger;
     setInputValue(e.target.value);
   };
   const handleBlur = (e) => {
