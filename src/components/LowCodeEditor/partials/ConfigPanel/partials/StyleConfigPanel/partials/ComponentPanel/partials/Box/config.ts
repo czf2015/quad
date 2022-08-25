@@ -1,0 +1,1 @@
+export const singleMargins = [0, 1, 2, 3]

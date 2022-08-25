@@ -1,3 +1,5 @@
 export * from './ColorPicker'
 export * from './Eyes'
 export * from './BgImage'
+export * from './Input'
+export * from './SplitIcon'
