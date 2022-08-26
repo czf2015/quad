@@ -1,13 +1,12 @@
 import { useRef } from "react";
 import uuid from "@/plugins/uuid";
 
-export const useDragZone = (handle, interval = 25, pid) => {
+export const useDragZone = (handle, interval = 25) => {
   const zoneRef = useRef({ dragging: false });
   const rootRef = useRef(null);
 
   const getEntity = (e) => {
     return {
-      pid,
       id: zoneRef.current.id,
       name: "DragBlock",
       style: {
@@ -45,7 +44,6 @@ export const useDragZone = (handle, interval = 25, pid) => {
     }
   };
   const onMouseUp = (e) => {
-    console.log('pppppppp')
     e.stopPropagation();
     zoneRef.current.dragging = false;
     handle(getEntity(e), false);

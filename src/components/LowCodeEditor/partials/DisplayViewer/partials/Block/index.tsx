@@ -2,12 +2,9 @@
 import React, { useState } from 'react'
 import { Button, Dropdown, Menu } from '@/plugins/ui'
 import { DeleteOutlined, ScissorOutlined } from '@ant-design/icons'
-import { useClip, useDragMove, useDragZone } from '@/hooks'
+import { useClip, useDragMove } from '@/hooks'
+import { stopPropagation } from '@/utils/dom'
 import styles from './index.module.less'
-
-const stopPropagation = (e) => {
-  e.stopPropagation()
-}
 
 const menuItems = [
   {
@@ -58,7 +55,7 @@ const Boundary = ({ pull, quad, zoom }) => {
   )
 }
 
-export const Block = ({ editable, name, id, pid, title = '', quad, hasBlock = false, store, zoom, style, splitBlock, setEntities, removeEntity, pullBlock, handleDrop, children }: IBlockProps) => {
+export const Block = ({ editable, name, id, pid, title = '', quad, hasBlock = false, store, zoom, style, splitBlock, removeEntity, pullBlock, handleDrop, children }: IBlockProps) => {
   const [haltClip, setHaltClipClip] = useState(false)
   const onMenuClick: MenuProps['onClick'] = e => {
     e?.domEvent?.stopPropagation()
@@ -78,7 +75,7 @@ export const Block = ({ editable, name, id, pid, title = '', quad, hasBlock = fa
     }
   };
 
-  const { ref, offset, onMouseMove: handleClipMouseMove } = useClip(haltClip, zoom)
+  const { ref, offset, onMouseMove } = useClip(haltClip, zoom)
 
   const split = (e) => {
     e.stopPropagation()
@@ -111,22 +108,8 @@ export const Block = ({ editable, name, id, pid, title = '', quad, hasBlock = fa
         : <Clip isHorizontal={store('isHorizontal')} offset={offset} menuItems={menuItems} onClick={split} onVisibleChange={setHaltClipClip} onMenuClick={onMenuClick} />}
     </> : null
 
-  const handleDragZone = (entity, flag) => {
-    setEntities(entities => {
-      if (flag) {
-        return [...entities, entity]
-      }
-      return entities.map(item => item.id == entity.id ? entity : item)
-    })
-  }
-  const { onMouseMove: handleDragZoneMouseMove, ...attrs } = useDragZone(handleDragZone, 25, id)
-  const onMouseMove = (e) => {
-    handleClipMouseMove(e)
-    handleDragZoneMouseMove(e)
-  }
-
   return (
-    <div id={id} className={`${styles.block} ${haltClip ? styles.contextmenu : ''} ${hasBlock ? styles.hasBlock : ''} ${editable ? styles.editable : ''}`} style={style} onMouseMove={onMouseMove} onDragOver={onDragOver} onDrop={onDrop} ref={ref} {...attrs}>
+    <div id={id} className={`${styles.block} ${haltClip ? styles.contextmenu : ''} ${hasBlock ? styles.hasBlock : ''} ${editable ? styles.editable : ''}`} style={style} onMouseMove={onMouseMove} onDragOver={onDragOver} onDrop={onDrop} ref={ref}>
       {children}
       {editTools}
     </div>

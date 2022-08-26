@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { Dropdown, Menu } from '@/plugins/ui'
 import { useDragMove, useBinds, useHandlers } from "@/hooks";
-import { copyText } from '@/utils/dom'
+import { copyText, stopPropagation } from '@/utils/dom'
 import { HolderOutlined, DeleteOutlined, MoreOutlined, ExpandAltOutlined, CopyOutlined } from '@ant-design/icons'
 import styles from "./index.module.less";
 
@@ -111,12 +111,12 @@ export const Wrapper = ({
 
   const editTools = editable ? (
     <>
-      <HolderOutlined className={`${styles.holder_btn} quad-circle`} draggable onDragStart={handleDragStart} />
+      <HolderOutlined className={`${styles.holder_btn} quad-circle`} draggable onDragStart={handleDragStart} onMouseDown={stopPropagation} />
       <Dropdown overlay={menu} placement="right" onVisibleChange={setDropdownOverlayVisible}>
-        <MoreOutlined className={`${styles.more_btn} quad-circle`} />
+        <MoreOutlined className={`${styles.more_btn} quad-circle`} onMouseDown={stopPropagation} />
       </Dropdown>
-      <ExpandAltOutlined className={`${styles.expand_btn} quad-circle`} rotate={90} {...attrs} />
-      <DeleteOutlined className={`${styles.delete_btn} quad-circle`} onClick={remove} />
+      <ExpandAltOutlined className={`${styles.expand_btn} quad-circle`} rotate={90} {...attrs} onMouseDown={stopPropagation} />
+      <DeleteOutlined className={`${styles.delete_btn} quad-circle`} onClick={remove} onMouseDown={stopPropagation} />
     </>
   ) : null
 

@@ -43,3 +43,7 @@ export class Clipboard {
     return navigator.clipboard.readText();
   }
 }
+
+export const stopPropagation = (e) => {
+  e.stopPropagation()
+}

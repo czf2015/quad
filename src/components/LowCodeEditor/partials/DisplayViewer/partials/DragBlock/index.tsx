@@ -9,7 +9,6 @@ export const DragBlock = ({ removeEntity, updateEntity, handleDrop, children, ..
   const { ref, handleDragStart, ...attrs } = useDragRect(entity, updateEntity, draggable)
 
   const handleMouseDown = (e) => {
-    console.log('ddddddddd')
     // if (draggable) {
     e.stopPropagation()
     // }

@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react'
 import { Block, Wrapper, Scale, DragBlock } from './partials'
 import { components } from '@/register'
-import { useStore } from '@/hooks'
+import { useStore, useDragZone } from '@/hooks'
 import styles from './index.module.less'
 
 
@@ -64,27 +64,16 @@ export const DisplayViewer = ({ entities = [], setEntities, updateEntity, remove
     return (
       <>
         {entities.filter(item => item.pid == pid).map((item) => {
-          if (item.name == 'Block') {
+          if (item.name == 'Block' || item.name == 'DragBlock') {
+            const BlockUsed = item.name == 'DragBlock' ? DragBlock : Block
             return (
               <>
-                <Block {...item} store={store} zoom={zoom} setEntities={setEntities} updateEntity={updateEntity} removeEntity={removeEntity} splitBlock={splitBlock} pullBlock={pullBlock} handleDrop={handleDrop} editable={editable} setActive={setActive} key={item.id}>
+                <BlockUsed {...item} store={store} zoom={zoom} updateEntity={updateEntity} removeEntity={removeEntity} splitBlock={splitBlock} pullBlock={pullBlock} handleDrop={handleDrop} editable={editable} setActive={setActive} key={item.id}>
                   {item?.widgets?.map(widgetId => {
                     const widget = entities.find(entity => entity.id == widgetId)
                     return renderWidget(widget)
                   })}
-                  {entities.filter(entity => entity.pid == item.id && entity.name == 'DragBlock').map(item => {
-                    return (
-                      <>
-                        <DragBlock {...item} store={store} zoom={zoom} setEntities={setEntities} updateEntity={updateEntity} removeEntity={removeEntity} splitBlock={splitBlock} pullBlock={pullBlock} handleDrop={handleDrop} editable={editable} setActive={setActive} key={item.id}>
-                          {item?.widgets?.map(widgetId => {
-                            const widget = entities.find(entity => entity.id == widgetId)
-                            return renderWidget(widget)
-                          })} </DragBlock>
-                        {item?.widgets?.length > 0 ? null : render(item.id)}
-                      </>
-                    )
-                  })}
-                </Block>
+                </BlockUsed>
                 {item?.widgets?.length > 0 ? null : render(item.id)}
               </>
             )
@@ -98,8 +87,18 @@ export const DisplayViewer = ({ entities = [], setEntities, updateEntity, remove
     )
   }
 
+  const handleDragZone = (entity, flag) => {
+    setEntities(entities => {
+      if (flag) {
+        return [...entities, entity]
+      }
+      return entities.map(item => item.id == entity.id ? entity : item)
+    })
+  }
+  const attrs = useDragZone(handleDragZone)
+
   return (
-    <div id="display_viewer" className={styles.display_viewer} style={{ width, height }}>
+    <div id="display_viewer" className={styles.display_viewer} style={{ width, height }} {...attrs}>
       {editable && <Scale len={width} gap={5} direction='left' />}
       {editable && <Scale len={height} gap={5} direction='down' />}
       {render(pid)}
