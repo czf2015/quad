@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React from 'react';
-import { Box, BoxShadow, BorderRadius, Transform } from './partials';
+import { Box, BoxShadow, BorderRadius, Transform, Text } from './partials';
 import { useStore } from '@/hooks';
 
 export default ({ widgetStyle }) => {
@@ -11,6 +11,7 @@ export default ({ widgetStyle }) => {
   return (
     <div>
       <Box store={store} />
+      <Text store={store} />
     </div>
   );
 };

@@ -4,8 +4,7 @@
  */
 import React from 'react';
 import { useToggle } from '~/hooks';
-import { Checkbox, Form } from 'antd';
-import Select from '~/components/Form/partials/Select';
+import { Checkbox, Form, Select } from 'antd';
 import './index.less';
 
 export default ({ label, name, value, rules, ...extra }) => {

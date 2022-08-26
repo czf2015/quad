@@ -1,38 +1,29 @@
-/**
- * @Author
- * @Description 下拉选择框
- * @Create who[when]
- * @Revise what --who[when]
- */
-/* eslint-disable */
-// @ts-nocheck
-import React from "react";
-import { Select } from "antd";
-import { CaretDownOutlined } from "@ant-design/icons";
+import React from 'react';
+import { Dropdown, Menu, Space, Typography } from 'antd';
+import { DownOutlined } from '@ant-design/icons';
 
-export default ({
-  mode = null, // "multiple", // 'tags'
-  allowClear = true,
-  disabled = false,
-  size = "middle",
-  suffixIcon = (
-    <CaretDownOutlined
-      style={{ color: "var(--xdrsec-select-suffix-icon-color)" }}
+
+export default ({ value, defaultValue, options, onChange }) => {
+  const menuItems = options.map(item => ({ key: item.value, lable: item.lable }))
+  const handleClick = console.log
+  const overlay = (
+    <Menu
+      selectable
+      onClick={handleClick}
+      defaultSelectedKeys={[defaultValue]}
+      selectedKeys={[value]}
+      items={menuItems}
     />
-  ),
-  options = [],
-  ...attrs
-}) => {
+  )
+
   return (
-    <Select
-      mode={mode}
-      allowClear={allowClear}
-      disabled={disabled}
-      suffixIcon={suffixIcon}
-      size={size}
-      getPopupContainer={(triggerNode) => triggerNode.parentNode}
-      options={options}
-      {...attrs}
-    />
-  );
-};
+    <Dropdown overlay={overlay}>
+      <Typography.Link>
+        <Space>
+          Selectable
+          <DownOutlined />
+        </Space>
+      </Typography.Link>
+    </Dropdown>
+  )
+}

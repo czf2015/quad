@@ -1,16 +1,24 @@
 .color_picker {
   position: relative;
+  margin: 0;
   display: flex;
   align-items: center;
-  > .effect {
-    margin-left: 8px;
-    width: 16px;
-    height: 16px;
-    display: inline-block;
-  }
-  > .input {
-    margin: 8px;
-    width: 80px;
+  > label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 4px;
+
+    > .effect {
+      // margin-left: 8px;
+      width: 16px;
+      height: 16px;
+      display: inline-block;
+    }
+    > .input {
+      margin: 0 2px;
+      width: 64px;
+    }
   }
   > .popover {
     position: absolute;

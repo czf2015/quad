@@ -4,7 +4,7 @@ import { ChromePicker as ColorPicker } from 'react-color';
 import { useVisible, usePropsState } from '@/hooks';
 import styles from './index.module.less';
 
-export default ({ value = 'blue', onChange }) => {
+export default ({ value = 'blue', onChange, hidden = false, }) => {
   const { visible, open, close } = useVisible(false);
 
   const [color, setColor] = usePropsState(value);
@@ -21,14 +21,18 @@ export default ({ value = 'blue', onChange }) => {
 
   return (
     <div className={styles.color_picker}>
-      <span className={styles.effect} style={{ background: color }} onClick={open}></span>
-      <Input
-        className={styles.input}
-        value={color}
-        onChange={handleChange}
-        onBlur={handleBlur}
-        size="small"
-      />
+      <label>
+        <span className={styles.effect} style={{ background: color }} onClick={open}></span>
+        <Input
+          className={styles.input}
+          style={{ display: hidden ? 'none' : undefined }}
+          value={color}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          bordered={false}
+          size="small"
+        />
+      </label>
 
       <div className={styles.popover} style={{ display: visible ? 'block' : 'none' }}>
         <div className={styles.cover} onClick={close} />
