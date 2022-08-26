@@ -87,8 +87,14 @@ export const widgetStyle = {
     value: 0
   }, // 0-100 百分比
   // 盒子
-  margin: 12,
-  padding: 12,
+  margin: {
+    type: 0,
+    value: 0
+  },
+  padding: {
+    type: 1,
+    value: [1, 2, 3, 4]
+  },
   width: {
     type: 0, // 0 百分比 1 像素值
     value: 0
