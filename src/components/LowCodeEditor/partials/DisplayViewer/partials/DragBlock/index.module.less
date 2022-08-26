@@ -5,14 +5,16 @@
   position: absolute;
   width: 200px;
   height: 200px;
-  background: #ccc;
+  background: var(--quad-primary-background-color);
+  z-index: 99;
   &:not(.draggable) {
     > .circle,
     > .line__top,
     > .line__bottom,
     > .line__left,
     > .line__right,
-    > .rotate {
+    > .rotate,
+    > .delete {
       display: none;
     }
   }
@@ -78,20 +80,14 @@
   }
   > .rotate {
     position: absolute;
-    // top: calc(50% - 12px);
-    bottom: -32px;
-    left: calc(50% - 12px);
-    width: 24px;
-    height: 24px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    color: var(--quad-primary-color);
-    background: #ccc;
+    bottom: -20px;
+    left: calc(50% - 7px);
     cursor: pointer;
-    &:hover {
-      // display: none;
-    }
+  }
+  > .delete {
+    position: absolute;
+    top: -20px;
+    left: calc(50% - 7px);
+    color: var(--quad-danger-color);
   }
 }

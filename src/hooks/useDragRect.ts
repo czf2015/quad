@@ -92,7 +92,7 @@ export const useDragRect = (
         break;
       case "rotate":
         const rect = ref.current.getBoundingClientRect();
-        const r = rect.height / 2 + 20;
+        const r = rect.height / 2 + 10;
         const rad = (rotate / 180) * Math.PI;
         const sin = Math.sin(rad);
         const cos = Math.cos(rad);

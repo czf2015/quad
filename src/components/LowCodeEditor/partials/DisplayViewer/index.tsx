@@ -13,7 +13,7 @@ export const DisplayViewer = ({ entities = [], setEntities, updateEntity, remove
     };
   }, [])
 
-  const store = useStore({ isHorizontal: false, hiddenClip: true })
+  const store = useStore({ isHorizontal: false, isClipHidden: true })
 
   const handleDrop = (dropId) => (e) => {
     e.stopPropagation()

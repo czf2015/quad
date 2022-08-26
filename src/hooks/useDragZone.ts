@@ -1,14 +1,9 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import uuid from "@/plugins/uuid";
 
 export const useDragZone = (handle, interval = 25, pid) => {
   const zoneRef = useRef({ dragging: false });
   const rootRef = useRef(null);
-
-  useEffect(() => {
-    const rootEle = document.getElementById("display_viewer");
-    rootRef.current = rootEle.getBoundingClientRect();
-  }, []);
 
   const getEntity = (e) => {
     return {
@@ -29,6 +24,8 @@ export const useDragZone = (handle, interval = 25, pid) => {
   const onMouseDown = (e) => {
     e.stopPropagation();
     if (!zoneRef.current.dragging) {
+      const rootEle = document.getElementById("display_viewer");
+      rootRef.current = rootEle.getBoundingClientRect();
       zoneRef.current.dragging = true;
       zoneRef.current.now = Date.now();
       zoneRef.current.id = uuid();
