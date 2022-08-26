@@ -19,8 +19,9 @@ const Margins = ({ label, type, value, isDisconnect, handleBlur, handleNumItemBl
     return value?.map((item, index) => (
       <InputNumber
         key={index}
-        style={{ width: 40, marginLeft: 8 }}
+        style={{ width: 44, marginLeft: 8 }}
         size="small"
+        controls={false}
         defaultValue={item}
         onBlur={(e) => {
           handleNumItemBlur(e, index);
@@ -36,7 +37,7 @@ const Margins = ({ label, type, value, isDisconnect, handleBlur, handleNumItemBl
         {disconnect ? (
           renderNumberInputs()
         ) : (
-          <InputNumber style={{ width: 160, marginLeft: 10 }} size="small" defaultValue={value} onBlur={handleBlur} />
+          <InputNumber style={{ width: 197, marginLeft: 10 }} size="small" defaultValue={value} onBlur={handleBlur} />
         )}
       </div>
       <div>
