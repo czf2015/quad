@@ -4,7 +4,7 @@ import { Input as AntInput } from 'antd';
 import { useInputValue } from '@/hooks';
 import styles from './index.module.less';
 
-export const Input = ({ width = 85, value, handleBur }) => {
+export const Input = ({ width = 85, value, onBlur }) => {
   const { inputValue, handleInputChange } = useInputValue(value);
   return (
     <AntInput
@@ -13,7 +13,7 @@ export const Input = ({ width = 85, value, handleBur }) => {
       size="small"
       value={inputValue}
       onChange={handleInputChange}
-      onBlur={handleBur}
+      onBlur={onBlur}
     />
   );
 };
