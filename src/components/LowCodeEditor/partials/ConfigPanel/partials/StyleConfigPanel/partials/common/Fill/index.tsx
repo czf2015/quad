@@ -2,19 +2,17 @@ import React, { useEffect } from 'react';
 import { Button, Tooltip, Popover, Input, message } from 'antd';
 import Eye from '@/components/Form/partials/CustomSwitch';
 import ColorGradient from '@/components/ColorGradient';
-import { usePropsState } from '@/hooks';
+import { usePropsState, useSubStore } from '@/hooks';
 import { getRadialGradient, getLinearGradient } from '@/components/ColorGradient/helpers';
 import uuid from '@/plugins/uuid';
 import { copyText } from '@/utils/dom';
 import { dragSort } from '@/utils/array';
-import { update } from '@/utils/object';
 import { HolderOutlined, PlusOutlined, MinusOutlined, CopyOutlined } from '@ant-design/icons';
 import styles from './index.module.less';
 
 const CustomInput = ({ type, value, onBlur }) => {
   const [inputValue, setInputValue] = usePropsState(value);
   const handleChange = (e) => {
-    debugger;
     setInputValue(e.target.value);
   };
   const handleBlur = (e) => {
@@ -68,26 +66,7 @@ export default ({ title = '填充', store }) => {
             );
           };
 
-          const subStore = (key, value) => {
-            if (typeof key == 'undefined') {
-              if (typeof value == 'undefined') {
-                return item;
-              }
-              store(
-                'fill',
-                fill.map((item) => (item.id == id ? { ...item, ...update(item, value) } : item))
-              );
-            } else {
-              if (typeof value == 'undefined') {
-                return item[key];
-              }
-              const select = fill.find((item) => item.id == id);
-              if (select) {
-                select[key] = typeof value == 'object' ? { ...select[key], ...update(select[key], value) } : value;
-              }
-              store('fill', fill);
-            }
-          };
+          const subStore = useSubStore(store, 'fill', id)
 
           let value; /*  = defaultValue */
           switch (type) {

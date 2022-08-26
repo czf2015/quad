@@ -314,7 +314,7 @@ export const useEntities = (initialEntities = [], editable = false, isPrinted = 
     setEntities((entities) => {
       const result = [];
       entities.forEach((entity) => {
-        if (dropEntity?.name == "Block") {
+        if (dropEntity?.name == "Block" || dropEntity?.name == "DragBlock") {
           if (entity.id == dropEntity.id) {
             if (entity.widgets) {
               entity.widgets.push(dragWidgetId);
@@ -346,7 +346,7 @@ export const useEntities = (initialEntities = [], editable = false, isPrinted = 
         }
         result.push({ ...entity });
       });
-      if (dropEntity?.name == "Block") {
+      if (dropEntity?.name == "Block" || dropEntity?.name == "DragBlock") {
         snapShot.take(
           result,
           `drag widget of ${dragName} in block: ${dropEntity.id}`
@@ -367,7 +367,7 @@ export const useEntities = (initialEntities = [], editable = false, isPrinted = 
     const dragBlock = entities.find((item) => item.id == dragWidget.pid);
     const dropEntity = entities.find((item) => item.id == dropId);
     setEntities((entities) => {
-      if (dropEntity?.name == "Block") {
+      if (dropEntity?.name == "Block" || dropEntity?.name == "DragBlock") {
         if (dropEntity.id == dragBlock.id) {
           if (dropEntity?.widgets?.length > 0) {
             const widgets = [];
@@ -433,7 +433,7 @@ export const useEntities = (initialEntities = [], editable = false, isPrinted = 
           });
         }
       }
-      if (dropEntity?.name == "Block") {
+      if (dropEntity?.name == "Block" || dropEntity?.name == "DragBlock") {
         snapShot.take(
           entities,
           `drag widget: ${dragId} ${

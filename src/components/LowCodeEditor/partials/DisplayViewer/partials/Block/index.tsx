@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { Button, Dropdown, Menu } from '@/plugins/ui'
 import { DeleteOutlined, ScissorOutlined } from '@ant-design/icons'
 import { useClip, useDragMove } from '@/hooks'
+import { stopPropagation } from '@/utils/dom'
 import styles from './index.module.less'
 
 const menuItems = [
@@ -25,6 +26,7 @@ export const Clip = ({ isHorizontal, menuItems, offset, onClick, onMenuClick, on
     const menu = (
       <Menu
         onClick={onMenuClick}
+        onMouseDown={stopPropagation}
         items={menuItems}
       />
     );
@@ -33,7 +35,7 @@ export const Clip = ({ isHorizontal, menuItems, offset, onClick, onMenuClick, on
       <>
         <div className={isHorizontal ? styles.clip_horizontal : styles.clip_vertical} style={isHorizontal ? { top: offset?.y } : { left: offset?.x }} />
         <Dropdown overlay={menu} onVisibleChange={onVisibleChange} trigger="contextMenu">
-          <Button className={styles.clip_scissor} style={{ top: offset?.y, left: offset?.x }} onClick={onClick} type="primary" shape="circle" icon={<ScissorOutlined rotate={isHorizontal ? 0 : 90} />} />
+          <Button className={styles.clip_scissor} style={{ top: offset?.y, left: offset?.x }} onClick={onClick} onMouseDown={stopPropagation} type="primary" shape="circle" icon={<ScissorOutlined rotate={isHorizontal ? 0 : 90} />} />
         </Dropdown>
       </>
     )
@@ -56,18 +58,19 @@ const Boundary = ({ pull, quad, zoom }) => {
 export const Block = ({ editable, name, id, pid, title = '', quad, hasBlock = false, store, zoom, style, splitBlock, removeEntity, pullBlock, handleDrop, children }: IBlockProps) => {
   const [haltClip, setHaltClipClip] = useState(false)
   const onMenuClick: MenuProps['onClick'] = e => {
+    e?.domEvent?.stopPropagation()
     setHaltClipClip(false)
     switch (e.key) {
       case 'horizontal':
-        store('hiddenClip', false)
+        store('isClipHidden', false)
         store('isHorizontal', true)
         break
       case 'vertical':
-        store('hiddenClip', false)
+        store('isClipHidden', false)
         store('isHorizontal', false)
         break
       default:
-        store('hiddenClip', true)
+        store('isClipHidden', true)
         break
     }
   };
@@ -91,12 +94,17 @@ export const Block = ({ editable, name, id, pid, title = '', quad, hasBlock = fa
   }
   const onDrop = handleDrop(id)
 
+  const handleClipHidden = (e) => {
+    e.stopPropagation()
+    store('isClipHidden', false)
+  }
+
   const editTools = editable ?
     <>
       <DeleteOutlined className={`${styles.delete_btn} quad-circle`} onClick={remove} />
       <Boundary pull={pull} quad={quad} zoom={zoom} />
-      {store('hiddenClip')
-        ? <ScissorOutlined className={`${styles.scissor_btn} quad-circle`} onClick={() => store('hiddenClip', false)} />
+      {store('isClipHidden')
+        ? <ScissorOutlined className={`${styles.scissor_btn} quad-circle`} onClick={handleClipHidden} onMouseDown={stopPropagation} />
         : <Clip isHorizontal={store('isHorizontal')} offset={offset} menuItems={menuItems} onClick={split} onVisibleChange={setHaltClipClip} onMenuClick={onMenuClick} />}
     </> : null
 

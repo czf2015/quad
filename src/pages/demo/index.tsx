@@ -1,10 +1,12 @@
 import React from 'react'
-import Demo from '@/components/DragWrapper'
+import DragZone from '@/layouts/DragZone'
+// import Demo from '@/components/DragWrapper'
 
 const props = {
 
 }
 
 export default () => {
-  return <Demo {...props} />
+  // return <Demo {...props} />
+  return <DragZone />
 }

@@ -53,6 +53,7 @@ interface IBlockProps extends IEntity {
   splitBlock: Function;
   pullBlock: Function;
   widgets?: idType[];
+  setEntities: Function;
 }
 
 interface IWrapperProps extends IEntity {}

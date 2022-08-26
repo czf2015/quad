@@ -15,32 +15,35 @@ export const observe = (
   observer.observe(element, properties);
 };
 
-
-export const copyText = (value = '') => {
+export const copyText = (value = "") => {
   return new Promise((resolve, reject) => {
-    let copyTextArea
+    let copyTextArea;
     try {
-      copyTextArea = document.createElement('textarea')
-      copyTextArea.style.width = '0'
-      copyTextArea.style.height = '0'
-      copyTextArea.style.opacity = '0'
-      copyTextArea.value = value
-      document.body.appendChild(copyTextArea)
-      copyTextArea.select()
-      document.execCommand('Copy')
-      resolve(value)
+      copyTextArea = document.createElement("textarea");
+      copyTextArea.style.width = "0";
+      copyTextArea.style.height = "0";
+      copyTextArea.style.opacity = "0";
+      copyTextArea.value = value;
+      document.body.appendChild(copyTextArea);
+      copyTextArea.select();
+      document.execCommand("Copy");
+      resolve(value);
     } finally {
-      copyTextArea?.parentNode?.removeChild(copyTextArea)
+      copyTextArea?.parentNode?.removeChild(copyTextArea);
     }
-  })
-}
+  });
+};
 
 // 链接：https://zhuanlan.zhihu.com/p/405095742
 export class Clipboard {
   static write(value) {
-    return navigator.clipboard.writeText(value)
+    return navigator.clipboard.writeText(value);
   }
   static read() {
-    return navigator.clipboard.readText()
+    return navigator.clipboard.readText();
   }
+}
+
+export const stopPropagation = (e) => {
+  e.stopPropagation()
 }

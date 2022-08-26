@@ -14,21 +14,21 @@ export const getInputDigitalProps = (store, field) => {
 };
 
 export const getLinearGradient = ({
-  x = 0,
-  y = 0,
+  x1 = 0,
+  y1 = 0,
   x2 = 1,
   y2 = 1,
   colorStops = [],
   repeat = "no-repeat",
 }) => {
-  const angle = 180 - (Math.atan((x2 - x) / (y2 - y)) * 180) / Math.PI;
-  const top = `${y * 100}%`;
-  const left = `${x * 100}%`;
-  const width = `${Math.abs(x2 - x) * 100}%`;
-  const height = `${Math.abs(y2 - y) * 100}%`;
+  const angle = 180 - (Math.atan((x2 - x1) / (y2 - y1)) * 180) / Math.PI;
+  const top = `${y1 * 100}%`;
+  const left = `${x1 * 100}%`;
+  const width = `${Math.abs(x2 - x1) * 100}%`;
+  const height = `${Math.abs(y2 - y1) * 100}%`;
   const color = `${repeat ? "repeating-" : ""
     }linear-gradient(${angle}deg, ${colorStops
-      .map(
+      ?.map(
         ({ type, offset, color }) => `${color} ${offset}${type == 1 ? "px" : "%"}`
       )
       .join(", ")})`;
@@ -45,7 +45,7 @@ export const getRadialGradient = ({
 }) => {
   const color = `${repeat ? "repeating-" : ""}radial-gradient(${rx * 100}% ${ry * 100
     }% at ${cx * 100}% ${cy * 100}%, ${colorStops
-      .map(
+      ?.map(
         ({ type, offset, color }) => `${color} ${offset}${type == 1 ? "px" : "%"}`
       )
       .join(", ")})`;
