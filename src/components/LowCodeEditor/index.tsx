@@ -75,23 +75,20 @@ export default ({ service, }) => {
       <Console editable={editable} save={save} edit={edit} page={page} service={service} preview={preview} publish={publish} />
     </>
   )
-  const main = {
-    left: (
-      <Tabs defaultActiveKey="Widgets" style={{ height: '100%', background: '#fff' }} centered>
-        <TabPane tab="资源" key="Assets">
-          <Assets />
-        </TabPane>
-        <TabPane tab="组件" key="Widgets">
-          <Widgets />
-        </TabPane>
-        <TabPane tab="页面" key="Outline">
-          <Outline />
-        </TabPane>
-      </Tabs>
-    ),
-    content: <DisplayViewer entities={entities} width={page.width} height={page.height} zoom={zoom} active={active} editable={editable} {...attrs} />,
-    // right: <ConfigPanel entity={entity} active={active} {...attrs} />
-  }
+  const left = (
+    <Tabs defaultActiveKey="Widgets" style={{ height: '100%', background: '#fff' }} centered>
+      <TabPane tab="资源" key="Assets">
+        <Assets />
+      </TabPane>
+      <TabPane tab="组件" key="Widgets">
+        <Widgets />
+      </TabPane>
+      <TabPane tab="页面" key="Outline">
+        <Outline />
+      </TabPane>
+    </Tabs>
+  )
+  const content = <DisplayViewer entities={entities} width={page.width} height={page.height} zoom={zoom} active={active} editable={editable} {...attrs} />
   const footer = (
     <>
       <Tips />
@@ -101,7 +98,8 @@ export default ({ service, }) => {
   )
   const slots = {
     header,
-    main,
+    left,
+    content,
     footer,
   }
 
