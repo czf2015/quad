@@ -26,8 +26,9 @@ export const DragBlock = ({ removeEntity, updateEntity, handleDrop, children, ac
 
   return (
     <div ref={ref} className={`${styles.drag_block} ${editable ? styles.editable : ''}`} style={{ ...entity.style, transformOrigin: 'center', transform: `rotate(${- entity.rotate}deg)` }} {...attrs} onDragStart={handleDragStart('move')} onDrop={onDrop} onMouseDown={stopPropagation}>
-      {['top_left', 'top_right', 'bottom_right', 'bottom_left'].map(flag => <div className={styles.circle} {...attrs} onDragStart={handleDragStart(flag)} key={flag} />)}
+      {children}
       {['top', 'right', 'bottom', 'left'].map(flag => <div className={styles[`line__${flag}`]} {...attrs} onDragStart={handleDragStart(flag)} key={flag} />)}
+      {['top_left', 'top_right', 'bottom_right', 'bottom_left'].map(flag => <div className={`${styles.circle} ${styles[flag]}`} {...attrs} onDragStart={handleDragStart(flag)} key={flag} />)}
       <Popover content={<ConfigPanel entity={entity} active={active} updateEntity={updateEntity} active={setActive} />} placement="rightTop" getPopupContainer={triggerNode => triggerNode.parentNode}>
         <MoreOutlined className={styles.more_btn} onMouseDown={stopPropagation} />
       </Popover>
@@ -39,7 +40,6 @@ export const DragBlock = ({ removeEntity, updateEntity, handleDrop, children, ac
       <Popconfirm title="确认是否删除?" onConfirm={remove} >
         <DeleteOutlined className={styles.delete} />
       </Popconfirm>
-      {children}
     </div>
   )
 }
