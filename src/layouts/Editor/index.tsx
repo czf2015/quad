@@ -3,8 +3,9 @@ import React from 'react'
 import { useToggle } from '@/hooks'
 import { LeftOutlined } from '@ant-design/icons'
 import styles from './index.module.less'
+import page from '@/mock/page'
 
-export default ({ slots: { header, main, footer }, zoom, isPreview = true, exit }) => {
+export default ({ slots: { header, main, footer }, zoom, isPreview = true, exit, page }) => {
   const [panelCollapsed, togglePanelCollapsed] = useToggle(false)
 
   return (
@@ -17,7 +18,7 @@ export default ({ slots: { header, main, footer }, zoom, isPreview = true, exit 
             <LeftOutlined rotate={panelCollapsed ? 180 : 0} />
           </span>
         </div>
-        <div className={styles.content}>{main.content}</div>
+        <div className={styles.content} style={{ width: isPreview ? page?.width : undefined}}>{main.content}</div>
       </div>
       {/* <div className={styles.footer}>{footer}</div> */}
       <span className={styles.exit} onClick={exit}>退出</span>
