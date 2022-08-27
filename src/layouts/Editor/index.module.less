@@ -26,22 +26,13 @@
     background-color: var(--quad-primary-background-color);
 
     >.left {
-      width: 216px;
-    }
-
-    >.content {
-      width: calc(100% - 228px);
-      overflow: auto;
-    }
-
-    >.right {
       position: relative;
-      width: 320px;
+      width: 216px;
 
       >.collapse_btn {
         position: absolute;
         top: calc(50% - 12px);
-        left: -12px;
+        right: -12px;
         width: 12px;
         height: 48px;
         display: flex;
@@ -50,9 +41,15 @@
         font-size: 12px;
         color: #aaa;
         background-color: #fff;
-        clip-path: polygon(0% 20%, 100% 0%, 100% 100%, 0% 80%);
+        clip-path: polygon(0% 0%, 100% 20%, 100% 80%, 0% 100%);
         cursor: pointer;
+        z-index: 999;
       }
+    }
+
+    >.content {
+      width: calc(100% - 228px);
+      overflow: auto;
     }
   }
 
@@ -67,13 +64,13 @@
   &.collapsed {
     >.main {
       >.content {
-        width: calc(100% - 228px; );
+        width: calc(100% - 12px);
       }
 
-      >.right {
+      >.left {
         width: 0;
 
-        > :last-child {
+        > :not(:last-child) {
           display: none;
         }
       }
@@ -90,8 +87,7 @@
       padding-top: 0;
       height: 100%;
 
-      >.left,
-      >.right {
+      >.left {
         display: none;
       }
 
