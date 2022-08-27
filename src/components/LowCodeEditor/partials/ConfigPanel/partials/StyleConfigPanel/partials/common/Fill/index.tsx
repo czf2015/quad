@@ -110,7 +110,7 @@ export default ({ title = '填充', store }) => {
               <HolderOutlined className={styles.holder_btn} draggable onDragStart={handleDragStart(id)} />
               <div className={styles.input_group}>
                 <div className={styles.color_mode}>
-                  <Popover content={<ColorGradient store={subStore} />} placement="leftBottom" trigger="click">
+                  <Popover content={<ColorGradient store={subStore} />} placement="leftBottom">
                     <span
                       className={styles.effect}
                       style={{ background: type == 'image' ? `url(${value}) no-repeat center/cover` : value }}
