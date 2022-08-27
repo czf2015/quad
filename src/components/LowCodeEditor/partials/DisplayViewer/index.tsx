@@ -88,12 +88,14 @@ export const DisplayViewer = ({ entities = [], setEntities, updateEntity, remove
   }
 
   const handleDragZone = (entity, flag) => {
-    setEntities(entities => {
-      if (flag) {
-        return [...entities, entity]
-      }
-      return entities.map(item => item.id == entity.id ? entity : item)
-    })
+    if (editable) {
+      setEntities(entities => {
+        if (flag) {
+          return [...entities, entity]
+        }
+        return entities.map(item => item.id == entity.id ? entity : item)
+      })
+    }
   }
   const attrs = useDragZone(handleDragZone)
 
