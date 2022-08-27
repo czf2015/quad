@@ -17,7 +17,7 @@ export default ({ id, title, tip, disabled = false, onClick = () => console.log(
   }, [])
 
   return (
-    <Tooltip title={tip} placement="top" color='blue' >
+    <Tooltip title={tip}>
       <Button className={styles.button} type={type} disabled={disabled} data-bind="button" onClick={onClick} icon={icon}>{title}</Button>
     </Tooltip>
   )

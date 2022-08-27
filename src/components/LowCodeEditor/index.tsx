@@ -1,34 +1,25 @@
 // @ts-nocheck
 import React, { useState } from 'react'
 import { Tabs } from '@/plugins/ui'
-import Layout from '@/layouts/Default'
+import Layout from '@/layouts/Editor'
 import { Menu, Restore, Console, Assets, Widgets, Outline, DisplayViewer, /* ConfigPanel, */ Tips, Status, Formatters } from './partials'
 import { useEntities } from '@/hooks'
 import uuid from '@/plugins/uuid'
 
 const { TabPane } = Tabs
 
-const defaultEntities = [
-  {
-    name: "Block",
-    id: uuid(),
-    title: "页面",
-    style: {
-      top: 0,
-      left: 0,
-      width: 1440,
-      height: 1080,
-      backgroundColor: '#fff'
-    },
-  },
-]
-
-
 export default ({ service, }) => {
   const [page, setPage] = useState({ width: 1440, height: 1080 })
-  const [mode, setMode] = useState(0) // 空白状态：0  查看状态: 1 编辑状态：2 
-  const editable = mode == 2
-  const { entities, active, ...attrs } = useEntities(defaultEntities, editable, true)
+  const [mode, setMode] = useState(1) // 编辑状态：0  保存状态: 1
+  const [isPreview, setIsPreview] = useState(false)
+  const preview = () => {
+    setIsPreview(true)
+  }
+  const exit = () => {
+    setIsPreview(false)
+  }
+  const editable = !isPreview && mode == 0
+  const { entities, active, ...attrs } = useEntities([], editable, true)
   // const entity = entities?.find(item => item.id == active?.id)
 
   const zoom = /* 1440 / page.width */1
@@ -36,9 +27,9 @@ export default ({ service, }) => {
   const open = (id) => {
     return service.getDetails({ id }).then(({ data: { content, ...page } } = {}) => {
       setPage(page)
-      attrs?.setEntities(content || defaultEntities)
+      attrs?.setEntities(content || [])
     }).then(() => {
-      setMode(1)
+      setMode(0)
     })
   }
 
@@ -60,7 +51,7 @@ export default ({ service, }) => {
         },
       ])
     }).then(() => {
-      setMode(2)
+      setMode(1)
     })
   }
   const save = (values) => {
@@ -72,26 +63,18 @@ export default ({ service, }) => {
       })
   }
   const edit = () => {
-    setMode(2)
-  }
-  const [isPreview, setIsPreview] = useState(false)
-  const preview = () => {
-    setIsPreview(true)
-  }
-  const exit = () => {
-    setIsPreview(false)
+    setMode(0)
   }
   const publish = (values) => {
     return service?.publish(values)
   }
   const header = (
     <>
-      <Menu mode={mode} open={open} create={create} service={service} />
-      <Restore mode={mode} {...attrs} />
-      <Console mode={mode} save={save} edit={edit} page={page} service={service} preview={preview} publish={publish} />
+      <Menu editable={editable} open={open} create={create} service={service} />
+      <Restore visible={editable} {...attrs} />
+      <Console editable={editable} save={save} edit={edit} page={page} service={service} preview={preview} publish={publish} />
     </>
   )
-  const content = mode == 0 ? null : <DisplayViewer entities={entities} width={page.width} height={page.height} zoom={zoom} active={active} editable={editable} {...attrs} />
   const main = {
     left: (
       <Tabs defaultActiveKey="Widgets" style={{ height: '100%', background: '#fff' }} centered>
@@ -106,7 +89,7 @@ export default ({ service, }) => {
         </TabPane>
       </Tabs>
     ),
-    content,
+    content: <DisplayViewer entities={entities} width={page.width} height={page.height} zoom={zoom} active={active} editable={editable} {...attrs} />,
     // right: <ConfigPanel entity={entity} active={active} {...attrs} />
   }
   const footer = (
