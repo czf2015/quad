@@ -51,7 +51,7 @@ export default ({ service, }) => {
         },
       ])
     }).then(() => {
-      setMode(1)
+      setMode(0)
     })
   }
   const save = (values) => {
