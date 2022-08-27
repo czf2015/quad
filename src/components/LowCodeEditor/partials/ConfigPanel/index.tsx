@@ -33,7 +33,7 @@ export const ConfigPanel = ({ active, setActive, entity, updateEntity, }) => {
     setActive(active => ({ ...active, key: activeKey }))
   }
   return (
-    <Tabs activeKey={active.key} onChange={handleChange} style={{ height: '100%', background: '#fff'/* , padding: '0 8px'  */, width: 318 }} key={active.id} centered>
+    <Tabs activeKey={active.key} onChange={handleChange} style={{ height: '100%', background: '#fff'/* , padding: '0 8px'  */, width: 318, zIndex: 9 }} key={active.id} centered>
       {tabList.map(({ tab, key, ConfigPanel }) => {
         return (
           <TabPane tab={tab} key={key}>
