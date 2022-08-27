@@ -1,93 +1,121 @@
 .drag_block {
-  // position: relative;
-  // position: fixed;
-  // margin: 200px;
   position: absolute;
   width: 200px;
   height: 200px;
-  background: var(--quad-primary-background-color);
   z-index: 99;
-  &:not(.draggable) {
-    > .circle,
-    > .line__top,
-    > .line__bottom,
-    > .line__left,
-    > .line__right,
-    > .rotate,
-    > .delete {
+
+  &.editable:not(:hover) {
+    outline: 1px solid var(--quad-primary-color);
+  }
+  &:not(.editable:hover) {
+    >.circle,
+    >.line__top,
+    >.line__bottom,
+    >.line__left,
+    >.line__right,
+    >.more_btn,
+    >.rotate,
+    >.delete {
       display: none;
     }
   }
-  > .circle {
+
+  >.circle {
     position: absolute;
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
-    outline: 2px solid var(--quad-primary-color);
+    outline: 1px solid var(--quad-primary-color);
     z-index: 999;
+
     &:nth-child(1) {
-      top: -5px;
-      left: -5px;
+      top: -4px;
+      left: -4px;
       cursor: nw-resize;
     }
+
     &:nth-child(2) {
-      top: -5px;
-      right: -5px;
+      top: -4px;
+      right: -4px;
       cursor: ne-resize;
     }
+
     &:nth-child(3) {
-      bottom: -5px;
-      right: -5px;
+      bottom: -4px;
+      right: -4px;
       cursor: nw-resize;
     }
+
     &:nth-child(4) {
-      bottom: -5px;
-      left: -5px;
+      bottom: -4px;
+      left: -4px;
       cursor: ne-resize;
     }
   }
-  > .line__top {
+
+  >.line__top {
     position: absolute;
     top: 0;
     width: 100%;
     height: 5px;
-    border-top: 2px solid var(--quad-primary-color);
+    border-top: 1px solid var(--quad-primary-color);
     cursor: ns-resize;
   }
-  > .line__bottom {
+
+  >.line__bottom {
     position: absolute;
     bottom: 0;
     width: 100%;
     height: 5px;
-    border-bottom: 2px solid var(--quad-primary-color);
+    border-bottom: 1px solid var(--quad-primary-color);
     cursor: ns-resize;
   }
-  > .line__left {
+
+  >.line__left {
     position: absolute;
     left: 0;
     width: 5px;
     height: 100%;
-    border-left: 2px solid var(--quad-primary-color);
+    border-left: 1px solid var(--quad-primary-color);
     cursor: ew-resize;
   }
-  > .line__right {
+
+  >.line__right {
     position: absolute;
     right: 0;
     width: 5px;
     height: 100%;
-    border-right: 2px solid var(--quad-primary-color);
+    border-right: 1px solid var(--quad-primary-color);
     cursor: ew-resize;
   }
-  > .rotate {
+
+  >.more_btn {
     position: absolute;
-    bottom: -20px;
-    left: calc(50% - 7px);
+    top: 4px;
+    right: 4px;
+    font-size: 12px;
+    color: var(--quad-primary-color);
     cursor: pointer;
   }
-  > .delete {
+
+  >.rotate {
     position: absolute;
-    top: -20px;
-    left: calc(50% - 7px);
-    color: var(--quad-danger-color);
+    bottom: -20px;
+    left: 0;
+    width: 100%;
+    padding-top: 8px;
+    display: flex;
+    justify-content: center;
+    font-size: 12px;
+    cursor: pointer;
+  }
+
+  >.delete {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    color: var(--quad-primary-color);
   }
 }

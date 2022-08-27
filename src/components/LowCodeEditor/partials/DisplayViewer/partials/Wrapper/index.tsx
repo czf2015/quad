@@ -1,6 +1,7 @@
 // @ts-nocheck
 import React, { useState } from "react";
-import { Dropdown, Menu } from '@/plugins/ui'
+import { Dropdown, Menu, Popover } from '@/plugins/ui'
+import { ConfigPanel } from "@/components/LowCodeEditor/partials/ConfigPanel";
 import { useDragMove, useBinds, useHandlers } from "@/hooks";
 import { copyText, stopPropagation } from '@/utils/dom'
 import { HolderOutlined, DeleteOutlined, MoreOutlined, ExpandAltOutlined, CopyOutlined } from '@ant-design/icons'
@@ -25,6 +26,7 @@ export const Wrapper = ({
   binds,
   handlers,
   occupied = false,
+  ...entity
 }: IWrapperProps) => {
   // TODO:
   if (occupied) {
@@ -112,16 +114,19 @@ export const Wrapper = ({
   const editTools = editable ? (
     <>
       <HolderOutlined className={`${styles.holder_btn} quad-circle`} draggable onDragStart={handleDragStart} onMouseDown={stopPropagation} />
-      <Dropdown overlay={menu} placement="right" onVisibleChange={setDropdownOverlayVisible}>
+      {/* <Dropdown overlay={menu} placement="right" onVisibleChange={setDropdownOverlayVisible}>
         <MoreOutlined className={`${styles.more_btn} quad-circle`} onMouseDown={stopPropagation} />
-      </Dropdown>
+      </Dropdown> */}
+      <Popover content={<ConfigPanel entity={entity} active={active} updateEntity={updateEntity} active={setActive} />} placement="rightTop" getPopupContainer={triggerNode => triggerNode.parentNode}>
+      <MoreOutlined className={`${styles.more_btn} quad-circle`} onMouseDown={stopPropagation} />
+      </Popover>
       <ExpandAltOutlined className={`${styles.expand_btn} quad-circle`} rotate={90} {...attrs} onMouseDown={stopPropagation} />
       <DeleteOutlined className={`${styles.delete_btn} quad-circle`} onClick={remove} onMouseDown={stopPropagation} />
     </>
   ) : null
 
   return (
-    <div ref={rootRef} id={id} className={`${styles.wrapper} ${dropdownOverlayVisible ? styles.dropdown_overlay : ''} ${mode == 'card' ? 'quad-card' : ''} ${active?.id == id ? styles.actived : ''} ${editable ? styles.editable : ''}`} onClick={select} onDragOver={onDragOver} onDrop={onDrop} style={style}>
+    <div ref={rootRef} id={id} className={`${styles.wrapper} ${dropdownOverlayVisible ? styles.dropdown_overlay : ''} ${mode == 'card' ? 'quad-card' : ''} ${editable ? styles.editable : ''}`} onClick={select} onDragOver={onDragOver} onDrop={onDrop} style={style}>
       {children}
       {editTools}
     </div>

@@ -126,7 +126,7 @@ export const Open = ({ disabled, open, service }) => {
 
   return (
     <>
-      <Button title="打开" disabled={disabled} onClick={openModal} icon={<FolderOpenOutlined />} />
+      <Button type="text" title="打开" disabled={disabled} onClick={openModal} icon={<FolderOpenOutlined />} />
       <Modal title={<div style={{ color: 'var(--quad-primary-color)' }}><FolderOpenOutlined /><span style={{ marginLeft: 4 }}>打开页面</span></div>} visible={visible} onCancel={handleCancel} width={'75%'} bodyStyle={{ maxHeight: 720, overflow: 'auto', padding: '0px 16px 32px 16px' }} footer={null}>
         <Table columns={columns} dataSource={dataSource} onChange={onChange} pagination={false} size="small" sticky />
       </Modal>

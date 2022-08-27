@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import { Tabs } from '@/plugins/ui'
 import Layout from '@/layouts/Default'
-import { Menu, Restore, Console, Assets, Widgets, Outline, DisplayViewer, ConfigPanel, Tips, Status, Formatters } from './partials'
+import { Menu, Restore, Console, Assets, Widgets, Outline, DisplayViewer, /* ConfigPanel, */ Tips, Status, Formatters } from './partials'
 import { useEntities } from '@/hooks'
 import uuid from '@/plugins/uuid'
 
@@ -29,7 +29,7 @@ export default ({ service, }) => {
   const [mode, setMode] = useState(0) // 空白状态：0  查看状态: 1 编辑状态：2 
   const editable = mode == 2
   const { entities, active, ...attrs } = useEntities(defaultEntities, editable, true)
-  const entity = entities?.find(item => item.id == active?.id)
+  // const entity = entities?.find(item => item.id == active?.id)
 
   const zoom = /* 1440 / page.width */1
 
@@ -107,7 +107,7 @@ export default ({ service, }) => {
       </Tabs>
     ),
     content,
-    right: <ConfigPanel entity={entity} active={active} {...attrs} />
+    // right: <ConfigPanel entity={entity} active={active} {...attrs} />
   }
   const footer = (
     <>

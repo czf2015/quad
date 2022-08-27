@@ -9,9 +9,8 @@ export const Menu = ({ mode = 0, replace, open, create, service, }) => {
 
   return (
     <div className={styles.menu}>
-      <Open service={service} open={open} disabled={isEditMode} />
-      <Create onFinish={create} disabled={isEditMode} />
-      <Button title="模板" disabled={!isEditMode} onClick={replace} icon={<CopyOutlined />} />
+      {isEditMode ? <Button type="text" title="模板" disabled={!isEditMode} onClick={replace} icon={<CopyOutlined />} /> : <><Open service={service} open={open} disabled={isEditMode} />
+        <Create onFinish={create} disabled={isEditMode} /></>}
     </div>
   )
 }
