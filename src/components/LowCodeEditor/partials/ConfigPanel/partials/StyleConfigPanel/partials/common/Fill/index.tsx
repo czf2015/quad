@@ -55,7 +55,7 @@ export default ({ title = '填充', store }) => {
         <h4>{title}</h4>
         <PlusOutlined onClick={add} />
       </div>
-      <div>
+      <div className={styles.content}>
         {fill.map((item) => {
           const { type, value: defaultValue, id, hidden, url } = item;
 

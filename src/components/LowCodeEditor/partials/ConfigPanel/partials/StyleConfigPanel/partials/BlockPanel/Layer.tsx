@@ -37,11 +37,11 @@ export default ({ store }) => {
         </Tooltip>
         <Tooltip title="透明度">
           <InputNumber
-            className={styles.item}
+            className={`${styles.item} ${styles.percent}`}
             max={100}
             min={0}
             controls={false}
-            formatter={(value) => `${value}%`}
+            // formatter={(value) => `${value}%`}
             defaultValue={store('opacity')}
             prefix={opacityIcon()}
             onBlur={handleOpacityBlur}

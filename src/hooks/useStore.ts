@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { update, copy } from "@/utils/object";
 
-export const useStore = (initialState = {}) => {
+export const useStore = (initialState = {}, cb) => {
   const [state, setState] = useState(initialState);
 
   const store = (key, value) => {
@@ -11,20 +11,24 @@ export const useStore = (initialState = {}) => {
         return copy(state);
       }
       setState((state) => {
-        return {
+        const newState = {
           ...state,
           ...value,
         };
+        cb?.(newState)
+        return newState
       });
     }
     if (typeof value == "undefined") {
       return copy(state[key]);
     }
     setState((state) => {
-      return {
+      const newState = {
         ...state,
         ...update(state, { [key]: value }),
       };
+      cb?.(newState)
+      return newState
     });
   };
 

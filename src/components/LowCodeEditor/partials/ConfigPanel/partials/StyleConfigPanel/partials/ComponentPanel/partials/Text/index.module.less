@@ -12,11 +12,18 @@
   }
 
   label {
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding-left: 4px;
     background-color: var(--quad-primary-background-color);
     border-radius: 4px;
+    >.select_arrow {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      color: #ccc;
+    }
   }
 }

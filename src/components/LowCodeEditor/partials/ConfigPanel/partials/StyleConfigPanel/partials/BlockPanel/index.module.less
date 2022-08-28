@@ -140,7 +140,7 @@
 
 .layer {
   .title {
-    font-weight: 700px;
+    font-weight: bold;
   }
 
   .content {
@@ -153,8 +153,15 @@
       cursor: pointer;
     }
 
-    .item {
+    >.item {
+      position: relative;
       margin-right: 12px;
+      &.percent::after {
+        position: absolute;
+        top: 4px;
+        right: 12px;
+        content: "%";
+      }
     }
 
     :global {

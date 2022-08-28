@@ -1,7 +1,7 @@
 import React from 'react'
 import { Input, Select, InputNumber } from '@/plugins/ui'
 import ColorPicker from '@/components/ColorPicker'
-import { BoldOutlined, FontSizeOutlined, LineHeightOutlined, UnderlineOutlined } from '@ant-design/icons'
+import { BoldOutlined, FontSizeOutlined, LineHeightOutlined, UnderlineOutlined, DownOutlined } from '@ant-design/icons'
 import { FONT_WEIGHT_OPTIONS, TEXT_ALIGN_OPTIONS, VERTICAL_ALIGN_OPTIONS, TEXT_DECORATION_OPTIONS } from '@/constants/OPTIONS'
 import styles from './index.module.less'
 
@@ -52,13 +52,19 @@ export const Text = ({ store }) => {
       <div className={styles.flex}>
         <label>
           <HorizontalIcon />
-          <Select defaultValue='start' options={TEXT_ALIGN_OPTIONS} style={{ width: 76 }} size="small" bordered={false} />
+          <Select defaultValue='start' options={TEXT_ALIGN_OPTIONS} style={{ width: 76 }} size="small" bordered={false} showArrow={false} />
+          <DownOutlined className={styles.select_arrow}/>
         </label>
         <label>
           <VerticalIcon />
-          <Select defaultValue='baseline' options={VERTICAL_ALIGN_OPTIONS} style={{ width: 76 }} size="small" bordered={false} />
+          <Select defaultValue='baseline' options={VERTICAL_ALIGN_OPTIONS} style={{ width: 76 }} size="small" bordered={false} showArrow={false} />
+          <DownOutlined className={styles.select_arrow}/>
         </label>
-        <label><UnderlineOutlined /><Select defaultValue="none" options={TEXT_DECORATION_OPTIONS} style={{ width: 76 }} size="small" bordered={false} /></label>
+        <label>
+          <UnderlineOutlined />
+          <Select defaultValue="none" options={TEXT_DECORATION_OPTIONS} style={{ width: 76 }} size="small" bordered={false} showArrow={false} />
+          <DownOutlined className={styles.select_arrow}/>
+        </label>
       </div>
     </div>
   )
