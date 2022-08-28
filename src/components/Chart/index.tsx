@@ -45,9 +45,11 @@ const General = forwardRef(({
   return <div style={{ defaultStyle, ...style }} ref={chartRef} />;
 });
 
+export default General
+
 const hoc = (getOption) => ({ option, ...attrs }) => <General option={getOption(option)} {...attrs} />
 
-export default hoc(getOption)
+// export default hoc(getOption)
 
 export const PieChart = hoc(getPieOption)
 export const NestPieChart = hoc(getNestPieOption) // 可以合并到PieChart
