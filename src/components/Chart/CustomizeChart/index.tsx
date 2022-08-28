@@ -21,6 +21,10 @@ export default ({
   const { loading, data = {} } = useDataSource(dataSource)
 
   useEffect(() => {
+    updateEntity?.(id, { dataSource })
+  }, [])
+
+  useEffect(() => {
     updateEntity?.(id, getMeta(data?.properties))
   }, [data])
 
