@@ -1,13 +1,10 @@
 // @ts-nocheck
-import React from 'react';
-import { Divider } from 'antd';
-import Constraints from './Constraints';
-import Layer from './Layer';
-// import Fill from './Fill';
-import Fill from '../common/Fill';
-import { BgImage } from '@/components/ColorGradient/partials';
-import Stroke from './Stroke';
-import { useStore } from '@/hooks';
+import React from "react";
+import { Divider } from "antd";
+import Constraints from "./Constraints";
+import Layer from "./Layer";
+import Fill from "../common/Fill";
+import { useStore } from "@/hooks";
 
 // 区块样式配置面板
 const BlockPanel = ({ blockStyle }) => {
