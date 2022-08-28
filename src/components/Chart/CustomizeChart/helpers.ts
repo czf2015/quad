@@ -175,6 +175,7 @@ export const getOption = ({ data: { list = [] } = {}, customize: { title, type =
   const sorted = sort(list, sorts)
 
   const aggregated = aggregate(sorted, { category, name, value, stack })
+  
   const axis = getAxisByLayout(aggregated, { layout, category })
 
   const series = getSeries(aggregated, { type, name, stack, value, percentage })
