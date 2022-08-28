@@ -67,7 +67,7 @@ export const Wrapper = ({
     <>
       <RadiusBottomrightOutlined className={styles.expand_btn} {...attrs} onMouseDown={stopPropagation} />
       <HolderOutlined className={styles.holder_btn} draggable onDragStart={handleDragStart} onMouseDown={stopPropagation} />
-      <Popover content={<ConfigPanel entity={entity} active={active} updateEntity={updateEntity} active={setActive} />} placement="rightTop" getPopupContainer={triggerNode => triggerNode.parentNode}>
+      <Popover content={<ConfigPanel id={id} {...entity} updateEntity={updateEntity} />} placement="rightTop">
         <MoreOutlined className={styles.more_btn} onMouseDown={stopPropagation} />
       </Popover>
       <Tooltip title={copyTip}>

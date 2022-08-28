@@ -91,9 +91,11 @@ export const getOption = ({
       data: [62, 82, 91, 84, 109, 110, 120],
     },
   ],
+  tooltip,
 } = {}) => {
   return {
     tooltip: {
+      ...tooltip,
       trigger: "axis",
       axisPointer: {
         // 坐标轴指示器，坐标轴触发有效

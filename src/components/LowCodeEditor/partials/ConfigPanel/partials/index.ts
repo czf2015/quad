@@ -1,4 +1,4 @@
-export * from './CustomConfigPanel'
+export * from './CustomizeConfigPanel'
 export * from './StyleConfigPanel'
 export * from './DataConfigPanel'
 export * from './InteractConfigPanel'

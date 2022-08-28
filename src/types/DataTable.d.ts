@@ -119,7 +119,7 @@ interface IDataTableColumn {
   field: string;
   label: string;
   render?: Function;
-  properties?: IFormItem;
+  // properties?: IFormItem;
 }
 
 interface IDataTableRecord {

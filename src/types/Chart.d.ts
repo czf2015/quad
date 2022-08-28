@@ -46,7 +46,6 @@ interface IDimension {
   label: string;
   sort: enumSort; // 原序 正序 倒序
   scale: scaleType;
-  percentage: boolean;
   unit: string;
 }
 
@@ -75,10 +74,11 @@ type animationType = number
 
 interface ChartOption {
   title: string;
-  type: "BarChart" | "PieChart";
+  type: "bar" | "line";
   layout?: "horizontal" | "vertical" | 'TB' | 'BT' | 'LR' | 'RL'; // 水平或垂直 
   dimensions: IDimension[];
   // coordinate: coordinateType;
+  percentage: boolean;
   group?: string;
   stack?: string;
   animation?: animationType;

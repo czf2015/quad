@@ -1,13 +1,13 @@
 // @ts-nocheck
 import React from 'react'
 import { Tabs } from '@/plugins/ui'
-import { CustomConfigPanel, StyleConfigPanel, DataConfigPanel, InteractConfigPanel } from './partials'
+import { CustomizeConfigPanel, StyleConfigPanel, DataConfigPanel, InteractConfigPanel } from './partials'
 
 const tabList = [
   {
     tab: '定制',
-    key: 'custom',
-    ConfigPanel: CustomConfigPanel,
+    key: 'customize',
+    ConfigPanel: CustomizeConfigPanel,
   },
   {
     tab: '样式',
@@ -28,12 +28,9 @@ const tabList = [
 
 const { TabPane } = Tabs
 
-export const ConfigPanel = ({ active, setActive, entity, updateEntity, }) => {
-  const handleChange = (activeKey) => {
-    setActive(active => ({ ...active, key: activeKey }))
-  }
+export const ConfigPanel = ({ updateEntity, ...entity }) => {
   return (
-    <Tabs activeKey={active.key} onChange={handleChange} style={{ height: '100%', background: '#fff'/* , padding: '0 8px'  */, width: 318, zIndex: 9 }} key={active.id} centered>
+    <Tabs style={{ height: '100%', background: '#fff'/* , padding: '0 8px'  */, width: 318, zIndex: 9 }} key={entity.id} centered>
       {tabList.map(({ tab, key, ConfigPanel }) => {
         return (
           <TabPane tab={tab} key={key}>
