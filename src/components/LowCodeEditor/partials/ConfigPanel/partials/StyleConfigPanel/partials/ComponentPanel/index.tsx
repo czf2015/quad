@@ -1,5 +1,6 @@
 // @ts-nocheck
 import React from 'react';
+import { Divider } from 'antd';
 import { Box, BoxShadow, BorderRadius, Transform, Text } from './partials';
 import { useStore } from '@/hooks';
 
@@ -11,6 +12,7 @@ export default ({ widgetStyle }) => {
   return (
     <div>
       <Box store={store} />
+      <Divider />
       <Text store={store} />
     </div>
   );
