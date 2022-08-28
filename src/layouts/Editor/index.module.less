@@ -46,12 +46,13 @@
     overflow: auto;
   }
 
-  .exit {
+  >.exit {
     position: fixed;
     top: 4px;
     right: 12px;
-    display: none;
+    color: var(--quad-primary-color);
     cursor: pointer;
+    z-index: 999;
   }
 
   &.collapsed {
@@ -81,11 +82,11 @@
       position: static;
       margin: auto;
     }
+  }
 
+  &:not(.preview) {
     >.exit {
-      display: inline-block;
-      color: var(--quad-primary-color);
-      z-index: 999;
+      display: none;
     }
   }
 
