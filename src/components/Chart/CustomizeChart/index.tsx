@@ -3,7 +3,6 @@ import Chart from '@/components/Chart'
 import { useDataSource } from '@/hooks';
 import { getOption, getMeta } from './helpers';
 
-
 export default ({
   id,
   updateEntity,
@@ -18,7 +17,7 @@ export default ({
   },
   ...attrs
 } = {}) => {
-  const { loading, data = {} } = useDataSource(dataSource)
+  const { data = {} } = useDataSource(dataSource)
 
   useEffect(() => {
     updateEntity?.(id, { dataSource })
@@ -27,7 +26,6 @@ export default ({
   useEffect(() => {
     updateEntity?.(id, getMeta(data?.properties))
   }, [data])
-
 
   return <Chart {...attrs} option={getOption({ data, customize })} />;
 };
