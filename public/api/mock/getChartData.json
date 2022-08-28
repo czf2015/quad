@@ -1,0 +1,142 @@
+{
+  "code": "0000",
+  "data": {
+    "list": [
+      {
+        "year": "2012",
+        "country": "China",
+        "type": "forest",
+        "area": 30,
+        "status": "开采"
+      },
+      {
+        "year": "2012",
+        "country": "China",
+        "type": "desert",
+        "area": 30,
+        "status": "开采"
+      },
+      {
+        "year": "2012",
+        "country": "America",
+        "type": "forest",
+        "area": 30,
+        "status": "开采"
+      },
+      {
+        "year": "2012",
+        "country": "America",
+        "type": "desert",
+        "area": 30,
+        "status": "开采"
+      },
+      {
+        "year": "2012",
+        "country": "China",
+        "type": "forest",
+        "area": 30,
+        "status": "保护"
+      },
+      {
+        "year": "2012",
+        "country": "China",
+        "type": "desert",
+        "area": 30,
+        "status": "保护"
+      },
+      {
+        "year": "2012",
+        "country": "America",
+        "type": "forest",
+        "area": 30,
+        "status": "保护"
+      },
+      {
+        "year": "2012",
+        "country": "America",
+        "type": "desert",
+        "area": 30,
+        "status": "保护"
+      },
+      {
+        "year": "2013",
+        "country": "China",
+        "type": "forest",
+        "area": 30,
+        "status": "开采"
+      },
+      {
+        "year": "2013",
+        "country": "China",
+        "type": "desert",
+        "area": 30,
+        "status": "开采"
+      },
+      {
+        "year": "2013",
+        "country": "America",
+        "type": "forest",
+        "area": 30,
+        "status": "开采"
+      },
+      {
+        "year": "2013",
+        "country": "America",
+        "type": "desert",
+        "area": 30,
+        "status": "开采"
+      },
+      {
+        "year": "2013",
+        "country": "China",
+        "type": "forest",
+        "area": 30,
+        "status": "保护"
+      },
+      {
+        "year": "2013",
+        "country": "China",
+        "type": "desert",
+        "area": 30,
+        "status": "保护"
+      },
+      {
+        "year": "2013",
+        "country": "America",
+        "type": "forest",
+        "area": 30,
+        "status": "保护"
+      },
+      {
+        "year": "2013",
+        "country": "America",
+        "type": "desert",
+        "area": 30,
+        "status": "保护"
+      }
+    ],
+    "properties": {
+      "year": {
+        "label": "年",
+        "type": "Date",
+        "formatter": "YYYY"
+      },
+      "country": {
+        "label": "国家",
+        "type": "string"
+      },
+      "type": {
+        "label": "类别",
+        "type": "string"
+      },
+      "status": {
+        "label": "状态",
+        "type": "string"
+      },
+      "area": {
+        "label": "面积",
+        "type": "number"
+      }
+    }
+  }
+}
