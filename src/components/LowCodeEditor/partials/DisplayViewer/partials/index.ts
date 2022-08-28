@@ -1,5 +1,5 @@
 export * from './Block'
 export * from './Wrapper'
-export * from './Scale'
+export * from './EditorScale'
 export * from './Bind'
 export * from './DragBlock'

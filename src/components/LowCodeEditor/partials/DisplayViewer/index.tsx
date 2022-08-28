@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React, { useEffect } from 'react'
-import { Block, Wrapper, Scale, DragBlock } from './partials'
+import { Block, Wrapper, EditorScale, DragBlock } from './partials'
 import { components } from '@/register'
 import { useStore, useDragZone } from '@/hooks'
 import styles from './index.module.less'
@@ -101,8 +101,7 @@ export const DisplayViewer = ({ entities = [], setEntities, updateEntity, remove
 
   return (
     <div id="display_viewer" className={styles.display_viewer} style={{ width, height }} {...attrs}>
-      {editable && <Scale len={width} gap={5} direction='left' />}
-      {editable && <Scale len={height} gap={5} direction='down' />}
+      <EditorScale visible={editable} />
       {render(pid)}
     </div>
   )

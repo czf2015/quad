@@ -3,7 +3,7 @@ import React from 'react'
 import { getNumbers } from './helpers'
 import styles from './index.module.less'
 
-export const Scale = ({ len = 1920, gap = 5, direction = 'left', style = { position: 'absolute', top: 0, left: 0 } }) => {
+export default ({ len = 1920, gap = 5, direction = 'left', style = { position: 'absolute', top: 0, left: 0 } }) => {
   const numbers = getNumbers(len, gap)
 
   const isHorizontal = direction == 'left'
