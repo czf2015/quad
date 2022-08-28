@@ -70,7 +70,7 @@ export const blockStyle = {
     }
   ],
   overflow: 'auto', // 
-  opacity: 1,
+  opacity: 100,
   z: 1,
   hidden: false,
 };

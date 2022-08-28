@@ -131,7 +131,7 @@ export const getBackgroundImage = ({ url = "", position: { left = 0, top = 0 } =
   return `url("${url}") ${left}% ${top}% / ${getBackgroundSize(width)} ${getBackgroundSize(height)} ${repeat}`
 }
 
-export const convertToStyle = ({ constraints: { horizontal = 0, vertical = 3 } = {}, fill = [], overflow, opacity = 1, z, hidden = false } = {}) => {
+export const convertToStyle = ({ constraints: { horizontal = 0, vertical = 3 } = {}, fill = [], overflow, opacity = 100, z, hidden = false } = {}) => {
   const bg = []
   fill.forEach(item => {
     if (!item.hidden) {
@@ -153,12 +153,12 @@ export const convertToStyle = ({ constraints: { horizontal = 0, vertical = 3 } =
     }
   })
   const background = bg.join(',')
-  
+
   return {
     justifyContent: JUSTIFY_CONTENT_VALUES[horizontal],
     alignItems: ALIGN_ITEMS_VALUES[vertical],
     background,
-    opacity,
+    opacity: opacity / 100,
     overflow,
     zIndex: z,
     visibility: hidden ? 'hidden' : 'visible',
