@@ -3,9 +3,9 @@ import React, { useState } from 'react'
 import { Button, Dropdown, Menu, Popover, Popconfirm } from '@/plugins/ui'
 import { DeleteOutlined, ScissorOutlined, MoreOutlined } from '@ant-design/icons'
 import BlockStyleConfigPanel from "@/components/LowCodeEditor/partials/ConfigPanel/partials/StyleConfigPanel/partials/BlockPanel";
-import { useDragRect } from '@/hooks'
 import { useClip, useDragMove } from '@/hooks'
 import { stopPropagation } from '@/utils/dom'
+import { convertToStyle } from '@/components/ColorGradient/helpers';
 import styles from './index.module.less'
 
 const menuItems = [
@@ -98,7 +98,7 @@ export const Block = ({ editable, name, id, pid, title = '', quad, hasBlock = fa
 
   const editTools = editable ?
     <>
-     <Popover content={<BlockStyleConfigPanel {...entity} updateEntity={updateEntity} />}>
+     <Popover content={<BlockStyleConfigPanel id={id} {...entity} updateEntity={updateEntity} />}>
         <MoreOutlined className={`${styles.more_btn} quad-circle`} onMouseDown={stopPropagation} />
       </Popover>
       <Popconfirm title="确认是否删除?" onConfirm={remove} >
@@ -111,7 +111,7 @@ export const Block = ({ editable, name, id, pid, title = '', quad, hasBlock = fa
     </> : null
 
   return (
-    <div id={id} className={`${styles.block} ${haltClip ? styles.contextmenu : ''} ${hasBlock ? styles.hasBlock : ''} ${editable ? styles.editable : ''}`} style={style} onMouseMove={onMouseMove} onDragOver={onDragOver} onDrop={onDrop} ref={ref}>
+    <div id={id} className={`${styles.block} ${haltClip ? styles.contextmenu : ''} ${hasBlock ? styles.hasBlock : ''} ${editable ? styles.editable : ''}`} style={{ ...style, ...convertToStyle(entity?.styleConfig) }} onMouseMove={onMouseMove} onDragOver={onDragOver} onDrop={onDrop} ref={ref}>
       {children}
       {editTools}
     </div>

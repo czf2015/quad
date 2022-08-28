@@ -111,3 +111,56 @@ export const handleTypeChange = (store) => (type) => {
       break;
   }
 };
+
+const JUSTIFY_CONTENT_VALUES = ['start', 'center', 'end', 'space-between', 'space-evenly']
+const ALIGN_ITEMS_VALUES = ['start', 'center', 'end', 'stretch', 'space-evenly']
+
+const getBackgroundSize = ({ type = 2, value = 'auto' } = {}) => {
+  switch (type) {
+    case 0:
+      return `${value}%`
+    case 1:
+      return `${value}px`
+    case 2:
+    default:
+      return 'auto'
+  }
+}
+
+export const getBackgroundImage = ({ url = "", position: { left = 0, top = 0 } = {}, repeat = 'no-repeat', size: { width, height } = {} } = {}) => {
+  return `url("${url}") ${left}% ${top}% / ${getBackgroundSize(width)} ${getBackgroundSize(height)} ${repeat}`
+}
+
+export const convertToStyle = ({ constraints: { horizontal = 0, vertical = 3 } = {}, fill = [], overflow, opacity = 1, z, hidden = false } = {}) => {
+  const bg = []
+  fill.forEach(item => {
+    if (!item.hidden) {
+      switch (item.type) {
+        case 'color':
+          bg.push(`linear-gradient(0deg, ${item.value}, ${item.value})`)
+          break
+        case 'linear':
+          bg.push(getLinearGradient(item))
+          break
+        case 'radial':
+          bg.push(getRadialGradient(item))
+        case 'image':
+          bg.push(getBackgroundImage(item))
+          break
+        default:
+          break
+      }
+    }
+  })
+  const background = bg.join(',')
+  
+  return {
+    justifyContent: JUSTIFY_CONTENT_VALUES[horizontal],
+    alignItems: ALIGN_ITEMS_VALUES[vertical],
+    background,
+    opacity,
+    overflow,
+    zIndex: z,
+    visibility: hidden ? 'hidden' : 'visible',
+  }
+}

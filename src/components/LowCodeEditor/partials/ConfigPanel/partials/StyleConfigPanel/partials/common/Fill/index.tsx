@@ -17,7 +17,7 @@ const CustomInput = ({ type, value, onBlur }) => {
   };
   const handleBlur = (e) => {
     if (type == 'color') {
-      const reg = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/;
+      const reg = /^#([A-Fa-f0-9]{6,8}|[A-Fa-f0-9]{3,4})$/;
       if (reg.test(e.target.value)) {
         onBlur?.(e);
       } else {
