@@ -1,7 +1,9 @@
 // @ts-nocheck
 import React, { useState } from 'react'
-import { Button, Dropdown, Menu } from '@/plugins/ui'
-import { DeleteOutlined, ScissorOutlined } from '@ant-design/icons'
+import { Button, Dropdown, Menu, Popover, Popconfirm } from '@/plugins/ui'
+import { DeleteOutlined, ScissorOutlined, MoreOutlined } from '@ant-design/icons'
+import BlockStyleConfigPanel from "@/components/LowCodeEditor/partials/ConfigPanel/partials/StyleConfigPanel/partials/BlockPanel";
+import { useDragRect } from '@/hooks'
 import { useClip, useDragMove } from '@/hooks'
 import { stopPropagation } from '@/utils/dom'
 import styles from './index.module.less'
@@ -47,12 +49,10 @@ export const Clip = ({ isHorizontal, menuItems, offset, onClick, onMenuClick, on
 const Boundary = ({ pull, quad, zoom }) => {
   const attrs = useDragMove(pull, zoom)
 
-  return (
-    <div className={`${styles.boundary} ${quad ? styles[quad] : ''}`} {...attrs} />
-  )
+  return <div className={`${styles.boundary} ${quad ? styles[quad] : ''}`} {...attrs} />
 }
 
-export const Block = ({ editable, name, id, pid, title = '', quad, hasBlock = false, store, zoom, style, splitBlock, removeEntity, pullBlock, handleDrop, children }: IBlockProps) => {
+export const Block = ({ editable, name, id, pid, title = '', quad, hasBlock = false, store, zoom, style, splitBlock, removeEntity, pullBlock, handleDrop, children, updateEntity, ...entity }: IBlockProps) => {
   const [haltClip, setHaltClipClip] = useState(false)
   const onMenuClick: MenuProps['onClick'] = e => {
     e?.domEvent?.stopPropagation()
@@ -98,7 +98,12 @@ export const Block = ({ editable, name, id, pid, title = '', quad, hasBlock = fa
 
   const editTools = editable ?
     <>
-      <DeleteOutlined className={`${styles.delete_btn} quad-circle`} onClick={remove} />
+     <Popover content={<BlockStyleConfigPanel {...entity} updateEntity={updateEntity} />}>
+        <MoreOutlined className={`${styles.more_btn} quad-circle`} onMouseDown={stopPropagation} />
+      </Popover>
+      <Popconfirm title="确认是否删除?" onConfirm={remove} >
+        <DeleteOutlined className={`${styles.delete_btn} quad-circle`} />
+      </Popconfirm>
       <Boundary pull={pull} quad={quad} zoom={zoom} />
       {store('isClipHidden')
         ? <ScissorOutlined className={`${styles.scissor_btn} quad-circle`} onClick={handleClipHidden} onMouseDown={stopPropagation} />

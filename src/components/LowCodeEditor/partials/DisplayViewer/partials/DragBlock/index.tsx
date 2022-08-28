@@ -1,6 +1,6 @@
 import React from 'react'
 import { Popconfirm, InputNumber, Dropdown, Popover } from 'antd'
-import { ConfigPanel } from "@/components/LowCodeEditor/partials/ConfigPanel";
+import BlockStyleConfigPanel from "@/components/LowCodeEditor/partials/ConfigPanel/partials/StyleConfigPanel/partials/BlockPanel";
 import { useDragRect } from '@/hooks'
 import { SyncOutlined, DeleteOutlined, MoreOutlined } from '@ant-design/icons'
 import { stopPropagation } from '@/utils/dom'
@@ -29,7 +29,7 @@ export const DragBlock = ({ removeEntity, updateEntity, handleDrop, children, ac
       {children}
       {['top', 'right', 'bottom', 'left'].map(flag => <div className={styles[`line__${flag}`]} {...attrs} onDragStart={handleDragStart(flag)} key={flag} />)}
       {['top_left', 'top_right', 'bottom_right', 'bottom_left'].map(flag => <div className={`${styles.circle} ${styles[flag]}`} {...attrs} onDragStart={handleDragStart(flag)} key={flag} />)}
-      <Popover content={<ConfigPanel entity={entity} active={active} updateEntity={updateEntity} active={setActive} />} placement="rightTop" getPopupContainer={triggerNode => triggerNode.parentNode}>
+      <Popover content={<BlockStyleConfigPanel {...entity} updateEntity={updateEntity} />} placement="rightTop" getPopupContainer={triggerNode => triggerNode.parentNode}>
         <MoreOutlined className={styles.more_btn} onMouseDown={stopPropagation} />
       </Popover>
       <div className={styles.rotate}>

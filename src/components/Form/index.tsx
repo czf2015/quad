@@ -3,11 +3,10 @@ import React, { useState } from "react";
 import { Form, Button } from "@/plugins/ui";
 import { renderFormItem } from "./render";
 import { filter, getInitialValues } from "./helpers";
-import { tableColumn } from "@/config/table";
 
 export default ({
   initialValues,
-  children: formItems = tableColumn,
+  children: formItems = [],
   onFinish = console.success,
   onFinishFailed = console.error,
   onValuesChange,

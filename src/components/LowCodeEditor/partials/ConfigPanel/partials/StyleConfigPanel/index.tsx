@@ -6,10 +6,10 @@ import ComponentPanel from './partials/ComponentPanel';
 import styles from './index.module.less';
 
 // 样式配置面板
-export const StyleConfigPanel = () => {
+export const StyleConfigPanel = ({ styleConfig }) => {
   return (
     <div id="style-config-panel" className={styles.container}>
-      <BlockPanel blockStyle={blockStyle} />
+      {/* <BlockPanel styleConfig={styleConfig} /> */}
       <ComponentPanel widgetStyle={widgetStyle} />
     </div>
   );

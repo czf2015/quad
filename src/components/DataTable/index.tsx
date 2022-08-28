@@ -94,6 +94,31 @@ export default ({ size = "small", scroll = { x: 'calc(700px + 50%)', y: 240 }, b
   })
 
   useEffect(() => {
+      const { 
+        id, 
+        dataSource = {
+          type: 0,
+          method: 'post',
+          url: "/api/mock/getTableData.json",
+          params: {
+            offset: 0,
+            limit: 10,
+          },
+          interval: 0,
+          data: `{
+          "title": "标题",
+          "description": "描述",
+          "params": {
+            "id": 1
+          }
+        }`,
+        preprocess: "(res) => {\n  console.log(res)\n  return res.data\n}",
+      },
+    } = entity
+    updateEntity?.(id, { dataSource })
+  }, [])
+
+  useEffect(() => {
     updateEntity?.(entity?.id, {
       meta: {
         binds: [{
