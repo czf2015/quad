@@ -1,29 +1,34 @@
-import React from 'react';
-import { Dropdown, Menu, Space, Typography } from 'antd';
+import React, { useState } from 'react';
+import { Dropdown, Menu } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
+import styles from './index.module.less'
 
 
-export default ({ value, defaultValue, options, onChange }) => {
-  const menuItems = options.map(item => ({ key: item.value, lable: item.lable }))
-  const handleClick = console.log
+export default ({ value, onChange, options = [], addonBefore, style, }) => {
+  const [selectKey, setSelectKey] = useState(value)
+
+  const menuItems = options.map(item => ({ ...item, key: item.value }))
+  const menuItem = menuItems.find(item => item.key == selectKey)
+  const handleClick = ({ key }) => {
+    setSelectKey(key)
+    onChange?.(key)
+  }
   const overlay = (
     <Menu
       selectable
       onClick={handleClick}
-      defaultSelectedKeys={[defaultValue]}
-      selectedKeys={[value]}
+      selectedKeys={[menuItem?.key]}
       items={menuItems}
     />
   )
 
   return (
     <Dropdown overlay={overlay}>
-      <Typography.Link>
-        <Space>
-          Selectable
-          <DownOutlined />
-        </Space>
-      </Typography.Link>
+      <label className={styles.select_control} style={style}>
+        {addonBefore}
+        <span>{menuItem?.label}</span>
+        <DownOutlined className={styles.select_arrow} />
+      </label>
     </Dropdown>
   )
 }

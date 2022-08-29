@@ -137,3 +137,14 @@ export const FONT_WEIGHT_OPTIONS = [
     value: "bolder",
   },
 ];
+
+export const FONT_FAMILY_OPTIONS = [
+  {
+    label: "微软雅黑",
+    value: "normal",
+  },
+  {
+    label: "宋文简体",
+    value: "bold",
+  },
+]

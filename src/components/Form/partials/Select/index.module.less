@@ -1,0 +1,22 @@
+.select_control {
+  width: 90px;
+  height: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 4px;
+  background-color: var(--quad-primary-background-color);
+  border-radius: 4px;
+
+  > .select_arrow {
+    color: #ccc;
+  }
+
+  &:hover {
+    color: var(--quad-primary-color);
+    outline: 1px solid var(--quad-primary-border-color);
+    > .select_arrow {
+      color: var(--quad-primary-color);
+    }
+  }
+}

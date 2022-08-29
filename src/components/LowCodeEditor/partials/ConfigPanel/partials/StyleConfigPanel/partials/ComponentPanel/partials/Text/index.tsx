@@ -1,8 +1,9 @@
 import React from 'react'
-import { Input, Select, InputNumber } from '@/plugins/ui'
+import { Input } from '@/plugins/ui'
 import ColorPicker from '@/components/ColorPicker'
-import { BoldOutlined, FontSizeOutlined, LineHeightOutlined, UnderlineOutlined, DownOutlined } from '@ant-design/icons'
-import { FONT_WEIGHT_OPTIONS, TEXT_ALIGN_OPTIONS, VERTICAL_ALIGN_OPTIONS, TEXT_DECORATION_OPTIONS } from '@/constants/OPTIONS'
+import CustomSelect from '@/components/Form/partials/Select'
+import { BoldOutlined, FontSizeOutlined, LineHeightOutlined, UnderlineOutlined } from '@ant-design/icons'
+import { FONT_WEIGHT_OPTIONS, TEXT_ALIGN_OPTIONS, VERTICAL_ALIGN_OPTIONS, TEXT_DECORATION_OPTIONS, FONT_FAMILY_OPTIONS } from '@/constants/OPTIONS'
 import styles from './index.module.less'
 
 const VerticalIcon = () => {
@@ -34,37 +35,29 @@ const HorizontalIcon = () => {
 };
 
 export const Text = ({ store }) => {
+  const setStore = (key) => (value) => {
+    store(key, value)
+  }
+
   return (
     <div className={styles.text_wrapper}>
       <h4 className={styles.flex}><span>文本</span></h4>
       <div className={styles.flex}>
-        <label><img src="/icons/FontFamily.svg" width="16" height="16" /><Select style={{ width: 96 }} size="small" bordered={false} /></label>
-        <label><BoldOutlined /><InputNumber defaultValue={400} style={{ width: 56 }} min={400} max={900} size="small" controls={false} bordered={false} /></label>
-        <label><ColorPicker value="#ccc" /></label>
+        <CustomSelect value={store('fontFamily')} onChange={setStore('fontFamily')} options={FONT_FAMILY_OPTIONS} addonBefore={<img src="/icons/FontFamily.svg" width="16" height="16" />} />
+        <CustomSelect value={store('fontWeight')} onChange={setStore('fontWeight')} options={FONT_WEIGHT_OPTIONS} addonBefore={<BoldOutlined />} />
+        <label><ColorPicker value={store('color')} onChange={setStore('color')} /></label>
       </div>
 
       <div className={styles.flex}>
-        <label><FontSizeOutlined /><Input defaultValue="12px" style={{ width: 64 }} min={0} size="small" controls={false} bordered={false} /></label>
-        <label><LineHeightOutlined /><Input defaultValue="12px" style={{ width: 64 }} min={0} size="small" controls={false} bordered={false} /></label>
-        <label><img src="/icons/WordSpacing.svg" width="20" height="20" /><Input defaultValue="0px" style={{ width: 88 }} min={0} size="small" controls={false} bordered={false} /></label>
+        <label><FontSizeOutlined /><Input value={store('fontSize')} onChange={setStore('fontSize')} defaultValue="12px" style={{ width: 74 }} min={0} size="small" controls={false} bordered={false} /></label>
+        <label><LineHeightOutlined /><Input value={store('lineHeight')} onChange={setStore('lineHeight')} defaultValue="12px" style={{ width: 74 }} min={0} size="small" controls={false} bordered={false} /></label>
+        <label><img src="/icons/WordSpacing.svg" width="20" height="20" /><Input value={store('wordSpacing')} onChange={setStore('wordSpacing')} defaultValue="0px" style={{ width: 74 }} min={0} size="small" controls={false} bordered={false} /></label>
       </div>
 
       <div className={styles.flex}>
-        <label>
-          <HorizontalIcon />
-          <Select defaultValue='start' options={TEXT_ALIGN_OPTIONS} style={{ width: 76 }} size="small" bordered={false} showArrow={false} />
-          <DownOutlined className={styles.select_arrow}/>
-        </label>
-        <label>
-          <VerticalIcon />
-          <Select defaultValue='baseline' options={VERTICAL_ALIGN_OPTIONS} style={{ width: 76 }} size="small" bordered={false} showArrow={false} />
-          <DownOutlined className={styles.select_arrow}/>
-        </label>
-        <label>
-          <UnderlineOutlined />
-          <Select defaultValue="none" options={TEXT_DECORATION_OPTIONS} style={{ width: 76 }} size="small" bordered={false} showArrow={false} />
-          <DownOutlined className={styles.select_arrow}/>
-        </label>
+        <CustomSelect value={store('textAlign')} onChange={setStore('textAlign')} options={TEXT_ALIGN_OPTIONS} addonBefore={<HorizontalIcon />} />
+        <CustomSelect value={store('verticalAlign')} onChange={setStore('verticalAlign')} options={VERTICAL_ALIGN_OPTIONS} addonBefore={<VerticalIcon />} />
+        <CustomSelect value={store('textDecoration')} onChange={setStore('textDecoration')} options={TEXT_DECORATION_OPTIONS} addonBefore={<UnderlineOutlined />} />
       </div>
     </div>
   )

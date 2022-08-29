@@ -135,18 +135,18 @@ export const widgetStyle = {
   fontSize: 14,
   fontWeight: "normal",
   fontFamily: "",
-  lineHeight: {
+  lineHeight: /* {
     type: 0, // 0 px 1 em
     value: 0,
-  },
-  wordSpacing: {
+  } */'0',
+  wordSpacing: /* {
     type: 0, // 0 px 1 em
     value: 0,
-  },
-  letterSpacing: {
+  } */'0',
+  letterSpacing: /* {
     type: 0, // 0 px 1 em
     value: 0,
-  },
+  } */'0',
   textDecoration: 'none', // none | underline | overline | line-through | blink
   textShadow: 'none', // none | length
   whiteSpace: 'normal', // normal | nowrap | pre | pre-wrap | pre-line
