@@ -107,7 +107,7 @@ export default ({ service, }) => {
   return (
     <>
       <Layout slots={slots} zoom={zoom} isPreview={isPreview} exit={exit} page={page} />
-      <Zoom zoom={zoom} zoomIn={zoomIn} zoomOut={zoomOut} min={min} max={max} />
+      {!isPreview && <Zoom zoom={zoom} zoomIn={zoomIn} zoomOut={zoomOut} min={min} max={max} />}
     </>
   )
 }

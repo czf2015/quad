@@ -26,8 +26,8 @@ export const useDragMove = (handleDragMove, zoom = 1) => {
       const now = Date.now();
       if (now - dragRef.current.now > 25) {
         const dragMove = {
-          x: (e.pageX - dragRef.current.pageX) / zoom,
-          y: (e.pageY - dragRef.current.pageY) / zoom,
+          x: (e.pageX - dragRef.current.pageX) * zoom,
+          y: (e.pageY - dragRef.current.pageY) * zoom,
         };
         handleDragMove(dragMove);
         dragRef.current = {
@@ -42,8 +42,8 @@ export const useDragMove = (handleDragMove, zoom = 1) => {
   const onDragEnd = (e) => {
     e.stopPropagation();
     const dragMove = {
-      x: (e.pageX - dragRef.current.pageX) / zoom,
-      y: (e.pageY - dragRef.current.pageY) / zoom,
+      x: (e.pageX - dragRef.current.pageX) * zoom,
+      y: (e.pageY - dragRef.current.pageY) * zoom,
     };
     handleDragMove(dragMove);
     dragRef.current.dragging = false;
