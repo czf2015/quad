@@ -128,7 +128,7 @@ const getBackgroundSize = ({ type = 2, value = 'auto' } = {}) => {
 }
 
 export const getBackgroundImage = ({ url = "", position: { left = 0, top = 0 } = {}, repeat = 'no-repeat', size: { width, height } = {} } = {}) => {
-  return `url("${url}") ${left}% ${top}% / ${getBackgroundSize(width)} ${getBackgroundSize(height)} ${repeat}`
+  return `url(${url}) ${left}% ${top}% / ${getBackgroundSize(width)} ${getBackgroundSize(height)} ${repeat}`
 }
 
 export const convertToStyle = ({ constraints: { horizontal = 0, vertical = 3 } = {}, fill = [], overflow, opacity = 100, z, hidden = false } = {}) => {
