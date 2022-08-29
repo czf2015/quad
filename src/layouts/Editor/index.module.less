@@ -2,7 +2,7 @@
   height: 100vh;
   background-color: var(--quad-primary-background-color);
 
-  >.header {
+  > .header {
     position: fixed;
     top: 0;
     left: 0;
@@ -14,13 +14,13 @@
     align-items: center;
   }
 
-  >.left {
+  > .left {
     position: fixed;
     top: 32px;
     width: 216px;
     height: calc(100vh - 32px);
 
-    >.collapse_btn {
+    > .collapse_btn {
       position: absolute;
       top: calc(50% - 12px);
       right: -12px;
@@ -38,15 +38,18 @@
     }
   }
 
-  >.content {
+  > .content {
     position: fixed;
     top: 32px;
     left: 228px;
     width: calc(100% - 228px);
     overflow: auto;
+    > .scale {
+      transform-origin: top left;
+    }
   }
 
-  >.exit {
+  > .exit {
     position: fixed;
     top: 4px;
     right: 12px;
@@ -56,11 +59,11 @@
   }
 
   &.collapsed {
-    >.content {
+    > .content {
       left: 12px;
     }
 
-    >.left {
+    > .left {
       width: 0;
 
       > :not(:last-child) {
@@ -70,22 +73,22 @@
   }
 
   &.preview {
-    >.header {
+    > .header {
       display: none;
     }
 
-    >.left {
+    > .left {
       display: none;
     }
 
-    >.content {
+    > .content {
       position: static;
       margin: auto;
     }
   }
 
   &:not(.preview) {
-    >.exit {
+    > .exit {
       display: none;
     }
   }

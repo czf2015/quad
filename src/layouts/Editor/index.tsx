@@ -16,7 +16,9 @@ export default ({ slots: { header, left, content, footer }, zoom, isPreview = tr
           <LeftOutlined rotate={panelCollapsed ? 180 : 0} />
         </span>
       </div>
-      <div className={styles.content} style={{ width: isPreview ? page?.width : undefined }}>{content}</div>
+      <div className={styles.content} style={{ width: isPreview ? page?.width : undefined }}>
+        <div className={styles.scale} style={{ transform: `scale(${zoom})` }}>{content}</div>
+      </div>
       {/* <div className={styles.footer}>{footer}</div> */}
       <span className={styles.exit} onClick={exit}>退出</span>
     </div>

@@ -3,7 +3,8 @@ import React, { useState } from 'react'
 import { Tabs } from '@/plugins/ui'
 import Layout from '@/layouts/Editor'
 import { Menu, Restore, Console, Assets, Widgets, Outline, DisplayViewer, /* ConfigPanel, */ Tips, Status, Formatters } from './partials'
-import { useEntities } from '@/hooks'
+import Zoom from '@/components/Zoom'
+import { useEntities, useZoom } from '@/hooks'
 import uuid from '@/plugins/uuid'
 
 const { TabPane } = Tabs
@@ -22,7 +23,8 @@ export default ({ service, }) => {
   const { entities, active, ...attrs } = useEntities([], editable, true)
   // const entity = entities?.find(item => item.id == active?.id)
 
-  const zoom = /* 1440 / page.width */1
+  // const zoom = /* 1440 / page.width */1.5
+  const { zoom, zoomIn, zoomOut, min, max } = useZoom({ min: 0.2, max: 5 })
 
   const open = (id) => {
     return service.getDetails({ id }).then(({ data: { content, ...page } } = {}) => {
@@ -103,6 +105,9 @@ export default ({ service, }) => {
   }
 
   return (
-    <Layout slots={slots} zoom={zoom} isPreview={isPreview} exit={exit} page={page} />
+    <>
+      <Layout slots={slots} zoom={zoom} isPreview={isPreview} exit={exit} page={page} />
+      <Zoom zoom={zoom} zoomIn={zoomIn} zoomOut={zoomOut} min={min} max={max} />
+    </>
   )
 }
