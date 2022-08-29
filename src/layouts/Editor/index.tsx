@@ -17,7 +17,7 @@ export default ({ slots: { header, left, content, footer }, zoom, isPreview = tr
         </span>
       </div>
       <div className={styles.content} style={{ width: isPreview ? page?.width : undefined }}>
-        <div className={styles.scale} style={{ transform: `scale(${zoom})` }}>{content}</div>
+        <div className={styles.scale} style={{ transform: isPreview ? undefined : `scale(${zoom})` }}>{content}</div>
       </div>
       {/* <div className={styles.footer}>{footer}</div> */}
       <span className={styles.exit} onClick={exit}>退出</span>

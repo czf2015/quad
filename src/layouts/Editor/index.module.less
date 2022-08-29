@@ -83,11 +83,21 @@
 
     > .content {
       position: static;
+      top: 0;
       margin: auto;
     }
   }
 
   &:not(.preview) {
+    > .content {
+      height: calc(100vh - 32px);
+      > .scale {
+        background: linear-gradient(90deg, #d8d8d8 10%, transparent 0),
+          linear-gradient(#d8d8d8 10%, transparent 0);
+        background-size: 10px 10px;
+        background-color: #e5e5e5;
+      }
+    }
     > .exit {
       display: none;
     }
