@@ -109,14 +109,26 @@ export const widgetStyle = {
     value: 4, // px %
   }, // 或数组为top right bottom left
   // -----------------阴影-----------
-  boxShadow: {
-    type: 'none',
-    offsetX: 2,
-    offsetY: 2,
-    blur: 2,
-    spread: 4,
-    color: '#ccc'
-  },
+  boxShadow: [
+    {
+      type: 'none',
+      offsetX: 2,
+      offsetY: 1,
+      blur: 1,
+      spread: 4,
+      color: '#ccc',
+      hidden: false,
+    },
+    {
+      type: 'inset',
+      offsetX: 2,
+      offsetY: 2,
+      blur: 2,
+      spread: 4,
+      color: '#ccc',
+      hidden: false,
+    }
+  ],
   // constraints: {
   //   horizontal: 0,
   //   vertical: 2,
