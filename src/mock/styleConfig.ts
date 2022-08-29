@@ -77,15 +77,15 @@ export const blockStyle = {
 
 export const widgetStyle = {
   // 位置
-  position: 'absolute',
-  top: {
-    type: 0, // 0 百分比 1 像素值
-    value: 0
-  }, // 0-100 百分比 
-  left: {
-    type: 0, // 0 百分比 1 像素值
-    value: 0
-  }, // 0-100 百分比
+  // position: 'absolute',
+  // top: {
+  //   type: 0, // 0 百分比 1 像素值
+  //   value: 0
+  // }, // 0-100 百分比 
+  // left: {
+  //   type: 0, // 0 百分比 1 像素值
+  //   value: 0
+  // }, // 0-100 百分比
   // 盒子
   margin: {
     type: 0,
@@ -158,14 +158,14 @@ export const widgetStyle = {
     rotate: 0,
   },
   transformOrigin: {
-    top: {
+    top: /* {
       type: 0, // 0 百分比 1 像素值
       value: 0
-    }, // 0-100 百分比
-    left: {
+    } */'0', // 0-100 百分比
+    left: /* {
       type: 0, // 0 百分比 1 像素值
       value: 0
-    }, // 0-100 百分比
+    }, */'0' // 0-100 百分比
   },
   // 填充
   fill: [

@@ -9,9 +9,10 @@ export const useClip = (halt = false, zoom) => {
   const onMouseMove = (e) => {
     e.stopPropagation();
     if (!halt) {
+      const rect = ref.current.getBoundingClientRect();
       setOffset({
-        x: (e.pageX - ref.current.rect?.left) / zoom,
-        y: (e.pageY - ref.current?.rect?.top) / zoom,
+        x: (e.pageX - rect?.left) / zoom,
+        y: (e.pageY - rect?.top) / zoom,
       });
     }
   };
