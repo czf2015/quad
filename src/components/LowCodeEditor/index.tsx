@@ -46,7 +46,6 @@ export default ({ service, }) => {
             left: 0,
             width: data.width,
             height: data.height,
-            backgroundColor: '#fff'
           },
         },
       ])

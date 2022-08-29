@@ -41,6 +41,15 @@
     cursor: nw-resize;
   }
 
+  &:not(:hover) {
+    >.holder_btn,
+    >.delete_btn,
+    >.copy_btn,
+    >.more_btn {
+      display: none;
+    }
+  }
+
   &.editable:hover {
     outline: 1px solid var(--quad-primary-color);
   }

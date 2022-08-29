@@ -1,3 +1,7 @@
+.style_config {
+  // width: 300px;
+}
+
 .constraints {
   .title {
     font-weight: 700;
@@ -165,12 +169,15 @@
     }
 
     :global {
-      .ant-select:not(.ant-select-customize-input) .ant-select-selector {
-        box-shadow: none !important;
-        border: none;
-        background-color: var(--quad-primary-background-color);
-        &:hover {
-          background-color: var(--quad-form-active-background-color);
+      .ant-select {
+        width: 80px;
+        &:not(.ant-select-customize-input) .ant-select-selector {
+          box-shadow: none !important;
+          border: none;
+          background-color: var(--quad-primary-background-color);
+          &:hover {
+            background-color: var(--quad-form-active-background-color);
+          }
         }
       }
     }

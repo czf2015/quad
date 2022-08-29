@@ -43,7 +43,7 @@ const CustomInput = ({ type, value, onBlur }) => {
 };
 
 export default ({ title = '填充', store }) => {
-  const fill = store('fill');
+  const fill = store('fill') || [];
 
   const add = () => {
     store('fill', [{ type: 'color', value: '#FFFFFF', hidden: false, id: uuid() }, ...fill]);
@@ -56,13 +56,13 @@ export default ({ title = '填充', store }) => {
         <PlusOutlined onClick={add} />
       </div>
       <div className={styles.content}>
-        {fill.map((item) => {
+        {fill?.map((item) => {
           const { type, value: defaultValue, id, hidden, url } = item;
 
           const remove = () => {
             store(
               'fill',
-              fill.filter((item) => item.id != id)
+              fill?.filter((item) => item.id != id)
             );
           };
 
