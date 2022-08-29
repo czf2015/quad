@@ -14,6 +14,10 @@ export default ({ widgetStyle }) => {
       <Box store={store} />
       <Divider />
       <Text store={store} />
+      <Divider />
+      <BorderRadius store={store} />
+      <Divider />
+      <Transform store={store} />
     </div>
   );
 };

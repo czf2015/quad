@@ -15,7 +15,7 @@ export const SplitIcon = ({ disconnect, handleDisconnect }) => {
 
 const Px = ({ onClick }) => (
   <span onClick={onClick} style={{ cursor: 'pointer' }}>
-    PX
+    px
   </span>
 );
 

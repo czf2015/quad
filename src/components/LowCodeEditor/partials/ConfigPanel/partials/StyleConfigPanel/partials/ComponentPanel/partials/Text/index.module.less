@@ -1,5 +1,5 @@
 .text_wrapper {
-  >h4 {
+  > h4 {
     font-weight: bold;
   }
 
@@ -9,21 +9,23 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
-
-  label {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-left: 4px;
-    background-color: var(--quad-primary-background-color);
-    border-radius: 4px;
-    >.select_arrow {
-      position: absolute;
-      top: 6px;
-      right: 6px;
-      color: #ccc;
+    > label {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-left: 4px;
+      background-color: var(--quad-primary-background-color);
+      border-radius: 4px;
+      &:hover {
+        outline: 1px solid var(--quad-primary-border-color);
+      }
+      > .select_arrow {
+        position: absolute;
+        top: 6px;
+        right: 6px;
+        color: #ccc;
+      }
     }
   }
 }
