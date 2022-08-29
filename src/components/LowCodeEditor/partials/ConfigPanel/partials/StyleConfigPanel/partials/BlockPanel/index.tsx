@@ -5,7 +5,6 @@ import Constraints from './Constraints';
 import Layer from './Layer';
 import Fill from '../common/Fill';
 import { useStore } from '@/hooks';
-import styles from './index.module.less'
 
 // 区块样式配置面板
 export default ({ id, styleConfig, updateEntity }) => {
@@ -15,12 +14,12 @@ export default ({ id, styleConfig, updateEntity }) => {
   const store = useStore(styleConfig, updateStyleConfig);
 
   return (
-    <div className={styles.style_config}>
+    <>
       <Constraints store={store} />
       <Divider />
       <Layer store={store} />
       <Divider />
       <Fill store={store} />
-    </div>
+    </>
   );
 };
