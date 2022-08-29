@@ -19,7 +19,7 @@ export const DragBlock = ({ removeEntity, updateEntity, handleDrop, children, ac
   const handleRotateChange = (rotate) => {
     updateEntity(entity.id, { rotate })
   }
-  const overlay = <div><label>旋转角度：</label><InputNumber value={entity.rotate} onChange={handleRotateChange} style={{ width: 80 }} min={0} max={360} size="small" controls={false} /></div>
+  const overlay = <div style={{ color: 'var(--quad-primary-color)' }}><label>旋转角度：</label><InputNumber value={entity.rotate} onChange={handleRotateChange} style={{ width: 80 }} min={0} max={360} size="small" controls={false} /></div>
   const resetRotate = (e) => {
     e.stopPropagation()
     updateEntity(entity.id, { rotate: 0 })
