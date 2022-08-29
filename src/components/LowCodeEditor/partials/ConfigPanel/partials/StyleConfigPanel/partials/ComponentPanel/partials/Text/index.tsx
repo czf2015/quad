@@ -51,7 +51,7 @@ export const Text = ({ store }) => {
       <div className={styles.flex}>
         <label><FontSizeOutlined /><Input value={store('fontSize')} onChange={setStore('fontSize')} defaultValue="12px" style={{ width: 74 }} min={0} size="small" controls={false} bordered={false} /></label>
         <label><LineHeightOutlined /><Input value={store('lineHeight')} onChange={setStore('lineHeight')} defaultValue="12px" style={{ width: 74 }} min={0} size="small" controls={false} bordered={false} /></label>
-        <label><img src="/icons/WordSpacing.svg" width="20" height="20" /><Input value={store('wordSpacing')} onChange={setStore('wordSpacing')} defaultValue="0px" style={{ width: 74 }} min={0} size="small" controls={false} bordered={false} /></label>
+        <label><img src="/icons/WordSpacing.svg" width="16" height="16" /><Input value={store('wordSpacing')} onChange={setStore('wordSpacing')} defaultValue="0px" style={{ width: 74 }} min={0} size="small" controls={false} bordered={false} /></label>
       </div>
 
       <div className={styles.flex}>

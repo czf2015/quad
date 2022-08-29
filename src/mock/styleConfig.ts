@@ -122,35 +122,23 @@ export const widgetStyle = {
   //   vertical: 2,
   // },
   // ========文字属性========
-  textIndent: {    
-    type: 'px', // px | em | %
-    value: 0,
-  },
+  // textIndent: '0em',
   textAlign: 'start', // start | end | center | justify
   verticalAlign: 'baseline', // baseline | top | middle | bottom | super | sub 
-  baseline: 0,
-  spacing: 0,
-  wrap: 0,
+  // baseline: 0,
+  // spacing: 0,
+  // wrap: 0,
   color: "#ccc",
-  fontSize: 14,
+  fontSize: '14px',
   fontWeight: "normal",
-  fontFamily: "",
-  lineHeight: /* {
-    type: 0, // 0 px 1 em
-    value: 0,
-  } */'0',
-  wordSpacing: /* {
-    type: 0, // 0 px 1 em
-    value: 0,
-  } */'0',
-  letterSpacing: /* {
-    type: 0, // 0 px 1 em
-    value: 0,
-  } */'0',
+  fontFamily: "default",
+  lineHeight: '1',
+  wordSpacing: '0em',
+  // letterSpacing: '0',
   textDecoration: 'none', // none | underline | overline | line-through | blink
-  textShadow: 'none', // none | length
-  whiteSpace: 'normal', // normal | nowrap | pre | pre-wrap | pre-line
-  wordBreak: 'normal', // normal | break-all | keep-all
+  // textShadow: 'none', // none | length
+  // whiteSpace: 'normal', // normal | nowrap | pre | pre-wrap | pre-line
+  // wordBreak: 'normal', // normal | break-all | keep-all
   // --------变形------------
   transform: {
     scaleX: 1,
@@ -158,14 +146,8 @@ export const widgetStyle = {
     rotate: 0,
   },
   transformOrigin: {
-    top: /* {
-      type: 0, // 0 百分比 1 像素值
-      value: 0
-    } */'0', // 0-100 百分比
-    left: /* {
-      type: 0, // 0 百分比 1 像素值
-      value: 0
-    }, */'0' // 0-100 百分比
+    top: '0',
+    left: '0'
   },
   // 填充
   fill: [

@@ -141,10 +141,10 @@ export const FONT_WEIGHT_OPTIONS = [
 export const FONT_FAMILY_OPTIONS = [
   {
     label: "微软雅黑",
-    value: "normal",
+    value: "default",
   },
   {
     label: "宋文简体",
-    value: "bold",
+    value: "optional",
   },
 ]
