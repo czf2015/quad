@@ -3,11 +3,15 @@ import { useState } from "react";
 import { useSnapShot } from "./useSnapShot";
 import { useRestore } from "./useRestore";
 import { update } from "@/utils/object";
-import uuid from '@/plugins/uuid'
+import uuid from "@/plugins/uuid";
 
-const defaultActive = { id: uuid(), name: 'Block', key: 'custom' }
+const defaultActive = { id: uuid(), name: "Block", key: "custom" };
 
-export const useEntities = (initialEntities = [], editable = false, isPrinted = false) => {
+export const useEntities = (
+  initialEntities = [],
+  editable = false,
+  isPrinted = false
+) => {
   const snapShot = useSnapShot(initialEntities, isPrinted);
   const {
     state: entities,
@@ -19,11 +23,11 @@ export const useEntities = (initialEntities = [], editable = false, isPrinted = 
     redo,
     stage,
   } = useRestore(initialEntities, snapShot);
-  const [active, setActive] = useState(defaultActive)
+  const [active, setActive] = useState(defaultActive);
 
   // 更新
   const updateEntity = (id, updates) => {
-    if (typeof updates == 'function') {
+    if (typeof updates == "function") {
       setEntities((entities) => {
         const result = [];
         entities.forEach((item) => {
@@ -34,7 +38,7 @@ export const useEntities = (initialEntities = [], editable = false, isPrinted = 
           }
         });
         return result;
-      })
+      });
     } else {
       setEntities((entities) => {
         const result = [];
@@ -53,7 +57,27 @@ export const useEntities = (initialEntities = [], editable = false, isPrinted = 
   const removeEntity = (id, isBlock = false) => {
     setEntities((entities) => {
       if (!isBlock) {
-        const result = entities.filter((item) => item.id != id);
+        const entity = entities.find((item) => item.id == id);
+        const result = entities.filter(
+          (item) => item.id != id && item.pid != id
+        );
+        if (entity.name == "DragBlock") {
+          return result.filter((item) => {
+            if (item.name == "DragBlock") {
+              if (
+                item.style.left >= entity.style.left &&
+                item.style.top >= entity.style.top &&
+                item.style.left + item.style.width <=
+                  entity.style.left + entity.style.width &&
+                item.style.top + item.style.height <=
+                  entity.style.top + entity.style.height
+              ) {
+                return false;
+              }
+            }
+            return true;
+          });
+        }
         snapShot.take(result, `remove entity of widget: ${id}`);
         return result;
       }
@@ -81,20 +105,20 @@ export const useEntities = (initialEntities = [], editable = false, isPrinted = 
       snapShot.take(result, `remove entity of block: ${id}`);
       return result;
     });
-    setActive(active => active.id == id ? defaultActive : active)
+    setActive((active) => (active.id == id ? defaultActive : active));
   };
   // 分割
   const splitBlock = (id, isHorizontal = false, offset) => {
     setEntities((entities) => {
       const result = [];
-      let first_child_id
+      let first_child_id;
       entities.forEach((item) => {
         if (item.id == id) {
           // 子区域
           [0, 1].forEach((idx) => {
-            const child_id = uuid()
-            if (typeof first_child_id == 'undefined') {
-              first_child_id = child_id
+            const child_id = uuid();
+            if (typeof first_child_id == "undefined") {
+              first_child_id = child_id;
             }
             result.push({
               name: "Block",
@@ -149,7 +173,9 @@ export const useEntities = (initialEntities = [], editable = false, isPrinted = 
       return result;
     });
     // TODO: id生成改为uuid
-    setActive(active => active.id == id ? { ...acitve, first_child_id } : active)
+    setActive((active) =>
+      active.id == id ? { ...acitve, first_child_id } : active
+    );
   };
   // 拉伸
   const pullBlock = (id, dragMove) => {
@@ -161,7 +187,7 @@ export const useEntities = (initialEntities = [], editable = false, isPrinted = 
         const len = entities.length;
         for (let i = 0; i < len; i++) {
           const entity = entities[i];
-          if (entity.pid == pid && entity.name == 'Block') {
+          if (entity.pid == pid && entity.name == "Block") {
             switch (block.quad) {
               // 上下拖拽
               // 上半区
@@ -307,7 +333,7 @@ export const useEntities = (initialEntities = [], editable = false, isPrinted = 
 
   const dragWidget = (dragName, dropId) => {
     if (!editable) {
-      return
+      return;
     }
     const dropEntity = entities.find((item) => item.id == dropId);
     const dragWidgetId = uuid();
@@ -359,7 +385,7 @@ export const useEntities = (initialEntities = [], editable = false, isPrinted = 
       }
       return result;
     });
-    setActive({ id: dragWidgetId, name: dragName, key: 'custom' })
+    setActive({ id: dragWidgetId, name: dragName, key: "custom" });
   };
 
   const dragEntity = (dragId, dropId) => {
@@ -399,10 +425,10 @@ export const useEntities = (initialEntities = [], editable = false, isPrinted = 
         if (dropBlock.id == dragBlock.id) {
           if (dropBlock?.widgets.length > 0) {
             const widgets = [];
-            let flag = 0
+            let flag = 0;
             dropBlock.widgets.forEach((widgetId) => {
               if (widgetId == dragId) {
-                flag = 1
+                flag = 1;
               } else if (widgetId == dropId) {
                 if (flag == 1) {
                   widgets.push(dropId);
@@ -450,7 +476,7 @@ export const useEntities = (initialEntities = [], editable = false, isPrinted = 
       }
       return [...entities];
     });
-    setActive({ id: dragId, name: dragWidget.name, key: 'custom' })
+    setActive({ id: dragId, name: dragWidget.name, key: "custom" });
   };
 
   return {
@@ -469,6 +495,6 @@ export const useEntities = (initialEntities = [], editable = false, isPrinted = 
     dragEntity,
     active,
     setActive,
-    setEntities
+    setEntities,
   };
 };
