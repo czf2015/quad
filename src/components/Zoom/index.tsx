@@ -7,9 +7,9 @@ import styles from './index.module.less'
 export default ({ value, onChange, zoomIn, zoomOut, min, max, style }) => {
   return (
     <div className={styles.zoom} style={style}>
-      <Button tip="缩小" type="text" onClick={zoomOut} icon={<MinusOutlined />} disabled={value == min} />
+      <Button tip={intl("缩小")} type="text" onClick={zoomOut} icon={<MinusOutlined />} disabled={value == min} />
       <InputNumber className={styles.scale} value={value.toFixed(2)} onChange={onChange} min={min} max={max} size="small" />
-      <Button tip="放大" type="text" onClick={zoomIn} icon={<PlusOutlined />} disabled={value == max} />
+      <Button tip={intl("放大")} type="text" onClick={zoomIn} icon={<PlusOutlined />} disabled={value == max} />
     </div>
   )
 }
