@@ -1,9 +1,10 @@
 // @ts-nocheck
 import React from 'react';
-import { Button, Tooltip, Popover, Input, message } from 'antd';
-import ColorGradient from '@/components/ColorGradient';
+import { Button, Tooltip, Popover, Input } from 'antd';
+import Popup from './partials/Popup';
 import Eye from '@/components/Form/partials/CustomSwitch';
 import { copyText } from '@/utils/dom';
+import { dragSort } from './helper';
 import { HolderOutlined, PlusOutlined, MinusOutlined, CopyOutlined } from '@ant-design/icons';
 import styles from './index.module.less';
 
@@ -32,10 +33,8 @@ export const BoxShadow = ({ store }) => {
   };
   const handleDrop = (dropId) => (e) => {
     const dragId = e.dataTransfer.getData('dragId');
-    store('fill', dragSort(store('fill'), dragId, dropId));
+    store('boxShadow', dragSort(store('boxShadow'), dragId, dropId));
   };
-
-  console.log(boxShadow);
 
   return (
     <div className={styles.shadow}>
@@ -45,7 +44,7 @@ export const BoxShadow = ({ store }) => {
       </div>
       <div className={styles.content}>
         {boxShadow?.map(({ type, offsetX, offsetY, blur, spread, color, hidden }, index) => {
-          const value = `${type} ${offsetX} ${offsetY} ${blur} ${spread} ${color}`;
+          const value = `${type} ${offsetX}px ${offsetY}px ${blur}px ${spread}px ${color}`;
           return (
             <div
               className={styles.item_wrapper}
@@ -58,10 +57,10 @@ export const BoxShadow = ({ store }) => {
               <HolderOutlined className={styles.holder_btn} draggable onDragStart={handleDragStart(index)} />
               <div className={styles.input_group}>
                 <div className={styles.color_mode}>
-                  <Popover content={<ColorGradient store={store} />} placement="leftBottom">
+                  <Popover content={<Popup store={store} index={index} />} placement="leftBottom" trigger="click">
                     <span className={styles.effect} style={{ background: color }}></span>
                   </Popover>
-                  <Input value={value} disabled={true} />
+                  <Input className={styles.input} size="small" value={value} disabled={true} />
                 </div>
                 <Tooltip title="复制">
                   <Button

@@ -111,12 +111,12 @@ export const widgetStyle = {
   // -----------------阴影-----------
   boxShadow: [
     {
-      type: 'none',
+      type: 'inset',
       offsetX: 2,
       offsetY: 1,
       blur: 1,
       spread: 4,
-      color: '#ccc',
+      color: '#DC143C',
       hidden: false,
     },
     {
