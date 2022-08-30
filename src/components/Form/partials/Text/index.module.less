@@ -1,0 +1,28 @@
+.text_wrapper {
+  > .input {
+    width: 160px;
+    border: none;
+    outline: 1px solid var(--quad-primary-color);
+  }
+
+  > .text {
+    .edit_btn {
+      margin-left: 4px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  &.editable {
+    > .text {
+      display: none;
+    }
+  }
+  &:not(.editable) {
+    > .input {
+      display: none;
+    }
+  }
+}

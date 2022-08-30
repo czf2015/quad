@@ -30,7 +30,7 @@ export default ({ name = 'title', value, ...attrs }) => {
       <Form.Item name={name} style={{ display: contentEditable ? '' : 'none', border: 'none' }} {...attrs}>
         <Input size="small" ref={ref} style={{ width: 160, outline: '1px solid var(--quad-primary-color)' }} value={inputValue} onChange={handleChange} onBlur={handleBlur} allowClear />
       </Form.Item>
-      <div style={{ display: contentEditable ? 'none' : 'inline-block', marginTop: 8 }} >
+      <div style={{ display: contentEditable ? 'none' : 'inline-block', marginTop: 8 }}>
         <span>{inputValue}</span>
         <EditOutlined className={styles.edit_btn} onClick={handleEdit} />
       </div>
