@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { Button, Tooltip } from '@/plugins/ui'
 import styles from './index.module.less'
 
-export default ({ id, title, tip, disabled = false, onClick = () => console.log(title || tip), type = 'primary', icon, updateEntity }) => {
+export default ({ id, title, tip, disabled = false, onClick = () => console.log(title || tip), type = 'primary', icon, updateEntity, style }) => {
   useEffect(() => {
     updateEntity?.(id, {
       meta: {
@@ -18,7 +18,7 @@ export default ({ id, title, tip, disabled = false, onClick = () => console.log(
 
   return (
     <Tooltip title={tip}>
-      <Button className={styles.button} type={type} disabled={disabled} data-bind="button" onClick={onClick} icon={icon}>{title}</Button>
+      <Button className={styles.button} type={type} disabled={disabled} data-bind="button" onClick={onClick} icon={icon} style={style}>{title}</Button>
     </Tooltip>
   )
 }

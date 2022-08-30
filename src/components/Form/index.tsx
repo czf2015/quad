@@ -20,6 +20,7 @@ export default ({
     span: 8,
   },
   labelAlign = 'right',
+  autocomplete = "off",
   bodyStyle,
   footer = (
     <Form.Item wrapperCol={{ span: 6, offset: 18 }}>
@@ -48,6 +49,7 @@ export default ({
       labelAlign={labelAlign}
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
+      autocomplete={autocomplete}
     >
       <div style={bodyStyle}>
         {filter(formItems, formData)?.map(renderFormItem)}

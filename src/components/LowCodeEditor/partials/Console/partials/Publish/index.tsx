@@ -42,7 +42,7 @@ export const Publish = ({ initialValues, publish }) => {
 
   return (
     <>
-      <Button type="text" onClick={open} icon={<FileTextOutlined />}>发布</Button>
+      <Button type="text" onClick={open} icon={<FileTextOutlined />} style={{ color: 'var(--quad-white-color)' }}>发布</Button>
       {formModal}
       <Modal visible={visible} closable={false} footer={null}>
         <Result

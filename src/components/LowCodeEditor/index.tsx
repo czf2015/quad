@@ -76,7 +76,7 @@ export default ({ service, }) => {
     </>
   )
   const left = (
-    <Tabs defaultActiveKey="Widgets" style={{ height: '100%', background: '#fff' }} centered>
+    <Tabs defaultActiveKey="Widgets" centered>
       <TabPane tab="资源" key="Assets">
         <Assets />
       </TabPane>

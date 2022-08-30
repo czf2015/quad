@@ -7,7 +7,7 @@ import styles from './index.module.less'
 export const Menu = ({ editable, replace, open, create, service, }) => {
   return (
     <div className={styles.menu}>
-      {editable ? <Button type="text" title="模板" disabled onClick={replace} icon={<CopyOutlined />} /> : <><Open service={service} open={open} />
+      {editable ? <Button type="text" title="模板" disabled onClick={replace} icon={<CopyOutlined />} style={{ color: 'var(--quad-white-color)' }} /> : <><Open service={service} open={open} />
         <Create onFinish={create} /></>}
     </div>
   )

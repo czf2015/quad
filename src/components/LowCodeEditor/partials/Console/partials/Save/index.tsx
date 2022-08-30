@@ -9,7 +9,7 @@ export const Save = ({ initialValues, onFinish }) => {
 
   return (
     <>
-      <Button type="text" onClick={open} icon={<SaveOutlined />}>保存</Button>
+      <Button type="text" onClick={open} icon={<SaveOutlined />} style={{ color: 'var(--quad-white-color)' }}>保存</Button>
       {formModal}
     </>
   )

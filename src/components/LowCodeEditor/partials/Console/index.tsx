@@ -11,13 +11,13 @@ export const Console = ({ editable, page, save, edit, preview, publish, share })
       {editable
         ? (
           <>
-            <Button title="预览" onClick={preview} type="text" icon={<EyeOutlined />} />
-            <Save initialValues={page} onFinish={save} />
+            <Button title="预览" onClick={preview} type="text" icon={<EyeOutlined />} style={{ color: 'var(--quad-white-color)' }} />
+            <Save initialValues={page} onFinish={save} style={{ color: 'var(--quad-white-color)' }} />
           </>
         ) : (
           <>
-            <Button title="编辑" onClick={edit} type="text" icon={<FormOutlined />} />
-            <Button title="预览" onClick={preview} type="text" icon={<EyeOutlined />} />
+            <Button title="编辑" onClick={edit} type="text" icon={<FormOutlined />} style={{ color: 'var(--quad-white-color)' }} />
+            <Button title="预览" onClick={preview} type="text" icon={<EyeOutlined />} style={{ color: 'var(--quad-white-color)' }} />
             <Publish initialValues={page} publish={publish} />
             {/* <Button title="分享" onClick={share} type="text" icon={<SendOutlined />} /> */}
           </>

@@ -13,7 +13,7 @@ export const Widget = ({ name, title, description = title, icon }: IWidget) => {
   const Icon = icons[name] || DefaultIcon
 
   return (
-    <div className={`${styles.widget} quad-card`} title={description} onDragStart={onDragStart} draggable key={name}>
+    <div className={styles.widget} title={description} onDragStart={onDragStart} draggable key={name}>
       <Icon style={{ fontSize: 24 }} />
       <span className={styles.title}>{title}</span>
     </div>

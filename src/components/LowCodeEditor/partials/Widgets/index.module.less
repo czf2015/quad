@@ -1,6 +1,11 @@
 .container {
   height: calc(100vh - 102px);
   overflow: auto;
+  :global {
+    .ant-collapse-borderless {
+      background-color: #fff;
+    }
+  }
   .grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);

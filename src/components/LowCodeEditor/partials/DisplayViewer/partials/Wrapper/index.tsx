@@ -1,7 +1,7 @@
 // @ts-nocheck
 import React, { useState } from "react";
 import { Popover, Tooltip } from '@/plugins/ui'
-import { ConfigPanel } from "@/components/LowCodeEditor/partials/ConfigPanel";
+import { CustomizeConfigPanel } from "@/components/LowCodeEditor/partials/ConfigPanel/partials/CustomizeConfigPanel";
 import { useDragMove, useBinds, useHandlers } from "@/hooks";
 import { copyText, stopPropagation } from '@/utils/dom'
 import { HolderOutlined, DeleteOutlined, MoreOutlined, RadiusBottomrightOutlined, CopyOutlined } from '@ant-design/icons'
@@ -67,7 +67,7 @@ export const Wrapper = ({
     <>
       <RadiusBottomrightOutlined className={styles.expand_btn} {...attrs} onMouseDown={stopPropagation} />
       <HolderOutlined className={styles.holder_btn} draggable onDragStart={handleDragStart} onMouseDown={stopPropagation} />
-      <Popover content={<ConfigPanel id={id} {...entity} updateEntity={updateEntity} />} style={{ padddingRight: 0}} placement="rightTop">
+      <Popover content={<CustomizeConfigPanel id={id} {...entity} updateEntity={updateEntity} />} style={{ padddingRight: 0}} placement="rightTop">
         <MoreOutlined className={styles.more_btn} onMouseDown={stopPropagation} />
       </Popover>
       <Tooltip title={copyTip}>

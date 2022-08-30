@@ -9,7 +9,7 @@ export const Create = ({ disabled, onFinish }) => {
 
   return (
     <>
-      <Button type="text"/*  style={{ marginLeft: 8 }} */ disabled={disabled} onClick={open} icon={<PlusOutlined />}>新增</Button>
+      <Button type="text" disabled={disabled} onClick={open} icon={<PlusOutlined />} style={{ color: 'var(--quad-white-color)' }}>新增</Button>
       {formModal}
     </>
   )

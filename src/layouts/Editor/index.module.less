@@ -8,10 +8,11 @@
     left: 0;
     padding: 0 4px;
     width: 100%;
-    line-height: 32px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    line-height: 32px;
+    background: #2c2c2c;
   }
 
   > .left {
@@ -19,6 +20,7 @@
     top: 32px;
     width: 216px;
     height: calc(100vh - 32px);
+    background: #fff;
 
     > .collapse_btn {
       position: absolute;
@@ -55,6 +57,7 @@
     right: 0;
     width: 320px;
     height: calc(100vh - 32px);
+    background: #fff;
 
     > .collapse_btn {
       position: absolute;
@@ -88,10 +91,11 @@
   &.panel_collapsed_left.panel_collapsed_right {
     > .content {
       left: 12px;
+      width: calc(100% - 24px);
     }
 
     > .left,
-    > .right {
+    >.right {
       width: 0;
 
       > :not(:last-child) {
@@ -132,7 +136,7 @@
   &.preview {
     > .header,
     > .left,
-    > .right {
+    >.right {
       display: none;
     }
 
@@ -146,11 +150,11 @@
   &:not(.preview) {
     > .content {
       height: calc(100vh - 32px);
+      background: linear-gradient(90deg, #d8d8d8 10%, transparent 0),
+        linear-gradient(#d8d8d8 10%, transparent 0);
+      background-size: 10px 10px;
+      background-color: #e5e5e5;
       > .scale {
-        background: linear-gradient(90deg, #d8d8d8 10%, transparent 0),
-          linear-gradient(#d8d8d8 10%, transparent 0);
-        background-size: 10px 10px;
-        background-color: #e5e5e5;
       }
     }
     > .exit {
