@@ -11,7 +11,7 @@ export const DataConfigPanel = ({ id, dataSource: initialValues, updateEntity })
   return (
     <Form
       initialValues={initialValues}
-      bodyStyle={{ padding: '0 8px'}}
+      bodyStyle={{ padding: '0 8px', maxHeight: 'calc(100vh - 136px)', overflow: 'auto' }}
       {...formProps}
       onFinish={handleSubmit}
     />

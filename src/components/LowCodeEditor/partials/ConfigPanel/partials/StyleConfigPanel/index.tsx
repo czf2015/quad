@@ -1,7 +1,7 @@
 // @ts-nocheck
 import React from 'react';
 import { blockStyle, widgetStyle } from '@/mock/styleConfig';
-import BlockPanel from './partials/BlockPanel';
+// import BlockPanel from './partials/BlockPanel';
 import ComponentPanel from './partials/ComponentPanel';
 import styles from './index.module.less';
 

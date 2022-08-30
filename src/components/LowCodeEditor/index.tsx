@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import { Tabs } from '@/plugins/ui'
 import Layout from '@/layouts/Editor'
-import { Menu, Restore, Console, Assets, Widgets, Outline, DisplayViewer, /* ConfigPanel, */ Tips, Status, Formatters } from './partials'
+import { Menu, Restore, Console, Assets, Widgets, Outline, DisplayViewer, ConfigPanel, Tips, Status, Formatters } from './partials'
 import Zoom from '@/components/Zoom'
 import { useEntities, useZoom } from '@/hooks'
 import uuid from '@/plugins/uuid'
@@ -21,7 +21,7 @@ export default ({ service, }) => {
   }
   const editable = !isPreview && mode == 0
   const { entities, active, ...attrs } = useEntities([], editable, true)
-  // const entity = entities?.find(item => item.id == active?.id)
+  const entity = entities?.find(item => item.id == active?.id)
 
   const { zoom, zoomIn, zoomOut, onChange, min, max } = useZoom({ min: 0.2, max: 5 })
 
@@ -89,6 +89,7 @@ export default ({ service, }) => {
     </Tabs>
   )
   const content = <DisplayViewer entities={entities} width={page.width} height={page.height} zoom={zoom} active={active} editable={editable} {...attrs} />
+  const right = <ConfigPanel {...entity} {...attrs} />
   const footer = (
     <>
       <Tips />
@@ -100,13 +101,14 @@ export default ({ service, }) => {
     header,
     left,
     content,
+    right,
     footer,
   }
 
   return (
     <>
       <Layout slots={slots} zoom={zoom} isPreview={isPreview} exit={exit} page={page} />
-      {!isPreview && <Zoom value={zoom} zoomIn={zoomIn} zoomOut={zoomOut} onChange={onChange} min={min} max={max} />}
+      {/* {!isPreview && <Zoom value={zoom} zoomIn={zoomIn} zoomOut={zoomOut} onChange={onChange} min={min} max={max} />} */}
     </>
   )
 }

@@ -11,8 +11,8 @@ export const useClip = (halt = false, zoom) => {
     if (!halt) {
       const rect = ref.current.getBoundingClientRect();
       setOffset({
-        x: (e.pageX - rect?.left) / zoom,
-        y: (e.pageY - rect?.top) / zoom,
+        x: (e.pageX - rect?.left) * zoom,
+        y: (e.pageY - rect?.top) * zoom,
       });
     }
   };

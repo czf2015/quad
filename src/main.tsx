@@ -10,7 +10,7 @@ window.$eventBus = new EventBus()
 
 ReactDOM.createRoot(document.getElementById('quad')!).render(
   // <React.StrictMode>
-  <Locale style={{ position: 'fixed', top: 5, right: 250, zIndex: 999 }}>
+  <Locale style={{ position: 'fixed', top: 5, right: 250, zIndex: 999, display: 'none' }}>
     <Router />
   </Locale>
   // </React.StrictMode>
