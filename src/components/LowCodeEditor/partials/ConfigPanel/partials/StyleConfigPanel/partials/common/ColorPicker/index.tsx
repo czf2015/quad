@@ -5,7 +5,7 @@ import { ChromePicker } from 'react-color';
 import { useInputValue } from '@/hooks';
 import styles from './index.module.less';
 
-export const CustomColorPicker = ({ color }) => {
+export const CustomColorPicker = ({ color, onColorChange }) => {
   const [displayColorPicker, setDisplayColorPicker] = useState(false);
 
   const handleClick = () => {
@@ -18,12 +18,12 @@ export const CustomColorPicker = ({ color }) => {
   return (
     <div className={styles.color_picker}>
       <div className={styles.swatch} onClick={handleClick}>
-        <div className={styles.color} />
+        <div className={styles.color} style={{ backgroundColor: color }} />
       </div>
       {displayColorPicker && (
         <div className={styles.popover}>
           <div className={styles.cover} onClick={handleClose} />
-          <ChromePicker color={color} />
+          <ChromePicker color={color} onChange={onColorChange} />
         </div>
       )}
     </div>

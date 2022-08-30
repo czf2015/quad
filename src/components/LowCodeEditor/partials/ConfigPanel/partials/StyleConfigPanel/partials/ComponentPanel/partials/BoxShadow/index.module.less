@@ -1,0 +1,77 @@
+.shadow {
+  > .title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+
+    > h4 {
+      font-weight: bold;
+    }
+  }
+  > .content {
+    > .item_wrapper {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      // margin-top: 12px;
+      margin-left: -12px;
+      padding-left: 12px;
+      padding-bottom: 12px;
+
+      > .holder_btn {
+        position: absolute;
+        left: 0;
+        // font-size: 12px;
+        cursor: move;
+        z-index: 99;
+      }
+
+      > .input_group {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #f5f7fa;
+        border-radius: 4px;
+
+        .color_mode {
+          height: 28px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          &:hover {
+            outline: 1px solid var(--quad-primary-border-color);
+          }
+
+          .effect {
+            margin-left: 8px;
+            width: 16px;
+            height: 16px;
+            background-color: black;
+            display: inline-block;
+          }
+
+          > .input {
+            margin: 8px;
+            width: 160px;
+            border: none;
+          }
+        }
+
+        > .copy {
+          background-color: #eee;
+          border: none;
+        }
+      }
+
+      > .icon_group {
+        width: 50px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+  }
+}
