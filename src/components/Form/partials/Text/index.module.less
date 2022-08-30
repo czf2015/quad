@@ -15,14 +15,26 @@
     }
   }
 
-  &.editable {
-    > .text {
-      display: none;
-    }
-  }
-  &:not(.editable) {
+  &.disabled {
     > .input {
       display: none;
+    }
+    > .text {
+      > .edit_btn {
+        display: none;
+      }
+    }
+  }
+  &:not(.disabled) {
+    &.editable {
+      > .text {
+        display: none;
+      }
+    }
+    &:not(.editable) {
+      > .input {
+        display: none;
+      }
     }
   }
 }
