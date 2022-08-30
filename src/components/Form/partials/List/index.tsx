@@ -1,5 +1,5 @@
 import React from 'react'
-import InputEdit from '@/components/Form/partials/Text'
+import InputEdit from '@/components/Form/partials/TextEdit'
 import InputText from '@/components/Form/partials/InputText'
 import JsonEdit from '@/components/Form/partials/JsonEdit'
 import CodeEdit from '@/components/Form/partials/CodeEdit'
