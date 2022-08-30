@@ -21,6 +21,7 @@ export const useDragZone = (handle, interval = 25) => {
   };
 
   const onMouseDown = (e) => {
+    debugger
     e.stopPropagation();
     if (!zoneRef.current.dragging) {
       const rootEle = document.getElementById("display_viewer");
@@ -44,10 +45,20 @@ export const useDragZone = (handle, interval = 25) => {
     }
   };
   const onMouseUp = (e) => {
+    debugger
     e.stopPropagation();
-    zoneRef.current.dragging = false;
-    handle(getEntity(e), false);
+    if (zoneRef.current.dragging) {
+      zoneRef.current.dragging = false;
+      handle(getEntity(e), false);
+    }
   };
 
-  return { onMouseDown, onMouseMove, onMouseUp };
+  const onDragStart = (e) => {
+    e.preventDefault()
+  }
+  const onDragEnd = (e) => {
+    e.preventDefault()
+  }
+
+  return { onMouseDown, onMouseMove, onMouseUp, onDragStart, onDragEnd };
 };
