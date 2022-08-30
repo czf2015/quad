@@ -23,7 +23,7 @@ export default ({ service, }) => {
   const { entities, active, ...attrs } = useEntities([], editable, true)
   // const entity = entities?.find(item => item.id == active?.id)
 
-  const { zoom, zoomIn, zoomOut, setZoom, min, max } = useZoom({ min: 0.2, max: 5 })
+  const { zoom, zoomIn, zoomOut, onChange, min, max } = useZoom({ min: 0.2, max: 5 })
 
   const open = (id) => {
     return service.getDetails({ id }).then(({ data: { content, ...page } } = {}) => {
@@ -106,7 +106,7 @@ export default ({ service, }) => {
   return (
     <>
       <Layout slots={slots} zoom={zoom} isPreview={isPreview} exit={exit} page={page} />
-      {!isPreview && <Zoom value={zoom} zoomIn={zoomIn} zoomOut={zoomOut} onChange={setZoom} min={min} max={max} />}
+      {!isPreview && <Zoom value={zoom} zoomIn={zoomIn} zoomOut={zoomOut} onChange={onChange} min={min} max={max} />}
     </>
   )
 }

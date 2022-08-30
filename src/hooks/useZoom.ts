@@ -28,8 +28,19 @@ export const useZoom = ({ value = 1, min, max, step = 0.25 }) => {
   };
 
   const reset = () => {
-    setZoom(value)
-  }
+    setZoom(value);
+  };
 
-  return { zoom, zoomIn, zoomOut, setZoom, reset, min, max };
+  const onChange = (value) => {
+    if (typeof value == "number") {
+      if (
+        (typeof min !== "number" || value >= min) &&
+        (typeof max !== "number" || value <= max)
+      ) {
+        setZoom(value);
+      }
+    }
+  };
+
+  return { zoom, zoomIn, zoomOut, setZoom, reset, onChange, min, max };
 };
