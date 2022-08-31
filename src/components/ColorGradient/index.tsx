@@ -18,9 +18,7 @@ export default ({ store }) => {
         onChange={handleTypeChange(store)}
         options={BACKGROUND_OPTIONS} /* bordered={false} */
       />
-      <div className={styles.content}>
-        <Gradient store={store} />
-      </div>
+      <Gradient store={store} />
     </div>
   );
 };
