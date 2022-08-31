@@ -16,7 +16,7 @@ export default ({ store }) => {
         className={styles.select}
         value={type}
         onChange={handleTypeChange(store)}
-        options={BACKGROUND_OPTIONS} /* bordered={false} */
+        options={BACKGROUND_OPTIONS} 
       />
       <Gradient store={store} />
     </div>
