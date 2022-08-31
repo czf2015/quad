@@ -1,5 +1,32 @@
 .trans_form {
-  .title {
+  > .title {
     font-weight: 700;
+  }
+
+  > .container {
+    display: flex;
+    justify-content: space-between;
+
+    > .item {
+      margin-bottom: 12px;
+
+      > .label {
+        margin-right: 6px;
+        margin-left: 6px;
+      }
+      > .input {
+        width: 30px;
+      }
+    }
+  }
+  > .origin {
+    margin-left: 6px;
+
+    > .label {
+      margin-right: 6px;
+    }
+    > .input {
+      margin-right: 23px;
+    }
   }
 }

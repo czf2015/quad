@@ -6,7 +6,7 @@ import styles from './index.module.less';
 
 const Popup = ({ store, index }) => {
   const { type, offsetX, offsetY, blur, spread, color } = store('boxShadow')[index];
-  const value = `${type} ${offsetX}px ${offsetY}px ${blur}px ${spread}px ${color}`;
+  const value = `${color} ${offsetX}px ${offsetY}px ${blur}px ${spread}px ${type}`;
   return (
     <div className={styles.popup}>
       <div className={styles.rect}>

@@ -5,8 +5,8 @@ import { CustomColorPicker } from '../../../../../common';
 import styles from './index.module.less';
 
 const options = [
-  { label: 'none', value: 'none' },
   { label: 'inset', value: 'inset' },
+  { label: 'outer', value: '' },
 ];
 
 const InputNumber = ({ value, onChange }) => (
@@ -49,9 +49,9 @@ export default ({ store, index }) => {
   return (
     <div className={styles.container}>
       <div className={styles.row}>
-        <div className={styles.item}>
+        <div className={styles.item} style={{ marginLeft: 23 }}>
           <span>颜色:</span>
-          <CustomColorPicker color={item?.color} onColorChange={onColorChange} />
+          <CustomColorPicker color={item?.color} width={40} onColorChange={onColorChange} />
         </div>
         <div className={styles.item}>
           <span>类型:</span>
@@ -63,23 +63,25 @@ export default ({ store, index }) => {
             onChange={handleTypeChange}
           />
         </div>
-        <div className={styles.item}>
-          <span>模糊:</span>
-          <InputNumber value={item?.blur} onChange={handleBlurChange} />
-        </div>
       </div>
       <div className={styles.row}>
-        <div className={styles.item}>
-          <span>X:</span>
-          <InputNumber value={item?.offsetX} onChange={handleXChange} />
-        </div>
-        <div className={styles.item}>
-          <span>Y:</span>
-          <InputNumber value={item?.offsetY} onChange={handleYChange} />
+        <div className={styles.item} style={{ marginLeft: 23 }}>
+          <span>模糊:</span>
+          <InputNumber value={item?.blur} onChange={handleBlurChange} />
         </div>
         <div className={styles.item}>
           <span>延伸:</span>
           <InputNumber value={item?.spread} onChange={handleSpreadChange} />
+        </div>
+      </div>
+      <div className={styles.row}>
+        <div className={styles.item}>
+          <span>水平偏移:</span>
+          <InputNumber value={item?.offsetX} onChange={handleXChange} />
+        </div>
+        <div className={styles.item}>
+          <span>垂直偏移:</span>
+          <InputNumber value={item?.offsetY} onChange={handleYChange} />
         </div>
       </div>
     </div>

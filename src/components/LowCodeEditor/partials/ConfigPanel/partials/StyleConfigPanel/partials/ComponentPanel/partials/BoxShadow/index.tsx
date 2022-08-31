@@ -44,7 +44,7 @@ export const BoxShadow = ({ store }) => {
       </div>
       <div className={styles.content}>
         {boxShadow?.map(({ type, offsetX, offsetY, blur, spread, color, hidden }, index) => {
-          const value = `${type} ${offsetX}px ${offsetY}px ${blur}px ${spread}px ${color}`;
+          const value = `${color} ${offsetX}px ${offsetY}px ${blur}px ${spread}px ${type}`;
           return (
             <div
               className={styles.item_wrapper}
