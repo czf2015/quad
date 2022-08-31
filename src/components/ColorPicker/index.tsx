@@ -5,7 +5,6 @@ import { usePropsState } from '@/hooks';
 import styles from './index.module.less';
 
 export default ({ value = 'blue', onChange, hidden = false, }) => {
-  debugger
   const [color, setColor] = usePropsState(value);
   const handleChange = (e) => {
     setColor(e.target.value);

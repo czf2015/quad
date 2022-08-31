@@ -27,7 +27,6 @@ export const useEntities = (
 
   // 更新
   const updateEntity = (id, updates) => {
-    debugger
     if (typeof updates == "function") {
       setEntities((entities) => {
         const result = [];

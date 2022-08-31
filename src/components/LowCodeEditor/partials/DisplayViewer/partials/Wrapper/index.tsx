@@ -59,7 +59,7 @@ export const Wrapper = ({
     <>
       <RadiusBottomrightOutlined className={styles.expand_btn} {...attrs} />
       <HolderOutlined className={styles.holder_btn} draggable onDragStart={handleDragStart} />
-      <Popover content={<CustomizeConfigPanel id={id} {...entity} updateEntity={updateEntity} />} style={{ padddingRight: 0}} placement="rightTop">
+      <Popover content={<CustomizeConfigPanel id={id} {...entity} updateEntity={updateEntity} />} style={{ padddingRight: 0}} placement="rightTop" trigger="click">
         <MoreOutlined className={styles.more_btn} />
       </Popover>
       <Copy className={styles.copy_btn} value={id} />
@@ -68,7 +68,7 @@ export const Wrapper = ({
   ) : null
 
   return (
-    <div ref={rootRef} id={id} className={`${styles.wrapper} ${mode == 'card' ? 'quad-card' : ''} ${editable ? styles.editable : ''}`} onClick={select} onDragOver={onDragOver} onDrop={onDrop} onDragStart={stopPropagation} onMouseDown={stopPropagation} style={style}>
+    <div ref={rootRef} id={id} className={`${styles.wrapper} ${mode == 'card' ? 'quad-card' : ''} ${editable ? styles.editable : ''}`} onClick={select} onDragOver={onDragOver} onDrop={onDrop} onDragStart={stopPropagation} style={style}>
       {children}
       {editTools}
     </div>

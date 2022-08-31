@@ -33,6 +33,7 @@ export default ({ store }) => {
             className={styles.item}
             options={OVERFLOW_OPTIONS}
             onChange={handleOverflow}
+            size="small"
           />
         </Tooltip>
         <Tooltip title="透明度">
@@ -45,6 +46,7 @@ export default ({ store }) => {
             defaultValue={store('opacity')}
             prefix={opacityIcon()}
             onBlur={handleOpacityBlur}
+            size="small"
           />
         </Tooltip>
         <Tooltip title="z-index">
@@ -55,6 +57,7 @@ export default ({ store }) => {
             defaultValue={store('z')}
             prefix={zIcon()}
             onBlur={handleZIndexBlur}
+            size="small"
           />
         </Tooltip>
         <Eyes hidden={store('hidden')} handleEyes={handleEyes} />

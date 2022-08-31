@@ -20,7 +20,7 @@ export const useDragZone = (handle, interval = 25) => {
     };
   };
 
-  const onMouseDown = (e) => {
+  const onDragStart = (e) => {
     e.stopPropagation();
     if (!zoneRef.current.dragging) {
       const rootEle = document.getElementById("display_viewer");
@@ -32,31 +32,24 @@ export const useDragZone = (handle, interval = 25) => {
       zoneRef.current.pageY = e.pageY;
       handle(getEntity(e), true);
     }
-  };
-  const onMouseMove = (e) => {
+  }
+  const onDragOver = (e) => {
     e.stopPropagation();
-    // if (zoneRef.current.dragging) {
-    //   const now = Date.now();
-    //   if (now - zoneRef.current.now > interval) {
-    //     zoneRef.current.now = now;
-    //     handle(getEntity(e), false);
-    //   }
-    // }
+    if (zoneRef.current.dragging) {
+      const now = Date.now();
+      if (now - zoneRef.current.now > interval) {
+        zoneRef.current.now = now;
+        handle(getEntity(e), false);
+      }
+    }
   };
-  const onMouseUp = (e) => {
+  const onDragEnd = (e) => {
     e.stopPropagation();
     if (zoneRef.current.dragging) {
       zoneRef.current.dragging = false;
       handle(getEntity(e), false);
     }
-  };
-
-  const onDragStart = (e) => {
-    e.preventDefault()
-  }
-  const onDragEnd = (e) => {
-    e.preventDefault()
   }
 
-  return { onMouseDown, onMouseMove, onMouseUp, onDragStart, onDragEnd };
+  return { onDragStart, onDragOver, onDragEnd };
 };

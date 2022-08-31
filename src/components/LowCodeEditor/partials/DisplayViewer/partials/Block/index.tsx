@@ -97,7 +97,7 @@ export const Block = ({ editable, name, id, pid, title = '', quad, hasBlock = fa
 
   const editTools = editable ?
     <>
-     <Popover content={<BlockStyleConfigPanel id={id} {...entity} updateEntity={updateEntity} />}>
+     <Popover content={<BlockStyleConfigPanel id={id} {...entity} updateEntity={updateEntity} />} trigger="click">
         <MoreOutlined className={`${styles.more_btn} quad-circle`} />
       </Popover>
       <Popconfirm title="确认是否删除?" onConfirm={remove} >
@@ -110,7 +110,7 @@ export const Block = ({ editable, name, id, pid, title = '', quad, hasBlock = fa
     </> : null
 
   return (
-    <div id={id} className={`${styles.block} ${haltClip ? styles.contextmenu : ''} ${hasBlock ? styles.hasBlock : ''} ${editable ? styles.editable : ''}`} style={{ ...style, ...convertToStyle(entity?.styleConfig) }} onMouseMove={onMouseMove} onDragOver={onDragOver} onDrop={onDrop} ref={ref} onMouseDown={stopPropagation}>
+    <div id={id} className={`${styles.block} ${haltClip ? styles.contextmenu : ''} ${hasBlock ? styles.hasBlock : ''} ${editable ? styles.editable : ''}`} style={{ ...style, ...convertToStyle(entity?.styleConfig) }} onMouseMove={onMouseMove} onDragOver={onDragOver} onDrop={onDrop} ref={ref}>
       {children}
       {editTools}
     </div>
