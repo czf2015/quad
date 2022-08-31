@@ -21,7 +21,8 @@ export const useDragZone = (handle, interval = 25) => {
   };
 
   const onDragStart = (e) => {
-    e.stopPropagation();
+    const img = new Image(16, 16);
+    e.dataTransfer.setDragImage(img, 0, 0);
     if (!zoneRef.current.dragging) {
       const rootEle = document.getElementById("display_viewer");
       rootRef.current = rootEle.getBoundingClientRect();
@@ -34,7 +35,7 @@ export const useDragZone = (handle, interval = 25) => {
     }
   }
   const onDragOver = (e) => {
-    e.stopPropagation();
+    e.preventDefault()
     if (zoneRef.current.dragging) {
       const now = Date.now();
       if (now - zoneRef.current.now > interval) {
@@ -44,12 +45,11 @@ export const useDragZone = (handle, interval = 25) => {
     }
   };
   const onDragEnd = (e) => {
-    e.stopPropagation();
     if (zoneRef.current.dragging) {
       zoneRef.current.dragging = false;
       handle(getEntity(e), false);
     }
   }
 
-  return { onDragStart, onDragOver, onDragEnd };
+  return { draggable: true, onDragStart, onDragOver, onDragEnd };
 };
