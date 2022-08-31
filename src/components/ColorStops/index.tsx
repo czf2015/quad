@@ -38,7 +38,7 @@ export default ({ title = '色标点', store }) => {
   return (
     <div className={styles.color_stops}>
       <h4 className={styles.flex}>
-        <span>{title}<Switch checkedChildren="重复" defaultChecked={store('repeat')} onChange={handleRepeatChange} style={{ margin: '0 28px 0 4px' }} /></span>
+        <span>{title}<Switch checkedChildren="重复" unCheckedChildren="单调" defaultChecked={store('repeat')} onChange={handleRepeatChange} size="small" style={{ margin: '0 28px 0 4px' }} /></span>
         <PlusOutlined onClick={add} />
       </h4>
       <div className={styles.content}>
@@ -47,7 +47,7 @@ export default ({ title = '色标点', store }) => {
             <div className={styles.flex} key={id}>
               <ColorPicker value={color} onChange={handleColorStopChange('color', id)} />
               <Input.Group compact>
-                <InputNumber className={styles.input} size="small" value={offset} onChange={handleColorStopChange('offset', id)} min={0} controls={false} />
+                <InputNumber className={styles.input} size="small" value={offset} onChange={handleColorStopChange('offset', id)} min={0} />
                 <Select options={options} value={type} onChange={handleColorStopChange('type', id)} size="small" />
               </Input.Group>
               <MinusOutlined onClick={() => remove(id)} />

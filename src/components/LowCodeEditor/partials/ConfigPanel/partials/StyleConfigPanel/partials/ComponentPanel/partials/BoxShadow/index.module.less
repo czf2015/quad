@@ -1,58 +1,55 @@
 .shadow {
-  > .title {
+  >.title {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 12px;
 
-    > h4 {
+    >h4 {
       font-weight: bold;
     }
   }
-  > .content {
-    > .item_wrapper {
+
+  >.content {
+    margin-left: -12px;
+
+    >.item_wrapper {
       position: relative;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      // margin-top: 12px;
-      margin-left: -12px;
-      padding-left: 12px;
       padding-bottom: 12px;
 
-      > .holder_btn {
-        position: absolute;
-        left: 0;
-        // font-size: 12px;
-        cursor: move;
-        z-index: 99;
-      }
-
-      > .input_group {
+      >.input_group {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        background-color: #f5f7fa;
-        border-radius: 4px;
 
-        .color_mode {
-          height: 28px;
+        >.holer_btn {
+          cursor: move;
+        }
+
+        >.color_mode {
+          margin-left: 4px;
+          height: 24px;
           display: flex;
           justify-content: space-between;
           align-items: center;
+          background-color: #f5f7fa;
+          border-radius: 4px 0 0 4px;
 
           &:hover {
             outline: 1px solid var(--quad-primary-border-color);
           }
 
-          .effect {
+          >.effect {
             margin-left: 8px;
             width: 16px;
             height: 16px;
             display: inline-block;
           }
 
-          > .input {
+          >.input {
             margin: 8px;
             width: 160px;
           }

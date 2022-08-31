@@ -54,8 +54,8 @@ export const BoxShadow = ({ store }) => {
               }}
               onDrop={handleDrop(index)}
             >
-              <HolderOutlined className={styles.holder_btn} draggable onDragStart={handleDragStart(index)} />
               <div className={styles.input_group}>
+                <HolderOutlined className={styles.holder_btn} draggable onDragStart={handleDragStart(index)} />
                 <div className={styles.color_mode}>
                   <Popover content={<Popup store={store} index={index} />} placement="leftBottom" trigger="click">
                     <span className={styles.effect} style={{ background: color }}></span>

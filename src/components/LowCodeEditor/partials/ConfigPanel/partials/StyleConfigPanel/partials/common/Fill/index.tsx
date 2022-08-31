@@ -108,8 +108,8 @@ export default ({ title = '填充', store }) => {
 
           return (
             <div className={styles.item_wrapper} key={id} onDragOver={handleDragOver} onDrop={handleDrop(id)}>
-              <HolderOutlined className={styles.holder_btn} draggable onDragStart={handleDragStart(id)} />
               <div className={styles.input_group}>
+                <HolderOutlined className={styles.holder_btn} draggable onDragStart={handleDragStart(id)} />
                 <div className={styles.color_mode}>
                   <Popover content={<ColorGradient store={subStore} />} placement="leftBottom" trigger="click">
                     <span
