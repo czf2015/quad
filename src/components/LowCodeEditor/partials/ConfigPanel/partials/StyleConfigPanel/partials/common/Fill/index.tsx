@@ -122,10 +122,8 @@ export default ({ title = '填充', store }) => {
                   <Button icon={<CopyOutlined />} className={styles.copy} size="small" onClick={copy} />
                 </Tooltip>
               </div>
-              <div className={styles.icon_group}>
-                <Eye value={!hidden} onChange={() => subStore('hidden', !hidden)} />
-                <MinusOutlined onClick={remove} />
-              </div>
+              <Eye value={!hidden} onChange={() => subStore('hidden', !hidden)} />
+              <MinusOutlined onClick={remove} />
             </div>
           );
         })}

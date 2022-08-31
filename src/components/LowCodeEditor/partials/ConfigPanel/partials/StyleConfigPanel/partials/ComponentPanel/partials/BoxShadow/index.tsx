@@ -73,14 +73,12 @@ export const BoxShadow = ({ store }) => {
                   />
                 </Tooltip>
               </div>
-              <div className={styles.icon_group}>
-                <Eye value={!hidden} onChange={() => handleEyes(index)} />
-                <MinusOutlined
-                  onClick={() => {
-                    remove(index);
-                  }}
-                />
-              </div>
+              <Eye value={!hidden} onChange={() => handleEyes(index)} />
+              <MinusOutlined
+                onClick={() => {
+                  remove(index);
+                }}
+              />
             </div>
           );
         })}

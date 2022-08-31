@@ -15,7 +15,7 @@ export const Box = ({ store }) => {
   const margins = helper(store, config);
   return (
     <div className={styles.box}>
-      <h4 className={styles.title}>盒子模型</h4>
+      <h4 className={styles.title}>盒子</h4>
       {margins?.map((item, index) => (
         <Margins key={index} {...item} />
       ))}

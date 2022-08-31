@@ -3,8 +3,9 @@ import React, {useState, useEffect} from 'react';
 import { InputNumber } from 'antd';
 import { SplitIcon, UnitIcon } from '../ActionIcon';
 import styles from './index.module.less';
+import { EyeOutlined } from '@ant-design/icons';
 
-export const CustomInput = ({ label, type, value, isDisconnect, handleBlur, handleNumItemBlur, handleUnit, handleDisconnect,labelMarginLeft=0 }) => {
+export const CustomInput = ({ label, type, value, isDisconnect, handleBlur, handleNumItemBlur, handleUnit, handleDisconnect,labelMarginLeft = 0, style }) => {
   const [disconnect, setDisconnect] = useState(false);
 
   useEffect(() => {
@@ -19,7 +20,7 @@ export const CustomInput = ({ label, type, value, isDisconnect, handleBlur, hand
     return value?.map((item, index) => (
       <InputNumber
         key={index}
-        style={{ width: 44, marginLeft: 8 }}
+        style={{ width: 40, marginLeft: 8 }}
         size="small"
         controls={false}
         defaultValue={item}
@@ -31,25 +32,24 @@ export const CustomInput = ({ label, type, value, isDisconnect, handleBlur, hand
   };
 
   return (
-    <div className={styles.item}>
+    <div className={styles.item} style={style}>
       <div>
         <span style={{marginLeft: labelMarginLeft}}>{label}:</span>
         {disconnect ? (
           renderNumberInputs()
         ) : (
-          <InputNumber style={{ width: 197, marginLeft: 10 }} size="small" defaultValue={value} onBlur={handleBlur} />
+          <InputNumber style={{ width: 180, marginLeft: 10 }} size="small" defaultValue={value} onBlur={handleBlur} />
         )}
       </div>
       <div>
         <UnitIcon unit={type} handleUnit={handleUnit} />
-        {isDisconnect && (
-          <SplitIcon
+        <SplitIcon
             disconnect={disconnect}
             handleDisconnect={() => {
               handleDisconnect(disconnect, setDisconnect);
             }}
+            style={{ visibility: isDisconnect ? 'visible' : 'hidden' }}
           />
-        )}
       </div>
     </div>
   );
