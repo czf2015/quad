@@ -60,7 +60,7 @@ export const BoxShadow = ({ store }) => {
                   <Popover content={<Popup store={store} index={index} />} placement="leftBottom" trigger="click">
                     <span className={styles.effect} style={{ background: color }}></span>
                   </Popover>
-                  <Input className={styles.input} size="small" value={value} disabled={true} />
+                  <Input className={styles.input} size="small" value={value} disabled={true} bordered={false} />
                 </div>
                 <Copy value={value} />
               </div>
