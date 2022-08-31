@@ -6,14 +6,20 @@ export const useDragZone = (handle, interval = 25) => {
   const rootRef = useRef(null);
 
   const getEntity = (e) => {
+    const offsetX = e.pageX - zoneRef.current.pageX
+    const offsetY = e.pageY - zoneRef.current.pageY
+    const left = zoneRef.current.pageX - rootRef.current.left + (offsetX < 0 ? offsetX : 0)
+    const top = zoneRef.current.pageY - rootRef.current.top + (offsetY < 0 ? offsetY : 0)
+    const width = offsetX < 0 ? -offsetX : offsetX
+    const height = offsetY < 0 ? -offsetY : offsetY
     return {
       id: zoneRef.current.id,
       name: "DragBlock",
       style: {
-        left: zoneRef.current.pageX - rootRef.current.left,
-        top: zoneRef.current.pageY - rootRef.current.top,
-        width: e.pageX - zoneRef.current.pageX,
-        height: e.pageY - zoneRef.current.pageY,
+        left,
+        top,
+        width,
+        height,
       },
       active: true,
       rotate: 0,
