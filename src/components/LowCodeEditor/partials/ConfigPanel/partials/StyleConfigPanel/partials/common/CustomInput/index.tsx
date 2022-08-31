@@ -3,9 +3,8 @@ import React, {useState, useEffect} from 'react';
 import { InputNumber } from 'antd';
 import { SplitIcon, UnitIcon } from '../ActionIcon';
 import styles from './index.module.less';
-import { EyeOutlined } from '@ant-design/icons';
 
-export const CustomInput = ({ label, type, value, isDisconnect, handleBlur, handleNumItemBlur, handleUnit, handleDisconnect,labelMarginLeft = 0, style }) => {
+export const CustomInput = ({ label, type, value, isDisconnect, handleBlur, handleNumItemBlur, handleUnit, handleDisconnect,labelMarginLeft = 0 }) => {
   const [disconnect, setDisconnect] = useState(false);
 
   useEffect(() => {
@@ -32,7 +31,7 @@ export const CustomInput = ({ label, type, value, isDisconnect, handleBlur, hand
   };
 
   return (
-    <div className={styles.item} style={style}>
+    <div className={styles.item}>
       <div>
         <span style={{marginLeft: labelMarginLeft}}>{label}:</span>
         {disconnect ? (

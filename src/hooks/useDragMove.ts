@@ -41,12 +41,14 @@ export const useDragMove = (handleDragMove, zoom = 1) => {
   };
   const onDragEnd = (e) => {
     e.stopPropagation();
-    const dragMove = {
-      x: (e.pageX - dragRef.current.pageX) * zoom,
-      y: (e.pageY - dragRef.current.pageY) * zoom,
-    };
-    handleDragMove(dragMove);
-    dragRef.current.dragging = false;
+    if (dragRef.current.dragging) {
+      const dragMove = {
+        x: (e.pageX - dragRef.current.pageX) * zoom,
+        y: (e.pageY - dragRef.current.pageY) * zoom,
+      };
+      handleDragMove(dragMove);
+      dragRef.current.dragging = false;
+    }
   };
 
   return { draggable: true, onDragStart, onDragOver, onDragEnd };

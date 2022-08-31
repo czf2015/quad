@@ -1,9 +1,9 @@
 // @ts-nocheck
 import React from 'react';
-import { Button, Tooltip, Popover, Input } from 'antd';
+import { Popover, Input } from 'antd';
 import Popup from './partials/Popup';
 import Eye from '@/components/Form/partials/CustomSwitch';
-import { copyText } from '@/utils/dom';
+import Copy from '@/components/Copy';
 import { dragSort } from './helper';
 import { HolderOutlined, PlusOutlined, MinusOutlined, CopyOutlined } from '@ant-design/icons';
 import styles from './index.module.less';
@@ -62,16 +62,7 @@ export const BoxShadow = ({ store }) => {
                   </Popover>
                   <Input className={styles.input} size="small" value={value} disabled={true} />
                 </div>
-                <Tooltip title="复制">
-                  <Button
-                    icon={<CopyOutlined />}
-                    className={styles.copy}
-                    size="small"
-                    onClick={() => {
-                      copyText(value);
-                    }}
-                  />
-                </Tooltip>
+                <Copy value={value} />
               </div>
               <Eye value={!hidden} onChange={() => handleEyes(index)} />
               <MinusOutlined

@@ -1,9 +1,10 @@
 // @ts-nocheck
-import React, { useState } from "react";
-import { Popover, Tooltip } from '@/plugins/ui'
+import React from "react";
+import { Popover } from '@/plugins/ui'
+import Copy from '@/components/Copy'
 import { CustomizeConfigPanel } from "@/components/LowCodeEditor/partials/ConfigPanel/partials/CustomizeConfigPanel";
 import { useDragMove, useBinds, useHandlers } from "@/hooks";
-import { copyText, stopPropagation } from '@/utils/dom'
+import { stopPropagation } from '@/utils/dom'
 import { HolderOutlined, DeleteOutlined, MoreOutlined, RadiusBottomrightOutlined, CopyOutlined } from '@ant-design/icons'
 import styles from "./index.module.less";
 
@@ -47,15 +48,6 @@ export const Wrapper = ({
   }
   const { onDragOver, ...attrs } = useDragMove(handleDragMove, zoom)
 
-  const [copyTip, setCopyTip] = useState('复制')
-  const copy = () => {
-    copyText(id)
-    setCopyTip('复制成功！')
-    setTimeout(() => {
-      setCopyTip('复制')
-    }, 3000)
-  }
-
   const rootRef = useBinds({ id, binds, updateEntity, setEntities })
   useHandlers({ id, handlers, updateEntity, })
 
@@ -70,9 +62,7 @@ export const Wrapper = ({
       <Popover content={<CustomizeConfigPanel id={id} {...entity} updateEntity={updateEntity} />} style={{ padddingRight: 0}} placement="rightTop">
         <MoreOutlined className={styles.more_btn} onMouseDown={stopPropagation} />
       </Popover>
-      <Tooltip title={copyTip}>
-        <CopyOutlined className={styles.copy_btn} onClick={copy} />
-      </Tooltip>
+      <Copy className={styles.copy_btn} value={id} />
       <DeleteOutlined className={styles.delete_btn} onClick={remove} onMouseDown={stopPropagation} />
     </>
   ) : null

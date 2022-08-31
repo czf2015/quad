@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
-import { Button, Tooltip, Popover, Input, message } from 'antd';
+import React from 'react';
+import { Popover, Input, message } from 'antd';
 import Eye from '@/components/Form/partials/CustomSwitch';
 import ColorGradient from '@/components/ColorGradient';
+import Copy from '@/components/Copy';
 import { usePropsState, useSubStore } from '@/hooks';
 import { getRadialGradient, getLinearGradient } from '@/components/ColorGradient/helpers';
 import uuid from '@/plugins/uuid';
-import { copyText } from '@/utils/dom';
 import { dragSort } from '@/utils/array';
 import { HolderOutlined, PlusOutlined, MinusOutlined, CopyOutlined } from '@ant-design/icons';
 import styles from './index.module.less';
@@ -84,8 +84,6 @@ export default ({ title = '填充', store }) => {
               break;
           }
 
-          const copy = () => copyText(value);
-
           const handleBlur = (e) => {
             if (type == 'image') {
               subStore('url', e.target.value);
@@ -95,12 +93,15 @@ export default ({ title = '填充', store }) => {
           };
 
           const handleDragStart = (dragId) => (e) => {
+            e.stopPropagation()
             e.dataTransfer.setData('dragId', dragId);
           };
           const handleDragOver = (e) => {
+            e.stopPropagation()
             e.preventDefault();
           };
           const handleDrop = (dropId) => (e) => {
+            e.stopPropagation()
             const dragId = e.dataTransfer.getData('dragId');
             store('fill', dragSort(store('fill'), dragId, dropId));
           };
@@ -118,9 +119,7 @@ export default ({ title = '填充', store }) => {
                   </Popover>
                   <CustomInput type={type} value={value} onBlur={handleBlur} />
                 </div>
-                <Tooltip title="复制">
-                  <Button icon={<CopyOutlined />} className={styles.copy} size="small" onClick={copy} />
-                </Tooltip>
+                <Copy value={value} />
               </div>
               <Eye value={!hidden} onChange={() => subStore('hidden', !hidden)} />
               <MinusOutlined onClick={remove} />
