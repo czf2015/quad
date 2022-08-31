@@ -35,7 +35,6 @@ export const useDragZone = (handle, interval = 25) => {
     }
   }
   const onDragOver = (e) => {
-    e.preventDefault()
     if (zoneRef.current.dragging) {
       const now = Date.now();
       if (now - zoneRef.current.now > interval) {
