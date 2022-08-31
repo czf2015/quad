@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { ChromePicker as ColorPicker } from 'react-color'
 
 
-export default ({ value, onChange }) => {
+export default ({ value, onChange, width, height }) => {
   const [color, setColor] = useState(value)
   const handleChange = ({ hex: value }) => {
     setColor(value)
@@ -10,6 +10,6 @@ export default ({ value, onChange }) => {
   }
 
   return (
-    <ColorPicker color={color} onChange={handleChange} />
+    <ColorPicker color={color} onChange={handleChange} width={width} height={height} />
   )
 }

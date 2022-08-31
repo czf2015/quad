@@ -94,7 +94,7 @@ const Size = ({ store }) => {
 
   return (
     <div className={styles.row_wrap}>
-      <span>尺寸:</span>
+      <span>大小:</span>
       <div className={styles.select_warp}>
         <Input.Group compact>
           <InputNumber
@@ -157,7 +157,7 @@ const Repeat = ({ store }) => {
 export const BgImage = ({ store }) => {
   const [hoverState, setHoverState] = useState(false);
   const bgConfig = {
-    height: 200,
+    height: 284,
     backgroundImage: `
     url(${store('url')}), 
     url(https://tse4-mm.cn.bing.net/th/id/OIP-C.hFl4Ypw6003lIYmFfi39ywHaE-?pid=ImgDet&rs=1)

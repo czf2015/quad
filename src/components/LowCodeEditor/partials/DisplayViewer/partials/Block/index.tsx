@@ -28,7 +28,6 @@ export const Clip = ({ isHorizontal, menuItems, offset, onClick, onMenuClick, on
     const menu = (
       <Menu
         onClick={onMenuClick}
-        onMouseDown={stopPropagation}
         items={menuItems}
       />
     );
@@ -37,7 +36,7 @@ export const Clip = ({ isHorizontal, menuItems, offset, onClick, onMenuClick, on
       <>
         <div className={isHorizontal ? styles.clip_horizontal : styles.clip_vertical} style={isHorizontal ? { top: offset?.y } : { left: offset?.x }} />
         <Dropdown overlay={menu} onVisibleChange={onVisibleChange} trigger="contextMenu">
-          <Button className={styles.clip_scissor} style={{ top: offset?.y, left: offset?.x }} onClick={onClick} onMouseDown={stopPropagation} type="primary" shape="circle" icon={<ScissorOutlined rotate={isHorizontal ? 0 : 90} />} />
+          <Button className={styles.clip_scissor} style={{ top: offset?.y, left: offset?.x }} onClick={onClick} type="primary" shape="circle" icon={<ScissorOutlined rotate={isHorizontal ? 0 : 90} />} />
         </Dropdown>
       </>
     )
@@ -99,19 +98,19 @@ export const Block = ({ editable, name, id, pid, title = '', quad, hasBlock = fa
   const editTools = editable ?
     <>
      <Popover content={<BlockStyleConfigPanel id={id} {...entity} updateEntity={updateEntity} />}>
-        <MoreOutlined className={`${styles.more_btn} quad-circle`} onMouseDown={stopPropagation} />
+        <MoreOutlined className={`${styles.more_btn} quad-circle`} />
       </Popover>
       <Popconfirm title="确认是否删除?" onConfirm={remove} >
         <DeleteOutlined className={`${styles.delete_btn} quad-circle`} />
       </Popconfirm>
       <Boundary pull={pull} quad={quad} zoom={zoom} />
       {store('isClipHidden')
-        ? <ScissorOutlined className={`${styles.scissor_btn} quad-circle`} onClick={handleClipHidden} onMouseDown={stopPropagation} />
+        ? <ScissorOutlined className={`${styles.scissor_btn} quad-circle`} onClick={handleClipHidden} />
         : <Clip isHorizontal={store('isHorizontal')} offset={offset} menuItems={menuItems} onClick={split} onVisibleChange={setHaltClipClip} onMenuClick={onMenuClick} />}
     </> : null
 
   return (
-    <div id={id} className={`${styles.block} ${haltClip ? styles.contextmenu : ''} ${hasBlock ? styles.hasBlock : ''} ${editable ? styles.editable : ''}`} style={{ ...style, ...convertToStyle(entity?.styleConfig) }} onMouseMove={onMouseMove} onDragOver={onDragOver} onDrop={onDrop} ref={ref}>
+    <div id={id} className={`${styles.block} ${haltClip ? styles.contextmenu : ''} ${hasBlock ? styles.hasBlock : ''} ${editable ? styles.editable : ''}`} style={{ ...style, ...convertToStyle(entity?.styleConfig) }} onMouseMove={onMouseMove} onDragOver={onDragOver} onDrop={onDrop} ref={ref} onMouseDown={stopPropagation}>
       {children}
       {editTools}
     </div>

@@ -35,13 +35,13 @@ export const useDragZone = (handle, interval = 25) => {
   };
   const onMouseMove = (e) => {
     e.stopPropagation();
-    if (zoneRef.current.dragging) {
-      const now = Date.now();
-      if (now - zoneRef.current.now > interval) {
-        zoneRef.current.now = now;
-        handle(getEntity(e), false);
-      }
-    }
+    // if (zoneRef.current.dragging) {
+    //   const now = Date.now();
+    //   if (now - zoneRef.current.now > interval) {
+    //     zoneRef.current.now = now;
+    //     handle(getEntity(e), false);
+    //   }
+    // }
   };
   const onMouseUp = (e) => {
     e.stopPropagation();

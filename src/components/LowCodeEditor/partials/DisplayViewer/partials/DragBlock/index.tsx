@@ -30,7 +30,7 @@ export const DragBlock = ({ removeEntity, updateEntity, handleDrop, children, ac
       {children}
       {['top', 'right', 'bottom', 'left'].map(flag => <div className={styles[`line__${flag}`]} {...attrs} onDragStart={handleDragStart(flag)} key={flag} />)}
       {['top_left', 'top_right', 'bottom_right', 'bottom_left'].map(flag => <div className={`${styles.circle} ${styles[flag]}`} {...attrs} onDragStart={handleDragStart(flag)} key={flag} />)}
-      <Popover content={<BlockStyleConfigPanel {...entity} updateEntity={updateEntity} />}>
+      <Popover content={<BlockStyleConfigPanel {...entity} updateEntity={updateEntity} />} trigger="click">
         <MoreOutlined className={styles.more_btn} />
       </Popover>
       <div className={styles.rotate}>

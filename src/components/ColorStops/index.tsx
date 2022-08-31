@@ -17,6 +17,7 @@ const options = [
 ]
 
 export default ({ title = '色标点', store }) => {
+  debugger
   const colorStops = store('colorStops') || []
   const add = () => {
     store('colorStops', [...colorStops, { type: 0, offset: 0, color: '#ccc', id: uuid() }])
@@ -28,8 +29,8 @@ export default ({ title = '色标点', store }) => {
     const colorStop = colorStops.find(item => item.id == id)
     if (colorStop) {
       colorStop[field] = value
+      store('colorStops', colorStops)
     }
-    store('colorStops', colorStops)
   }
   const handleRepeatChange = (checked) => {
     store('repeat', checked)

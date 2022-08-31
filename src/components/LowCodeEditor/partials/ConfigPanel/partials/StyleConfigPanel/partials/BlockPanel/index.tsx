@@ -6,6 +6,7 @@ import Layer from './Layer';
 import Fill from '../common/Fill';
 import { useStore } from '@/hooks';
 import { stopPropagation } from '@/utils/dom';
+import styles from './index.module.less'
 
 // 区块样式配置面板
 export default ({ id, styleConfig, updateEntity }) => {
@@ -15,7 +16,7 @@ export default ({ id, styleConfig, updateEntity }) => {
   const store = useStore(styleConfig, updateStyleConfig);
 
   return (
-    <div onMouseDown={stopPropagation}>
+    <div className={styles.block_style_config}>
       <Constraints store={store} />
       <Divider />
       <Layer store={store} />

@@ -6,5 +6,5 @@ export const ColorPicker = ({ store }) => {
     store('value', value);
   };
 
-  return <Picker value={store('value')} onChange={handleChange} />;
+  return <Picker value={store('value')} onChange={handleChange} width={284} />;
 };

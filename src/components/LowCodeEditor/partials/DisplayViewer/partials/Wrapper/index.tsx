@@ -57,13 +57,13 @@ export const Wrapper = ({
 
   const editTools = editable ? (
     <>
-      <RadiusBottomrightOutlined className={styles.expand_btn} {...attrs} onMouseDown={stopPropagation} />
-      <HolderOutlined className={styles.holder_btn} draggable onDragStart={handleDragStart} onMouseDown={stopPropagation} />
+      <RadiusBottomrightOutlined className={styles.expand_btn} {...attrs} />
+      <HolderOutlined className={styles.holder_btn} draggable onDragStart={handleDragStart} />
       <Popover content={<CustomizeConfigPanel id={id} {...entity} updateEntity={updateEntity} />} style={{ padddingRight: 0}} placement="rightTop">
-        <MoreOutlined className={styles.more_btn} onMouseDown={stopPropagation} />
+        <MoreOutlined className={styles.more_btn} />
       </Popover>
       <Copy className={styles.copy_btn} value={id} />
-      <DeleteOutlined className={styles.delete_btn} onClick={remove} onMouseDown={stopPropagation} />
+      <DeleteOutlined className={styles.delete_btn} onClick={remove} />
     </>
   ) : null
 
