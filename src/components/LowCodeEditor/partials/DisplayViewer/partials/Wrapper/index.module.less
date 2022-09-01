@@ -2,7 +2,7 @@
   position: relative;
   z-index: 9;
 
-  >.holder_btn {
+  > .holder_btn {
     position: absolute;
     top: 4px;
     left: 4px;
@@ -10,14 +10,14 @@
     cursor: move;
   }
 
-  >.delete_btn {
+  > .delete_btn {
     position: absolute;
     bottom: 4px;
     left: 4px;
     // font-size: 12px;
   }
 
-  >.more_btn {
+  > .more_btn {
     position: absolute;
     top: 4px;
     right: 4px;
@@ -25,7 +25,7 @@
     cursor: pointer;
   }
 
-  >.copy_btn {
+  > .copy_btn {
     position: absolute;
     bottom: 4px;
     right: 4px;
@@ -33,7 +33,7 @@
     background-color: transparent;
   }
 
-  >.expand_btn {
+  > .expand_btn {
     position: absolute;
     bottom: -2px;
     right: -2px;
@@ -42,15 +42,26 @@
   }
 
   &:not(:hover) {
-    >.holder_btn,
-    >.delete_btn,
-    >.copy_btn,
-    >.more_btn {
+    > .holder_btn,
+    > .delete_btn,
+    > .copy_btn,
+    > .more_btn,
+    > .expand_btn,
+    > .mask {
       display: none;
     }
   }
 
-  &.editable:hover {
-    outline: 1px solid var(--quad-primary-color);
+  &.active {
+    > .mask {
+      display: none;
+    }
+  }
+
+  &.editable {
+    &:hover,
+    &.active {
+      outline: 2px solid var(--quad-primary-color);
+    }
   }
 }

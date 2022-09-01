@@ -3,6 +3,7 @@ import React from "react";
 import { Popover } from '@/plugins/ui'
 import Copy from '@/components/Copy'
 import { CustomizeConfigPanel } from "@/components/LowCodeEditor/partials/ConfigPanel/partials/CustomizeConfigPanel";
+import Mask from "@/components/Mask";
 import { useDragMove, useBinds, useHandlers } from "@/hooks";
 import { stopPropagation } from '@/utils/dom'
 import { HolderOutlined, DeleteOutlined, MoreOutlined, RadiusBottomrightOutlined, CopyOutlined } from '@ant-design/icons'
@@ -64,11 +65,12 @@ export const Wrapper = ({
       </Popover>
       <Copy className={styles.copy_btn} value={id} />
       <DeleteOutlined className={styles.delete_btn} onClick={remove} />
+      <Mask className={styles.mask} />
     </>
   ) : null
 
   return (
-    <div ref={rootRef} id={id} className={`${styles.wrapper} ${mode == 'card' ? 'quad-card' : ''} ${editable ? styles.editable : ''}`} onClick={select} onDragOver={onDragOver} onDrop={onDrop} onDragStart={stopPropagation} style={style}>
+    <div ref={rootRef} id={id} className={`${styles.wrapper} ${mode == 'card' ? 'quad-card' : ''} ${editable ? styles.editable : ''} ${active.id == id ? styles.active : ''}`} onClick={select} onDragOver={onDragOver} onDrop={onDrop} onDragStart={stopPropagation} style={style}>
       {children}
       {editTools}
     </div>
