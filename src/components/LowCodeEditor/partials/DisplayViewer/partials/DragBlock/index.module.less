@@ -22,6 +22,15 @@
       display: none;
     }
   }
+  &:not(.resize) {
+    > .circle,
+    > .line__top,
+    > .line__bottom,
+    > .line__left,
+    > .line__right {
+      display: none;
+    }
+  }
 
   > .circle {
     position: absolute;

@@ -17,7 +17,7 @@ export const DragBlock = ({ removeEntity, updateEntity, handleDrop, children, ac
   }
 
   const handleRotateChange = (rotate) => {
-    updateEntity(entity.id, { rotate })
+    updateEntity(entity.id, { rotate: rotate == 360 ? 0 : rotate })
   }
   const overlay = <div style={{ color: 'var(--quad-primary-color)' }}><label>旋转角度：</label><InputNumber value={entity.rotate} onChange={handleRotateChange} style={{ width: 80 }} min={0} max={360} size="small" controls={false} /></div>
   const resetRotate = (e) => {
@@ -26,7 +26,7 @@ export const DragBlock = ({ removeEntity, updateEntity, handleDrop, children, ac
   }
 
   return (
-    <div ref={ref} className={`${styles.drag_block} ${editable ? styles.editable : ''}`} style={{ ...entity.style, transformOrigin: 'center', transform: `rotate(${- entity.rotate}deg)`, ...convertToStyle(entity?.styleConfig) }} {...attrs} onDragStart={handleDragStart('move')} onDrop={onDrop}>
+    <div ref={ref} className={`${styles.drag_block} ${editable ? styles.editable : ''} ${entity?.rotate == 0  ? styles.resize : ''}`} style={{ ...entity.style, transformOrigin: 'center', transform: `rotate(${- entity.rotate}deg)`, ...convertToStyle(entity?.styleConfig) }} {...attrs} onDragStart={handleDragStart('move')} onDrop={onDrop}>
       {children}
       <Mask className={styles.mask} />
       {['top', 'right', 'bottom', 'left'].map(flag => <div className={styles[`line__${flag}`]} {...attrs} onDragStart={handleDragStart(flag)} key={flag} />)}
