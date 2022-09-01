@@ -25,6 +25,7 @@
     width: 216px;
     height: calc(100vh - 32px);
     background: #fff;
+    transition: .3s;
 
     > .collapse_btn {
       position: absolute;
@@ -37,7 +38,7 @@
       align-items: center;
       font-size: 12px;
       color: #aaa;
-      background-color: #fff;
+      background-color: #eeee;
       clip-path: polygon(0% 0%, 100% 20%, 100% 80%, 0% 100%);
       cursor: pointer;
       z-index: 999;
@@ -50,6 +51,7 @@
     left: 216px;
     width: calc(100% - 536px);
     overflow: auto;
+    transition: .3s;
     > .scale {
       transform-origin: top left;
     }
@@ -62,6 +64,7 @@
     width: 320px;
     height: calc(100vh - 32px);
     background: #fff;
+    transition: .3s;
 
     > .collapse_btn {
       position: absolute;
@@ -74,7 +77,7 @@
       align-items: center;
       font-size: 12px;
       color: #aaa;
-      background-color: #fff;
+      background-color: #eeee;
       clip-path: polygon(0% 0%, 100% 20%, 100% 80%, 0% 100%);
       transform-origin: center;
       transform: rotate(180deg);
@@ -94,13 +97,15 @@
 
   &.panel_collapsed_left.panel_collapsed_right {
     > .content {
-      left: 12px;
-      width: calc(100% - 24px);
+      left: 0;
+      width: 100%;
+      transition: .3s;
     }
 
     > .left,
     > .right {
       width: 0;
+      transition: .3s;
 
       > :not(:last-child) {
         display: none;
@@ -110,12 +115,14 @@
 
   &.panel_collapsed_left:not(.panel_collapsed_right) {
     > .content {
-      left: 12px;
-      width: calc(100% - 240px);
+      left: 0;
+      width: calc(100% - 216px);
+      transition: .3s;
     }
 
     > .left {
       width: 0;
+      transition: .3s;
 
       > :not(:last-child) {
         display: none;
@@ -125,11 +132,13 @@
 
   &.panel_collapsed_right:not(.panel_collapsed_left) {
     > .content {
-      width: calc(100% - 344px);
+      width: calc(100% - 320px);
+      transition: .3s;
     }
 
     > .right {
       width: 0;
+      transition: .3s;
 
       > :not(:last-child) {
         display: none;
