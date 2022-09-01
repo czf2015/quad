@@ -91,12 +91,12 @@ export const useEntities = (
           return;
         }
         if (item.id == selected_block.pid) {
-          result.push({ ...item, hasBlock: neighbour_block?.hasBlock });
+          result.push({ ...item, hasBlock: neighbour_block?.hasBlock, widgets: neighbour_block?.widgets });
         } else if (item.pid == neighbour_block?.id) {
           result.push({
             ...item,
             pid: neighbour_block?.pid,
-            widgets: neighbour_block?.widgets,
+            // widgets: neighbour_block?.widgets,
           });
         } else {
           result.push({ ...item });

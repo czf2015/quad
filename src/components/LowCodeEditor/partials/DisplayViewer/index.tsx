@@ -77,11 +77,9 @@ export const DisplayViewer = ({ entities = [], setEntities, updateEntity, remove
                 {item?.widgets?.length > 0 ? null : render(item.id)}
               </>
             )
-          } else if (item.name == 'DragBlock') {
-            return null
           }
 
-          return renderWidget(item)
+          // return renderWidget(item)
         })}
       </>
     )
