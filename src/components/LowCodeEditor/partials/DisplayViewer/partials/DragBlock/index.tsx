@@ -3,7 +3,7 @@ import { Popconfirm, InputNumber, Dropdown, Popover } from 'antd'
 import BlockStyleConfigPanel from "@/components/LowCodeEditor/partials/ConfigPanel/partials/StyleConfigPanel/partials/BlockPanel";
 import Mask from '@/components/Mask';
 import { useDragRect } from '@/hooks'
-import { SyncOutlined, DeleteOutlined, MoreOutlined } from '@ant-design/icons'
+import { /* SyncOutlined,  */DeleteOutlined, MoreOutlined } from '@ant-design/icons'
 import { convertToStyle } from '@/components/ColorGradient/helpers';
 import styles from './index.module.less'
 
@@ -16,14 +16,14 @@ export const DragBlock = ({ removeEntity, updateEntity, handleDrop, children, ac
     removeEntity(entity.id, false)
   }
 
-  const handleRotateChange = (rotate) => {
-    updateEntity(entity.id, { rotate: rotate == 360 ? 0 : rotate })
-  }
-  const overlay = <div style={{ color: 'var(--quad-primary-color)' }}><label>旋转角度：</label><InputNumber value={entity.rotate} onChange={handleRotateChange} style={{ width: 80 }} min={0} max={360} size="small" controls={false} /></div>
-  const resetRotate = (e) => {
-    e.stopPropagation()
-    updateEntity(entity.id, { rotate: 0 })
-  }
+  // const handleRotateChange = (rotate) => {
+  //   updateEntity(entity.id, { rotate: rotate == 360 ? 0 : rotate })
+  // }
+  // const overlay = <div style={{ color: 'var(--quad-primary-color)' }}><label>旋转角度：</label><InputNumber value={entity.rotate} onChange={handleRotateChange} style={{ width: 72 }} min={0} max={360} step={5} size="small" /></div>
+  // const resetRotate = (e) => {
+  //   e.stopPropagation()
+  //   updateEntity(entity.id, { rotate: 0 })
+  // }
 
   return (
     <div ref={ref} className={`${styles.drag_block} ${editable ? styles.editable : ''} ${entity?.rotate == 0  ? styles.resize : ''}`} style={{ ...entity.style, transformOrigin: 'center', transform: `rotate(${- entity.rotate}deg)`, ...convertToStyle(entity?.styleConfig) }} {...attrs} onDragStart={handleDragStart('move')} onDrop={onDrop}>
@@ -34,11 +34,11 @@ export const DragBlock = ({ removeEntity, updateEntity, handleDrop, children, ac
       <Popover content={<BlockStyleConfigPanel {...entity} updateEntity={updateEntity} />} trigger="click">
         <MoreOutlined className={styles.more_btn} />
       </Popover>
-      <div className={styles.rotate}>
+      {/* <div className={styles.rotate}>
         <Dropdown placement="top" overlay={overlay}>
           <SyncOutlined {...attrs} onDragStart={handleDragStart('rotate')} onClick={resetRotate} />
         </Dropdown>
-      </div>
+      </div> */}
       <Popconfirm title="确认是否删除?" onConfirm={remove} >
         <DeleteOutlined className={styles.delete} />
       </Popconfirm>

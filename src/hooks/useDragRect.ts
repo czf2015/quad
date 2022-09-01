@@ -107,7 +107,7 @@ export const useDragRect = (
             180) /
             Math.PI;
         updateEntity(id, {
-          rotate: _rotate,
+          rotate: _rotate > 360 ? _rotate - 360 : _rotate < -360 ? _rotate + 360 : _rotate
         });
         break;
       default:

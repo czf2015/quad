@@ -31,3 +31,24 @@
   border-radius: 3px;
   background-color: var(--quad-scrollbar-thumb-background-color);
 }
+
+.quad-scrollbar {
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    border-radius: 3px;
+    background-color: var(--quad-primary-background-color);
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    background-color: var(--quad-scrollbar-thumb-background-color);
+  }
+  &:not(:hover) {
+    &::-webkit-scrollbar-track,
+    &::-webkit-scrollbar-thumb {
+      background-color: transparent;
+    }
+  }
+}

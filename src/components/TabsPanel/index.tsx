@@ -14,7 +14,7 @@ export default ({ tabs, defaultActiveKey = 0, style = { marginTop: -12, height: 
           {tabs.map(({ tab, key }) => <Radio.Button value={key} key={key}>{tab}</Radio.Button>)}
         </Radio.Group>
       </div>
-      <div className={styles.panel}>
+      <div className={`${styles.panel} quad-scrollbar`}>
         {tabs.map(({ content, key }) => <div style={{ display: key == activeKey ? 'block' : 'none' }} key={key}>{content}</div>)}
         {children}
       </div>

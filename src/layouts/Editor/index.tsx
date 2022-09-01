@@ -10,7 +10,7 @@ export default ({ slots: { header, left, content, right, footer }, zoom, isPrevi
   return (
     <div className={`${styles.layout} ${isPreview ? styles.preview : ''} ${panelCollapsed.left ? styles.panel_collapsed_left : ''} ${panelCollapsed.right ? styles.panel_collapsed_right : ''}`}>
       <div className={styles.header}>{header}</div>    
-      <div className={styles.content} style={{ width: isPreview ? page?.width : undefined }}>
+      <div className={`${styles.content} quad-scrollbar`} style={{ width: isPreview ? page?.width : undefined }}>
         <div className={styles.scale} style={{ transform: isPreview ? undefined : `scale(${zoom})` }}>{content}</div>
       </div>
       <div className={styles.left}>
