@@ -1,22 +1,12 @@
 .clip {
   position: absolute;
-  top: calc(50% - 6px);
-  right: -16px;
-  width: 12px;
-  height: 12px;
+  top: calc(50% - 24px);
+  right: -24px;
+  padding: 16px 6px;
+  width: 24px;
+  height: 48px;
   font-size: 12px;
   cursor: pointer;
   color: var(--quad-primary-color);
   z-index: 9999;
-
-  &::after {
-    content: "";
-    position: absolute;
-    top: -24px;
-    left: -8px;
-    display: inline-block;
-    width: 24px;
-    height: 72px;
-    background-color: red;
-  }
 }
