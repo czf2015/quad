@@ -36,7 +36,7 @@ const HorizontalIcon = () => {
 
 export const Text = ({ store }) => {
   const setStore = (key) => (value) => {
-    store(key, value)
+    store(key, value?.target?.value)
   }
 
   return (
