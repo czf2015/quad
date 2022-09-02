@@ -20,7 +20,8 @@
     > .line__right,
     > .more_btn,
     > .rotate,
-    > .delete {
+    > .delete,
+    > .clip {
       display: none;
     }
   }
@@ -170,6 +171,18 @@
     position: absolute;
     top: 4px;
     left: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    color: var(--quad-primary-color);
+    z-index: 9999;
+  }
+
+  > .clip {
+    position: absolute;
+    top: calc(50% - 6px);
+    right: -16px;
+    width: 12px;
+    height: 12px;
     font-size: 12px;
     cursor: pointer;
     color: var(--quad-primary-color);

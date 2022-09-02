@@ -5,7 +5,6 @@ import Constraints from './Constraints';
 import Layer from './Layer';
 import Fill from '../common/Fill';
 import { useStore } from '@/hooks';
-import { stopPropagation } from '@/utils/dom';
 import styles from './index.module.less'
 
 // 区块样式配置面板
