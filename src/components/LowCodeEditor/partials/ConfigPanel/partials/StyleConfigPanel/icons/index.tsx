@@ -131,7 +131,7 @@ export const dge = () => {
   );
 };
 
-export const x = () => <span style={{ fontSize: 12 }}>X: </span>;
-export const y = () => <span style={{ fontSize: 12 }}>Y: </span>;
-export const w = () => <span style={{ fontSize: 12 }}>W: </span>;
-export const h = () => <span style={{ fontSize: 12 }}>H: </span>;
+export const x = () => <span style={{ fontSize: 12, lineHeight: '24px' }}>X: </span>;
+export const y = () => <span style={{ fontSize: 12, lineHeight: '24px' }}>Y: </span>;
+export const w = () => <span style={{ fontSize: 12, lineHeight: '24px' }}>W: </span>;
+export const h = () => <span style={{ fontSize: 12, lineHeight: '24px' }}>H: </span>;
