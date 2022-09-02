@@ -2,9 +2,6 @@
   position: absolute;
   width: 200px;
   height: 200px;
-  display: flex;
-  flex-wrap: wrap;
-  transform-origin: center;
   z-index: 2;
 
   &.editable:hover {
@@ -23,7 +20,6 @@
       position: absolute;
       top: calc(50% - 12px);
       left: -24px;
-      height: 100%;
       color: var(--quad-primary-color);
     }
   }
@@ -182,5 +178,14 @@
     > .mask {
       display: none;
     }
+  }
+
+  > .container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    transform-origin: center;
+    overflow: hidden;
   }
 }

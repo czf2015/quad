@@ -26,12 +26,13 @@ export const getLinearGradient = ({
   const left = `${x1 * 100}%`;
   const width = `${Math.abs(x2 - x1) * 100}%`;
   const height = `${Math.abs(y2 - y1) * 100}%`;
-  const color = `${repeat ? "repeating-" : ""
-    }linear-gradient(${angle}deg, ${colorStops
-      ?.map(
-        ({ type, offset, color }) => `${color} ${offset}${type == 1 ? "px" : "%"}`
-      )
-      .join(", ")})`;
+  const color = `${
+    repeat ? "repeating-" : ""
+  }linear-gradient(${angle}deg, ${colorStops
+    ?.map(
+      ({ type, offset, color }) => `${color} ${offset}${type == 1 ? "px" : "%"}`
+    )
+    .join(", ")})`;
   return `${color} ${top} ${left}/${width} ${height}`;
 };
 
@@ -43,12 +44,13 @@ export const getRadialGradient = ({
   colorStops = [],
   repeat = "no-repeat",
 }) => {
-  const color = `${repeat ? "repeating-" : ""}radial-gradient(${rx * 100}% ${ry * 100
-    }% at ${cx * 100}% ${cy * 100}%, ${colorStops
-      ?.map(
-        ({ type, offset, color }) => `${color} ${offset}${type == 1 ? "px" : "%"}`
-      )
-      .join(", ")})`;
+  const color = `${repeat ? "repeating-" : ""}radial-gradient(${rx * 100}% ${
+    ry * 100
+  }% at ${cx * 100}% ${cy * 100}%, ${colorStops
+    ?.map(
+      ({ type, offset, color }) => `${color} ${offset}${type == 1 ? "px" : "%"}`
+    )
+    .join(", ")})`;
   return color;
 };
 
@@ -112,47 +114,91 @@ export const handleTypeChange = (store) => (type) => {
   }
 };
 
-const JUSTIFY_CONTENT_VALUES = ['start', 'center', 'end', 'space-between', 'space-evenly']
-const ALIGN_ITEMS_VALUES = ['start', 'center', 'end', 'stretch', 'space-evenly']
+const JUSTIFY_CONTENT_VALUES = [
+  "start",
+  "center",
+  "end",
+  "space-between",
+  "space-evenly",
+];
+const ALIGN_ITEMS_VALUES = [
+  "start",
+  "center",
+  "end",
+  "stretch",
+  "space-evenly",
+];
 
-const getBackgroundSize = ({ type = 2, value = 'auto' } = {}) => {
+const getBackgroundSize = ({ type = 2, value = "auto" } = {}) => {
   switch (type) {
     case 0:
-      return `${value}%`
+      return `${value}%`;
     case 1:
-      return `${value}px`
+      return `${value}px`;
     case 2:
     default:
-      return 'auto'
+      return "auto";
   }
-}
+};
 
-export const getBackgroundImage = ({ url = "", position: { left = 0, top = 0 } = {}, repeat = 'no-repeat', size: { width, height } = {} } = {}) => {
-  return `url(${url}) ${left}% ${top}% / ${getBackgroundSize(width)} ${getBackgroundSize(height)} ${repeat}`
-}
+export const getBackgroundImage = ({
+  url = "",
+  position: { left = 0, top = 0 } = {},
+  repeat = "no-repeat",
+  size: { width, height } = {},
+} = {}) => {
+  return `url(${url}) ${left}% ${top}% / ${getBackgroundSize(
+    width
+  )} ${getBackgroundSize(height)} ${repeat}`;
+};
 
-export const convertToStyle = ({ constraints: { horizontal = 0, vertical = 3 } = {}, fill = [], overflow, opacity = 100, z, hidden = false } = {}) => {
-  const bg = []
-  fill.forEach(item => {
+export const getClipPath = (clipPath = { type: 'none' }) => {
+  switch (clipPath?.type) {
+    case "inset":
+      return `inset(${clipPath?.top}px ${clipPath?.right}px ${clipPath?.bottom}px ${clipPath?.left}px round ${clipPath?.round}px)`;
+    case "circle":
+      return `circle(${clipPath?.r}px at ${clipPath?.offsetX}px ${clipPath?.offsetY}px)`;
+    case "ellipse":
+      return `ellipse(${clipPath?.rx}px ${clipPath?.ry}px at ${clipPath?.offsetX}px ${clipPath?.offsetY}px)`;
+    case "none":
+      default:
+      return undefined;
+  }
+};
+
+export const convertToStyle = ({
+  constraints: { horizontal = 0, vertical = 3 } = {},
+  fill = [],
+  overflow,
+  opacity = 100,
+  z,
+  hidden = false,
+  clipPath,
+} = {}, clipPathFlag = false) => {
+  if (clipPathFlag) {
+    return { clipPath: getClipPath(clipPath) }
+  }
+  const bg = [];
+  fill.forEach((item) => {
     if (!item.hidden) {
       switch (item.type) {
-        case 'color':
-          bg.push(`linear-gradient(0deg, ${item.value}, ${item.value})`)
-          break
-        case 'linear':
-          bg.push(getLinearGradient(item))
-          break
-        case 'radial':
-          bg.push(getRadialGradient(item))
-        case 'image':
-          bg.push(getBackgroundImage(item))
-          break
+        case "color":
+          bg.push(`linear-gradient(0deg, ${item.value}, ${item.value})`);
+          break;
+        case "linear":
+          bg.push(getLinearGradient(item));
+          break;
+        case "radial":
+          bg.push(getRadialGradient(item));
+        case "image":
+          bg.push(getBackgroundImage(item));
+          break;
         default:
-          break
+          break;
       }
     }
-  })
-  const background = bg.join(',')
+  });
+  const background = bg.join(",");
 
   return {
     justifyContent: JUSTIFY_CONTENT_VALUES[horizontal],
@@ -161,6 +207,6 @@ export const convertToStyle = ({ constraints: { horizontal = 0, vertical = 3 } =
     opacity: opacity / 100,
     overflow,
     zIndex: z,
-    visibility: hidden ? 'hidden' : 'visible',
-  }
-}
+    visibility: hidden ? "hidden" : "visible",
+  };
+};

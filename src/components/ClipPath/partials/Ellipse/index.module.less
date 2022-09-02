@@ -4,41 +4,50 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #ccc;
-}
 
-.circle {
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  z-index: 9999;
-
-  &::after {
+  > .circle {
     position: absolute;
-    top: 5px;
-    left: 5px;
-    content: "";
-    display: inline-block;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background-color: #fff;
-    outline: 1px solid var(--quad-primary-border-color);
+    width: 16px;
+    height: 16px;
+    z-index: 9999;
+
+    &::after {
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      content: "";
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: #fff;
+      outline: 1px solid var(--quad-primary-border-color);
+    }
+
+    &.top {
+      cursor: ns-resize;
+    }
+
+    &.right {
+      cursor: ew-resize;
+    }
+
+    &.bottom {
+      cursor: ns-resize;
+    }
+
+    &.left {
+      cursor: ew-resize;
+    }
   }
 
-  &.top {
-    cursor: ns-resize;
+  &:not(.disabled):hover {
+    background-color: #3333;
   }
 
-  &.right {
-    cursor: ew-resize;
-  }
-
-  &.bottom {
-    cursor: ns-resize;
-  }
-
-  &.left {
-    cursor: ew-resize;
+  &.disabled {
+    > .circle {
+      display: none;
+    }
   }
 }

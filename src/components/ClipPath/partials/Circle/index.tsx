@@ -2,27 +2,27 @@ import React, { useState, useRef } from 'react'
 import { useDragMove } from '@/hooks'
 import styles from './index.module.less'
 
-export const Circle = ({ boxStyle = {} }) => {
-  const [circle, setCircle] = useState({ type: 'circle', r: boxStyle.width < boxStyle.height ? boxStyle.width / 2 : boxStyle.height / 2, offsetX: boxStyle.width / 2, offsetY: boxStyle.height / 2 })
+export const Circle = ({ boxStyle = {}, value: circle, onChange: setCircle, disabled, }) => {
+  // const [circle, setCircle] = useState({ type: 'circle', r: boxStyle.width < boxStyle.height ? boxStyle.width / 2 : boxStyle.height / 2, offsetX: boxStyle.width / 2, offsetY: boxStyle.height / 2 })
   const clipPath = `circle(${circle?.r}px at ${circle?.offsetX}px ${circle?.offsetY}px)`
 
   const flagRef = useRef('top')
   const handleDragMove = (dragMove) => {
     switch (flagRef.current) {
       case 'move':
-        setCircle(circle => ({ ...circle, offsetX: circle.offsetX + dragMove.x, offsetY: circle.offsetY + dragMove.y }))
+        setCircle(({ ...circle, offsetX: circle.offsetX + dragMove.x, offsetY: circle.offsetY + dragMove.y }))
         break
       case 'top':
-        setCircle(circle => ({ ...circle, r: circle.r - dragMove.y }))
+        setCircle(({ ...circle, r: circle.r - dragMove.y }))
         break
       case 'right':
-        setCircle(circle => ({ ...circle, r: circle.r + dragMove.x }))
+        setCircle(({ ...circle, r: circle.r + dragMove.x }))
         break
       case 'bottom':
-        setCircle(circle => ({ ...circle, r: circle.r + dragMove.y }))
+        setCircle(({ ...circle, r: circle.r + dragMove.y }))
         break
       case 'left':
-        setCircle(circle => ({ ...circle, r: circle.r - dragMove.x }))
+        setCircle(({ ...circle, r: circle.r - dragMove.x }))
         break
       default:
         break
@@ -60,7 +60,7 @@ export const Circle = ({ boxStyle = {} }) => {
   }
 
   return (
-    <div className={styles.curtain} style={{ clipPath }} {...attrs} onDragStart={handleDragStart('move')}>
+    <div className={`${styles.curtain} ${disabled ? styles.disabled : ''}`} style={{ clipPath }} {...attrs} onDragStart={handleDragStart('move')}>
       {['top', 'right', 'bottom', 'left'].map(flag => <div className={`${styles.circle} ${styles[flag]}`} {...attrs} onDragStart={handleDragStart(flag)} style={getPosition(flag)} key={flag} />)}
     </div>
   )

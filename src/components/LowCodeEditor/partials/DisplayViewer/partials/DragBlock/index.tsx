@@ -21,9 +21,15 @@ export const DragBlock = ({ removeEntity, updateEntity, handleDrop, children, ac
     updateEntity(entity.id, { rotate: rotate == 360 ? 0 : rotate })
   }
 
+  const handleClipPathChange = (clipPath) => {
+    updateEntity(entity?.id, { styleConfig: { clipPath } })
+  }
+
   return (
-    <div ref={ref} data-width={entity?.style?.width} data-height={entity?.style?.height} className={`${styles.drag_block} ${editable ? styles.editable : ''} ${entity?.rotate == 0 ? styles.resize : ''}`} style={{ ...entity.style, transform: `rotate(${- entity.rotate}deg)`, ...convertToStyle(entity?.styleConfig) }} {...attrs} onDragStart={handleDragStart('move')} onDrop={onDrop}>
-      {children}
+    <div ref={ref} data-width={entity?.style?.width} data-height={entity?.style?.height} className={`${styles.drag_block} ${editable ? styles.editable : ''} ${entity?.rotate == 0 ? styles.resize : ''}`} style={{ ...entity.style, transform: `rotate(${- entity.rotate}deg)` }} {...attrs} onDragStart={handleDragStart('move')} onDrop={onDrop}>
+      <div className={styles.container} style={{ ...convertToStyle(entity?.styleConfig, true) }}>
+        {children}
+      </div>
       <Mask className={styles.mask} />
       <Dropdown overlay={<InputNumber style={{ width: 140, textAlign: 'center' }} value={entity.rotate} onChange={handleRotateChange} min={0} max={360} step={5} size="small" addonBefore={<img src="/icons/Angle.svg" width="8px" height="8px" />} addonAfter="°" />} placement="bottom">
         <SyncOutlined className={styles.rotate} {...attrs} onDragStart={handleDragStart('rotate')} />
@@ -36,7 +42,7 @@ export const DragBlock = ({ removeEntity, updateEntity, handleDrop, children, ac
       <Popconfirm title="确认是否删除?" onConfirm={remove} >
         <DeleteOutlined className={styles.delete} />
       </Popconfirm>
-      <ClipPath className={styles.clip} boxStyle={entity?.style} />
+      <ClipPath className={styles.clip} boxStyle={entity?.style} value={entity?.styleConfig?.clipPath} onChange={handleClipPathChange} disabled={!editable} />
     </div>
   )
 }
