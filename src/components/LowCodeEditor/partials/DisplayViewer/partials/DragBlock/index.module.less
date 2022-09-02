@@ -7,6 +7,27 @@
   transform-origin: center;
   z-index: 2;
 
+  &.editable:hover {
+    &::before {
+      content: attr(data-width);
+      position: absolute;
+      top: -20px;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      color: var(--quad-primary-color);
+    }
+    &::after {
+      content: attr(data-height);
+      position: absolute;
+      top: calc(50% - 12px);
+      left: -24px;
+      height: 100%;
+      color: var(--quad-primary-color);
+    }
+  }
+
   &.editable {
     outline: 1px dashed var(--quad-primary-color);
     cursor: move;
@@ -44,13 +65,13 @@
 
     &::after {
       position: absolute;
-      top: 4px;
-      left: 4px;
+      top: 5px;
+      left: 5px;
       content: "";
       display: inline-block;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
+      width: 6px;
+      height: 6px;
+      // border-radius: 50%;
       background-color: #fff;
       outline: 1px solid var(--quad-primary-border-color);
     }
@@ -87,16 +108,6 @@
     height: 16px;
     cursor: ns-resize;
     z-index: 9999;
-    &::after {
-      content: attr(data-width);
-      position: absolute;
-      top: -10px;
-      left: 0;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      color: var(--quad-primary-color);
-    }
   }
 
   > .line__bottom {
@@ -115,17 +126,6 @@
     height: 100%;
     cursor: ew-resize;
     z-index: 9999;
-    &::after {
-      content: attr(data-height);
-      position: absolute;
-      top: 0;
-      left: -8px;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      color: var(--quad-primary-color);
-    }
   }
 
   > .line__right {
@@ -171,18 +171,6 @@
     position: absolute;
     top: 4px;
     left: 4px;
-    font-size: 12px;
-    cursor: pointer;
-    color: var(--quad-primary-color);
-    z-index: 9999;
-  }
-
-  > .clip {
-    position: absolute;
-    top: calc(50% - 6px);
-    right: -16px;
-    width: 12px;
-    height: 12px;
     font-size: 12px;
     cursor: pointer;
     color: var(--quad-primary-color);
