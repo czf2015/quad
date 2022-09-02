@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { Tooltip } from "antd";
+import { Tooltip } from 'antd';
 
 export const verticalIcon = () => {
   return (
@@ -116,3 +116,22 @@ export const minusIcon = () => {
     </svg>
   );
 };
+
+export const dge = () => {
+  return (
+    <svg className="svg" width="8" height="8" viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M0 0v8h8V7H5c0-2.21-1.79-4-4-4V0H0zm1 4v3h3c0-1.657-1.343-3-3-3z"
+        fillRule="evenodd"
+        fillOpacity="1"
+        fill="#000"
+        stroke="none"
+      ></path>
+    </svg>
+  );
+};
+
+export const x = () => <span style={{ fontSize: 12 }}>X: </span>;
+export const y = () => <span style={{ fontSize: 12 }}>Y: </span>;
+export const w = () => <span style={{ fontSize: 12 }}>W: </span>;
+export const h = () => <span style={{ fontSize: 12 }}>H: </span>;
