@@ -13,31 +13,29 @@
   }
 
   &:not(.editable:hover) {
-
-    >.circle,
-    >.line__top,
-    >.line__bottom,
-    >.line__left,
-    >.line__right,
-    >.more_btn,
-    >.rotate,
-    >.delete {
+    > .circle,
+    > .line__top,
+    > .line__bottom,
+    > .line__left,
+    > .line__right,
+    > .more_btn,
+    > .rotate,
+    > .delete {
       display: none;
     }
   }
 
   &:not(.resize) {
-
-    >.circle,
-    >.line__top,
-    >.line__bottom,
-    >.line__left,
-    >.line__right {
+    > .circle,
+    > .line__top,
+    > .line__bottom,
+    > .line__left,
+    > .line__right {
       display: none;
     }
   }
 
-  >.circle {
+  > .circle {
     position: absolute;
     width: 16px;
     height: 16px;
@@ -81,16 +79,26 @@
     }
   }
 
-  >.line__top {
+  > .line__top {
     position: absolute;
     top: -8px;
     width: 100%;
     height: 16px;
     cursor: ns-resize;
     z-index: 9999;
+    &::after {
+      content: attr(data-width);
+      position: absolute;
+      top: -10px;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      color: var(--quad-primary-color);
+    }
   }
 
-  >.line__bottom {
+  > .line__bottom {
     position: absolute;
     bottom: -8px;
     width: 100%;
@@ -99,16 +107,27 @@
     z-index: 9999;
   }
 
-  >.line__left {
+  > .line__left {
     position: absolute;
     left: -8px;
     width: 16px;
     height: 100%;
     cursor: ew-resize;
     z-index: 9999;
+    &::after {
+      content: attr(data-height);
+      position: absolute;
+      top: 0;
+      left: -8px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: var(--quad-primary-color);
+    }
   }
 
-  >.line__right {
+  > .line__right {
     position: absolute;
     right: -8px;
     width: 16px;
@@ -117,7 +136,7 @@
     z-index: 9999;
   }
 
-  >.more_btn {
+  > .more_btn {
     position: absolute;
     top: 4px;
     right: 4px;
@@ -127,7 +146,7 @@
     z-index: 9999;
   }
 
-  >.rotate {
+  > .rotate {
     position: absolute;
     bottom: -20px;
     left: calc(50% - 8px);
@@ -139,15 +158,15 @@
     &::before {
       content: "";
       position: absolute;
-      top: 0;
-      left: -20px;
+      top: -8px;
+      left: -24px;
       display: inline-block;
-      width: 48px;
-      height: 16px;
+      width: 72px;
+      height: 24px;
     }
   }
 
-  >.delete {
+  > .delete {
     position: absolute;
     top: 4px;
     left: 4px;
@@ -159,7 +178,7 @@
 
   &:not(.editable),
   &:not(:hover) {
-    >.mask {
+    > .mask {
       display: none;
     }
   }
