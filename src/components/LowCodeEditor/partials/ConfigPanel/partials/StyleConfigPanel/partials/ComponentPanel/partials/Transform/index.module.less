@@ -6,27 +6,37 @@
   > .container {
     display: flex;
     justify-content: space-between;
+    margin-top: 12px;
 
-    > .item {
-      margin-bottom: 12px;
-
-      > .label {
-        margin-right: 6px;
-        margin-left: 6px;
-      }
-      > .input {
-        width: 30px;
+    > .input {
+      width: 88px;
+      background-color: var(--quad-primary-background-color);
+      &:hover {
+        outline: 1px solid var(--quad-primary-border-color);
       }
     }
   }
   > .origin {
-    margin-left: 6px;
+    margin-top: 12px;
 
-    > .label {
-      margin-right: 6px;
-    }
     > .input {
-      margin-right: 23px;
+      width: 112px;
+      margin-left: 10px;
+      background-color: var(--quad-primary-background-color);
+      &:hover {
+        outline: 1px solid var(--quad-primary-border-color);
+      }
+    }
+  }
+
+  :global {
+    .ant-input {
+      background-color: var(--quad-primary-background-color);
+      height: 24px;
+    }
+
+    .ant-input-number-affix-wrapper {
+      height: 24px;
     }
   }
 }
