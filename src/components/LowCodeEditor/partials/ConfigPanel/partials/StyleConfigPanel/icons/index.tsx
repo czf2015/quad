@@ -131,7 +131,152 @@ export const dge = () => {
   );
 };
 
-export const x = () => <span style={{ fontSize: 12, lineHeight: '24px' }}>X: </span>;
-export const y = () => <span style={{ fontSize: 12, lineHeight: '24px' }}>Y: </span>;
-export const w = () => <span style={{ fontSize: 12, lineHeight: '24px' }}>W: </span>;
-export const h = () => <span style={{ fontSize: 12, lineHeight: '24px' }}>H: </span>;
+export const leftTop = () => (
+  <svg className="svg" width="8" height="8" viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M0 4.5C0 2.015 2.015 0 4.5 0H8v1H4.5C2.567 1 1 2.567 1 4.5V8H0V4.5z"
+      fillRule="evenodd"
+      fillOpacity="1"
+      fill="#000"
+      stroke="none"
+    ></path>
+  </svg>
+);
+
+export const rightTop = () => (
+  <svg className="svg" width="8" height="8" viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M8 4.5C8 2.015 5.985 0 3.5 0H0v1h3.5C5.433 1 7 2.567 7 4.5V8h1V4.5z"
+      fillRule="evenodd"
+      fillOpacity="1"
+      fill="#000"
+      stroke="none"
+    ></path>
+  </svg>
+);
+
+export const rightBottom = () => (
+  <svg className="svg" width="8" height="8" viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M8 3.5C8 5.985 5.985 8 3.5 8H0V7h3.5C5.433 7 7 5.433 7 3.5V0h1v3.5z"
+      fillRule="evenodd"
+      fillOpacity="1"
+      fill="#000"
+      stroke="none"
+    ></path>
+  </svg>
+);
+
+export const leftBottom = () => (
+  <svg className="svg" width="8" height="8" viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M0 3.5C0 5.985 2.015 8 4.5 8H8V7H4.5C2.567 7 1 5.433 1 3.5V0H0v3.5z"
+      fillRule="evenodd"
+      fillOpacity="1"
+      fill="#000"
+      stroke="none"
+    ></path>
+  </svg>
+);
+
+export const marginIcon = () => (
+  <svg
+    t="1662187372085"
+    className="icon"
+    viewBox="0 0 1024 1024"
+    version="1.1"
+    xmlns="http://www.w3.org/2000/svg"
+    p-id="1714"
+    width="16"
+    height="16"
+  >
+    <path
+      d="M384 320a64 64 0 0 0-64 64v256a64 64 0 0 0 64 64h256a64 64 0 0 0 64-64v-256a64 64 0 0 0-64-64h-256m0-128h256a192 192 0 0 1 192 192v256a192 192 0 0 1-192 192h-256a192 192 0 0 1-192-192v-256a192 192 0 0 1 192-192z"
+      fill="#8a8a8a"
+      p-id="1715"
+    ></path>
+    <path
+      d="M640 0m0 64l0 0q0 64-64 64l-128 0q-64 0-64-64l0 0q0-64 64-64l128 0q64 0 64 64Z"
+      fill="#8a8a8a"
+      p-id="1716"
+    ></path>
+    <path
+      d="M640 896m0 64l0 0q0 64-64 64l-128 0q-64 0-64-64l0 0q0-64 64-64l128 0q64 0 64 64Z"
+      fill="#8a8a8a"
+      p-id="1717"
+    ></path>
+    <path
+      d="M1024 640m-64 0l0 0q-64 0-64-64l0-128q0-64 64-64l0 0q64 0 64 64l0 128q0 64-64 64Z"
+      fill="#8a8a8a"
+      p-id="1718"
+    ></path>
+    <path
+      d="M128 640m-64 0l0 0q-64 0-64-64l0-128q0-64 64-64l0 0q64 0 64 64l0 128q0 64-64 64Z"
+      fill="#8a8a8a"
+      p-id="1719"
+    ></path>
+  </svg>
+);
+
+export const paddingIcon = () => (
+  <svg
+    t="1662187455150"
+    className="icon"
+    viewBox="0 0 1024 1024"
+    version="1.1"
+    xmlns="http://www.w3.org/2000/svg"
+    p-id="1963"
+    width="16"
+    height="16"
+  >
+    <path
+      d="M192 128a64 64 0 0 0-64 64v640a64 64 0 0 0 64 64h640a64 64 0 0 0 64-64v-640a64 64 0 0 0-64-64h-640m0-128h640a192 192 0 0 1 192 192v640a192 192 0 0 1-192 192h-640a192 192 0 0 1-192-192v-640a192 192 0 0 1 192-192z"
+      fill="#8a8a8a"
+      p-id="1964"
+    ></path>
+    <path
+      d="M640 192m0 64l0 0q0 64-64 64l-128 0q-64 0-64-64l0 0q0-64 64-64l128 0q64 0 64 64Z"
+      fill="#8a8a8a"
+      p-id="1965"
+    ></path>
+    <path
+      d="M640 704m0 64l0 0q0 64-64 64l-128 0q-64 0-64-64l0 0q0-64 64-64l128 0q64 0 64 64Z"
+      fill="#8a8a8a"
+      p-id="1966"
+    ></path>
+    <path
+      d="M832 640m-64 0l0 0q-64 0-64-64l0-128q0-64 64-64l0 0q64 0 64 64l0 128q0 64-64 64Z"
+      fill="#8a8a8a"
+      p-id="1967"
+    ></path>
+    <path
+      d="M320 640m-64 0l0 0q-64 0-64-64l0-128q0-64 64-64l0 0q64 0 64 64l0 128q0 64-64 64Z"
+      fill="#8a8a8a"
+      p-id="1968"
+    ></path>
+  </svg>
+);
+
+export const borderRadiusIcon = () => (
+  <svg
+    t="1662191934391"
+    className="icon"
+    viewBox="0 0 1024 1024"
+    version="1.1"
+    xmlns="http://www.w3.org/2000/svg"
+    p-id="2966"
+    width="16"
+    height="16"
+  >
+    <path
+      d="M832 1024h-128v-128h128a64 64 0 0 0 64-64v-128h128v128a192 192 0 0 1-192 192z m-512 0H192a192 192 0 0 1-192-192v-128h128v128a64 64 0 0 0 64 64h128v128zM1024 320h-128V192a64 64 0 0 0-64-64h-128V0h128a192 192 0 0 1 192 192v128zM128 320H0V192a192 192 0 0 1 192-192h128v128H192a64 64 0 0 0-64 64v128z"
+      fill="#8a8a8a"
+      p-id="2967"
+    ></path>
+  </svg>
+);
+
+export const x = () => <span style={{ fontSize: 12 }}>X: </span>;
+export const y = () => <span style={{ fontSize: 12 }}>Y: </span>;
+export const w = () => <span style={{ fontSize: 12 }}>W: </span>;
+export const h = () => <span style={{ fontSize: 12 }}>H: </span>;

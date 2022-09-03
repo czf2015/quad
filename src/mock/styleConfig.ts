@@ -87,27 +87,12 @@ export const widgetStyle = {
   //   value: 0
   // }, // 0-100 百分比
   // 盒子
-  margin: {
-    type: 0,
-    value: 0
-  },
-  padding: {
-    type: 1,
-    value: [1, 2, 3, 4]
-  },
-  width: {
-    type: 0, // 0 百分比 1 像素值
-    value: 0
-  }, // 0-100 百分比200,
-  height: {
-    type: 0, // 0 百分比 1 像素值
-    value: 0
-  }, // 0-100 百分比
+  margin: ['1', '1', '1', '1'],
+  padding: ['1', '2', '3', '4'],
+  width: '12', // 0-100 百分比200,
+  height: '0', // 0-100 百分比
   // --------------圆角------------
-  borderRadius: {
-    type: 0, // 0 像素值 1 百分比
-    value: 4, // px %
-  }, // 或数组为top right bottom left
+  borderRadius: ['4', '4', '4', '4'], // 或数组为top right bottom left
   // -----------------阴影-----------
   boxShadow: [
     {
