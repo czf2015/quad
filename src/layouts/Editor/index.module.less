@@ -1,6 +1,5 @@
 .layout {
   height: 100vh;
-  background-color: var(--quad-primary-background-color);
 
   > .header {
     position: fixed;
@@ -51,6 +50,7 @@
     width: calc(100% - 536px);
     overflow: auto;
     transition: .3s;
+    z-index: -1;
     > .scale {
       transform-origin: top left;
     }

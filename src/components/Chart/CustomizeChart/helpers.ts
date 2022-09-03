@@ -276,6 +276,23 @@ export const getMeta = (properties = {}) => {
           ],
         },
         {
+          name: 'coordinateSystem',
+          label: '坐标系',
+          type: 'Select',
+          options: [
+            { label: '直角坐标', value: 'LR' },
+            { label: '极坐标', value: 'polar' },
+          ],
+          prerequisites: [
+            {
+              field: 'type',
+              options: {
+                include: ['line', 'bar']
+              }
+            }
+          ],
+        },
+        {
           name: 'dimensions',
           label: '维度',
           layout: 'vertical',
