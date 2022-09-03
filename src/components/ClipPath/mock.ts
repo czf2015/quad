@@ -24,6 +24,7 @@ export default [
   },
   {
     type: 'polygon',
+    angle: 90,
     points: [
       {
         x: 50,
@@ -34,17 +35,6 @@ export default [
         x: 60,
         y: 60,
         id: '2'
-      }
-    ]
-  },
-  {
-    type: 'path',
-    offsetX: '50%',
-    offsetY: '50%',
-    points: [
-      {
-        x: '50%',
-        y: '50%',
       }
     ]
   },

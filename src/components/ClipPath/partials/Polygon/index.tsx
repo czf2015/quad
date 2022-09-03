@@ -20,7 +20,7 @@ const getPoints = (w, h, n, startAngle) => {
   return result
 }
 
-export const Polygon = ({ boxStyle = {}, value: polygon = { type: 'polygon', points: getPoints(boxStyle?.width, boxStyle?.height, 5, 0) }, onChange: setPolygon, disabled, }) => {
+export const Polygon = ({ boxStyle = {}, value: polygon = { type: 'polygon', angle: 90, points: getPoints(boxStyle?.width, boxStyle?.height, 5, 90) }, onChange: setPolygon, disabled, }) => {
   // const [polygon, setPolygon] = useState({ type: 'polygon', top: 0, right: 0, bottom: 0, left: 0, round: 0 })
   const clipPath = `polygon(${polygon?.points?.map(point => `${point.x}px ${point.y}px`).join(',')})`
 
@@ -41,34 +41,35 @@ export const Polygon = ({ boxStyle = {}, value: polygon = { type: 'polygon', poi
     onDragStart(e)
   }
 
-  const [angle, setAngle] = useState(90)
-  const handleAngleChange = (e) => {
-    const angle = e?.target?.value
-    setAngle(angle)
-    setPolygon?.({ type: 'polygon', points: getPoints(boxStyle?.width, boxStyle?.height, polygon.points.length, angle) })
+  const polygonRef = useRef(null)
+  const handleAngleChange = (angle) => {
+    setPolygon?.({ ...polygon, angle, points: getPoints(boxStyle?.width, boxStyle?.height, polygon.points.length, angle) })
+    setTimeout(() => {
+      polygonRef.current.querySelector(`[data-id=angle]`).focus()
+    })
   }
   const handleEdgesChange = (edges) => {
-    setPolygon?.({ type: 'polygon', points: getPoints(boxStyle?.width, boxStyle?.height, edges, angle) })
+    setPolygon?.({ ...polygon, points: getPoints(boxStyle?.width, boxStyle?.height, edges, polygon.angle) })
+    setTimeout(() => {
+      polygonRef.current.querySelector(`[data-id=edges]`).focus()
+    })
   }
-
-  const InputAngleEdges = ({ angle }) => {
-    return (
-      <>
-        <InputNumber style={{ width: 100, textAlign: 'center' }} value={polygon.points.length} onChange={handleEdgesChange} min={3} step={1} size="small" addonBefore={"边数"} />
-        <InputNumber style={{ width: 100, textAlign: 'center' }} value={angle} onBlur={handleAngleChange} min={-360} max={360} size="small" addonBefore={<img src="/icons/Angle.svg" width="8px" height="8px" />} addonAfter="°" controls={false} />
-      </>
-    )
-  }
+  const contextMenu = (
+    <>
+      <InputNumber data-id="edges" style={{ width: 88 }} value={polygon.points.length} onChange={handleEdgesChange} min={3} step={1} size="small" addonBefore={<img src="/icons/Polygon.svg" width="12px" height="12px" />} />
+      <InputNumber data-id="angle" style={{ width: 112 }} value={polygon.angle} onChange={handleAngleChange} min={-360} max={360} step={90} size="small" addonBefore={<img src="/icons/Angle.svg" width="8px" height="8px" />} addonAfter="°" />
+    </>
+  )
 
   return (
-    <div className={`${styles.curtain} ${disabled ? styles.disabled : ''}`} style={{ clipPath }} {...attrs} onDragStart={handleDragStart('move')}>
-      {polygon?.points?.map(point => {
-        return (
-          <Dropdown overlay={<InputAngleEdges angle={angle} />} placement="bottom" trigger={["click"]}>
+    <Dropdown overlay={contextMenu} placement="bottom" trigger={["contextMenu"]} getPopupContainer={triggerNode => polygonRef.current}>
+      <div ref={polygonRef} className={`${styles.curtain} ${disabled ? styles.disabled : ''}`} style={{ clipPath }} {...attrs} onDragStart={handleDragStart('move')}>
+        {polygon?.points?.map(point => {
+          return (
             <div className={styles.circle} {...attrs} onDragStart={handleDragStart(point.id)} style={{ left: point?.x, top: point?.y }} key={point.id} />
-          </Dropdown>
-        )
-      })}
-    </div>
+          )
+        })}
+      </div>
+    </Dropdown>
   )
 }
