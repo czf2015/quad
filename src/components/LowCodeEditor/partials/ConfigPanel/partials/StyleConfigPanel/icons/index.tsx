@@ -179,7 +179,7 @@ export const leftBottom = () => (
   </svg>
 );
 
-export const marginIcon = () => (
+export const MarginIcon = (props) => (
   <svg
     t="1662187372085"
     className="icon"
@@ -189,6 +189,7 @@ export const marginIcon = () => (
     p-id="1714"
     width="16"
     height="16"
+    {...props}
   >
     <path
       d="M384 320a64 64 0 0 0-64 64v256a64 64 0 0 0 64 64h256a64 64 0 0 0 64-64v-256a64 64 0 0 0-64-64h-256m0-128h256a192 192 0 0 1 192 192v256a192 192 0 0 1-192 192h-256a192 192 0 0 1-192-192v-256a192 192 0 0 1 192-192z"
@@ -218,7 +219,7 @@ export const marginIcon = () => (
   </svg>
 );
 
-export const paddingIcon = () => (
+export const PaddingIcon = (props) => (
   <svg
     t="1662187455150"
     className="icon"
@@ -228,6 +229,7 @@ export const paddingIcon = () => (
     p-id="1963"
     width="16"
     height="16"
+    {...props}
   >
     <path
       d="M192 128a64 64 0 0 0-64 64v640a64 64 0 0 0 64 64h640a64 64 0 0 0 64-64v-640a64 64 0 0 0-64-64h-640m0-128h640a192 192 0 0 1 192 192v640a192 192 0 0 1-192 192h-640a192 192 0 0 1-192-192v-640a192 192 0 0 1 192-192z"
@@ -257,7 +259,7 @@ export const paddingIcon = () => (
   </svg>
 );
 
-export const borderRadiusIcon = () => (
+export const BorderRadiusIcon = (props) => (
   <svg
     t="1662191934391"
     className="icon"
@@ -267,6 +269,7 @@ export const borderRadiusIcon = () => (
     p-id="2966"
     width="16"
     height="16"
+    {...props}
   >
     <path
       d="M832 1024h-128v-128h128a64 64 0 0 0 64-64v-128h128v128a192 192 0 0 1-192 192z m-512 0H192a192 192 0 0 1-192-192v-128h128v128a64 64 0 0 0 64 64h128v128zM1024 320h-128V192a64 64 0 0 0-64-64h-128V0h128a192 192 0 0 1 192 192v128zM128 320H0V192a192 192 0 0 1 192-192h128v128H192a64 64 0 0 0-64 64v128z"

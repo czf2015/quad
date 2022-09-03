@@ -1,5 +1,6 @@
 // @ts-nocheck
 import React from 'react';
+import { Tooltip } from 'antd';
 import { BorderOuterOutlined } from '@ant-design/icons';
 import CustomInput from './partials/CustomInput';
 import BoxSize from './partials/BoxSize';
@@ -11,7 +12,9 @@ export const BoxModel = ({ store }) => {
     <div className={styles.box}>
       <h4 className={styles.title}>盒子</h4>
       <div className={styles.wh}>
-        <BorderOuterOutlined style={{ fontSize: 16, color: '#8a8a8a' }} />
+        <Tooltip title="宽高">
+          <BorderOuterOutlined style={{ fontSize: 16, color: '#8a8a8a' }} />
+        </Tooltip>
         {sizeConfig.map((item, index) => (
           <BoxSize key={index} store={store} {...item} />
         ))}

@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { marginIcon, paddingIcon, borderRadiusIcon, h, w } from '../../../../icons';
+import { MarginIcon, PaddingIcon, BorderRadiusIcon, h, w } from '../../../../icons';
 import {
   RadiusUpleftOutlined,
   RadiusUprightOutlined,
@@ -13,7 +13,7 @@ import {
 
 export const renderBorderRadiusIcon = (disconnect, index: number) => {
   if (disconnect) {
-    return borderRadiusIcon
+    return BorderRadiusIcon
   } else {
     switch (index) {
       case 0:
@@ -30,7 +30,7 @@ export const renderBorderRadiusIcon = (disconnect, index: number) => {
 
 export const renderMarginIcon = (disconnect, index: number) => {
   if (disconnect) {
-    return marginIcon
+    return MarginIcon
   } else {
     switch (index) {
       case 0:
@@ -47,7 +47,7 @@ export const renderMarginIcon = (disconnect, index: number) => {
 
 export const renderPaddingIcon = (disconnect, index: number) => {
   if (disconnect) {
-    return paddingIcon
+    return PaddingIcon
   } else {
     switch (index) {
       case 0:
