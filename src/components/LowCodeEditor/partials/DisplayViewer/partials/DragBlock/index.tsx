@@ -31,7 +31,7 @@ export const DragBlock = ({ removeEntity, updateEntity, handleDrop, children, ac
   }
 
   return (
-    <Dropdown overlay={<BlockStyleConfigPanel {...entity} updateEntity={updateEntity} />} trigger="contextMenu">
+    <Dropdown overlay={<BlockStyleConfigPanel {...entity} updateEntity={updateEntity} />} trigger="contextMenu" placement="bottom">
       <div ref={ref} data-width={entity?.style?.width} data-height={entity?.style?.height} className={`${styles.drag_block} ${editable ? styles.editable : ''} ${!entity?.styleConfig?.rotate ? styles.resize : ''}`} style={{ ...entity.style, ...convertToStyle(entity?.styleConfig, false) }} {...attrs} onDragStart={handleDragStart('move')} onDrop={onDrop}>
         <div className={styles.container} style={{ ...convertToStyle(entity?.styleConfig, true) }}>
           {children}

@@ -210,10 +210,10 @@ export const convertToStyle = (
     justifyContent: JUSTIFY_CONTENT_VALUES[horizontal],
     alignItems: ALIGN_ITEMS_VALUES[vertical],
     background,
-    opacity: opacity / 100,
+    opacity: hidden ? 0 : opacity / 100,
     overflow,
     transform: `rotate(${-rotate}deg)`,
-    zIndex: z,
-    visibility: hidden ? "hidden" : "visible",
+    // zIndex: z,
+    // visibility: hidden ? "hidden" : "visible",
   };
 };

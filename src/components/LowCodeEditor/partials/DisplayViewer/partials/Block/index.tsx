@@ -35,7 +35,7 @@ export const Clip = ({ id, isHorizontal, menuItems, offset, onClick, onMenuClick
     return (
       <>
         <div className={isHorizontal ? styles.clip_horizontal : styles.clip_vertical} style={isHorizontal ? { top: offset?.y } : { left: offset?.x }} />
-        <Dropdown overlay={menu} onVisibleChange={onVisibleChange} trigger="contextMenu">
+        <Dropdown overlay={menu} onVisibleChange={onVisibleChange} trigger="contextMenu" placement="bottom">
           <Button className={styles.clip_scissor} style={{ top: offset?.y, left: offset?.x }} onClick={onClick} type="primary" shape="circle" icon={<ScissorOutlined rotate={isHorizontal ? 0 : 90} />} onContextMenu={stopPropagation} />
         </Dropdown>
       </>
