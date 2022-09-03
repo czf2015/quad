@@ -84,7 +84,7 @@ export default ({ className = '', boxStyle = {}, value = { type: 'none' }, onCha
     <>
       <Clip boxStyle={boxStyle} value={value} onChange={onChange} disabled={disabled} />
       <Dropdown overlay={overlay} >
-        <img src="/icons/Clip.svg" className={`${styles.clip} ${className}`} />
+        <img src="/icons/Clip.svg" className={`${styles.clip} ${className} ${disabled ? styles.disabled : ''}`} />
       </Dropdown>
     </>
   )

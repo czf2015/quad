@@ -15,6 +15,7 @@
       justify-content: center;
       color: var(--quad-primary-color);
     }
+
     &::after {
       content: attr(data-height);
       position: absolute;
@@ -30,30 +31,32 @@
   }
 
   &:not(.editable:hover) {
-    > .circle,
-    > .line__top,
-    > .line__bottom,
-    > .line__left,
-    > .line__right,
-    > .more_btn,
-    > .rotate,
-    > .delete,
-    > .clip {
+
+    >.circle,
+    >.line__top,
+    >.line__bottom,
+    >.line__left,
+    >.line__right,
+    >.more_btn,
+    >.rotate,
+    >.delete,
+    >.clip {
       display: none;
     }
   }
 
   &:not(.resize) {
-    > .circle,
-    > .line__top,
-    > .line__bottom,
-    > .line__left,
-    > .line__right {
+
+    >.circle,
+    >.line__top,
+    >.line__bottom,
+    >.line__left,
+    >.line__right {
       display: none;
     }
   }
 
-  > .circle {
+  >.circle {
     position: absolute;
     width: 16px;
     height: 16px;
@@ -96,7 +99,7 @@
     }
   }
 
-  > .line__top {
+  >.line__top {
     position: absolute;
     top: -8px;
     width: 100%;
@@ -104,7 +107,7 @@
     cursor: ns-resize;
   }
 
-  > .line__bottom {
+  >.line__bottom {
     position: absolute;
     bottom: -8px;
     width: 100%;
@@ -112,7 +115,7 @@
     cursor: ns-resize;
   }
 
-  > .line__left {
+  >.line__left {
     position: absolute;
     top: 0;
     left: -8px;
@@ -121,7 +124,7 @@
     cursor: ew-resize;
   }
 
-  > .line__right {
+  >.line__right {
     position: absolute;
     top: 0;
     right: -8px;
@@ -130,7 +133,7 @@
     cursor: ew-resize;
   }
 
-  > .more_btn {
+  >.more_btn {
     position: absolute;
     top: 4px;
     right: 4px;
@@ -139,7 +142,7 @@
     cursor: pointer;
   }
 
-  > .rotate {
+  >.rotate {
     position: absolute;
     bottom: -20px;
     left: calc(50% - 8px);
@@ -158,7 +161,7 @@
     }
   }
 
-  > .delete {
+  >.delete {
     position: absolute;
     top: 4px;
     left: 4px;
@@ -169,12 +172,12 @@
 
   &:not(.editable),
   &:not(:hover) {
-    > .mask {
+    >.mask {
       display: none;
     }
   }
 
-  > .container {
+  >.container {
     width: 100%;
     height: 100%;
     display: flex;
@@ -188,4 +191,16 @@
   width: 8px;
   height: 8px;
   cursor: pointer;
+}
+
+.rotate_input {
+  position: relative;
+  width: 78px;
+
+  &::after {
+    content: "°";
+    position: absolute;
+    top: 0px;
+    right: 4px;
+  }
 }

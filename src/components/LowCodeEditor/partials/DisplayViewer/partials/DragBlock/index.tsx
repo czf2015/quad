@@ -24,6 +24,7 @@ export const DragBlock = ({ removeEntity, updateEntity, handleDrop, children, ac
     updateEntity(entity.id, { styleConfig: { rotate: 0 } })
   }
   const angleIcon = <Tooltip title="复原"><img className={styles.angle_icon} src="/icons/Angle.svg" onClick={resetRotate} /></Tooltip>
+  const rotateInput = <InputNumber className={styles.rotate_input} value={entity?.styleConfig?.rotate} onChange={handleRotateChange} step={5} size="small" addonBefore={angleIcon} controls={false} />
 
   const handleClipPathChange = (clipPath) => {
     updateEntity(entity?.id, { styleConfig: { clipPath } })
@@ -35,7 +36,7 @@ export const DragBlock = ({ removeEntity, updateEntity, handleDrop, children, ac
         {children}
       </div>
       <Mask className={styles.mask} />
-      <Dropdown overlay={<InputNumber style={{ width: 120 }} value={entity?.styleConfig?.rotate} onChange={handleRotateChange} step={5} size="small" addonBefore={angleIcon} addonAfter="°" />} placement="bottom">
+      <Dropdown overlay={rotateInput} placement="bottom">
         <SyncOutlined className={styles.rotate} {...attrs} onDragStart={handleDragStart('rotate')} />
       </Dropdown>
       {['top', 'right', 'bottom', 'left'].map(flag => <div className={styles[`line__${flag}`]} {...attrs} onDragStart={handleDragStart(flag)} key={flag} />)}
