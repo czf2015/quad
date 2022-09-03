@@ -1,0 +1,45 @@
+.curtain {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+
+  > .circle {
+    position: absolute;
+    z-index: 9999;
+    cursor: pointer;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: -8px;
+      left: -8px;
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background-color: #fff;
+      outline: 1px solid var(--quad-primary-border-color);
+    }
+  }
+
+  &:not(.disabled) {
+    background-color: #3333;
+  }
+
+  &.disabled,
+  &:not(:hover) {
+    > .circle {
+      display: none;
+    }
+  }
+}
+
+.input_angle_edges {
+  // display: flex;
+  // flex-direction: column;
+  // padding: 16px;
+  // background-color: #fff;
+}

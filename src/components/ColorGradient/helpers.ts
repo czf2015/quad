@@ -152,7 +152,7 @@ export const getBackgroundImage = ({
   )} ${getBackgroundSize(height)} ${repeat}`;
 };
 
-export const getClipPath = (clipPath = { type: 'none' }) => {
+export const getClipPath = (clipPath = { type: "none" }) => {
   switch (clipPath?.type) {
     case "inset":
       return `inset(${clipPath?.top}px ${clipPath?.right}px ${clipPath?.bottom}px ${clipPath?.left}px round ${clipPath?.round}px)`;
@@ -160,23 +160,28 @@ export const getClipPath = (clipPath = { type: 'none' }) => {
       return `circle(${clipPath?.r}px at ${clipPath?.offsetX}px ${clipPath?.offsetY}px)`;
     case "ellipse":
       return `ellipse(${clipPath?.rx}px ${clipPath?.ry}px at ${clipPath?.offsetX}px ${clipPath?.offsetY}px)`;
+    case "polygon":
+      return `polygon(${clipPath?.points?.map(point => `${point.x}px ${point.y}px`).join(',')})`;
     case "none":
-      default:
+    default:
       return undefined;
   }
 };
 
-export const convertToStyle = ({
-  constraints: { horizontal = 0, vertical = 3 } = {},
-  fill = [],
-  overflow,
-  opacity = 100,
-  z,
-  hidden = false,
-  clipPath,
-} = {}, clipPathFlag = false) => {
+export const convertToStyle = (
+  {
+    constraints: { horizontal = 0, vertical = 3 } = {},
+    fill = [],
+    overflow,
+    opacity = 100,
+    z,
+    hidden = false,
+    clipPath,
+  } = {},
+  clipPathFlag = false
+) => {
   if (clipPathFlag) {
-    return { clipPath: getClipPath(clipPath) }
+    return { clipPath: getClipPath(clipPath) };
   }
   const bg = [];
   fill.forEach((item) => {
