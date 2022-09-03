@@ -18,7 +18,7 @@ export const DragBlock = ({ removeEntity, updateEntity, handleDrop, children, ac
   }
 
   const handleRotateChange = (rotate) => {
-    updateEntity(entity.id, { rotate: rotate == 360 ? 0 : rotate })
+    updateEntity(entity.id, { styleConfig: { rotate: rotate == 360 ? 0 : rotate } })
   }
 
   const handleClipPathChange = (clipPath) => {
@@ -26,12 +26,12 @@ export const DragBlock = ({ removeEntity, updateEntity, handleDrop, children, ac
   }
 
   return (
-    <div ref={ref} data-width={entity?.style?.width} data-height={entity?.style?.height} className={`${styles.drag_block} ${editable ? styles.editable : ''} ${entity?.rotate == 0 ? styles.resize : ''}`} style={{ ...entity.style, transform: `rotate(${- entity.rotate}deg)` }} {...attrs} onDragStart={handleDragStart('move')} onDrop={onDrop}>
+    <div ref={ref} data-width={entity?.style?.width} data-height={entity?.style?.height} className={`${styles.drag_block} ${editable ? styles.editable : ''} ${entity?.styleConfig?.rotate == 0 ? styles.resize : ''}`} style={{ ...entity.style, ...convertToStyle(entity?.styleConfig, false) }} {...attrs} onDragStart={handleDragStart('move')} onDrop={onDrop}>
       <div className={styles.container} style={{ ...convertToStyle(entity?.styleConfig, true) }}>
         {children}
       </div>
       <Mask className={styles.mask} />
-      <Dropdown overlay={<InputNumber style={{ width: 140, textAlign: 'center' }} value={entity.rotate} onChange={handleRotateChange} min={0} max={360} step={5} size="small" addonBefore={<img src="/icons/Angle.svg" width="8px" height="8px" />} addonAfter="°" />} placement="bottom">
+      <Dropdown overlay={<InputNumber style={{ width: 140, textAlign: 'center' }} value={entity?.styleConfig?.rotate} onChange={handleRotateChange} min={0} max={360} step={5} size="small" addonBefore={<img src="/icons/Angle.svg" width="8px" height="8px" />} addonAfter="°" />} placement="bottom">
         <SyncOutlined className={styles.rotate} {...attrs} onDragStart={handleDragStart('rotate')} />
       </Dropdown>
       {['top', 'right', 'bottom', 'left'].map(flag => <div className={styles[`line__${flag}`]} {...attrs} onDragStart={handleDragStart(flag)} key={flag} />)}

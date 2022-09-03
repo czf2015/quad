@@ -177,6 +177,7 @@ export const convertToStyle = (
     z,
     hidden = false,
     clipPath,
+    rotate,
   } = {},
   clipPathFlag = false
 ) => {
@@ -211,6 +212,7 @@ export const convertToStyle = (
     background,
     opacity: opacity / 100,
     overflow,
+    transform: `rotate(${-rotate}deg)`,
     zIndex: z,
     visibility: hidden ? "hidden" : "visible",
   };

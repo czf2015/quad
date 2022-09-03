@@ -5,7 +5,6 @@ import { transformConfig, originConfig } from './helper';
 import styles from './index.module.less';
 
 export const Transform = ({ store }) => {
-  console.log(store('transform'));
   return (
     <div className={styles.trans_form}>
       <h4 className={styles.title}>变形</h4>
