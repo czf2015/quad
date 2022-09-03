@@ -69,7 +69,7 @@ export default ({ className = '', boxStyle = {}, value = { type: 'none' }, onCha
         onChange?.({ type, rx: boxStyle.width / 2, ry: boxStyle.height / 2, offsetX: boxStyle.width / 2, offsetY: boxStyle.height / 2 })
         break
       case 'polygon':
-        onChange?.({ type, points: getPoints(boxStyle?.width, boxStyle?.height, 5, 0) })
+        onChange?.({ type, points: getPoints(boxStyle?.width, boxStyle?.height, 5, 90) })
         break
       case 'none':
         onChange?.({ type })
