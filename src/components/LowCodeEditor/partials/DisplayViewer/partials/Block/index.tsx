@@ -1,11 +1,11 @@
 // @ts-nocheck
 import React, { useState } from 'react'
-import { Button, Dropdown, Menu, Popover, Popconfirm } from '@/plugins/ui'
-import { DeleteOutlined, ScissorOutlined, MoreOutlined } from '@ant-design/icons'
+import { Button, Dropdown, Menu, Popconfirm } from '@/plugins/ui'
+import { DeleteOutlined, ScissorOutlined } from '@ant-design/icons'
 import BlockStyleConfigPanel from "@/components/LowCodeEditor/partials/ConfigPanel/partials/StyleConfigPanel/partials/BlockPanel";
 import { useClip, useDragMove } from '@/hooks'
-import { stopPropagation } from '@/utils/dom'
 import { convertToStyle } from '@/components/ColorGradient/helpers';
+import { stopPropagation } from '@/utils/dom'
 import styles from './index.module.less'
 
 const menuItems = [
@@ -23,7 +23,7 @@ const menuItems = [
   },
 ]
 
-export const Clip = ({ isHorizontal, menuItems, offset, onClick, onMenuClick, onVisibleChange }) => {
+export const Clip = ({ id, isHorizontal, menuItems, offset, onClick, onMenuClick, onVisibleChange }) => {
   if (offset?.x || offset?.y) {
     const menu = (
       <Menu
@@ -36,7 +36,7 @@ export const Clip = ({ isHorizontal, menuItems, offset, onClick, onMenuClick, on
       <>
         <div className={isHorizontal ? styles.clip_horizontal : styles.clip_vertical} style={isHorizontal ? { top: offset?.y } : { left: offset?.x }} />
         <Dropdown overlay={menu} onVisibleChange={onVisibleChange} trigger="contextMenu">
-          <Button className={styles.clip_scissor} style={{ top: offset?.y, left: offset?.x }} onClick={onClick} type="primary" shape="circle" icon={<ScissorOutlined rotate={isHorizontal ? 0 : 90} />} />
+          <Button className={styles.clip_scissor} style={{ top: offset?.y, left: offset?.x }} onClick={onClick} type="primary" shape="circle" icon={<ScissorOutlined rotate={isHorizontal ? 0 : 90} />} onContextMenu={stopPropagation} />
         </Dropdown>
       </>
     )
@@ -97,22 +97,21 @@ export const Block = ({ editable, name, id, pid, title = '', quad, hasBlock = fa
 
   const editTools = editable ?
     <>
-     <Popover content={<BlockStyleConfigPanel id={id} {...entity} updateEntity={updateEntity} />} trigger="click">
-        <MoreOutlined className={`${styles.more_btn} quad-circle`} />
-      </Popover>
-      <Popconfirm title="确认是否删除?" onConfirm={remove} >
+      <Popconfirm title="确认是否删除?" onConfirm={remove} getPopupContainer={() => document.getElementById(id)}>
         <DeleteOutlined className={`${styles.delete_btn} quad-circle`} />
       </Popconfirm>
       <Boundary pull={pull} quad={quad} zoom={zoom} />
       {store('isClipHidden')
         ? <ScissorOutlined className={`${styles.scissor_btn} quad-circle`} onClick={handleClipHidden} />
-        : <Clip isHorizontal={store('isHorizontal')} offset={offset} menuItems={menuItems} onClick={split} onVisibleChange={setHaltClipClip} onMenuClick={onMenuClick} />}
+        : <Clip id={id} isHorizontal={store('isHorizontal')} offset={offset} menuItems={menuItems} onClick={split} onVisibleChange={setHaltClipClip} onMenuClick={onMenuClick} />}
     </> : null
 
   return (
-    <div id={id} className={`${styles.block} ${haltClip ? styles.contextmenu : ''} ${hasBlock ? styles.hasBlock : ''} ${editable ? styles.editable : ''}`} style={{ ...style, ...convertToStyle(entity?.styleConfig) }} onMouseMove={onMouseMove} onDragOver={onDragOver} onDrop={onDrop} ref={ref}>
-      {children}
-      {editTools}
-    </div>
+    <Dropdown overlay={<BlockStyleConfigPanel id={id} {...entity} updateEntity={updateEntity} />} trigger="contextMenu">
+      <div id={id} className={`${styles.block} ${haltClip ? styles.contextmenu : ''} ${hasBlock ? styles.hasBlock : ''} ${editable ? styles.editable : ''}`} style={{ ...style, ...convertToStyle(entity?.styleConfig) }} onMouseMove={onMouseMove} onDragOver={onDragOver} onDrop={onDrop} ref={ref}>
+        {children}
+        {editTools}
+      </div>
+    </Dropdown>
   )
 }

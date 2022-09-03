@@ -1,12 +1,12 @@
 // @ts-nocheck
 import React from "react";
-import { Popover } from '@/plugins/ui'
+import { Popover, Popconfirm } from '@/plugins/ui'
 import Copy from '@/components/Copy'
 import { CustomizeConfigPanel } from "@/components/LowCodeEditor/partials/ConfigPanel/partials/CustomizeConfigPanel";
 import Mask from "@/components/Mask";
 import { useDragMove, useBinds, useHandlers } from "@/hooks";
 import { stopPropagation } from '@/utils/dom'
-import { HolderOutlined, DeleteOutlined, MoreOutlined, RadiusBottomrightOutlined, CopyOutlined } from '@ant-design/icons'
+import { HolderOutlined, DeleteOutlined, MoreOutlined, RadiusBottomrightOutlined } from '@ant-design/icons'
 import styles from "./index.module.less";
 
 export const Wrapper = ({
@@ -60,11 +60,13 @@ export const Wrapper = ({
     <>
       <RadiusBottomrightOutlined className={styles.expand_btn} {...attrs} />
       <HolderOutlined className={styles.holder_btn} draggable onDragStart={handleDragStart} />
-      <Popover content={<CustomizeConfigPanel id={id} {...entity} updateEntity={updateEntity} />} style={{ padddingRight: 0}} placement="rightTop" trigger="click">
+      <Popover content={<CustomizeConfigPanel id={id} {...entity} updateEntity={updateEntity} />} style={{ padddingRight: 0 }} placement="rightTop" trigger="click">
         <MoreOutlined className={styles.more_btn} />
       </Popover>
       <Copy className={styles.copy_btn} value={id} />
-      <DeleteOutlined className={styles.delete_btn} onClick={remove} />
+      <Popconfirm title="确认是否删除?" onConfirm={remove} getPopupContainer={() => rootRef.current}>
+        <DeleteOutlined className={styles.delete_btn} />
+      </Popconfirm>
       <Mask className={styles.mask} />
     </>
   ) : null
