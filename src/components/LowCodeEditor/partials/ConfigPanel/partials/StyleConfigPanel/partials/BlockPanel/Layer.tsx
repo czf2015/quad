@@ -52,7 +52,7 @@ export default ({ store }) => {
         <Tooltip title="z-index">
           <InputNumber
             className={styles.item}
-            min={0}
+            min={1}
             controls={false}
             defaultValue={store('z')}
             prefix={zIcon()}
