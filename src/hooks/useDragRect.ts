@@ -21,8 +21,8 @@ export const useDragRect = (
           style: {
             left: left + dragMove.x,
             top: top + dragMove.y,
-            width: width - dragMove.x,
-            height: height - dragMove.y,
+            width: width - dragMove.x < 20 ? 20 : width - dragMove.x,
+            height: height - dragMove.y < 20 ? 20 : height - dragMove.y,
           },
         });
         break;
@@ -30,16 +30,16 @@ export const useDragRect = (
         updateEntity(id, {
           style: {
             top: top + dragMove.y,
-            width: width + dragMove.x,
-            height: height - dragMove.y,
+            width: width + dragMove.x < 20 ? 20 : width + dragMove.x,
+            height: height - dragMove.y < 20 ? 20 : height - dragMove.y,
           },
         });
         break;
       case "bottom_right":
         updateEntity(id, {
           style: {
-            width: width + dragMove.x,
-            height: height + dragMove.y,
+            width: width + dragMove.x < 20 ? 20 : width + dragMove.x,
+            height: height + dragMove.y < 20 ? 20 : height + dragMove.y,
           },
         });
         break;
@@ -47,8 +47,8 @@ export const useDragRect = (
         updateEntity(id, {
           style: {
             left: left + dragMove.x,
-            width: width - dragMove.x,
-            height: height + dragMove.y,
+            width: width - dragMove.x < 20 ? 20 : width - dragMove.x,
+            height: height + dragMove.y < 20 ? 20 : height + dragMove.y,
           },
         });
         break;
@@ -56,21 +56,21 @@ export const useDragRect = (
         updateEntity(id, {
           style: {
             top: top + dragMove.y,
-            height: height - dragMove.y,
+            height: height - dragMove.y < 20 ? 20 : height - dragMove.y,
           },
         });
         break;
       case "right":
         updateEntity(id, {
           style: {
-            width: width + dragMove.x,
+            width: width + dragMove.x < 20 ? 20 : width + dragMove.x < 20
           },
         });
         break;
       case "bottom":
         updateEntity(id, {
           style: {
-            height: height + dragMove.y,
+            height: height + dragMove.y < 20 ? 20 : height + dragMove.y,
           },
         });
         break;
@@ -78,7 +78,7 @@ export const useDragRect = (
         updateEntity(id, {
           style: {
             left: left + dragMove.x,
-            width: width - dragMove.x,
+            width: width - dragMove.x < 20 ? 20 : width - dragMove.x,
           },
         });
         break;

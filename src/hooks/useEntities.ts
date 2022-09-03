@@ -57,27 +57,27 @@ export const useEntities = (
   const removeEntity = (id, isBlock = false) => {
     setEntities((entities) => {
       if (!isBlock) {
-        const entity = entities.find((item) => item.id == id);
         const result = entities.filter(
           (item) => item.id != id && item.pid != id
-        );
-        if (entity.name == "DragBlock") {
-          return result.filter((item) => {
-            if (item.name == "DragBlock") {
-              if (
-                item.style.left >= entity.style.left &&
-                item.style.top >= entity.style.top &&
-                item.style.left + item.style.width <=
-                  entity.style.left + entity.style.width &&
-                item.style.top + item.style.height <=
-                  entity.style.top + entity.style.height
-              ) {
-                return false;
-              }
-            }
-            return true;
-          });
-        }
+          );
+        // const entity = entities.find((item) => item.id == id);
+        // if (entity.name == "DragBlock") {
+        //   return result.filter((item) => {
+        //     if (item.name == "DragBlock") {
+        //       if (
+        //         item.style.left >= entity.style.left &&
+        //         item.style.top >= entity.style.top &&
+        //         item.style.left + item.style.width <=
+        //           entity.style.left + entity.style.width &&
+        //         item.style.top + item.style.height <=
+        //           entity.style.top + entity.style.height
+        //       ) {
+        //         return false;
+        //       }
+        //     }
+        //     return true;
+        //   });
+        // }
         snapShot.take(result, `remove entity of widget: ${id}`);
         return result;
       }
