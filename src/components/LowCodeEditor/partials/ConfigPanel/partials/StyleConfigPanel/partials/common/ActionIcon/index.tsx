@@ -4,10 +4,10 @@ import { DisconnectOutlined, LinkOutlined, PercentageOutlined } from '@ant-desig
 import { Tooltip } from 'antd';
 
 export const SplitIcon = ({ disconnect, handleDisconnect, style }) => {
-  const Icon = disconnect ? DisconnectOutlined : LinkOutlined;
+  const Icon = disconnect ? LinkOutlined : DisconnectOutlined;
 
   return (
-    <Tooltip title={disconnect ? '合成' : '分解'}>
+    <Tooltip title={disconnect ? '分解' : '合成'}>
       <Icon onClick={handleDisconnect} style={{ marginLeft: 12, ...style }} />
     </Tooltip>
   );

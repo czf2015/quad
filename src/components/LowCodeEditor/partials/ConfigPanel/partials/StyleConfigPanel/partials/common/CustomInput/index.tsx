@@ -1,10 +1,20 @@
 // @ts-nocheck
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { InputNumber } from 'antd';
 import { SplitIcon, UnitIcon } from '../ActionIcon';
 import styles from './index.module.less';
 
-export const CustomInput = ({ label, type, value, isDisconnect, handleBlur, handleNumItemBlur, handleUnit, handleDisconnect,labelMarginLeft = 0 }) => {
+export const CustomInput = ({
+  label,
+  type,
+  value,
+  isDisconnect,
+  handleBlur,
+  handleNumItemBlur,
+  handleUnit,
+  handleDisconnect,
+  labelMarginLeft = 0,
+}) => {
   const [disconnect, setDisconnect] = useState(false);
 
   useEffect(() => {
@@ -33,7 +43,7 @@ export const CustomInput = ({ label, type, value, isDisconnect, handleBlur, hand
   return (
     <div className={styles.item}>
       <div>
-        <span style={{marginLeft: labelMarginLeft}}>{label}:</span>
+        <span style={{ marginLeft: labelMarginLeft }}>{label}:</span>
         {disconnect ? (
           renderNumberInputs()
         ) : (
@@ -43,13 +53,13 @@ export const CustomInput = ({ label, type, value, isDisconnect, handleBlur, hand
       <div>
         <UnitIcon unit={type} handleUnit={handleUnit} />
         <SplitIcon
-            disconnect={disconnect}
-            handleDisconnect={() => {
-              handleDisconnect(disconnect, setDisconnect);
-            }}
-            style={{ visibility: isDisconnect ? 'visible' : 'hidden' }}
-          />
+          disconnect={disconnect}
+          handleDisconnect={() => {
+            handleDisconnect(disconnect, setDisconnect);
+          }}
+          style={{ visibility: isDisconnect ? 'visible' : 'hidden' }}
+        />
       </div>
     </div>
   );
-}
+};
