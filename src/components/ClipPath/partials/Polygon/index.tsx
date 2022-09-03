@@ -42,22 +42,23 @@ export const Polygon = ({ boxStyle = {}, value: polygon = { type: 'polygon', ang
   }
 
   const polygonRef = useRef(null)
-  const handleAngleChange = (angle) => {
-    setPolygon?.({ ...polygon, angle, points: getPoints(boxStyle?.width, boxStyle?.height, polygon.points.length, angle) })
+  const handleAngleChange = (value) => {
+    const angle = value % 360
+    setPolygon?.({ ...polygon, angle, points: getPoints(boxStyle?.width, boxStyle?.height, polygon?.points?.length, angle) })
     setTimeout(() => {
       polygonRef.current.querySelector(`[data-id=angle]`).focus()
     })
   }
   const handleEdgesChange = (edges) => {
-    setPolygon?.({ ...polygon, points: getPoints(boxStyle?.width, boxStyle?.height, edges, polygon.angle) })
+    setPolygon?.({ ...polygon, points: getPoints(boxStyle?.width, boxStyle?.height, edges, polygon?.angle) })
     setTimeout(() => {
       polygonRef.current.querySelector(`[data-id=edges]`).focus()
     })
   }
   const contextMenu = (
     <>
-      <InputNumber data-id="edges" style={{ width: 88 }} value={polygon.points.length} onChange={handleEdgesChange} min={3} step={1} size="small" addonBefore={<img src="/icons/Polygon.svg" width="12px" height="12px" />} />
-      <InputNumber data-id="angle" style={{ width: 114 }} value={polygon.angle} onChange={handleAngleChange} min={-360} max={360} step={90} size="small" addonBefore={<img src="/icons/Angle.svg" width="8px" height="8px" />} addonAfter="°" />
+      <InputNumber data-id="edges" style={{ width: 88 }} value={polygon?.points?.length} onChange={handleEdgesChange} min={3} step={1} size="small" addonBefore={<img src="/icons/Polygon.svg" width="12px" height="12px" />} />
+      <InputNumber data-id="angle" style={{ width: 120 }} value={polygon?.angle} onChange={handleAngleChange} step={90} size="small" addonBefore={<img src="/icons/Angle.svg" width="8px" height="8px" />} addonAfter="°" />
     </>
   )
 
