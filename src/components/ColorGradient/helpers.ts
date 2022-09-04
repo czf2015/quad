@@ -182,7 +182,7 @@ export const convertToStyle = (
   clipPathFlag = false
 ) => {
   if (clipPathFlag) {
-    return { clipPath: getClipPath(clipPath) };
+    return { clipPath: getClipPath(clipPath), overflow };
   }
   const bg = [];
   fill.forEach((item) => {
@@ -211,7 +211,6 @@ export const convertToStyle = (
     alignItems: ALIGN_ITEMS_VALUES[vertical],
     background,
     opacity: hidden ? 0 : opacity / 100,
-    overflow,
     transform: `rotate(${-rotate}deg)`,
     // zIndex: z,
     // visibility: hidden ? "hidden" : "visible",
