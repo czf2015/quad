@@ -1,7 +1,7 @@
 import { useRef } from "react";
 
 export const useDragRect = (
-  { id, style: { left = 0, top = 0, width = 0, height = 0 } = {}, rotate = 0 },
+  { id, style: { left = 0, top = 0, width = 0, height = 0 } = {}, styleConfig: { rotate = 0  } = {} },
   updateEntity,
   draggable
 ) => {

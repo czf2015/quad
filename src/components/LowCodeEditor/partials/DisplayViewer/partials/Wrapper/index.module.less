@@ -23,7 +23,7 @@
     }
   }
 
-  > .holder_btn {
+  >.holder_btn {
     position: absolute;
     top: 4px;
     left: 4px;
@@ -31,7 +31,7 @@
     cursor: move;
   }
 
-  > .delete_btn {
+  >.delete_btn {
     position: absolute;
     bottom: 4px;
     left: 4px;
@@ -39,7 +39,7 @@
     color: var(--quad-danger-color);
   }
 
-  > .more_btn {
+  >.more_btn {
     position: absolute;
     top: 4px;
     right: 4px;
@@ -47,7 +47,7 @@
     cursor: pointer;
   }
 
-  > .copy_btn {
+  >.copy_btn {
     position: absolute;
     bottom: 4px;
     right: 4px;
@@ -57,7 +57,7 @@
     background-color: transparent;
   }
 
-  > .expand_btn {
+  >.expand_btn {
     position: absolute;
     bottom: -7px;
     right: -7px;
@@ -66,27 +66,68 @@
     cursor: nw-resize;
   }
 
+  >.rotate {
+    position: absolute;
+    bottom: -20px;
+    left: calc(50% - 8px);
+    font-size: 12px;
+    color: var(--quad-primary-color);
+    cursor: pointer;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: -8px;
+      left: -24px;
+      display: inline-block;
+      width: 72px;
+      height: 24px;
+    }
+  }
+
   &:not(:hover) {
-    > .holder_btn,
-    > .delete_btn,
-    > .copy_btn,
-    > .more_btn,
-    > .expand_btn,
-    > .mask {
+
+    >.holder_btn,
+    >.delete_btn,
+    >.copy_btn,
+    >.more_btn,
+    >.expand_btn,
+    >.mask,
+    >.rotate,
+    >.clip {
       display: none;
     }
   }
 
   &.active {
-    > .mask {
+    >.mask {
       display: none;
     }
   }
 
   &.editable {
+
     &:hover,
     &.active {
       outline: 2px solid var(--quad-primary-color);
     }
+  }
+}
+
+.angle_icon {
+  width: 8px;
+  height: 8px;
+  cursor: pointer;
+}
+
+.rotate_input {
+  position: relative;
+  width: 78px;
+
+  &::after {
+    content: "°";
+    position: absolute;
+    top: 0px;
+    right: 4px;
   }
 }
