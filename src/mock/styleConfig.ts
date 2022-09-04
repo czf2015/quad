@@ -217,7 +217,7 @@ export const widgetStyle = {
     color: "#ccc",
   },// 或数组top right bottom left
   // 图层
-  overflow: 0,
+  overflow: 'hidden',
   opacity: 1,
   z: 1,
   hidden: false,
