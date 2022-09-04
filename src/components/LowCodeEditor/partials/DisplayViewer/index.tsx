@@ -64,8 +64,8 @@ export const DisplayViewer = ({ entities = [], setEntities, updateEntity, remove
     return (
       <>
         {entities.sort((prev, next) => {
-          const zValue1 = prev?.styleConfig?.z || 0
-          const zValue2 = next?.styleConfig?.z || 0
+          const zValue1 = prev?.styleConfig?.z || 10
+          const zValue2 = next?.styleConfig?.z || 10
           return zValue1 - zValue2
         }).filter(item => item.pid == pid).map((item) => {
           if (item.name == 'Block' || item.name == 'DragBlock') {
