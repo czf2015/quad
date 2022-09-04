@@ -11,7 +11,7 @@ export const CustomizeConfigPanel = ({ id, customize: initialValues, meta = { cu
   return (
     <div className={styles.customize_config_panel}>
       {meta?.customize?.length > 0 ? 
-        <Form initialValues={initialValues} children={meta?.customize}  onFinish={handleSubmit} wrapperCol={{ span: 20 }} labelCol={{ span: 4 }} bodyStyle={{ padding: '0 8px'}} /> :
+        <Form initialValues={initialValues} children={meta?.customize}  onFinish={handleSubmit} wrapperCol={{ span: 19 }} labelCol={{ span: 5 }} /> :
         <Empty />
       }
     </div>
