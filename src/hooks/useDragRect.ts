@@ -63,7 +63,7 @@ export const useDragRect = (
       case "right":
         updateEntity(id, {
           style: {
-            width: width + dragMove.x < 20 ? 20 : width + dragMove.x < 20
+            width: width + dragMove.x < 20 ? 20 : width + dragMove.x
           },
         });
         break;
