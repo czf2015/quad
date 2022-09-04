@@ -2,11 +2,11 @@ import React from 'react'
 import { Popconfirm, InputNumber, Dropdown, Tooltip } from 'antd'
 import BlockStyleConfigPanel from "@/components/LowCodeEditor/partials/ConfigPanel/partials/StyleConfigPanel/partials/BlockPanel";
 import Mask from '@/components/Mask';
+import ClipPath from '@/components/ClipPath';
 import { useDragRect } from '@/hooks'
 import { SyncOutlined, DeleteOutlined } from '@ant-design/icons'
 import { convertToStyle } from '@/components/ColorGradient/helpers';
 import styles from './index.module.less'
-import ClipPath from '@/components/ClipPath';
 
 export const DragBlock = ({ removeEntity, updateEntity, handleDrop, children, active, setActive, editable = false, ...entity }) => {
   const { ref, handleDragStart, ...attrs } = useDragRect(entity, updateEntity, editable)

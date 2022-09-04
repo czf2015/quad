@@ -4,6 +4,7 @@ import { Popover, Popconfirm } from '@/plugins/ui'
 import Copy from '@/components/Copy'
 import { CustomizeConfigPanel } from "@/components/LowCodeEditor/partials/ConfigPanel/partials/CustomizeConfigPanel";
 import Mask from "@/components/Mask";
+import ClipPath from '@/components/ClipPath';
 import { useDragMove, useBinds, useHandlers } from "@/hooks";
 import { stopPropagation } from '@/utils/dom'
 import { HolderOutlined, DeleteOutlined, MoreOutlined, RadiusBottomrightOutlined } from '@ant-design/icons'
@@ -71,10 +72,15 @@ export const Wrapper = ({
     </>
   ) : null
 
+  const handleClipPathChange = (clipPath) => {
+    updateEntity(id, { styleConfig: { clipPath } })
+  }
+
   return (
     <div ref={rootRef} id={id} data-width={style?.width} data-height={style?.height} className={`${styles.wrapper} ${mode == 'card' ? 'quad-card' : ''} ${editable ? styles.editable : ''} ${active.id == id ? styles.active : ''}`} onClick={select} onDragOver={onDragOver} onDrop={onDrop} onDragStart={stopPropagation} style={style}>
       {children}
       {editTools}
+      <ClipPath className={styles.clip} boxStyle={style} value={entity?.styleConfig?.clipPath} onChange={handleClipPathChange} disabled={!editable || entity?.styleConfig?.rotate} />
     </div>
   );
 };
