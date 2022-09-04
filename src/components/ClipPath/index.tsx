@@ -26,7 +26,7 @@ export default ({ className = '', boxStyle = {}, value = { type: 'none' }, onCha
     {
       label: '清除',
       key: 'none',
-      icon: <img src="/icons/Brush.svg" />
+      icon: <img src="/icons/Brush.svg" width="12px" height="12px" />
     },
     {
       label: '矩形',
