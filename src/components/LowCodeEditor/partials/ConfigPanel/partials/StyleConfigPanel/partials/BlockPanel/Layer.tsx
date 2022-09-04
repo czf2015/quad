@@ -29,7 +29,7 @@ export default ({ store }) => {
       <div className={styles.content}>
         <Tooltip title="溢出">
           <Select
-            value={store('overflow') || 'auto'}
+            value={store('overflow') || 'hidden'}
             className={styles.item}
             options={OVERFLOW_OPTIONS}
             onChange={handleOverflow}

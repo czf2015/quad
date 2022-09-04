@@ -172,7 +172,7 @@ export const convertToStyle = (
   {
     constraints: { horizontal = 0, vertical = 3 } = {},
     fill = [],
-    overflow = 'auto',
+    overflow = 'hidden',
     opacity = 100,
     z,
     hidden = false,
