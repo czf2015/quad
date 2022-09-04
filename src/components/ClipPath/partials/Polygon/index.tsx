@@ -1,8 +1,9 @@
-import React, { useState, useRef, useEffect } from 'react'
-import { Popconfirm, InputNumber, Dropdown, Popover } from 'antd'
+import React, { useRef } from 'react'
+import { InputNumber, Dropdown, Tooltip } from 'antd'
 import { useDragMove } from '@/hooks'
-import styles from './index.module.less'
 import uuid from '@/plugins/uuid'
+import { stopPropagation } from '@/utils/dom'
+import styles from './index.module.less'
 
 const getPoints = (w, h, n, startAngle) => {
   const result = []
@@ -57,14 +58,18 @@ export const Polygon = ({ boxStyle = {}, value: polygon = { type: 'polygon', ang
   }
   const contextMenu = (
     <>
-      <InputNumber data-id="edges" style={{ width: 64 }} value={polygon?.points?.length} onChange={handleEdgesChange} min={3} step={1} size="small" addonBefore={<img src="/icons/Polygon.svg" width="12px" height="12px" />} controls={false} />
-      <InputNumber className={styles.angle_input} data-id="angle" value={polygon?.angle} onChange={handleAngleChange} step={90} size="small" addonBefore={<img src="/icons/Angle.svg" width="8px" height="8px" />} controls={false} />
+      <Tooltip title="边数">
+        <InputNumber data-id="edges" style={{ width: 32 }} value={polygon?.points?.length} onChange={handleEdgesChange} min={3} step={1} size="small" /* addonBefore={<img src="/icons/Polygon.svg" width="12px" height="12px" />} */ controls={false} />
+      </Tooltip>
+      <Tooltip title="角度">
+        <InputNumber className={styles.angle_input} data-id="angle" value={polygon?.angle} onChange={handleAngleChange} step={90} size="small" /* addonBefore={<img src="/icons/Angle.svg" width="8px" height="8px" />}  */ controls={false} />
+      </Tooltip>
     </>
   )
 
   return (
     <Dropdown overlay={contextMenu} placement="bottom" trigger={["contextMenu"]} getPopupContainer={triggerNode => polygonRef.current}>
-      <div ref={polygonRef} className={`${styles.curtain} ${disabled ? styles.disabled : ''}`} style={{ clipPath }} {...attrs} onDragStart={handleDragStart('move')}>
+      <div ref={polygonRef} className={`${styles.curtain} ${disabled ? styles.disabled : ''}`} style={{ clipPath }} {...attrs} onDragStart={handleDragStart('move')} onContextMenu={stopPropagation}>
         {polygon?.points?.map(point => {
           return (
             <div className={styles.circle} {...attrs} onDragStart={handleDragStart(point.id)} style={{ left: point?.x, top: point?.y }} key={point.id} />
