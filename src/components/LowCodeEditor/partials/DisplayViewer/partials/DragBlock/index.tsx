@@ -1,12 +1,12 @@
 import React from 'react'
-import { Popconfirm, InputNumber, Dropdown, Popover, Tooltip } from 'antd'
+import { Popconfirm, InputNumber, Dropdown, Tooltip } from 'antd'
 import BlockStyleConfigPanel from "@/components/LowCodeEditor/partials/ConfigPanel/partials/StyleConfigPanel/partials/BlockPanel";
 import Mask from '@/components/Mask';
+import ClipPath from '@/components/ClipPath';
 import { useDragRect } from '@/hooks'
-import { SyncOutlined, DeleteOutlined, MoreOutlined } from '@ant-design/icons'
+import { SyncOutlined, DeleteOutlined } from '@ant-design/icons'
 import { convertToStyle } from '@/components/ColorGradient/helpers';
 import styles from './index.module.less'
-import ClipPath from '@/components/ClipPath';
 
 export const DragBlock = ({ removeEntity, updateEntity, handleDrop, children, active, setActive, editable = false, ...entity }) => {
   const { ref, handleDragStart, ...attrs } = useDragRect(entity, updateEntity, editable)
@@ -24,29 +24,29 @@ export const DragBlock = ({ removeEntity, updateEntity, handleDrop, children, ac
     updateEntity(entity.id, { styleConfig: { rotate: 0 } })
   }
   const angleIcon = <Tooltip title="复原"><img className={styles.angle_icon} src="/icons/Angle.svg" onClick={resetRotate} /></Tooltip>
+  const rotateInput = <InputNumber className={styles.rotate_input} value={entity?.styleConfig?.rotate} onChange={handleRotateChange} step={5} size="small" addonBefore={angleIcon} controls={false} />
 
   const handleClipPathChange = (clipPath) => {
     updateEntity(entity?.id, { styleConfig: { clipPath } })
   }
 
   return (
-    <div ref={ref} data-width={entity?.style?.width} data-height={entity?.style?.height} className={`${styles.drag_block} ${editable ? styles.editable : ''} ${!entity?.styleConfig?.rotate ? styles.resize : ''}`} style={{ ...entity.style, ...convertToStyle(entity?.styleConfig, false) }} {...attrs} onDragStart={handleDragStart('move')} onDrop={onDrop}>
-      <div className={styles.container} style={{ ...convertToStyle(entity?.styleConfig, true) }}>
-        {children}
+    <Dropdown overlay={<BlockStyleConfigPanel {...entity} updateEntity={updateEntity} />} trigger="contextMenu" placement="bottom">
+      <div ref={ref} data-width={entity?.style?.width} data-height={entity?.style?.height} className={`${styles.drag_block} ${editable ? styles.editable : ''} ${!entity?.styleConfig?.rotate ? styles.resize : ''}`} style={{ ...entity.style, ...convertToStyle(entity?.styleConfig, false) }} {...attrs} onDragStart={handleDragStart('move')} onDrop={onDrop}>
+        <div className={styles.container} style={{ ...convertToStyle(entity?.styleConfig, true) }}>
+          {children}
+        </div>
+        <Mask className={styles.mask} />
+        <Dropdown overlay={rotateInput} placement="bottom">
+          <SyncOutlined className={styles.rotate} {...attrs} onDragStart={handleDragStart('rotate')} />
+        </Dropdown>
+        {['top', 'right', 'bottom', 'left'].map(flag => <div className={styles[`line__${flag}`]} {...attrs} onDragStart={handleDragStart(flag)} key={flag} />)}
+        {['top_left', 'top_right', 'bottom_right', 'bottom_left'].map(flag => <div className={`${styles.circle} ${styles[flag]}`} {...attrs} onDragStart={handleDragStart(flag)} key={flag} />)}
+        <Popconfirm title="确认是否删除?" onConfirm={remove} getPopupContainer={() => ref.current}>
+          <DeleteOutlined className={styles.delete} />
+        </Popconfirm>
+        <ClipPath className={styles.clip} boxStyle={entity?.style} value={entity?.styleConfig?.clipPath} onChange={handleClipPathChange} disabled={!editable || entity?.styleConfig?.rotate} />
       </div>
-      <Mask className={styles.mask} />
-      <Dropdown overlay={<InputNumber style={{ width: 120 }} value={entity?.styleConfig?.rotate} onChange={handleRotateChange} step={5} size="small" addonBefore={angleIcon} addonAfter="°" />} placement="bottom">
-        <SyncOutlined className={styles.rotate} {...attrs} onDragStart={handleDragStart('rotate')} />
-      </Dropdown>
-      {['top', 'right', 'bottom', 'left'].map(flag => <div className={styles[`line__${flag}`]} {...attrs} onDragStart={handleDragStart(flag)} key={flag} />)}
-      {['top_left', 'top_right', 'bottom_right', 'bottom_left'].map(flag => <div className={`${styles.circle} ${styles[flag]}`} {...attrs} onDragStart={handleDragStart(flag)} key={flag} />)}
-      <Popover content={<BlockStyleConfigPanel {...entity} updateEntity={updateEntity} />} trigger="click">
-        <MoreOutlined className={styles.more_btn} />
-      </Popover>
-      <Popconfirm title="确认是否删除?" onConfirm={remove} >
-        <DeleteOutlined className={styles.delete} />
-      </Popconfirm>
-      <ClipPath className={styles.clip} boxStyle={entity?.style} value={entity?.styleConfig?.clipPath} onChange={handleClipPathChange} disabled={!editable || entity?.styleConfig?.rotate} />
-    </div>
+    </Dropdown>
   )
 }

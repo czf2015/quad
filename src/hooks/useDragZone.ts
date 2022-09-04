@@ -18,8 +18,8 @@ export const useDragZone = (handle, interval = 25) => {
       style: {
         left,
         top,
-        width,
-        height,
+        width: width < 20 ? 20 : width,
+        height: height < 20 ? 20 : height,
       },
       active: true,
       rotate: 0,

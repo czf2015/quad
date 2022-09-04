@@ -15,7 +15,7 @@ export default ({ id, styleConfig, updateEntity }) => {
   const store = useStore(styleConfig, updateStyleConfig);
 
   return (
-    <div className={styles.block_style_config}>
+    <div className={`${styles.block_style_config} quad-card`}>
       <Constraints store={store} />
       <Divider />
       <Layer store={store} />

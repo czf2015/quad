@@ -5,12 +5,13 @@
   flex-wrap: wrap;
   &.editable {
     outline: 1px dashed var(--quad-primary-color);
+    cursor: context-menu;
   }
 
   > .scissor_btn {
     position: absolute;
     top: 24px;
-    right: 60px;
+    right: 32px;
     // font-size: 12px;
 
     &:hover {
@@ -21,22 +22,11 @@
   > .delete_btn {
     position: absolute;
     top: 24px;
-    right: 32px;
-    // font-size: 12px;
-
-    &:hover {
-      color: #e33e38;
-    }
-  }
-
-  > .more_btn {
-    position: absolute;
-    top: 24px;
     right: 4px;
     // font-size: 12px;
 
     &:hover {
-      color: var(--quad-primary-color);
+      color: #e33e38;
     }
   }
 
@@ -83,7 +73,6 @@
 
   &:not(:hover):not(.contextmenu),
   &.hasBlock {
-    > .more_btn,
     > .delete_btn,
     > .scissor_btn,
     > .clip_scissor,

@@ -29,7 +29,7 @@ export default ({ store }) => {
       <div className={styles.content}>
         <Tooltip title="溢出">
           <Select
-            value={store('overflow')}
+            value={store('overflow') || 'hidden'}
             className={styles.item}
             options={OVERFLOW_OPTIONS}
             onChange={handleOverflow}
@@ -43,7 +43,7 @@ export default ({ store }) => {
             min={0}
             controls={false}
             // formatter={(value) => `${value}%`}
-            defaultValue={store('opacity')}
+            defaultValue={store('opacity') || 100}
             prefix={opacityIcon()}
             onBlur={handleOpacityBlur}
             size="small"
@@ -52,11 +52,10 @@ export default ({ store }) => {
         <Tooltip title="z-index">
           <InputNumber
             className={styles.item}
-            min={1}
-            controls={false}
-            defaultValue={store('z')}
-            prefix={zIcon()}
+            defaultValue={store('z') || 10}
             onBlur={handleZIndexBlur}
+            min={1}
+            prefix={zIcon()}
             size="small"
           />
         </Tooltip>

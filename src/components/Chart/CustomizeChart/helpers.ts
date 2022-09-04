@@ -19,13 +19,13 @@ const aggregate = (sorted = [], { category, stack, name, value } = {}) => {
   sorted.forEach(record => {
     const key = `${record[category]}-${record[stack]}-${record[name]}`
     if (typeof indexs[key] == 'undefined') {
-      aggregated.push(record)
+      aggregated.push({ ...record })
       indexs[key] = aggregated.length - 1
     } else {
       aggregated[indexs[key]][value] += record[value]
     }
   })
-  return aggregated
+  return [...aggregated]
 }
 
 const unique = (raws = []) => [...new Set(raws)]
@@ -34,11 +34,11 @@ const getSeries = (aggregated = [], { type, name, stack, value, percentage = fal
   const series = []
   const seriesIndexs = {}
   aggregated.forEach(record => {
-    const key = `${record[stack]}-${record[name]}`
+    const key = `${record[stack]}: ${record[name]}`
     if (typeof seriesIndexs[key] == 'undefined') {
       series.push({
         type,
-        name: record[name],
+        name: key,
         stack: record[stack],
         data: [record[value]]
       })
@@ -54,7 +54,7 @@ const getSeries = (aggregated = [], { type, name, stack, value, percentage = fal
   }) : series
 }
 
-const getLegend = (series) => {
+const getLegend = (series, show = true) => {
   const data = series.map(serie => serie.name)
   return {
     orient: "horizontal",
@@ -67,6 +67,7 @@ const getLegend = (series) => {
       fontSize: 8,
     },
     data,
+    show,
   }
 }
 
@@ -148,7 +149,26 @@ const getTooltip = (percentage = false) => {
   }
 }
 
-export const getOption = ({ data: { list = [] } = {}, customize: { title, type = 'bar', dimensions = [
+const getToolbox = ({ feature, show = false } = {}) => {
+  return {
+    show,
+    feature
+  }
+}
+
+const DEFAULT_COLOR =  ["#BB55DE", "#19E1D3", "#5591F4", "#F2B937", "#763DCB", "#C23D67"]
+
+const getColor = (colors = []) => {
+  const result = []
+  colors?.forEach(item => {
+    if (!item.hidden) {
+      result.push(item.value)
+    }
+  })
+  return result.length > 0 ? result : DEFAULT_COLOR
+}
+
+export const getOption = ({ data: { list = [] } = {}, customize: { title, subtitle, show = [1], type = 'bar', dimensions = [
   {
     field: 'year',
     sort: 1,
@@ -167,7 +187,7 @@ export const getOption = ({ data: { list = [] } = {}, customize: { title, type =
     sort: 0,
     axis: 'yAxis'
   },
-], stack: name, group: stack, percentage = true, layout, animation, color = ["#BB55DE", "#19E1D3", "#5591F4", "#F2B937", "#763DCB", "#C23D67"], } = {} } = {}) => {
+], stack: name, group: stack, percentage, layout, animationDuration, colors = [], } = {} } = {}) => {
   const tooltip = getTooltip(percentage)
 
   const { category, value, sorts } = extract(dimensions, layout)
@@ -180,10 +200,15 @@ export const getOption = ({ data: { list = [] } = {}, customize: { title, type =
 
   const series = getSeries(aggregated, { type, name, stack, value, percentage })
 
-  const legend = getLegend(series)
+  const legend = getLegend(series, show.includes(1))
+
+  const toolbox = getToolbox({ feature: { saveAsImage: { name: title, title: '保存为图片', type: 'png', show: true }, brush: { type: 'rect', title: '框选' } }, show: show.includes(2) })
 
   return {
-    title,
+    title: {
+      text: title,
+      subtext: subtitle,
+    },
     grid: {
       top: "6%",
       left: "2%",
@@ -191,12 +216,14 @@ export const getOption = ({ data: { list = [] } = {}, customize: { title, type =
       bottom: "13%",
       containLabel: true,
     },
+    toolbox,
     tooltip,
     ...axis,
     series,
     legend,
-    animation,
-    color,
+    animation: !!animationDuration,
+    animationDuration,
+    color: getColor(colors),
   }
 }
 
@@ -209,6 +236,49 @@ export const getMeta = (properties = {}) => {
           name: 'title',
           label: '标题',
           type: 'Input',
+        },
+        {
+          name: 'subtitle',
+          label: '副标题',
+          type: 'Input',
+        },
+        {
+          name: 'show',
+          label: '显示',
+          type: 'Checkbox',
+          options: [
+            {
+              label: '图例组件',
+              value: 1 // legend
+            },
+            {
+              label: '工具箱',
+              value: 2 // toolbox
+            },
+            {
+              label: '区域选择',
+              value: 4 // brush
+            }
+          ]
+        },
+        {
+          name: 'dataZoom',
+          label: '区域缩放',
+          type: 'Select',
+          options: [
+            {
+              label: '内置',
+              value: 'inside'
+            },
+            {
+              label: '滑块',
+              value: 'slider'
+            },
+            {
+              label: '框选',
+              value: 'select'
+            }
+          ]
         },
         {
           name: 'type',
@@ -228,13 +298,26 @@ export const getMeta = (properties = {}) => {
           allowClear: false
         },
         {
-          name: 'color',
-          label: '颜色',
+          name: 'barBackground',
+          label: '柱背景色',
+          type: 'ColorPicker',
+          prerequisites: [
+            {
+              field: 'type',
+              options: {
+                include: ['bar']
+              }
+            }
+          ],
+        },
+        {
+          name: 'colors',
+          label: '调色列表',
           type: 'Colors',
         },
         {
-          name: 'animation',
-          label: '动效',
+          name: 'animationDuration',
+          label: '动效时长',
           type: 'InputNumber',
           min: 0,
           addonAfter: '秒',
@@ -280,7 +363,7 @@ export const getMeta = (properties = {}) => {
           label: '坐标系',
           type: 'Select',
           options: [
-            { label: '直角坐标', value: 'LR' },
+            { label: '直角坐标', value: 'cartesian2d' },
             { label: '极坐标', value: 'polar' },
           ],
           prerequisites: [
@@ -291,7 +374,7 @@ export const getMeta = (properties = {}) => {
               }
             }
           ],
-        },
+        },    
         {
           name: 'dimensions',
           label: '维度',
@@ -373,7 +456,6 @@ export const getMeta = (properties = {}) => {
                 }
               ],
             },
-
           ]
         },
         {

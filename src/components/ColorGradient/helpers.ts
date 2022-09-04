@@ -173,7 +173,7 @@ export const convertToStyle = (
   {
     constraints: { horizontal = 0, vertical = 3 } = {},
     fill = [],
-    overflow,
+    overflow = 'hidden',
     opacity = 100,
     z,
     hidden = false,
@@ -183,7 +183,7 @@ export const convertToStyle = (
   clipPathFlag = false
 ) => {
   if (clipPathFlag) {
-    return { clipPath: getClipPath(clipPath) };
+    return { clipPath: getClipPath(clipPath), overflow };
   }
   const bg = [];
   fill.forEach((item) => {
@@ -211,11 +211,10 @@ export const convertToStyle = (
     justifyContent: JUSTIFY_CONTENT_VALUES[horizontal],
     alignItems: ALIGN_ITEMS_VALUES[vertical],
     background,
-    opacity: opacity / 100,
-    overflow,
+    opacity: hidden ? 0 : opacity / 100,
     transform: `rotate(${-rotate}deg)`,
-    zIndex: z,
-    visibility: hidden ? "hidden" : "visible",
+    // zIndex: z,
+    // visibility: hidden ? "hidden" : "visible",
   };
 };
 

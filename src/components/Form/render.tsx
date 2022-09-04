@@ -13,6 +13,7 @@ import Compact from "./partials/Compact";
 import Multiple from "./partials/Multiple";
 import InputText from "./partials/InputText";
 import Colors from "./partials/Colors";
+import ColorPicker from "@/components/ColorPicker";
 import { CaretDownOutlined } from "@ant-design/icons";
 import DatePicker from "./partials/DatePicker";
 
@@ -198,13 +199,16 @@ export const renderFormItem = ({
         item = <FormList name={name} schema={schema} disabled={disabled} {...attrs} />
         break
       case "FormTable":
-          item = <FormTable name={name} schema={schema} disabled={disabled} {...attrs} />
-          break
+        item = <FormTable name={name} schema={schema} disabled={disabled} {...attrs} />
+        break
       case "Compact":
         item = <Compact name={name} schema={schema} disabled={disabled} {...attrs} />
         break
       case "Colors":
         item = <Colors />
+        break
+      case "ColorPicker":
+        item = <ColorPicker />
         break
       default:
         break;

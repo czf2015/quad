@@ -14,11 +14,11 @@ export default ({ widgetStyle }) => {
     <div>
       <BoxModel store={store} />
       <Divider />
+      <Transform store={store} />
+      <Divider />
       <Text store={store} />
       <Divider />
       <Fill store={store} />
-      <Divider />
-      <Transform store={store} />
       <Divider />
       <BoxShadow store={store} />
     </div>

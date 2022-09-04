@@ -2,7 +2,28 @@
   position: relative;
   z-index: 9;
 
-  > .holder_btn {
+  &.editable:hover {
+    &::before {
+      content: attr(data-width);
+      position: absolute;
+      top: -20px;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      color: var(--quad-primary-color);
+    }
+
+    &::after {
+      content: attr(data-height);
+      position: absolute;
+      top: calc(50% - 12px);
+      left: -24px;
+      color: var(--quad-primary-color);
+    }
+  }
+
+  >.holder_btn {
     position: absolute;
     top: 4px;
     left: 4px;
@@ -10,14 +31,15 @@
     cursor: move;
   }
 
-  > .delete_btn {
+  >.delete_btn {
     position: absolute;
     bottom: 4px;
     left: 4px;
     // font-size: 12px;
+    color: var(--quad-danger-color);
   }
 
-  > .more_btn {
+  >.more_btn {
     position: absolute;
     top: 4px;
     right: 4px;
@@ -25,43 +47,87 @@
     cursor: pointer;
   }
 
-  > .copy_btn {
+  >.copy_btn {
     position: absolute;
     bottom: 4px;
     right: 4px;
+    width: 14px;
+    height: 14px;
     // font-size: 12px;
     background-color: transparent;
   }
 
-  > .expand_btn {
+  >.expand_btn {
     position: absolute;
-    bottom: -2px;
-    right: -2px;
+    bottom: -7px;
+    right: -7px;
     // font-size: 12px;
+    color: var(--quad-primary-color);
     cursor: nw-resize;
   }
 
+  >.rotate {
+    position: absolute;
+    bottom: -20px;
+    left: calc(50% - 8px);
+    font-size: 12px;
+    color: var(--quad-primary-color);
+    cursor: pointer;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: -8px;
+      left: -24px;
+      display: inline-block;
+      width: 72px;
+      height: 24px;
+    }
+  }
+
   &:not(:hover) {
-    > .holder_btn,
-    > .delete_btn,
-    > .copy_btn,
-    > .more_btn,
-    > .expand_btn,
-    > .mask {
+
+    >.holder_btn,
+    >.delete_btn,
+    >.copy_btn,
+    >.more_btn,
+    >.expand_btn,
+    >.mask,
+    >.rotate,
+    >.clip {
       display: none;
     }
   }
 
   &.active {
-    > .mask {
+    >.mask {
       display: none;
     }
   }
 
   &.editable {
+
     &:hover,
     &.active {
       outline: 2px solid var(--quad-primary-color);
     }
+  }
+}
+
+.angle_icon {
+  width: 8px;
+  height: 8px;
+  cursor: pointer;
+}
+
+.rotate_input {
+  position: relative;
+  width: 78px;
+
+  &::after {
+    content: "°";
+    position: absolute;
+    top: 0px;
+    right: 4px;
   }
 }
