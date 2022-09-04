@@ -58,6 +58,7 @@ export const Wrapper = ({
 
   const editTools = editable ? (
     <>
+      <Mask className={styles.mask} />
       <RadiusBottomrightOutlined className={styles.expand_btn} {...attrs} />
       <HolderOutlined className={styles.holder_btn} draggable onDragStart={handleDragStart} />
       <Popover content={<CustomizeConfigPanel id={id} {...entity} updateEntity={updateEntity} />} style={{ padddingRight: 0 }} placement="rightTop" trigger="click">
@@ -67,7 +68,6 @@ export const Wrapper = ({
       <Popconfirm title="确认是否删除?" onConfirm={remove} getPopupContainer={() => rootRef.current}>
         <DeleteOutlined className={styles.delete_btn} />
       </Popconfirm>
-      <Mask className={styles.mask} />
     </>
   ) : null
 
