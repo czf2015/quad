@@ -72,7 +72,7 @@ export const Wrapper = ({
   ) : null
 
   return (
-    <div ref={rootRef} id={id} className={`${styles.wrapper} ${mode == 'card' ? 'quad-card' : ''} ${editable ? styles.editable : ''} ${active.id == id ? styles.active : ''}`} onClick={select} onDragOver={onDragOver} onDrop={onDrop} onDragStart={stopPropagation} style={style}>
+    <div ref={rootRef} id={id} data-width={style?.width} data-height={style?.height} className={`${styles.wrapper} ${mode == 'card' ? 'quad-card' : ''} ${editable ? styles.editable : ''} ${active.id == id ? styles.active : ''}`} onClick={select} onDragOver={onDragOver} onDrop={onDrop} onDragStart={stopPropagation} style={style}>
       {children}
       {editTools}
     </div>

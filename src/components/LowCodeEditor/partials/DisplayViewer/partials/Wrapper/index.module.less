@@ -2,6 +2,27 @@
   position: relative;
   z-index: 9;
 
+  &.editable:hover {
+    &::before {
+      content: attr(data-width);
+      position: absolute;
+      top: -20px;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      color: var(--quad-primary-color);
+    }
+
+    &::after {
+      content: attr(data-height);
+      position: absolute;
+      top: calc(50% - 12px);
+      left: -24px;
+      color: var(--quad-primary-color);
+    }
+  }
+
   > .holder_btn {
     position: absolute;
     top: 4px;
