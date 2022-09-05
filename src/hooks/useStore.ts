@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { useState } from "react";
+import { usePropsState } from "./usePropsState";
 import { update, copy } from "@/utils/object";
 
 export const useStore = (initialState = {}, cb) => {
@@ -10,26 +11,29 @@ export const useStore = (initialState = {}, cb) => {
       if (typeof value == "undefined") {
         return copy(state);
       }
-      setState((state) => {
-        const newState = {
-          ...state,
-          ...value,
-        };
+      const newState = {
+        ...state,
+        ...value,
+      };
+      if (typeof cb == 'function') {
         cb?.(newState)
-        return newState
-      });
+      } else {
+        setState(newState);
+      }
     }
     if (typeof value == "undefined") {
       return copy(state[key]);
     }
-    setState((state) => {
-      const newState = {
-        ...state,
-        ...update(state, { [key]: value }),
-      };
+    const newState = {
+      ...state,
+      ...update(state, { [key]: value }),
+    };
+
+    if (typeof cb == 'function') {
       cb?.(newState)
-      return newState
-    });
+    } else {
+      setState(newState);
+    }
   };
 
   return store;
@@ -56,7 +60,7 @@ export const useSubStore = (store, field, id) => {
       }
       if (select) {
         select[key] =
-        Object.prototype.toString.call(value) == "object Object"
+          Object.prototype.toString.call(value) == "object Object"
             ? { ...select[key], ...update(select[key], value) }
             : value;
       }

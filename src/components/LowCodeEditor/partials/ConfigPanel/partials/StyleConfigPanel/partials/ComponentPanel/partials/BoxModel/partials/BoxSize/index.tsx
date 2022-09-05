@@ -1,29 +1,23 @@
 // @ts-nocheck
 import React from "react";
-import { Input } from "antd";
-import { useInputValue } from "@/hooks";
+import { InputNumber } from "antd";
 import styles from "./index.module.less";
 
-export default ({ store, store_name, icon }) => {
-  const { inputValue, handleInputChange, setResetInput } = useInputValue(store(store_name));
-  const rule = /^[0-9]*$/;
-  const handleBlur = (e) => {
-    if (rule.test(e.target.value)) {
-      store(store_name, e.target.value);
-    } else {
-      setResetInput((pre) => pre + 1);
-    }
-  };
+export default ({ store, store_name, icon,value }) => {
+  const onChange = (value) => {
+    store(store_name,value)
+  }
+  
   return (
     <div className={styles.container}>
-      <Input
+      <InputNumber
         className={styles.input}
         size="small"
+        min={20}
         prefix={icon()}
         bordered={false}
-        value={inputValue}
-        onChange={handleInputChange}
-        onBlur={handleBlur}
+        value={value}
+        onChange={onChange}
       />
     </div>
   );

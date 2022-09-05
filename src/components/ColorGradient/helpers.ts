@@ -27,13 +27,12 @@ export const getLinearGradient = ({
   const left = `${x1 * 100}%`;
   const width = `${Math.abs(x2 - x1) * 100}%`;
   const height = `${Math.abs(y2 - y1) * 100}%`;
-  const color = `${
-    repeat ? "repeating-" : ""
-  }linear-gradient(${angle}deg, ${colorStops
-    ?.map(
-      ({ type, offset, color }) => `${color} ${offset}${type == 1 ? "px" : "%"}`
-    )
-    .join(", ")})`;
+  const color = `${repeat ? "repeating-" : ""
+    }linear-gradient(${angle}deg, ${colorStops
+      ?.map(
+        ({ type, offset, color }) => `${color} ${offset}${type == 1 ? "px" : "%"}`
+      )
+      .join(", ")})`;
   return `${color} ${top} ${left}/${width} ${height}`;
 };
 
@@ -45,13 +44,12 @@ export const getRadialGradient = ({
   colorStops = [],
   repeat = "no-repeat",
 }) => {
-  const color = `${repeat ? "repeating-" : ""}radial-gradient(${rx * 100}% ${
-    ry * 100
-  }% at ${cx * 100}% ${cy * 100}%, ${colorStops
-    ?.map(
-      ({ type, offset, color }) => `${color} ${offset}${type == 1 ? "px" : "%"}`
-    )
-    .join(", ")})`;
+  const color = `${repeat ? "repeating-" : ""}radial-gradient(${rx * 100}% ${ry * 100
+    }% at ${cx * 100}% ${cy * 100}%, ${colorStops
+      ?.map(
+        ({ type, offset, color }) => `${color} ${offset}${type == 1 ? "px" : "%"}`
+      )
+      .join(", ")})`;
   return color;
 };
 
@@ -238,12 +236,12 @@ const handleArr = (props) => {
 };
 
 export const convertToComponentStyle = ({
-  margin,
-  padding,
-  width,
-  height,
-  borderRadius,
-  boxShadow,
+  margin = [],
+  padding = [],
+  width = 400,
+  height = 400,
+  borderRadius = [],
+  boxShadow = [],
   textAlign,
   verticalAlign,
   color,
@@ -255,14 +253,15 @@ export const convertToComponentStyle = ({
   textDecoration,
   transform,
   transformOrigin,
-  fill,
+  fill = [],
   overflow,
-  opacity,
+  opacity = 100,
   z,
   hidden = false,
-}) => {
+  clipPath
+} = {}, clipPathFlag = false) => {
   const boxShadows = [];
-  boxShadow.forEach(
+  boxShadow?.forEach(
     ({ type, offsetX, offsetY, blur, spread, color, hidden }) => {
       if (!hidden) {
         boxShadows.push(
@@ -272,7 +271,7 @@ export const convertToComponentStyle = ({
     }
   );
   const bg = [];
-  fill.forEach((item) => {
+  fill?.forEach((item) => {
     if (!item.hidden) {
       switch (item.type) {
         case "color":
@@ -292,30 +291,36 @@ export const convertToComponentStyle = ({
     }
   });
 
+  if (clipPathFlag) {
+    return {
+      textAlign,
+      verticalAlign,
+      color,
+      fontSize: handleUnit(fontSize),
+      fontWeight,
+      fontFamily,
+      lineHeight: handleUnit(lineHeight),
+      wordSpacing: handleUnit(wordSpacing),
+      textDecoration,
+      background: bg.join(","),
+      overflow,
+      zIndex: z,
+      clipPath: getClipPath(clipPath),
+    };
+  }
+
   return {
     margin: handleArr(margin),
     padding: handleArr(padding),
-    width: Number(width),
-    height: Number(height),
+    width,
+    height,
     borderRadius: handleArr(borderRadius),
     boxShadow: boxShadows.join(","),
-    textAlign,
-    verticalAlign,
-    color,
-    fontSize: handleUnit(fontSize),
-    fontWeight,
-    fontFamily,
-    lineHeight: handleUnit(lineHeight),
-    wordSpacing: handleUnit(wordSpacing),
-    textDecoration,
     transform: `scaleX(${transform?.scaleX}) scaleY(${transform?.scaleY}) rotate(${transform?.rotate}deg)`,
     transformOrigin: `${handleUnit(transformOrigin?.left)} ${handleUnit(
       transformOrigin?.top
     )}`,
-    background: bg.join(","),
-    overflow,
-    opacity: opacity / 100,
-    zIndex: z,
-    visibility: hidden ? "hidden" : "visible",
+    opacity: hidden ? 0 : opacity / 100,
+    // visibility: hidden ? "hidden" : "visible",
   };
 };

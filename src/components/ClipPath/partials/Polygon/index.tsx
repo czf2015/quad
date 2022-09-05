@@ -69,7 +69,7 @@ export const Polygon = ({ boxStyle = {}, value: polygon = { type: 'polygon', ang
 
   return (
     <Dropdown overlay={contextMenu} placement="bottom" trigger={["contextMenu"]} getPopupContainer={triggerNode => polygonRef.current}>
-      <div ref={polygonRef} className={`${styles.curtain} ${disabled ? styles.disabled : ''}`} style={{ clipPath }} {...attrs} onDragStart={handleDragStart('move')} onContextMenu={stopPropagation}>
+      <div ref={polygonRef} className={`${styles.curtain} ${disabled ? styles.disabled : ''}`} style={{ clipPath, left: boxStyle?.paddingLeft, top: boxStyle?.paddingTop,  }} {...attrs} onDragStart={handleDragStart('move')} onContextMenu={stopPropagation}>
         {polygon?.points?.map(point => {
           return (
             <div className={styles.circle} {...attrs} onDragStart={handleDragStart(point.id)} style={{ left: point?.x, top: point?.y }} key={point.id} />

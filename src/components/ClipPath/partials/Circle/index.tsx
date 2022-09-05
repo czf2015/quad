@@ -60,7 +60,7 @@ export const Circle = ({ boxStyle = {}, value: circle, onChange: setCircle, disa
   }
 
   return (
-    <div className={`${styles.curtain} ${disabled ? styles.disabled : ''}`} style={{ clipPath }} {...attrs} onDragStart={handleDragStart('move')}>
+    <div className={`${styles.curtain} ${disabled ? styles.disabled : ''}`} style={{ clipPath, left: boxStyle?.paddingLeft, top: boxStyle?.paddingTop,  }} {...attrs} onDragStart={handleDragStart('move')}>
       {['top', 'right', 'bottom', 'left'].map(flag => <div className={`${styles.circle} ${styles[flag]}`} {...attrs} onDragStart={handleDragStart(flag)} style={getPosition(flag)} key={flag} />)}
     </div>
   )
