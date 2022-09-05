@@ -213,7 +213,7 @@ export const widgetStyle = {
   // 描边
   stroke: {
     type: "solid",
-    thickness: 1,
+    thickness: '1px',
     color: "#ccc",
   },// 或数组top right bottom left
   // 图层
