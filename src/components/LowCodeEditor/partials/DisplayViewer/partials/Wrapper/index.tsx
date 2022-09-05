@@ -5,6 +5,7 @@ import Copy from '@/components/Copy'
 import { CustomizeConfigPanel } from "@/components/LowCodeEditor/partials/ConfigPanel/partials/CustomizeConfigPanel";
 import Mask from "@/components/Mask";
 import ClipPath from '@/components/ClipPath';
+import { convertToComponentStyle } from '@/components/ColorGradient/helpers';
 import { useDragMove, useBinds, useHandlers, useDragRect } from "@/hooks";
 import { stopPropagation } from '@/utils/dom'
 import { HolderOutlined, DeleteOutlined, MoreOutlined, RadiusBottomrightOutlined, SyncOutlined } from '@ant-design/icons'
@@ -23,12 +24,14 @@ export const Wrapper = ({
   active,
   setActive,
   handleDrop,
-  style = { width: 400, height: 300 },
+  // style = { width: 400, height: 300 },
+  style = {},
   mode = /Chart/.test(name) ? 'card' : 'plain',
   children,
   binds,
   handlers,
   occupied = false,
+  styleConfig = { width: 200, height: 200 },
   ...entity
 }: IWrapperProps) => {
   // TODO:
@@ -46,7 +49,8 @@ export const Wrapper = ({
   const onDrop = handleDrop(id)
 
   const handleDragMove = (dragMove) => {
-    updateEntity(id, { style: { ...style, width: style.width + dragMove.x, height: style.height + dragMove.y } })
+    setActive(active => ({ ...active, id }))
+    updateEntity(id, { styleConfig: { width: styleConfig?.width + dragMove.x, height: styleConfig?.height + dragMove.y } })
   }
   const { onDragOver, ...attrs } = useDragMove(handleDragMove, zoom)
 
@@ -90,10 +94,12 @@ export const Wrapper = ({
   ) : null
 
   return (
-    <div ref={ref} id={id} data-width={style?.width} data-height={style?.height} className={`${styles.wrapper} ${mode == 'card' ? 'quad-card' : ''} ${editable ? styles.editable : ''} ${active.id == id ? styles.active : ''}`} onClick={select} onDragOver={onDragOver} onDrop={onDrop} onDragStart={stopPropagation} style={style}>
-      {children}
+    <div ref={ref} id={id} data-width={styleConfig?.width} data-height={styleConfig?.height} className={`${styles.wrapper} ${mode == 'card' ? 'quad-card' : ''} ${editable ? styles.editable : ''} ${active.id == id ? styles.active : ''}`} onClick={select} onDragOver={onDragOver} onDrop={onDrop} onDragStart={stopPropagation} style={{...convertToComponentStyle(styleConfig,false),...style}}>
+     <div style={{...convertToComponentStyle(styleConfig,true),width: 'inherit',height:"inherit"}}>
+        {children}
+     </div>
       {editTools}
-      <ClipPath className={styles.clip} boxStyle={style} value={entity?.styleConfig?.clipPath} onChange={handleClipPathChange} disabled={!editable || entity?.styleConfig?.rotate} />
+      <ClipPath className={styles.clip} boxStyle={{...style, width: styleConfig?.width,height: styleConfig?.height, paddingLeft: styleConfig?.padding?.[3], paddingTop: styleConfig?.padding?.[0], }} value={styleConfig?.clipPath} onChange={handleClipPathChange} disabled={!editable || styleConfig?.rotate} />
     </div>
   );
 };

@@ -64,33 +64,38 @@ export const renderPaddingIcon = (disconnect, index: number) => {
 
 
 
-export const splitsConfig = [
+export const splitsConfig = (margin, padding, borderRadius) => [
   {
     title: '外边距',
     store_name: 'margin',
+    value: margin,
     renderIcon: renderMarginIcon
   },
   {
     title: '内边距',
     store_name: 'padding',
+    value: padding,
     renderIcon: renderPaddingIcon
   },
   {
     title: '圆角',
     store_name: 'borderRadius',
+    value: borderRadius,
     renderIcon: renderBorderRadiusIcon
   }
 ]
 
-export const sizeConfig = [
+export const sizeConfig = (width, height) => [
   {
     title: '宽度',
     store_name: 'width',
     icon: w,
+    value: width
   },
   {
     title: '高度',
     store_name: 'height',
     icon: h,
+    value: height
   }
 ]
