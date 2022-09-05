@@ -22,7 +22,7 @@ const getPoints = (w, h, n, startAngle) => {
   return result
 }
 
-export default ({ className = '', boxStyle = {}, value = { type: 'none' }, onChange, disabled = false, }) => {
+export default ({ className = '', boxStyle = {}, value = { type: 'none' }, onChange, disabled = false }) => {
   const clipMenuItems = [
     {
       label: '清除',

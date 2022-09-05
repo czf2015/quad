@@ -5,7 +5,7 @@ export const usePropsState = (propsState) => {
 
   useEffect(() => {
     setState(propsState);
-  }, [propsState]);
+  }, [Object.values(propsState)]);
 
   return [state, setState];
 };

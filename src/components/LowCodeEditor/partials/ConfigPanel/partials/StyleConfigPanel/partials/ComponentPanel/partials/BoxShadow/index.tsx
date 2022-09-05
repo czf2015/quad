@@ -5,11 +5,10 @@ import Popup from './partials/Popup';
 import Eye from '@/components/Form/partials/CustomSwitch';
 import Copy from '@/components/Copy';
 import { dragSort } from './helper';
-import { HolderOutlined, PlusOutlined, MinusOutlined, CopyOutlined } from '@ant-design/icons';
+import { HolderOutlined, PlusOutlined, MinusOutlined } from '@ant-design/icons';
 import styles from './index.module.less';
 
-export const BoxShadow = ({ store }) => {
-  const boxShadow = store('boxShadow');
+export const BoxShadow = ({ store, boxShadow = [] }) => {
   const add = () => {
     store('boxShadow', [{ type: 'none', offsetX: 2, offsetY: 2, blur: 2, spread: 4, color: '#ccc' }, ...boxShadow]);
   };
@@ -58,7 +57,7 @@ export const BoxShadow = ({ store }) => {
                 <HolderOutlined className={styles.holder_btn} draggable onDragStart={handleDragStart(index)} />
                 <div className={styles.color_mode}>
                   <Popover content={<Popup store={store} index={index} />} placement="leftBottom" trigger="click">
-                    <span className={styles.effect} style={{ background: color }}></span>
+                    <span className={styles.effect} style={{ background: color }} />
                   </Popover>
                   <Input className={styles.input} size="small" value={value} disabled={true} bordered={false} />
                 </div>

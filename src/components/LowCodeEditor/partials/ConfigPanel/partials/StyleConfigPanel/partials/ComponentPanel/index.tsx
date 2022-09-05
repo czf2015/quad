@@ -5,22 +5,23 @@ import { Box, BoxShadow, Transform, Text, BoxModel } from './partials';
 import Fill from '../common/Fill';
 import { useStore } from '@/hooks';
 
-export default ({ widgetStyle }) => {
-  const store = useStore({
-    ...widgetStyle,
-  });
+export default ({ id, styleConfig, updateEntity }) => {
+  const updateStyleConfig = (styleConfig) => {
+    updateEntity(id, { styleConfig })
+  }
+  const store = useStore(styleConfig, updateStyleConfig);
 
   return (
     <div>
-      <BoxModel store={store} />
+      <BoxModel store={store} {...styleConfig} />
       <Divider />
       <Transform store={store} />
       <Divider />
       <Text store={store} />
       <Divider />
-      <Fill store={store} />
+      <Fill store={store} {...styleConfig} />
       <Divider />
-      <BoxShadow store={store} />
+      <BoxShadow store={store} {...styleConfig} />
     </div>
   );
 };
