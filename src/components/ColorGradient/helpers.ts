@@ -162,7 +162,9 @@ export const getClipPath = (clipPath = { type: "none" }) => {
     case "ellipse":
       return `ellipse(${clipPath?.rx}px ${clipPath?.ry}px at ${clipPath?.offsetX}px ${clipPath?.offsetY}px)`;
     case "polygon":
-      return `polygon(${clipPath?.points?.map(point => `${point.x}px ${point.y}px`).join(',')})`;
+      return `polygon(${clipPath?.points
+        ?.map((point) => `${point.x}px ${point.y}px`)
+        .join(",")})`;
     case "none":
     default:
       return undefined;
@@ -173,7 +175,7 @@ export const convertToStyle = (
   {
     constraints: { horizontal = 0, vertical = 3 } = {},
     fill = [],
-    overflow = 'hidden',
+    overflow = "hidden",
     opacity = 100,
     z,
     hidden = false,
@@ -182,9 +184,6 @@ export const convertToStyle = (
   } = {},
   clipPathFlag = false
 ) => {
-  if (clipPathFlag) {
-    return { clipPath: getClipPath(clipPath), overflow };
-  }
   const bg = [];
   fill.forEach((item) => {
     if (!item.hidden) {
@@ -207,11 +206,18 @@ export const convertToStyle = (
   });
   const background = bg.join(",");
 
+  if (clipPathFlag) {
+    return {
+      justifyContent: JUSTIFY_CONTENT_VALUES[horizontal],
+      alignItems: ALIGN_ITEMS_VALUES[vertical],
+      background,
+      opacity: hidden ? 0 : opacity / 100,
+      overflow,
+      clipPath: getClipPath(clipPath),
+    };
+  }
+
   return {
-    justifyContent: JUSTIFY_CONTENT_VALUES[horizontal],
-    alignItems: ALIGN_ITEMS_VALUES[vertical],
-    background,
-    opacity: hidden ? 0 : opacity / 100,
     transform: `rotate(${-rotate}deg)`,
     // zIndex: z,
     // visibility: hidden ? "hidden" : "visible",
@@ -219,17 +225,17 @@ export const convertToStyle = (
 };
 
 const handleUnit = (props) => {
-  if(isNaN(props)) {
-    return props
-  }else {
-    return `${props}px`
+  if (isNaN(props)) {
+    return props;
+  } else {
+    return `${props}px`;
   }
-}
+};
 
 const handleArr = (props) => {
-  const value =  props.map((item)=>handleUnit(item)).join(' ');
-  return value
-}
+  const value = props.map((item) => handleUnit(item)).join(" ");
+  return value;
+};
 
 export const convertToComponentStyle = ({
   margin,
@@ -253,14 +259,18 @@ export const convertToComponentStyle = ({
   overflow,
   opacity,
   z,
-  hidden=false
+  hidden = false,
 }) => {
   const boxShadows = [];
-  boxShadow.forEach(({type,offsetX,offsetY,blur,spread,color,hidden})=> {
-    if(!hidden) {
-      boxShadows.push(`${color} ${offsetX}px ${offsetY}px ${blur}px ${spread}px ${type}`)
+  boxShadow.forEach(
+    ({ type, offsetX, offsetY, blur, spread, color, hidden }) => {
+      if (!hidden) {
+        boxShadows.push(
+          `${color} ${offsetX}px ${offsetY}px ${blur}px ${spread}px ${type}`
+        );
+      }
     }
-  });
+  );
   const bg = [];
   fill.forEach((item) => {
     if (!item.hidden) {
@@ -288,7 +298,7 @@ export const convertToComponentStyle = ({
     width: Number(width),
     height: Number(height),
     borderRadius: handleArr(borderRadius),
-    boxShadow: boxShadows.join(','),
+    boxShadow: boxShadows.join(","),
     textAlign,
     verticalAlign,
     color,
@@ -299,11 +309,13 @@ export const convertToComponentStyle = ({
     wordSpacing: handleUnit(wordSpacing),
     textDecoration,
     transform: `scaleX(${transform?.scaleX}) scaleY(${transform?.scaleY}) rotate(${transform?.rotate}deg)`,
-    transformOrigin: `${handleUnit(transformOrigin?.left)} ${handleUnit(transformOrigin?.top)}`,
-    background: bg.join(','),
+    transformOrigin: `${handleUnit(transformOrigin?.left)} ${handleUnit(
+      transformOrigin?.top
+    )}`,
+    background: bg.join(","),
     overflow,
-    opacity: opacity/100,
+    opacity: opacity / 100,
     zIndex: z,
     visibility: hidden ? "hidden" : "visible",
-  }
-}
+  };
+};
