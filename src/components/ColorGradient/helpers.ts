@@ -1,3 +1,4 @@
+// @ts-nocheck
 export const getInputDigitalProps = (store, field) => {
   return {
     value: store(field),
@@ -216,3 +217,93 @@ export const convertToStyle = (
     // visibility: hidden ? "hidden" : "visible",
   };
 };
+
+const handleUnit = (props) => {
+  if(isNaN(props)) {
+    return props
+  }else {
+    return `${props}px`
+  }
+}
+
+const handleArr = (props) => {
+  const value =  props.map((item)=>handleUnit(item)).join(' ');
+  return value
+}
+
+export const convertToComponentStyle = ({
+  margin,
+  padding,
+  width,
+  height,
+  borderRadius,
+  boxShadow,
+  textAlign,
+  verticalAlign,
+  color,
+  fontSize,
+  fontWeight,
+  fontFamily,
+  lineHeight,
+  wordSpacing,
+  textDecoration,
+  transform,
+  transformOrigin,
+  fill,
+  overflow,
+  opacity,
+  z,
+  hidden=false
+}) => {
+  const boxShadows = [];
+  boxShadow.forEach(({type,offsetX,offsetY,blur,spread,color,hidden})=> {
+    if(!hidden) {
+      boxShadows.push(`${color} ${offsetX}px ${offsetY}px ${blur}px ${spread}px ${type}`)
+    }
+  });
+  const bg = [];
+  fill.forEach((item) => {
+    if (!item.hidden) {
+      switch (item.type) {
+        case "color":
+          bg.push(`linear-gradient(0deg, ${item.value}, ${item.value})`);
+          break;
+        case "linear":
+          bg.push(getLinearGradient(item));
+          break;
+        case "radial":
+          bg.push(getRadialGradient(item));
+        case "image":
+          bg.push(getBackgroundImage(item));
+          break;
+        default:
+          break;
+      }
+    }
+  });
+
+  return {
+    margin: handleArr(margin),
+    padding: handleArr(padding),
+    width: Number(width),
+    height: Number(height),
+    borderRadius: handleArr(borderRadius),
+    boxShadow: boxShadows.join(','),
+    textAlign,
+    verticalAlign,
+    color,
+    fontSize: handleUnit(fontSize),
+    fontWeight,
+    fontFamily,
+    lineHeight: handleUnit(lineHeight),
+    wordSpacing: handleUnit(wordSpacing),
+    textDecoration,
+    transform: `scaleX(${transform?.scaleX}) scaleY(${transform?.scaleY}) rotate(${transform?.rotate}deg)`,
+    transformOrigin: `${handleUnit(transformOrigin?.left)} ${handleUnit(transformOrigin?.top)}`,
+    background: bg.join(','),
+    overflow,
+    opacity: opacity/100,
+    zIndex: z,
+    visibility: hidden ? "hidden" : "visible",
+  }
+}

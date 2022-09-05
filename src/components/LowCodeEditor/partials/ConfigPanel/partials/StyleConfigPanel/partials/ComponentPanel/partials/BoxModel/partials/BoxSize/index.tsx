@@ -1,13 +1,18 @@
 // @ts-nocheck
-import React from 'react';
-import { Input } from 'antd';
-import { useInputValue } from '@/hooks';
-import styles from './index.module.less';
+import React from "react";
+import { Input } from "antd";
+import { useInputValue } from "@/hooks";
+import styles from "./index.module.less";
 
 export default ({ store, store_name, icon }) => {
-  const { inputValue, handleInputChange } = useInputValue(store(store_name));
+  const { inputValue, handleInputChange, setResetInput } = useInputValue(store(store_name));
+  const rule = /^[0-9]*$/;
   const handleBlur = (e) => {
-    store(store_name, e.target.value);
+    if (rule.test(e.target.value)) {
+      store(store_name, e.target.value);
+    } else {
+      setResetInput((pre) => pre + 1);
+    }
   };
   return (
     <div className={styles.container}>
