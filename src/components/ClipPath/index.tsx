@@ -2,7 +2,8 @@ import React from 'react'
 import { Dropdown, Menu } from 'antd'
 import { Inset, Circle, Ellipse, Polygon } from './partials'
 import uuid from '@/plugins/uuid'
-import { BorderOutlined } from '@ant-design/icons'
+import { useToggle } from '@/hooks'
+import { ClearOutlined, BorderOutlined } from '@ant-design/icons'
 import styles from './index.module.less'
 
 const getPoints = (w, h, n, startAngle) => {
@@ -26,7 +27,7 @@ export default ({ className = '', boxStyle = {}, value = { type: 'none' }, onCha
     {
       label: '清除',
       key: 'none',
-      icon: <img src="/icons/Brush.svg" width="12px" height="12px" />
+      icon: <ClearOutlined />
     },
     {
       label: '矩形',
@@ -54,9 +55,6 @@ export default ({ className = '', boxStyle = {}, value = { type: 'none' }, onCha
     //   icon: <img src="/icons/Path.svg" />
     // }
   ]
-
-  const Clip = value.type == 'inset' ? Inset : value.type == 'circle' ? Circle : value.type == 'ellipse' ? Ellipse : value.type == 'polygon' ? Polygon : () => <div />
-
   const handleMenuItemClick = ({ key: type }) => {
     switch (type) {
       case 'inset':
@@ -80,11 +78,16 @@ export default ({ className = '', boxStyle = {}, value = { type: 'none' }, onCha
   }
   const overlay = <Menu items={clipMenuItems} selectedKeys={[value.type]} onClick={handleMenuItemClick} />
 
+  const [visible, toggleVisible] = useToggle(false)
+  const imgSrc = visible ? "/icons/Clip2.svg" : "/icons/Clip.svg"
+
+  const Clip = value.type == 'inset' ? Inset : value.type == 'circle' ? Circle : value.type == 'ellipse' ? Ellipse : value.type == 'polygon' ? Polygon : () => <div />
+
   return (
     <>
-      <Clip boxStyle={boxStyle} value={value} onChange={onChange} disabled={disabled} />
-      <Dropdown overlay={overlay} >
-        <img src="/icons/Clip.svg" className={`${styles.clip} ${className} ${disabled ? styles.disabled : ''}`} />
+      {visible && <Clip boxStyle={boxStyle} value={value} onChange={onChange} disabled={disabled} />}
+      <Dropdown overlay={overlay}>
+        <img src={imgSrc} className={`${styles.clip} ${className} ${disabled ? styles.disabled : ''}`} onClick={toggleVisible} />
       </Dropdown>
     </>
   )
