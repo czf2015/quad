@@ -1,8 +1,9 @@
 .wrapper {
   position: relative;
-  z-index: 9;
-
+  
   &.editable:hover {
+    background: inherit;
+    z-index: 9;
     &::before {
       content: attr(data-width);
       position: absolute;
