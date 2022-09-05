@@ -42,7 +42,7 @@ export const DragBlock = ({ removeEntity, updateEntity, handleDrop, children, ac
         </Dropdown>
         {['top', 'right', 'bottom', 'left'].map(flag => <div className={styles[`line__${flag}`]} {...attrs} onDragStart={handleDragStart(flag)} key={flag} />)}
         {['top_left', 'top_right', 'bottom_right', 'bottom_left'].map(flag => <div className={`${styles.circle} ${styles[flag]}`} {...attrs} onDragStart={handleDragStart(flag)} key={flag} />)}
-        <Popconfirm title="确认是否删除?" onConfirm={remove} getPopupContainer={() => ref.current}>
+        <Popconfirm title="确认是否删除?" onConfirm={remove}>
           <DeleteOutlined className={styles.delete} />
         </Popconfirm>
         <ClipPath className={styles.clip} boxStyle={entity?.style} value={entity?.styleConfig?.clipPath} onChange={handleClipPathChange} disabled={!editable || entity?.styleConfig?.rotate} />

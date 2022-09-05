@@ -97,7 +97,7 @@ export const Block = ({ editable, name, id, pid, title = '', quad, hasBlock = fa
 
   const editTools = editable ?
     <>
-      <Popconfirm title="确认是否删除?" onConfirm={remove} getPopupContainer={() => document.getElementById(id)}>
+      <Popconfirm title="确认是否删除?" onConfirm={remove}>
         <DeleteOutlined className={`${styles.delete_btn} quad-circle`} />
       </Popconfirm>
       <Boundary pull={pull} quad={quad} zoom={zoom} />

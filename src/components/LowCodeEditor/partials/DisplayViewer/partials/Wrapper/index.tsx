@@ -83,7 +83,7 @@ export const Wrapper = ({
         <MoreOutlined className={styles.more_btn} />
       </Popover>
       <Copy className={styles.copy_btn} value={id} />
-      <Popconfirm title="确认是否删除?" onConfirm={remove} getPopupContainer={() => ref.current}>
+      <Popconfirm title="确认是否删除?" onConfirm={remove}>
         <DeleteOutlined className={styles.delete_btn} />
       </Popconfirm>
     </>
