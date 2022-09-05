@@ -18,6 +18,12 @@ const convertEnumsToOptions = (enums) =>
 
 export const tableColumn = [
   {
+    name: "id",
+    label: "id",
+    type: "Input",
+    hidden: true
+  },
+  {
     name: "label",
     label: "名称",
     type: "Input",

@@ -36,7 +36,7 @@ export default [
     description: "",
     items: [
       {
-        name: "Form",
+        name: "CustomizeForm",
         title: "表单",
         icon: "",
         description: "",

@@ -9,7 +9,7 @@ import styles from './index.module.less'
 export default ({ name: pname, label = '', schema = [], ...rest }) => {
   return (
     <div className={styles.compact}>
-      <label>{label}</label>
+      {/* <label>{label}</label> */}
       {schema?.map(({ name, type, mode, options, placeholder, ...attrs }) => {
         let item
         switch (type) {
