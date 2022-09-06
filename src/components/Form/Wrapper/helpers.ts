@@ -167,32 +167,20 @@ export const getMeta = () => {
         size: "small",
       },
       {
-        name: 'canCollapse',
-        label: '收起',
-        type: 'Switch',
-        value: true,
-        prerequisites: [
-          {
-            field: 'layout',
-            options: {
-              include: ['inline']
-            }
-          }
-        ]
-      },
-      {
         name: "label",
         label: "标签",
         type: "Compact",
         schema: [
           {
             name: "span",
+            label: '大小',
             type: "InputNumber",
             min: 1,
             max: 24,
           },
           {
             name: "align",
+            label: '对齐方式',
             type: "Select",
             options: [
               {
@@ -207,6 +195,7 @@ export const getMeta = () => {
           },
           {
             name: "wrap",
+            label: '换行方式',
             type: "Select",
             options: [
               {
@@ -234,12 +223,14 @@ export const getMeta = () => {
         schema: [
           {
             name: "offset",
+            label: '偏移',
             type: "InputNumber",
             min: 0,
             max: 24,
           },
           {
             name: "span",
+            label: '大小',
             type: "InputNumber",
             min: 1,
             max: 24,
@@ -252,10 +243,24 @@ export const getMeta = () => {
         required: true,
       },
       {
-        name: "autocomplete",
-        label: "自动完成",
-        type: "Switch",
-        value: false,
+        name: "set",
+        label: "设置",
+        type: "Checkbox",
+        value: [1, 2],
+        options: [
+          {
+            label: '重置',
+            value: 1
+          },
+          {
+            label: '提交',
+            value: 2
+          },
+          {
+            label: '自动完成',
+            value: 4
+          }
+        ],
         size: "small",
       },
     ],

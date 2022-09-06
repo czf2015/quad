@@ -1,16 +1,15 @@
 import React from 'react'
-import InputEdit from '@/components/Form/partials/TextEdit'
 import InputText from '@/components/Form/partials/InputText'
 import JsonEdit from '@/components/Form/partials/JsonEdit'
 import CodeEdit from '@/components/Form/partials/CodeEdit'
-import { Form, Input, Select, Switch, InputNumber } from '@/plugins/ui'
+import { Form, Input, Select, Switch, InputNumber, Tooltip } from '@/plugins/ui'
 import styles from './index.module.less'
 
 export default ({ name: pname, label = '', schema = [], ...rest }) => {
   return (
     <div className={styles.compact}>
       {/* <label>{label}</label> */}
-      {schema?.map(({ name, type, mode, options, placeholder, ...attrs }) => {
+      {schema?.map(({ name, label, type, mode, options, placeholder, ...attrs }) => {
         let item
         switch (type) {
           case 'InputText':
@@ -42,14 +41,16 @@ export default ({ name: pname, label = '', schema = [], ...rest }) => {
         }
 
         return (
-          <Form.Item
-            {...rest}
-            {...attrs}
-            name={Array.isArray(pname) ? [...pname, name] : [pname, name]}
-            key={name}
-          >
-            {item}
-          </Form.Item>
+          <Tooltip title={label}>
+            <Form.Item
+              {...rest}
+              {...attrs}
+              name={Array.isArray(pname) ? [...pname, name] : [pname, name]}
+              key={name}
+            >
+              {item}
+            </Form.Item>
+          </Tooltip>
         )
       })}
     </div>

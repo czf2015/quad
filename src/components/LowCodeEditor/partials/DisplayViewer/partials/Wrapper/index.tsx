@@ -94,12 +94,12 @@ export const Wrapper = ({
   ) : null
 
   return (
-    <div ref={ref} id={id} data-width={styleConfig?.width} data-height={styleConfig?.height} className={`${styles.wrapper} ${mode == 'card' ? 'quad-card' : ''} ${editable ? styles.editable : ''} ${active.id == id ? styles.active : ''}`} onClick={select} onDragOver={onDragOver} onDrop={onDrop} onDragStart={stopPropagation} style={{...convertToComponentStyle(styleConfig,false),...style}}>
-     <div style={{...convertToComponentStyle(styleConfig,true),width: 'inherit',height:"inherit"}}>
+    <div ref={ref} id={id} data-width={styleConfig?.width} data-height={styleConfig?.height} className={`${styles.wrapper} ${mode == 'card' ? 'quad-card' : ''} ${editable ? styles.editable : ''} ${active.id == id ? styles.active : ''}`} onClick={select} onDragOver={onDragOver} onDrop={onDrop} onDragStart={stopPropagation} style={{ ...convertToComponentStyle(styleConfig, false), ...style }}>
+      <div style={{ ...convertToComponentStyle(styleConfig, true) }}>
         {children}
-     </div>
+      </div>
       {editTools}
-      <ClipPath className={styles.clip} boxStyle={{...style, width: styleConfig?.width,height: styleConfig?.height, paddingLeft: styleConfig?.padding?.[3], paddingTop: styleConfig?.padding?.[0], }} value={styleConfig?.clipPath} onChange={handleClipPathChange} disabled={!editable || styleConfig?.rotate} />
+      <ClipPath className={styles.clip} boxStyle={{ ...style, width: styleConfig?.width, height: styleConfig?.height }} value={styleConfig?.clipPath} onChange={handleClipPathChange} disabled={!editable || styleConfig?.rotate} />
     </div>
   );
 };

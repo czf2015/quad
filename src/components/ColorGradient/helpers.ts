@@ -293,18 +293,19 @@ export const convertToComponentStyle = ({
 
   if (clipPathFlag) {
     return {
+      padding: handleArr(padding),
+      borderRadius: handleArr(borderRadius),
+      fontFamily,
+      fontWeight,
+      fontSize: handleUnit(fontSize),
+      lineHeight: handleUnit(lineHeight),
       textAlign,
       verticalAlign,
-      color,
-      borderRadius: handleArr(borderRadius),
-      fontSize: handleUnit(fontSize),
-      fontWeight,
-      fontFamily,
-      lineHeight: handleUnit(lineHeight),
       wordSpacing: handleUnit(wordSpacing),
       textDecoration,
-      boxShadow: boxShadows.join(","),
+      color,
       background: bg.join(","),
+      boxShadow: boxShadows.join(","),
       overflow,
       zIndex: z,
       clipPath: getClipPath(clipPath),
@@ -313,7 +314,6 @@ export const convertToComponentStyle = ({
 
   return {
     margin: handleArr(margin),
-    padding: handleArr(padding),
     width,
     height,
     transform: `scaleX(${transform?.scaleX}) scaleY(${transform?.scaleY}) rotate(${transform?.rotate}deg)`,

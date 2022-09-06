@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react'
 import { useDragMove } from '@/hooks'
 import styles from './index.module.less'
 
-export const Circle = ({ boxStyle = {}, value: circle, onChange: setCircle, disabled, }) => {
+export const Circle = ({ value: circle, onChange: setCircle, disabled, }) => {
   // const [circle, setCircle] = useState({ type: 'circle', r: boxStyle.width < boxStyle.height ? boxStyle.width / 2 : boxStyle.height / 2, offsetX: boxStyle.width / 2, offsetY: boxStyle.height / 2 })
   const clipPath = `circle(${circle?.r}px at ${circle?.offsetX}px ${circle?.offsetY}px)`
 
@@ -60,7 +60,7 @@ export const Circle = ({ boxStyle = {}, value: circle, onChange: setCircle, disa
   }
 
   return (
-    <div className={`${styles.curtain} ${disabled ? styles.disabled : ''}`} style={{ clipPath, left: boxStyle?.paddingLeft, top: boxStyle?.paddingTop,  }} {...attrs} onDragStart={handleDragStart('move')}>
+    <div className={`${styles.curtain} ${disabled ? styles.disabled : ''}`} style={{ clipPath }} {...attrs} onDragStart={handleDragStart('move')}>
       {['top', 'right', 'bottom', 'left'].map(flag => <div className={`${styles.circle} ${styles[flag]}`} {...attrs} onDragStart={handleDragStart(flag)} style={getPosition(flag)} key={flag} />)}
     </div>
   )

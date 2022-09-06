@@ -111,7 +111,7 @@ export default ({
   return (
     <div className={styles.form_wrapper} onContextMenu={stopPropagation}>
       <h4 className={styles.title}>{customize?.title}</h4>
-      <div className={styles.placement} style={{ outline: editable ? '1px dashed var(--quad-primary-color)' : 'none' }} onDragOver={onDragOver} onDrop={handleDrop}>
+      <div className={styles.placement} /* style={{ outline: editable ? '1px dashed var(--quad-primary-color)' : 'none' }} */ onDragOver={onDragOver} onDrop={handleDrop}>
         <Form
           initialValues={initialFormValues}
           onValuesChange={handleValuesChange}

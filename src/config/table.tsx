@@ -51,6 +51,7 @@ export const tableColumn = [
     required: true,
     type: "Select",
     options: convertEnumsToOptions(FORM_ITEM_TYPES),
+    allowClear: false,
   },
   {
     name: 'set',
@@ -167,12 +168,14 @@ export const tableColumn = [
     schema: [
       {
         name: 'offset',
+        label: "偏移",
         type: "InputNumber",
         min: 0,
         max: 24,
       },
       {
         name: 'span',
+        label: "大小",
         type: "InputNumber",
         min: 1,
         max: 24,

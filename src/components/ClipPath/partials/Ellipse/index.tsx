@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react'
 import { useDragMove } from '@/hooks'
 import styles from './index.module.less'
 
-export const Ellipse = ({ boxStyle = {}, value: ellipse, onChange: setEllipse, disabled }) => {
+export const Ellipse = ({ value: ellipse, onChange: setEllipse, disabled }) => {
   // const [ellipse, setEllipse] = useState({ type: 'ellipse', rx: boxStyle.width / 2, ry: boxStyle.height / 2, offsetX: boxStyle.width / 2, offsetY: boxStyle.height / 2 })
   const clipPath = `ellipse(${ellipse?.rx}px ${ellipse?.ry}px at ${ellipse?.offsetX}px ${ellipse?.offsetY}px)`
 
@@ -60,7 +60,7 @@ export const Ellipse = ({ boxStyle = {}, value: ellipse, onChange: setEllipse, d
   }
 
   return (
-    <div className={`${styles.curtain} ${disabled ? styles.disabled : ''}`} style={{ clipPath, left: boxStyle?.paddingLeft, top: boxStyle?.paddingTop,  }} {...attrs} onDragStart={handleDragStart('move')}>
+    <div className={`${styles.curtain} ${disabled ? styles.disabled : ''}`} style={{ clipPath }} {...attrs} onDragStart={handleDragStart('move')}>
       {['top', 'right', 'bottom', 'left'].map(flag => <div className={`${styles.circle} ${styles[flag]}`} {...attrs} onDragStart={handleDragStart(flag)} style={getPosition(flag)} key={flag} />)}
     </div>
   )
