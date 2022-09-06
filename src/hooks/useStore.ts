@@ -4,36 +4,38 @@ import { usePropsState } from "./usePropsState";
 import { update, copy } from "@/utils/object";
 
 export const useStore = (initialState = {}, cb) => {
-  const [state, setState] = useState(initialState);
+  // const [state, setState] = useState(initialState);
 
   const store = (key, value) => {
     if (typeof key == "undefined") {
       if (typeof value == "undefined") {
-        return copy(state);
+        return copy(initialState);
       }
       const newState = {
-        ...state,
+        ...initialState,
         ...value,
       };
       if (typeof cb == 'function') {
         cb?.(newState)
-      } else {
-        setState(newState);
       }
+      // else {
+      //   setState(newState);
+      // }
     }
     if (typeof value == "undefined") {
-      return copy(state[key]);
+      return copy(initialState[key]);
     }
     const newState = {
-      ...state,
-      ...update(state, { [key]: value }),
+      ...initialState,
+      ...update(initialState, { [key]: value }),
     };
 
     if (typeof cb == 'function') {
       cb?.(newState)
-    } else {
-      setState(newState);
     }
+    // else {
+    //   setState(newState);
+    // }
   };
 
   return store;

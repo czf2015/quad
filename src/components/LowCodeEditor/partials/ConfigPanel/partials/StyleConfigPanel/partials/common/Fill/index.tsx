@@ -42,8 +42,7 @@ const CustomInput = ({ type, value, onBlur }) => {
   );
 };
 
-export default ({ title = '填充', store }) => {
-  const fill = store('fill') || [];
+export default ({ title = '填充', store,fill=[] }) => {
 
   const add = () => {
     store('fill', [{ type: 'color', value: '#FFFFFF', hidden: false, id: uuid() }, ...fill]);
@@ -103,7 +102,7 @@ export default ({ title = '填充', store }) => {
           const handleDrop = (dropId) => (e) => {
             e.stopPropagation()
             const dragId = e.dataTransfer.getData('dragId');
-            store('fill', dragSort(store('fill'), dragId, dropId));
+            store('fill', dragSort(fill, dragId, dropId));
           };
 
           return (

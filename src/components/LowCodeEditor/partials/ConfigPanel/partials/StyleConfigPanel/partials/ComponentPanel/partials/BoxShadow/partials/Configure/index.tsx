@@ -13,13 +13,12 @@ const InputNumber = ({ value, onChange }) => (
   <Number className={styles.input_number} size="small" value={value} onChange={onChange} />
 );
 
-export default ({ store, index }) => {
-  const boxShadows = store('boxShadow');
-  const item = store?.('boxShadow')?.[index];
+export default ({ store,state, index }) => {
+  const item = state?.[index];
 
   const changeData = (key, value) => {
-    boxShadows.splice(index, 1, { ...item, [key]: value });
-    store('boxShadow', boxShadows);
+    state.splice(index, 1, { ...item, [key]: value });
+    store('boxShadow', state);
   };
 
   const onColorChange = (color) => {
