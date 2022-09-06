@@ -1,14 +1,14 @@
 // @ts-nocheck
 import React from 'react';
 import { Divider } from 'antd';
-import { Box, BoxShadow, Transform, Text, BoxModel } from './partials';
+import { Stroke, BoxShadow, Transform, Text, BoxModel } from './partials';
 import Fill from '../common/Fill';
 import { useStore } from '@/hooks';
 
 export default ({ id, styleConfig, updateEntity }) => {
   const updateStyleConfig = (styleConfig) => {
-    updateEntity(id, { styleConfig })
-  }
+    updateEntity(id, { styleConfig });
+  };
   const store = useStore(styleConfig, updateStyleConfig);
 
   return (
@@ -17,7 +17,9 @@ export default ({ id, styleConfig, updateEntity }) => {
       <Divider />
       <Transform store={store} />
       <Divider />
-      <Text store={store} />
+      <Text store={store} {...styleConfig} />
+      <Divider />
+      <Stroke store={store} {...styleConfig} />
       <Divider />
       <Fill store={store} {...styleConfig} />
       <Divider />

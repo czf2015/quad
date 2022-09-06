@@ -4,7 +4,7 @@ import { ChromePicker as ColorPicker } from 'react-color';
 import { usePropsState } from '@/hooks';
 import styles from './index.module.less';
 
-export default ({ value = 'blue', onChange, hidden = false, }) => {
+export default ({ value = 'blue', onChange, hidden = false }) => {
   const [color, setColor] = usePropsState(value);
   const handleChange = (e) => {
     setColor(e.target.value);
