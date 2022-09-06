@@ -1,16 +1,30 @@
 .contextmenu {
-  width: 320px;
-  height: 500px;
-  padding: 16px;
-  background: #fff;
-  border-radius: 4px;
-  box-shadow: 2px 2px 4px 4px var(--quad-primary-box-shadow-color);
+  margin-right: -16px;
+  padding-right: 16px;
+  width: 400px;
+  max-height: 600px;
   overflow: hidden auto;
 }
 
 .form_item_wrapper {
   position: relative;
   cursor: move;
+
+  .delete_btn {
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    color: var(--quad-danger-color);
+    cursor: pointer;
+  }
+
+  .more_btn {
+    position: absolute;
+    top: 8px;
+    right: 0px;
+    color: var(--quad-primary-color);
+    cursor: pointer;
+  }
 
   &::after {
     content: "";
@@ -19,5 +33,15 @@
     left: 0;
     width: 100%;
     height: 24px;
+  }
+
+  &:hover {
+    background: var(--quad-primary-mask-color);
+  }
+  &:not(:hover) {
+    >.delete_btn,
+    >.more_btn {
+      display: none;
+    }
   }
 }

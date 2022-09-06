@@ -1,7 +1,7 @@
 // @ts-nocheck
 import React, { useState, useEffect } from "react";
 import { Form, Button } from "antd";
-import Text from "@/components/Form/partials/Text";
+// import Text from "@/components/Form/partials/Text";
 import { CustomFormItem } from "./partials";
 import { appendFormItems, getMeta } from './helpers';
 import { stopPropagation } from "@/utils/dom";
@@ -39,22 +39,25 @@ export default ({
       span: 16,
       offset: 0,
     },
-    autoComplete: false
+    autoComplete: false,
   },
 }) => {
   useEffect(() => {
     updateEntity?.(id, { meta: getMeta(), customize })
   }, [])
 
+  const [dragOverItem, setDragOverItem] = useState(null)
+
   const onDragOver = (e) => {
     e.preventDefault()
+    setDragOverItem({ idx: formItems.length - 1, flag: 1 })
   }
   const handleDrop = (e) => {
     e.stopPropagation()
     const dragWidgetName = e.dataTransfer.getData("dragWidgetName");
     if (dragWidgetName) {
       appendFormItems(formItems, dragWidgetName)
-      updateEntity(id, { formItems: [...formItems] })
+      updateEntity?.(id, { formItems: [...formItems] })
     }
   }
 
@@ -66,15 +69,15 @@ export default ({
   }
 
   const handleFormItemChange = (values) => {
-    formItems.forEach(item => {
-      if (values?.id == item?.id) {
-        Object.assign(item, values)
+    for (let i = 0; i < formItems.length; i++) {
+      if (values?.id == formItems[i]?.id) {
+        Object.assign(formItems[i], values)
+        updateEntity?.(id, { formItems })
+        return
       }
-    })
-    updateEntity?.(id, { formItems })
+    }
   }
 
-  const [dragOverItem, setDragOverItem] = useState(null)
   const sort = (dragId, dropId) => {
     if (dragId == dropId) {
       return
@@ -105,13 +108,9 @@ export default ({
     }
   }
 
-  const handleTitleChange = (title) => updateEntity?.(id, { customize: { title } })
-
   return (
     <div className={styles.form_wrapper} onContextMenu={stopPropagation}>
-      <h4 className={styles.title}>
-        <Text value={customize?.title} onChange={handleTitleChange} disabled={disabled} />
-      </h4>
+      <h4 className={styles.title}>{customize?.title}</h4>
       <div className={styles.placement} style={{ outline: editable ? '1px dashed var(--quad-primary-color)' : 'none' }} onDragOver={onDragOver} onDrop={handleDrop}>
         <Form
           initialValues={initialFormValues}
@@ -156,14 +155,19 @@ export default ({
                 display: customize?.layout == 'inline' ? 'inline-block' : 'block',
                 borderBottom: dragOverItem?.idx == idx && dragOverItem?.flag > 0 ? '1px dashed var(--quad-primary-border-color)' : undefined,
                 borderTop: dragOverItem?.idx == idx && dragOverItem?.flag < 0 ? '1px dashed var(--quad-primary-border-color)' : undefined,
-                background: dragOverItem?.idx == idx ? 'var(--quad-primary-mask-color)' : 'transparent'
+                // background: dragOverItem?.idx == idx ? 'var(--quad-primary-mask-color)' : 'transparent'
+              }
+              const remove = () => {
+                updateEntity?.(id, { formItems: formItems.filter(item => item.id != formItem?.id)})
               }
               return (
-                <CustomFormItem {...formItem}
+                <CustomFormItem 
+                  formItem={formItem}
                   onDragStart={handleDragStart}
                   onDragOver={handleDragOver}
                   onDrop={handleDrop}
                   onFinish={handleFormItemChange}
+                  remove={remove}
                   style={style}
                   key={formItem.id} />
               )

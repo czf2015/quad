@@ -1,8 +1,12 @@
-import uuid from '@/plugins/uuid'
+import uuid from "@/plugins/uuid";
 
-export const appendFormItems = (formItems, dragWidgetName, idx = formItems.length - 1) => {
-  const id = uuid()
-  let formItem
+export const appendFormItems = (
+  formItems,
+  dragWidgetName,
+  idx = formItems.length
+) => {
+  const id = uuid();
+  let formItem;
   switch (dragWidgetName) {
     case "Text":
       formItem = {
@@ -120,18 +124,29 @@ export const appendFormItems = (formItems, dragWidgetName, idx = formItems.lengt
         id,
       };
       break;
+    default:
+      break;
   }
-  formItems.splice(idx, 0, formItem)
+  if (formItem) {
+    formItems.splice(idx, 0, formItem);
+  }
 };
 
 export const getMeta = () => {
   return {
     customize: [
       {
+        name: "title",
+        label: "标题",
+        type: "Input",
+        wrapperCol: { span: 16 },
+        size: "small",
+      },
+      {
         name: "layout",
         label: "布局",
         type: "Select",
-        value: 'horizontal',
+        value: "horizontal",
         options: [
           {
             label: "水平",
@@ -146,27 +161,38 @@ export const getMeta = () => {
             value: "inline",
           },
         ],
+        required: true,
+        allowClear: false,
         wrapperCol: { span: 6 },
-        size: 'small'
+        size: "small",
+      },
+      {
+        name: 'canCollapse',
+        label: '收起',
+        type: 'Switch',
+        value: true,
+        prerequisites: [
+          {
+            field: 'layout',
+            options: {
+              include: ['inline']
+            }
+          }
+        ]
       },
       {
         name: "label",
         label: "标签",
-        type: 'Compact',
-        value: {
-          span: 8,
-          align: 'left',
-          wrap: false,
-        },
+        type: "Compact",
         schema: [
           {
-            name: 'span',
-            type: 'InputNumber',
+            name: "span",
+            type: "InputNumber",
             min: 1,
             max: 24,
           },
           {
-            name: 'align',
+            name: "align",
             type: "Select",
             options: [
               {
@@ -180,7 +206,7 @@ export const getMeta = () => {
             ],
           },
           {
-            name: 'wrap',
+            name: "wrap",
             type: "Select",
             options: [
               {
@@ -192,38 +218,45 @@ export const getMeta = () => {
                 value: false,
               },
             ],
-          }
-        ]
+          },
+        ],
+        value: {
+          span: 8,
+          align: "left",
+          wrap: false,
+        },
+        required: true,
       },
       {
         name: "wrapperCol",
         label: "控件",
         type: "Compact",
-        value: {
-          offset: 0,
-          span: 16,
-        },
         schema: [
           {
-            name: 'offset',
+            name: "offset",
             type: "InputNumber",
             min: 0,
             max: 24,
           },
           {
-            name: 'span',
+            name: "span",
             type: "InputNumber",
             min: 1,
             max: 24,
-          }
-        ]
+          },
+        ],
+        value: {
+          offset: 0,
+          span: 16,
+        },
+        required: true,
       },
       {
         name: "autocomplete",
         label: "自动完成",
         type: "Switch",
         value: false,
-        size: 'small'
+        size: "small",
       },
     ],
   };

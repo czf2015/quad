@@ -44,6 +44,9 @@ export const renderFormItem = ({
   picker,
   hidden = false,
   key = name,
+  allowClear = true,
+  checkedChildren = '开',
+  unCheckedChildren = '关',
   ...attrs
 }) => {
   let item = (
@@ -55,7 +58,7 @@ export const renderFormItem = ({
       addonAfter={addonAfter}
       placeholder={placeholder || "请输入"}
       disabled={disabled}
-      allowClear
+      allowClear={allowClear}
     />
   );
   if (typeof render == "function") {
@@ -74,7 +77,7 @@ export const renderFormItem = ({
             addonBefore={addonBefore}
             addonAfter={addonAfter}
             style={{ width: 120 }}
-            allowClear
+            allowClear={allowClear}
           />
         );
         break;
@@ -93,7 +96,7 @@ export const renderFormItem = ({
             addonBefore={addonBefore}
             addonAfter={addonAfter}
             style={{ width: 120 }}
-            allowClear
+            allowClear={allowClear}
           />
         );
         break;
@@ -105,12 +108,12 @@ export const renderFormItem = ({
             autoSize={{ minRows: 3, maxRows: 10 }}
             placeholder={placeholder}
             disabled={disabled}
-            allowClear
+            allowClear={allowClear}
           />
         );
         break;
       case "Switch":
-        item = <Switch size={size} disabled={disabled} />;
+        item = <Switch size={size} disabled={disabled} checkedChildren={checkedChildren} unCheckedChildren={unCheckedChildren} />;
         break;
       case "TreeSelect":
         item = (
@@ -119,7 +122,7 @@ export const renderFormItem = ({
             placeholder={placeholder || "请选择"}
             treeData={options}
             disabled={disabled}
-            allowClear
+            allowClear={allowClear}
           />
         );
         break;
@@ -132,7 +135,7 @@ export const renderFormItem = ({
             suffixIcon={<CaretDownOutlined style={{ color: "var(--xdrsec-select-suffix-icon-color)" }} />}
             placeholder={placeholder}
             disabled={disabled}
-            allowClear
+            allowClear={allowClear}
           />
         );
         break;
@@ -145,7 +148,7 @@ export const renderFormItem = ({
             suffixIcon={<CaretDownOutlined style={{ color: "var(--xdrsec-select-suffix-icon-color)" }} />}
             placeholder={placeholder}
             disabled={disabled}
-            allowClear
+            allowClear={allowClear}
           />
         );
         break;
