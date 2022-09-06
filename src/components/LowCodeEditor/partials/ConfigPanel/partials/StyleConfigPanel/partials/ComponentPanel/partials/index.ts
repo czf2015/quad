@@ -1,5 +1,6 @@
-export { Box } from './Box';
-export { BoxShadow } from './BoxShadow';
-export { Transform } from './Transform'
+export * from './Box'
+export * from './BoxShadow'
+export * from './Transform'
 export * from './BoxModel'
 export * from './Text'
+export * from './Stroke'

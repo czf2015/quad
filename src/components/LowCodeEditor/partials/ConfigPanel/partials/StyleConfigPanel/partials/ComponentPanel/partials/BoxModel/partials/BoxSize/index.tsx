@@ -1,24 +1,19 @@
 // @ts-nocheck
-import React from "react";
-import { InputNumber } from "antd";
-import styles from "./index.module.less";
+import React from 'react';
+import { Tooltip } from 'antd';
+import { BorderOuterOutlined } from '@ant-design/icons';
+import { Partials } from './partials';
+import styles from './index.module.less';
 
-export default ({ store, store_name, icon,value }) => {
-  const onChange = (value) => {
-    store(store_name,value)
-  }
-  
+export default ({ store, sizeConfig, width, height }) => {
   return (
-    <div className={styles.container}>
-      <InputNumber
-        className={styles.input}
-        size="small"
-        min={20}
-        prefix={icon()}
-        bordered={false}
-        value={value}
-        onChange={onChange}
-      />
+    <div className={styles.wh}>
+      <Tooltip title="宽高">
+        <BorderOuterOutlined className={styles.icon} />
+      </Tooltip>
+      {sizeConfig(width, height).map((item, index) => (
+        <Partials key={index} store={store} {...item} />
+      ))}
     </div>
   );
 };

@@ -296,12 +296,14 @@ export const convertToComponentStyle = ({
       textAlign,
       verticalAlign,
       color,
+      borderRadius: handleArr(borderRadius),
       fontSize: handleUnit(fontSize),
       fontWeight,
       fontFamily,
       lineHeight: handleUnit(lineHeight),
       wordSpacing: handleUnit(wordSpacing),
       textDecoration,
+      boxShadow: boxShadows.join(","),
       background: bg.join(","),
       overflow,
       zIndex: z,
@@ -314,8 +316,6 @@ export const convertToComponentStyle = ({
     padding: handleArr(padding),
     width,
     height,
-    borderRadius: handleArr(borderRadius),
-    boxShadow: boxShadows.join(","),
     transform: `scaleX(${transform?.scaleX}) scaleY(${transform?.scaleY}) rotate(${transform?.rotate}deg)`,
     transformOrigin: `${handleUnit(transformOrigin?.left)} ${handleUnit(
       transformOrigin?.top
