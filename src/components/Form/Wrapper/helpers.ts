@@ -144,6 +144,7 @@ export const getMeta = () => {
             value: "inline",
           },
         ],
+        wrapperCol: { span: 16 },
         size: 'small'
       },
       {
