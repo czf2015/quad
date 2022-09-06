@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { IntlProvider, FormattedMessage } from 'react-intl';
 import { Switch, ConfigProvider } from 'antd';
 import enUS from 'antd/es/locale/en_US';
@@ -14,14 +14,19 @@ if (window) {
 }
 
 export default ({ children, style }) => {
-  const [checked, setChecked] = useState(false)
-  const language = checked ? 'en' : 'zh'
+  const defaultChecked = localStorage.getItem('locale') == 'en'
+  const language = defaultChecked ? 'en' : 'zh'
 
-  const locale = checked ? enUS : zhCN
+  const locale = defaultChecked ? enUS : zhCN
+
+  const handleChange = (checked) => {
+    localStorage.setItem('locale', checked ? 'en' : 'zh')
+    location.reload()
+  }
 
   return (
     <>
-      <Switch checked={checked} onChange={setChecked} checkedChildren="English" unCheckedChildren="中文" style={style} />
+      <Switch defaultChecked={defaultChecked} onChange={handleChange} checkedChildren="English" unCheckedChildren="中文" style={style} />
       <IntlProvider locale={language} messages={intl[language]}>
         <ConfigProvider locale={locale}>
           {children}

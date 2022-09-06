@@ -5,4 +5,5 @@ export default {
   'header.usercenter': 'UserCenter',
   "放大": "zoom in",
   "缩小": "zoom out",
+  "恢复": "restore"
 }
