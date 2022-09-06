@@ -75,9 +75,11 @@ export default ({
     updateEntity?.(id, { formItems })
   }
 
+  const [dragTarget, setDragTarget] = useState(null)
   const sort = (dragId, dropId) => {
     const dragFormItem = formItems.find(item => item.id == dragId)
-    if (dragFormItem) {
+    const dropFormItem = formItems.find(item => item.id == dropId)
+    if (dragFormItem && dropFormItem) {
       const _formItems = []
       let flag = false
       formItems.forEach(formItem => {
@@ -101,9 +103,7 @@ export default ({
     }
   }
 
-  const [dragOverFormItemId, setDragOverFormItemId] = useState()
-
-  const handleTitleChange = (title) => updateEntity?.(id, { customize: { title }})
+  const handleTitleChange = (title) => updateEntity?.(id, { customize: { title } })
 
   return (
     <div className={styles.form_wrapper} onContextMenu={stopPropagation}>
@@ -126,30 +126,43 @@ export default ({
           autocomplete={customize?.autocomplete}
         >
           <div style={bodyStyle}>
-            {filter(formItems, formValues)?.map(formItem => {
+            {filter(formItems, formValues)?.map((formItem, idx) => {
               const handleDragStart = (e) => {
                 e.stopPropagation()
+                setDragTarget({ idx, flag: 0 })
                 e.dataTransfer.setData('dragId', formItem?.id);
               };
               const handleDragOver = (e) => {
                 e.stopPropagation()
                 e.preventDefault();
-                setDragOverFormItemId(formItem?.id)
+                setDragTarget(dragTarget => ({ ...dragTarget, flag: idx - dragTarget?.idx }))
               };
               const handleDrop = (e) => {
                 e.stopPropagation()
                 const dragId = e.dataTransfer.getData('dragId');
-                sort?.(dragId, formItem?.id)
-                setDragOverFormItemId()
+                if (dragId) {
+                  sort?.(dragId, formItem?.id)
+                  setDragTarget(null)
+                }
+                const dragWidgetName = e.dataTransfer.getData("dragWidgetName");
+                if (dragWidgetName) {
+                  appendFormItems(formItems, dragWidgetName, idx)
+                  updateEntity(id, { formItems: [...formItems] })
+                }
               };
+              const style = {
+                display: customize?.layout == 'inline' ? 'inline-block' : 'block',
+                borderTop: dragTarget?.idx == idx && dragTarget?.flag > 0 ? '1px solid var(--quad-primary-border-color)' : undefined,
+                borderBottom: dragTarget?.idx == idx && dragTarget?.flag < 0 ? '1px solid var(--quad-primary-border-color)' : undefined,
+              }
+              console.log(style)
               return (
                 <CustomFormItem {...formItem}
                   onDragStart={handleDragStart}
                   onDragOver={handleDragOver}
                   onDrop={handleDrop}
                   onFinish={handleFormItemChange}
-                  showMask={dragOverFormItemId == formItem.id}
-                  style={{ display: customize?.layout == 'inline' ? 'inline-block' : 'block' }}
+                  style={style}
                   key={formItem.id} />
               )
             })}

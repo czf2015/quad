@@ -10,34 +10,14 @@
 
 .form_item_wrapper {
   position: relative;
+  cursor: move;
 
-  >.before {
-    position: absolute;
-    top: -24px;
-    left: 0;
-    width: 100%;
-    height: 24px;
-  }
-
-  >.after {
+  &::after {
+    content: "";
     position: absolute;
     top: 32px;
     left: 0;
     width: 100%;
     height: 24px;
-  }
-
-  &:hover {
-    cursor: move;
-    background: #fff;
-    border-radius: 4px;
-    box-shadow: 2px 2px 4px 4px var(--quad-primary-box-shadow-color);
-
-    &::after {
-      position: absolute;
-      top: 4px;
-      left: 20px;
-      content: ': :';
-    }
   }
 }

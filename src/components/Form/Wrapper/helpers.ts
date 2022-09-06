@@ -1,42 +1,43 @@
 import uuid from '@/plugins/uuid'
 
-export const appendFormItems = (formItems, dragWidgetName) => {
+export const appendFormItems = (formItems, dragWidgetName, idx = formItems.length - 1) => {
   const id = uuid()
+  let formItem
   switch (dragWidgetName) {
     case "Text":
-      formItems.push({
+      formItem = {
         name: "text",
         label: "文本",
         type: "Text",
         id,
-      });
+      };
       break;
     case "RichText":
-      formItems.push({
+      formItem = {
         name: "richText",
         label: "富文本",
         type: "RichText",
         id,
-      });
+      };
       break;
     case "Number":
-      formItems.push({
+      formItem = {
         name: "number",
         label: "数字",
         type: "Number",
         id,
-      });
+      };
       break;
     case "Check":
-      formItems.push({
+      formItem = {
         name: "check",
         label: "勾选",
         type: "Switch",
         id,
-      });
+      };
       break;
     case "Radio":
-      formItems.push({
+      formItem = {
         name: "radio",
         label: "单选",
         type: "Radio",
@@ -56,10 +57,10 @@ export const appendFormItems = (formItems, dragWidgetName) => {
         ],
         defaultValue: 0,
         id,
-      });
+      };
       break;
     case "Multiple":
-      formItems.push({
+      formItem = {
         name: "multiple",
         label: "多选",
         type: "Multiple",
@@ -74,35 +75,35 @@ export const appendFormItems = (formItems, dragWidgetName) => {
           },
         ],
         id,
-      });
+      };
       break;
     case "Date":
-      formItems.push({
+      formItem = {
         name: "date",
         label: "日期",
         type: "Date",
         mode: "",
         id,
-      });
+      };
       break;
     case "Attachment":
-      formItems.push({
+      formItem = {
         name: "attachment",
         label: "附件",
         type: "Attachment",
         id,
-      });
+      };
       break;
     case "Rate":
-      formItems.push({
+      formItem = {
         name: "rate",
         label: "评分",
         type: "Rate",
         id,
-      });
+      };
       break;
     case "Tags":
-      formItems.push({
+      formItem = {
         name: "tags",
         label: "标签",
         type: "Tags",
@@ -117,9 +118,10 @@ export const appendFormItems = (formItems, dragWidgetName) => {
           },
         ],
         id,
-      });
+      };
       break;
   }
+  formItems.splice(idx, 0, formItem)
 };
 
 export const getMeta = () => {
