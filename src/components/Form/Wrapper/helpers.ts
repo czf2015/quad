@@ -127,7 +127,7 @@ export const getMeta = () => {
     customize: [
       {
         name: "layout",
-        label: "表单布局",
+        label: "布局",
         type: "Select",
         value: 'horizontal',
         options: [
@@ -144,7 +144,7 @@ export const getMeta = () => {
             value: "inline",
           },
         ],
-        wrapperCol: { span: 16 },
+        wrapperCol: { span: 6 },
         size: 'small'
       },
       {
