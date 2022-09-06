@@ -19,7 +19,7 @@ export const CustomFormItem = ({ formItem, onFinish, onDragStart, onDragOver, on
       <Popconfirm title="请确认是否删除" onConfirm={remove}>
         <DeleteOutlined className={styles.delete_btn} />
       </Popconfirm>
-      <Popover content={contextMenu} placement="rightTop" trigger="click">
+      <Popover content={contextMenu} trigger="click">
         <MoreOutlined className={styles.more_btn} />
       </Popover>
     </div>

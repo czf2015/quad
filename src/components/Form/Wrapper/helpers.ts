@@ -139,7 +139,7 @@ export const getMeta = () => {
         name: "title",
         label: "标题",
         type: "Input",
-        wrapperCol: { span: 16 },
+        wrapperCol: { span: 19 },
         size: "small",
       },
       {
@@ -163,7 +163,7 @@ export const getMeta = () => {
         ],
         required: true,
         allowClear: false,
-        wrapperCol: { span: 6 },
+        wrapperCol: { span: 7 },
         size: "small",
       },
       {
@@ -243,8 +243,16 @@ export const getMeta = () => {
         required: true,
       },
       {
-        name: "set",
-        label: "设置",
+        name: 'lineSpacing',
+        label: '行距',
+        type: 'InputNumber',
+        value: 16,
+        addonAfter: 'px',
+        size: "small",
+      },
+      {
+        name: "buttons",
+        label: "按钮",
         type: "Checkbox",
         value: [1, 2],
         options: [
@@ -256,10 +264,6 @@ export const getMeta = () => {
             label: '提交',
             value: 2
           },
-          {
-            label: '自动完成',
-            value: 4
-          }
         ],
         size: "small",
       },

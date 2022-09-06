@@ -95,7 +95,7 @@ export const Wrapper = ({
 
   return (
     <div ref={ref} id={id} data-width={styleConfig?.width} data-height={styleConfig?.height} className={`${styles.wrapper} ${mode == 'card' ? 'quad-card' : ''} ${editable ? styles.editable : ''} ${active.id == id ? styles.active : ''}`} onClick={select} onDragOver={onDragOver} onDrop={onDrop} onDragStart={stopPropagation} style={{ ...convertToComponentStyle(styleConfig, false), ...style }}>
-      <div style={{ ...convertToComponentStyle(styleConfig, true) }}>
+      <div style={{ ...convertToComponentStyle(styleConfig, true), width: styleConfig?.width, height: styleConfig?.height, boxSizing: 'border-box' }}>
         {children}
       </div>
       {editTools}

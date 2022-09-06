@@ -56,7 +56,7 @@ export const renderFormItem = ({
       suffix={suffix}
       addonBefore={addonBefore}
       addonAfter={addonAfter}
-      placeholder={placeholder || "请输入"}
+      placeholder={placeholder || `请输入${attrs?.label || '内容'}`}
       disabled={disabled}
       allowClear={allowClear}
     />

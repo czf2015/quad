@@ -54,6 +54,7 @@ export default ({
   }
   const handleDrop = (e) => {
     e.stopPropagation()
+    setDragOverItem(null)
     const dragWidgetName = e.dataTransfer.getData("dragWidgetName");
     if (dragWidgetName) {
       appendFormItems(formItems, dragWidgetName)
