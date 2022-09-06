@@ -56,5 +56,6 @@ export const getInitialValues = (initialValues, formItems = []) => {
   formItems?.forEach(({ name, checked, value = checked, defaultChecked, defaultValue = defaultChecked || value }) => {
     result[name] = defaultValue
   })
-  return Object.assign(result, initialValues)
+  Object.assign(result, initialValues)
+  return result
 }

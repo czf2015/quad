@@ -216,7 +216,7 @@ export const renderFormItem = ({
   }
 
   return needFormItem ? (
-    <Form.Item name={name} style={{ display: hidden ? 'none' : undefined }} {...attrs} key={key}>
+    <Form.Item name={type == "Compact" ? undefined : name} style={{ display: hidden ? 'none' : undefined }} {...attrs} key={key}>
       {item}
     </Form.Item>
   ) : <React.Fragment key={key}>{item}</React.Fragment>

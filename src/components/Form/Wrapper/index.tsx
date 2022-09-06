@@ -61,7 +61,6 @@ export default ({
   const initialFormValues = getInitialValues(initialValues, formItems)
   const [formValues, setFormValues] = useState(initialFormValues);
   const handleValuesChange = (changedValues, allValues) => {
-    console.log({ changedValues, allValues })
     setFormValues(allValues);
     onValuesChange?.(allValues)
   }
@@ -75,8 +74,11 @@ export default ({
     updateEntity?.(id, { formItems })
   }
 
-  const [dragTarget, setDragTarget] = useState(null)
+  const [dragOverItem, setDragOverItem] = useState(null)
   const sort = (dragId, dropId) => {
+    if (dragId == dropId) {
+      return
+    }
     const dragFormItem = formItems.find(item => item.id == dragId)
     const dropFormItem = formItems.find(item => item.id == dropId)
     if (dragFormItem && dropFormItem) {
@@ -129,20 +131,20 @@ export default ({
             {filter(formItems, formValues)?.map((formItem, idx) => {
               const handleDragStart = (e) => {
                 e.stopPropagation()
-                setDragTarget({ idx, flag: 0 })
+                setDragOverItem({ start: idx, idx, flag: 0 })
                 e.dataTransfer.setData('dragId', formItem?.id);
               };
               const handleDragOver = (e) => {
                 e.stopPropagation()
                 e.preventDefault();
-                setDragTarget(dragTarget => ({ ...dragTarget, flag: idx - dragTarget?.idx }))
+                setDragOverItem(dragOverItem => ({ start: dragOverItem?.start, idx, flag: typeof dragOverItem?.start == 'undefined' ? -1 : idx - dragOverItem?.start }))
               };
               const handleDrop = (e) => {
                 e.stopPropagation()
+                setDragOverItem(null)
                 const dragId = e.dataTransfer.getData('dragId');
                 if (dragId) {
                   sort?.(dragId, formItem?.id)
-                  setDragTarget(null)
                 }
                 const dragWidgetName = e.dataTransfer.getData("dragWidgetName");
                 if (dragWidgetName) {
@@ -152,10 +154,10 @@ export default ({
               };
               const style = {
                 display: customize?.layout == 'inline' ? 'inline-block' : 'block',
-                borderTop: dragTarget?.idx == idx && dragTarget?.flag > 0 ? '1px solid var(--quad-primary-border-color)' : undefined,
-                borderBottom: dragTarget?.idx == idx && dragTarget?.flag < 0 ? '1px solid var(--quad-primary-border-color)' : undefined,
+                borderBottom: dragOverItem?.idx == idx && dragOverItem?.flag > 0 ? '1px dashed var(--quad-primary-border-color)' : undefined,
+                borderTop: dragOverItem?.idx == idx && dragOverItem?.flag < 0 ? '1px dashed var(--quad-primary-border-color)' : undefined,
+                background: dragOverItem?.idx == idx ? 'var(--quad-primary-mask-color)' : 'transparent'
               }
-              console.log(style)
               return (
                 <CustomFormItem {...formItem}
                   onDragStart={handleDragStart}
