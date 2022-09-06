@@ -7,9 +7,9 @@ const contain = (v1, v2) => {
   return v1 == v2;
 };
 
-const judgePrerequiste = (prerequisite, formData = {}) => {
+const judgePrerequiste = (prerequisite, formValues = {}) => {
   const { field, options, range } = prerequisite;
-  const v1 = formData[field];
+  const v1 = formValues[field];
 
   if (options) {
     if (options?.include?.every((v2) => !contain(v1, v2))) {
@@ -38,13 +38,13 @@ const judgePrerequiste = (prerequisite, formData = {}) => {
 
 export const filter = (
   formItems,
-  formData,
+  formValues,
 ) => {
   return formItems?.filter((formItem) => {
     let ret = true;
     if (formItem.prerequisites) {
       ret = formItem.prerequisites.every((prerequisite) =>
-        judgePrerequiste(prerequisite, formData)
+        judgePrerequiste(prerequisite, formValues)
       );
     }
     return ret;

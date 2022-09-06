@@ -30,16 +30,17 @@ export default ({
     </Form.Item>
   )
 }) => {
-  const [formData, setFormData] = useState(getInitialValues(initialValues, formItems));
+  const initialFormValues = getInitialValues(initialValues, formItems)
+  const [formValues, setFormValues] = useState(initialFormValues);
   const handleValuesChange = (changedValues, allValues) => {
     console.log({ changedValues, allValues })
-    setFormData(allValues);
+    setFormValues(allValues);
     onValuesChange?.(allValues)
   }
 
   return (
     <Form
-      initialValues={initialValues}
+      initialValues={initialFormValues}
       onValuesChange={handleValuesChange}
       disabled={disabled}
       requiredMark={requiredMark}
@@ -52,7 +53,7 @@ export default ({
       autocomplete={autocomplete}
     >
       <div style={bodyStyle}>
-        {filter(formItems, formData)?.map(renderFormItem)}
+        {filter(formItems, formValues)?.map(renderFormItem)}
       </div>
       {footer}
     </Form>

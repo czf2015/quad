@@ -124,64 +124,104 @@ export const appendFormItems = (formItems, dragWidgetName) => {
 
 export const getMeta = () => {
   return {
-    meta: {
-      customize: [
-        {
-          name: "layout",
-          label: "表单布局",
-          type: "Select",
-          options: [
-            {
-              label: "水平",
-              value: "horizontal",
-            },
-            {
-              label: "垂直",
-              value: "vertical",
-            },
-            {
-              label: "行内",
-              value: "inline",
-            },
-          ],
+    customize: [
+      {
+        name: "layout",
+        label: "表单布局",
+        type: "Select",
+        value: 'horizontal',
+        options: [
+          {
+            label: "水平",
+            value: "horizontal",
+          },
+          {
+            label: "垂直",
+            value: "vertical",
+          },
+          {
+            label: "行内",
+            value: "inline",
+          },
+        ],
+        size: 'small'
+      },
+      {
+        name: "label",
+        label: "标签",
+        type: 'Compact',
+        value: {
+          span: 8,
+          align: 'left',
+          wrap: false,
         },
-        {
-          name: "col",
-          label: "宽度设置",
-          type: "Compact",
-          schema: [
-            {
-              name: "labelCol",
-              // label: "标签",
-              type: "InputNumber",
-              min: 1,
-              max: 24,
-            },
-            {
-              name: "wrapperCol",
-              // label: "内容",
-              type: "InputNumber",
-              min: 1,
-              max: 24,
-            },
-          ],
+        schema: [
+          {
+            name: 'span',
+            type: 'InputNumber',
+            min: 1,
+            max: 24,
+          },
+          {
+            name: 'align',
+            type: "Select",
+            options: [
+              {
+                label: "左对齐",
+                value: "left",
+              },
+              {
+                label: "右对齐",
+                value: "right",
+              },
+            ],
+          },
+          {
+            name: 'wrap',
+            type: "Select",
+            options: [
+              {
+                label: "自动换行",
+                value: true,
+              },
+              {
+                label: "超出省略",
+                value: false,
+              },
+            ],
+          }
+        ]
+      },
+      {
+        name: "wrapperCol",
+        label: "控件",
+        type: "Compact",
+        value: {
+          offset: 0,
+          span: 16,
         },
-        {
-          name: "labelAlign",
-          label: "标签对齐",
-          type: "Select",
-          options: [
-            {
-              label: "左对齐",
-              value: "left",
-            },
-            {
-              label: "右对齐",
-              value: "right",
-            },
-          ],
-        },
-      ],
-    },
+        schema: [
+          {
+            name: 'offset',
+            type: "InputNumber",
+            min: 0,
+            max: 24,
+          },
+          {
+            name: 'span',
+            type: "InputNumber",
+            min: 1,
+            max: 24,
+          }
+        ]
+      },
+      {
+        name: "autocomplete",
+        label: "自动完成",
+        type: "Switch",
+        value: false,
+        size: 'small'
+      },
+    ],
   };
 };

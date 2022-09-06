@@ -160,4 +160,78 @@ export const tableColumn = [
   //   type: "Switch",
   //   defaultValue: true,
   // },
+  {
+    name: "label",
+    label: "标签",
+    type: 'Compact',
+    value: {
+      span: 8,
+      align: 'left',
+      wrap: false,
+    },
+    schema: [
+      {
+        name: 'span',
+        type: 'InputNumber',
+        min: 1,
+        max: 24,
+      },
+      {
+        name: 'align',
+        type: "Select",
+        options: [
+          {
+            label: "左对齐",
+            value: "left",
+          },
+          {
+            label: "右对齐",
+            value: "right",
+          },
+        ],
+      },
+      {
+        name: 'wrap',
+        type: "Select",
+        options: [
+          {
+            label: "自动换行",
+            value: true,
+          },
+          {
+            label: "超出省略",
+            value: false,
+          },
+        ],
+      }
+    ]
+  },
+  {
+    name: "wrapperCol",
+    label: "控件",
+    type: "Compact",
+    value: {
+      offset: 0,
+      span: 16,
+    },
+    schema: [
+      {
+        name: 'offset',
+        type: "InputNumber",
+        min: 0,
+        max: 24,
+      },
+      {
+        name: 'span',
+        type: "InputNumber",
+        min: 1,
+        max: 24,
+      }
+    ]
+  },
+  {
+    name: "autocomplete",
+    label: "自动完成",
+    type: "Switch",
+  },
 ];

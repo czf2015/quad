@@ -77,7 +77,7 @@ export const Wrapper = ({
 
   const editTools = editable ? (
     <>
-      <Mask className={styles.mask} />
+      {/* <Mask className={styles.mask} /> */}
       <Dropdown overlay={rotateInput} placement="bottom">
         <SyncOutlined className={styles.rotate} {...dragRotateAttrs} onDragStart={handleDragRotateStart('rotate')} />
       </Dropdown>

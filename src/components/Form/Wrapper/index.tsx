@@ -1,9 +1,9 @@
 // @ts-nocheck
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Form, Button } from "antd";
 import Text from "@/components/Form/partials/Text";
 import { CustomFormItem } from "./partials";
-import { appendFormItems } from './helpers';
+import { appendFormItems, getMeta } from './helpers';
 import { stopPropagation } from "@/utils/dom";
 import { filter, getInitialValues } from "@/components/Form/helpers";
 
@@ -16,15 +16,6 @@ export default ({
   onFinishFailed = console.error,
   disabled = false,
   requiredMark = true,
-  layout = 'horizontal',
-  wrapperCol = {
-    span: 16,
-  },
-  labelCol = {
-    span: 8,
-  },
-  labelAlign = 'right',
-  autocomplete = "off",
   bodyStyle,
   footer = (
     <Form.Item wrapperCol={{ span: 6, offset: 18 }}>
@@ -37,8 +28,24 @@ export default ({
   updateEntity,
   id,
   editable,
-  customize,
+  customize = {
+    layout: 'horizontal',
+    label: {
+      span: 8,
+      align: 'left',
+      wrap: false
+    },
+    wrapperCol: {
+      span: 16,
+      offset: 0,
+    },
+    autoComplete: false
+  },
 }) => {
+  useEffect(() => {
+    updateEntity?.(id, { meta: getMeta(), customize })
+  }, [])
+
   const onDragOver = (e) => {
     e.preventDefault()
   }
@@ -51,10 +58,11 @@ export default ({
     }
   }
 
-  const [formData, setFormData] = useState(getInitialValues(initialValues, formItems));
+  const initialFormValues = getInitialValues(initialValues, formItems)
+  const [formValues, setFormValues] = useState(initialFormValues);
   const handleValuesChange = (changedValues, allValues) => {
     console.log({ changedValues, allValues })
-    setFormData(allValues);
+    setFormValues(allValues);
     onValuesChange?.(allValues)
   }
 
@@ -64,55 +72,87 @@ export default ({
         Object.assign(item, values)
       }
     })
-    debugger
     updateEntity?.(id, { formItems })
   }
 
   const sort = (dragId, dropId) => {
-    const _formItems = []
-    let flag = false
     const dragFormItem = formItems.find(item => item.id == dragId)
-    formItems.forEach(formItem => {
-      if (formItem.id == dragId) {
-        flag = true
-      } else {
-        if (formItem.id == dropId) {
-          if (flag) {
-            _formItems.push(formItem)
-            _formItems.push(dragFormItem)
+    if (dragFormItem) {
+      const _formItems = []
+      let flag = false
+      formItems.forEach(formItem => {
+        if (formItem.id == dragId) {
+          flag = true
+        } else {
+          if (formItem.id == dropId) {
+            if (flag) {
+              _formItems.push(formItem)
+              _formItems.push(dragFormItem)
+            } else {
+              _formItems.push(dragFormItem)
+              _formItems.push(formItem)
+            }
           } else {
-            _formItems.push(dragFormItem)
             _formItems.push(formItem)
           }
-        } else {
-          _formItems.push(formItem)
         }
-      }
-    })
-    updateEntity?.(id, { formItems: _formItems })
+      })
+      updateEntity?.(id, { formItems: _formItems })
+    }
   }
+
+  const [dragOverFormItemId, setDragOverFormItemId] = useState()
+
+  const handleTitleChange = (title) => updateEntity?.(id, { customize: { title }})
 
   return (
     <div className={styles.form_wrapper} onContextMenu={stopPropagation}>
       <h4 className={styles.title}>
-        <Text value={customize?.title}/*  disabled */ />
+        <Text value={customize?.title} onChange={handleTitleChange} disabled={disabled} />
       </h4>
       <div className={styles.placement} style={{ outline: editable ? '1px dashed var(--quad-primary-color)' : 'none' }} onDragOver={onDragOver} onDrop={handleDrop}>
         <Form
-          initialValues={initialValues}
+          initialValues={initialFormValues}
           onValuesChange={handleValuesChange}
           disabled={disabled}
           requiredMark={requiredMark}
-          layout={layout}
-          wrapperCol={wrapperCol}
-          labelCol={labelCol}
-          labelAlign={labelAlign}
           onFinish={onFinish}
           onFinishFailed={onFinishFailed}
-          autocomplete={autocomplete}
+          layout={customize?.layout}
+          labelCol={{ span: customize?.label?.span }}
+          labelAlign={customize?.label?.align}
+          labelWrap={customize?.label?.wrap}
+          wrapperCol={customize?.wrapperCol}
+          autocomplete={customize?.autocomplete}
         >
           <div style={bodyStyle}>
-            {filter(formItems, formData)?.map(formItem => <CustomFormItem {...formItem} onFinish={handleFormItemChange} sort={sort} key={formItem.id} />)}
+            {filter(formItems, formValues)?.map(formItem => {
+              const handleDragStart = (e) => {
+                e.stopPropagation()
+                e.dataTransfer.setData('dragId', formItem?.id);
+              };
+              const handleDragOver = (e) => {
+                e.stopPropagation()
+                e.preventDefault();
+                setDragOverFormItemId(formItem?.id)
+              };
+              const handleDrop = (e) => {
+                e.stopPropagation()
+                const dragId = e.dataTransfer.getData('dragId');
+                sort?.(dragId, formItem?.id)
+                setDragOverFormItemId()
+              };
+              return (
+                <CustomFormItem {...formItem}
+                  onDragStart={handleDragStart}
+                  onDragOver={handleDragOver}
+                  onDrop={handleDrop}
+                  onFinish={handleFormItemChange}
+                  showMask={dragOverFormItemId == formItem.id}
+                  style={{ display: customize?.layout == 'inline' ? 'inline-block' : 'block' }}
+                  key={formItem.id} />
+              )
+            })}
           </div>
           {footer}
         </Form>

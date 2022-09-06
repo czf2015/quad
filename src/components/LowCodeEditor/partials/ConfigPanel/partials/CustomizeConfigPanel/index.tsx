@@ -1,5 +1,5 @@
 import React from 'react'
-import { Empty } from 'antd'
+import { Empty, message } from 'antd'
 import Form from '@/components/Form'
 import styles from './index.module.less'
 
