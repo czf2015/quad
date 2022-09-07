@@ -211,11 +211,28 @@ export const widgetStyle = {
     }
   ],
   // 描边
-  stroke: {
-    type: "solid",
-    thickness: '1px',
-    color: "#ccc",
-  },// 或数组top right bottom left
+  stroke: [
+    {
+      type: "solid",
+      thickness: '1px',
+      color: "red",
+    },
+    {
+      type: "solid",
+      thickness: '1px',
+      color: "red",
+    },
+    {
+      type: "solid",
+      thickness: '1px',
+      color: "red",
+    },
+    {
+      type: "solid",
+      thickness: '1px',
+      color: "red",
+    }
+  ],// 或数组top right bottom left
   // 图层
   overflow: 'hidden',
   opacity: 1,
