@@ -26,7 +26,7 @@ export default ({ name: pname, label = '', schema = [], ...rest }) => {
             item = <InputNumber {...attrs} placeholder={placeholder} style={style} size="small" />
             break
           case 'Select':
-            item = <Select mode={mode} options={options} placeholder={placeholder} style={{ minWidth: 72 }} size="small" />
+            item = <Select mode={mode} options={options} placeholder={placeholder} style={{ minWidth: 72, ...style }} size="small" />
             break
           case 'Switch':
             item = <Switch {...attrs} />

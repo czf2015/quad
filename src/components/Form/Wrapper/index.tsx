@@ -12,18 +12,12 @@ import styles from './index.module.less'
 export default ({
   // title,
   initialValues,
+  onValuesChange,
   onFinish = console.success,
   onFinishFailed = console.error,
   disabled = false,
   requiredMark = true,
   bodyStyle,
-  footer = (
-    <Form.Item wrapperCol={{ span: 6, offset: 18 }}>
-      <Button type="primary" htmlType="submit">
-        确认
-      </Button>
-    </Form.Item>
-  ),
   formItems = [],
   updateEntity,
   id,
@@ -87,6 +81,7 @@ export default ({
     for (let i = 0; i < formItems.length; i++) {
       if (values?.id == formItems[i]?.id) {
         Object.assign(formItems[i], values)
+        console.log({ formItems, values })
         updateEntity?.(id, { formItems })
         return
       }
@@ -123,10 +118,21 @@ export default ({
     }
   }
 
+  const footer = (
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <Button type="primary" htmlType="submit" style={{ display: customize?.submit?.visible ? undefined : 'none', marginTop: customize?.content?.lineSpacing }}>
+        {customize?.submit?.text}
+      </Button>
+      <Button htmlType="reset" style={{ display: customize?.recontent?.visible ? undefined : 'none', marginTop: customize?.content?.lineSpacing, marginLeft: 16 }}>
+        {customize?.recontent?.text}
+      </Button>
+    </div>
+  )
+
   return (
     <div className={styles.form_wrapper} onContextMenu={stopPropagation}>
-      <h4 className={styles.title} style={{ backgroundColor: customize?.title?.backgroundColor }}>{customize?.title?.text}</h4>
-      <div className={styles.placement} /* style={{ outline: editable ? '1px dashed var(--quad-primary-color)' : 'none' }} */ onDragOver={onDragOver} onDrop={handleDrop}>
+      <h4 className={styles.title} style={{ backgroundColor: customize?.title?.backgroundColor, fontSize: customize?.title?.fontSize }}>{customize?.title?.text}</h4>
+      <div className={styles.placement} style={{ outline: editable ? '1px dashed var(--quad-primary-color)' : 'none', background: customize?.content?.background }} onDragOver={onDragOver} onDrop={handleDrop}>
         <Form
           initialValues={initialFormValues}
           onValuesChange={handleValuesChange}
@@ -134,7 +140,7 @@ export default ({
           requiredMark={requiredMark}
           onFinish={onFinish}
           onFinishFailed={onFinishFailed}
-          layout={customize?.set?.layout}
+          layout={customize?.content?.layout}
           labelCol={{ span: customize?.label?.span }}
           labelAlign={customize?.label?.align}
           labelWrap={customize?.label?.wrap}
@@ -167,16 +173,17 @@ export default ({
                 }
               };
               const style = {
-                display: customize?.layout == 'inline' ? 'inline-block' : 'block',
+                display: customize?.content?.layout == 'inline' ? 'inline-block' : 'block',
                 borderBottom: dragOverItem?.idx == idx && dragOverItem?.flag > 0 ? '1px dashed var(--quad-primary-border-color)' : undefined,
                 borderTop: dragOverItem?.idx == idx && dragOverItem?.flag < 0 ? '1px dashed var(--quad-primary-border-color)' : undefined,
-                // background: dragOverItem?.idx == idx ? 'var(--quad-primary-mask-color)' : 'transparent'
+                background: dragOverItem?.idx == idx ? 'var(--quad-primary-mask-color)' : 'transparent',
+                marginTop: customize?.content?.lineSpacing
               }
               const remove = () => {
-                updateEntity?.(id, { formItems: formItems.filter(item => item.id != formItem?.id)})
+                updateEntity?.(id, { formItems: formItems.filter(item => item.id != formItem?.id) })
               }
               return (
-                <CustomFormItem 
+                <CustomFormItem
                   formItem={formItem}
                   onDragStart={handleDragStart}
                   onDragOver={handleDragOver}

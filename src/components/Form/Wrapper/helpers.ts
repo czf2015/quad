@@ -164,12 +164,13 @@ export const getMeta = () => {
         ],
         value: {
           text: '',
+          fontSize: 16,
           backgroundColor: 'transparent'
         }
       },
       {
-        name: 'set',
-        label: '设置',
+        name: 'content',
+        label: '内容',
         type: 'Compact',
         schema: [
           {
@@ -192,6 +193,7 @@ export const getMeta = () => {
             ],
             allowClear: false,
             size: "small",
+            style: { width: 172 }
           },
           {
             name: 'lineSpacing',
@@ -200,11 +202,19 @@ export const getMeta = () => {
             min: 0,
             addonAfter: 'px',
             size: "small",
+            style: { width: 88 }
+          },
+          {
+            name: 'background',
+            label: '背景',
+            type: 'ColorPicker',
+            mode: 'color'
           },
         ],
         value: {
           layout: 'horizontal',
           lineSpacing: 16,
+          background: 'transparent'
         },
         required: true
       },
