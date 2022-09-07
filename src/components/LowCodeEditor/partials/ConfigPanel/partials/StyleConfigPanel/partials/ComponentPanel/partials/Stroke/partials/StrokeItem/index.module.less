@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  .content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 12px;
+
+    .input {
+      height: 24px;
+      width: 110px;
+      margin-left: 4px;
+      background-color: var(--quad-primary-background-color);
+
+      &:hover {
+        outline: 1px solid var(--quad-primary-border-color);
+      }
+    }
+  }
+}

@@ -2,6 +2,7 @@
 import React from 'react';
 import { Divider } from 'antd';
 import { Stroke, BoxShadow, Transform, Text, BoxModel } from './partials';
+import Layer from '../BlockPanel/Layer';
 import Fill from '../common/Fill';
 import { useStore } from '@/hooks';
 
@@ -15,7 +16,9 @@ export default ({ id, styleConfig, updateEntity }) => {
     <div>
       <BoxModel store={store} {...styleConfig} />
       <Divider />
-      <Transform store={store} />
+      <Layer store={store} />
+      <Divider />
+      <Transform store={store} {...styleConfig} />
       <Divider />
       <Text store={store} {...styleConfig} />
       <Divider />
