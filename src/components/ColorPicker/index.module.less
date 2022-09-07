@@ -1,14 +1,25 @@
 .color_picker {
   display: flex;
-  // justify-content: space-between;
   align-items: center;
-  padding-left: 4px;
+  background-color: #f5f7fa;
 
-  > .effect {
+  &.color_mode {
+    margin-left: 4px;
+    padding-left: 0;
+  }
+
+  &:not(.color_mode) {
+    padding-left: 4px;
+    border-radius: 4px 0 0 4px;
+  }
+
+  >.effect {
+    position: relative;
     width: 16px;
     height: 16px;
   }
-  > .input {
+
+  >.input {
     width: 72px;
   }
 }

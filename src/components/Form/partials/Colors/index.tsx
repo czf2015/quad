@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import ColorPicker from '@/components/ColorPicker'
-import Eye from '@/components/Form/partials/CustomSwitch'
+import Eye from '@/components/Form/partials/Eye'
 import uuid from '@/plugins/uuid'
 import { dragSort } from '@/utils/array'
 import { HolderOutlined, PlusOutlined, MinusOutlined } from '@ant-design/icons';

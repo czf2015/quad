@@ -9,8 +9,8 @@ import styles from './index.module.less';
 
 export const BoxModel = ({
   store,
-  width = 200,
-  height = 200,
+  width = 400,
+  height = 300,
   margin = ['0px', '0px', '0px', '0px'],
   padding = ['0px', '0px', '0px', '0px'],
   borderRadius = ['0px', '0px', '0px', '0px'],

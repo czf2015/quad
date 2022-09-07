@@ -2,6 +2,8 @@ import React from 'react'
 import InputText from '@/components/Form/partials/InputText'
 import JsonEdit from '@/components/Form/partials/JsonEdit'
 import CodeEdit from '@/components/Form/partials/CodeEdit'
+import Eye from '@/components/Form/partials/Eye'
+import ColorPicker from '@/components/ColorPicker'
 import { Form, Input, Select, Switch, InputNumber, Tooltip } from '@/plugins/ui'
 import styles from './index.module.less'
 
@@ -34,6 +36,12 @@ export default ({ name: pname, label = '', schema = [], ...rest }) => {
             break
           case 'Code':
             item = <CodeEdit />
+            break
+          case 'ColorPicker':
+            item = <ColorPicker mode={mode} />
+            break
+          case 'Eye':
+            item = <Eye />
             break
           default:
             item = <Input placeholder={placeholder} size="small" />

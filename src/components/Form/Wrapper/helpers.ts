@@ -136,35 +136,69 @@ export const getMeta = () => {
   return {
     customize: [
       {
-        name: "title",
-        label: "标题",
-        type: "Input",
-        wrapperCol: { span: 19 },
-        size: "small",
-      },
-      {
-        name: "layout",
-        label: "布局",
-        type: "Select",
-        value: "horizontal",
-        options: [
+        name: 'title',
+        label: '标题',
+        type: 'Compact',
+        schema: [ 
           {
-            label: "水平",
-            value: "horizontal",
+            name: "text",
+            label: "文字",
+            type: "Input",
+            size: "small",
           },
           {
-            label: "垂直",
-            value: "vertical",
-          },
-          {
-            label: "行内",
-            value: "inline",
+            name: "backgroundColor",
+            label: "背景色",
+            type: "ColorPicker",
+            mode: 'color',
+            size: "small",
           },
         ],
-        required: true,
-        allowClear: false,
-        wrapperCol: { span: 7 },
-        size: "small",
+        value: {
+          text: '',
+          backgroundColor: 'transparent'
+        }
+      },
+      {
+        name: 'set',
+        label: '设置',
+        type: 'Compact',
+        schema: [
+          {
+            name: "layout",
+            label: "布局",
+            type: "Select",
+            options: [
+              {
+                label: "水平",
+                value: "horizontal",
+              },
+              {
+                label: "垂直",
+                value: "vertical",
+              },
+              {
+                label: "行内",
+                value: "inline",
+              },
+            ],
+            allowClear: false,
+            size: "small",
+          },
+          {
+            name: 'lineSpacing',
+            label: '行距',
+            type: 'InputNumber',
+            min: 0,
+            addonAfter: 'px',
+            size: "small",
+          },
+        ],
+        value: {
+          layout: 'horizontal',
+          lineSpacing: 16,
+        },
+        required: true
       },
       {
         name: "label",
@@ -243,29 +277,92 @@ export const getMeta = () => {
         required: true,
       },
       {
-        name: 'lineSpacing',
-        label: '行距',
-        type: 'InputNumber',
-        value: 16,
-        addonAfter: 'px',
-        size: "small",
-      },
-      {
-        name: "buttons",
-        label: "按钮",
-        type: "Checkbox",
-        value: [1, 2],
-        options: [
+        name: 'submit',
+        label: '提交',
+        type: 'Compact',
+        schema: [
           {
-            label: '重置',
-            value: 1
+            name: 'type',
+            label: '模式',
+            type: 'Select',
+            options: [
+              {
+                label: '默认',
+                value: 'primary'
+              },
+              {
+                label: '文本',
+                value: 'text'
+              }
+            ]
           },
           {
-            label: '提交',
-            value: 2
+            name: 'text',
+            label: '文字',
+            type: 'Input'
+          },
+          {
+            name: 'color',
+            label: '颜色',
+            type: 'ColorPicker'
+          },
+          {
+            name: 'visible',
+            label: '显示',
+            type: 'Eye'
           },
         ],
-        size: "small",
+        value: {
+          type: 'primary',
+          text: '提交',
+          color: '#1890ff',
+          visible: true,
+        },
+        required: true
+      },
+      {
+        name: 'reset',
+        label: '重置',
+        type: 'Compact',
+        schema: [
+          {
+            name: 'type',
+            label: '模式',
+            type: 'Select',
+            options: [
+              {
+                label: '默认',
+                value: 'primary'
+              },
+              {
+                label: '文本',
+                value: 'text'
+              }
+            ]
+          },
+          {
+            name: 'text',
+            label: '文字',
+            type: 'Input'
+          },
+          {
+            name: 'color',
+            label: '颜色',
+            type: 'ColorPicker'
+          },
+          {
+            name: 'visible',
+            label: '显示',
+            type: 'Eye'
+          },
+        ],
+        value: {
+          type: 'primary',
+          text: '重置',
+          color: '#1890ff',
+          visible: true,
+        },
+        required: true
       },
     ],
   };

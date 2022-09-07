@@ -29,7 +29,10 @@ export default ({
   id,
   editable,
   customize = {
-    layout: 'horizontal',
+    set: {
+      layout: 'horizontal',
+      lineSpacing: 16
+    },
     label: {
       span: 8,
       align: 'left',
@@ -39,7 +42,18 @@ export default ({
       span: 16,
       offset: 0,
     },
-    autoComplete: false,
+    submit: {
+      type: 'primary',
+      text: '提交',
+      color: '#1890ff',
+      visible: true,
+    },
+    reset: {
+      type: 'primary',
+      text: '重置',
+      color: '#1890ff',
+      visible: true,
+    },
   },
 }) => {
   useEffect(() => {
@@ -111,7 +125,7 @@ export default ({
 
   return (
     <div className={styles.form_wrapper} onContextMenu={stopPropagation}>
-      <h4 className={styles.title}>{customize?.title}</h4>
+      <h4 className={styles.title} style={{ backgroundColor: customize?.title?.backgroundColor }}>{customize?.title?.text}</h4>
       <div className={styles.placement} /* style={{ outline: editable ? '1px dashed var(--quad-primary-color)' : 'none' }} */ onDragOver={onDragOver} onDrop={handleDrop}>
         <Form
           initialValues={initialFormValues}
@@ -120,7 +134,7 @@ export default ({
           requiredMark={requiredMark}
           onFinish={onFinish}
           onFinishFailed={onFinishFailed}
-          layout={customize?.layout}
+          layout={customize?.set?.layout}
           labelCol={{ span: customize?.label?.span }}
           labelAlign={customize?.label?.align}
           labelWrap={customize?.label?.wrap}

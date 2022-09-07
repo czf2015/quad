@@ -13,6 +13,7 @@ import Compact from "./partials/Compact";
 import Multiple from "./partials/Multiple";
 import InputText from "./partials/InputText";
 import Colors from "./partials/Colors";
+import Eye from "./partials/Eye";
 import ColorPicker from "@/components/ColorPicker";
 import { CaretDownOutlined } from "@ant-design/icons";
 import DatePicker from "./partials/DatePicker";
@@ -212,6 +213,9 @@ export const renderFormItem = ({
         break
       case "ColorPicker":
         item = <ColorPicker />
+        break
+      case "Eye":
+        item = <Eye />
         break
       default:
         break;

@@ -2,7 +2,7 @@
 import React from 'react';
 import { Popover, Input } from 'antd';
 import Popup from './partials/Popup';
-import Eye from '@/components/Form/partials/CustomSwitch';
+import Eye from '@/components/Form/partials/Eye';
 import Copy from '@/components/Copy';
 import { dragSort } from './helper';
 import { HolderOutlined, PlusOutlined, MinusOutlined } from '@ant-design/icons';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Popover, Input, message } from 'antd';
-import Eye from '@/components/Form/partials/CustomSwitch';
+import Eye from '@/components/Form/partials/Eye';
 import ColorGradient from '@/components/ColorGradient';
 import Copy from '@/components/Copy';
 import { usePropsState, useSubStore } from '@/hooks';

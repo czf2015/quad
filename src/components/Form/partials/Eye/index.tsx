@@ -7,6 +7,7 @@
 
 // @ts-nocheck
 import React from "react";
+import { Tooltip } from "antd";
 import { useToggle } from "@/hooks";
 import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
 import styles from './index.module.less'
@@ -18,9 +19,13 @@ export default ({ value, onChange, checkedChildren = <EyeOutlined />, uncheckedC
     toggleChecked()
   }
 
+  const tip = checked ? '显示' : '隐藏'
+
   return (
-    <span className={`${styles.custom_switch} ${checked ? styles.checked : styles.unchecked}`} onClick={handleChange}>
-      {checked ? checkedChildren : uncheckedChildren}
-    </span>
+    <Tooltip tip={intl(tip)}>
+      <span className={`${styles.custom_switch} ${checked ? styles.checked : styles.unchecked}`} onClick={handleChange}>
+        {checked ? checkedChildren : uncheckedChildren}
+      </span>
+    </Tooltip>
   )
 }
