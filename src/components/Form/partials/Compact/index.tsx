@@ -11,7 +11,7 @@ export default ({ name: pname, label = '', schema = [], ...rest }) => {
   return (
     <div className={styles.compact}>
       {/* <label>{label}</label> */}
-      {schema?.map(({ name, label, type, mode, options, placeholder, ...attrs }) => {
+      {schema?.map(({ name, label, type, mode, options, placeholder, style, ...attrs }) => {
         let item
         switch (type) {
           case 'InputText':
@@ -23,7 +23,7 @@ export default ({ name: pname, label = '', schema = [], ...rest }) => {
             break
           case 'InputNumber':
           case 'Number':
-            item = <InputNumber {...attrs} placeholder={placeholder} size="small" />
+            item = <InputNumber {...attrs} placeholder={placeholder} style={style} size="small" />
             break
           case 'Select':
             item = <Select mode={mode} options={options} placeholder={placeholder} style={{ minWidth: 72 }} size="small" />
@@ -44,7 +44,7 @@ export default ({ name: pname, label = '', schema = [], ...rest }) => {
             item = <Eye />
             break
           default:
-            item = <Input placeholder={placeholder} size="small" />
+            item = <Input placeholder={placeholder} style={style} size="small" />
             break
         }
 

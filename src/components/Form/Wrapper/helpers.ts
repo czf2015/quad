@@ -147,6 +147,14 @@ export const getMeta = () => {
             size: "small",
           },
           {
+            name: "fontSize",
+            label: "字体大小",
+            type: "InputNumber",
+            addonAfter: 'px',
+            size: "small",
+            style: { width: 88 }
+          },
+          {
             name: "backgroundColor",
             label: "背景色",
             type: "ColorPicker",
@@ -207,7 +215,7 @@ export const getMeta = () => {
         schema: [
           {
             name: "span",
-            label: '大小',
+            label: '跨距',
             type: "InputNumber",
             min: 1,
             max: 24,
@@ -256,6 +264,13 @@ export const getMeta = () => {
         type: "Compact",
         schema: [
           {
+            name: "span",
+            label: '跨距',
+            type: "InputNumber",
+            min: 1,
+            max: 24,
+          },
+          {
             name: "offset",
             label: '偏移',
             type: "InputNumber",
@@ -263,16 +278,29 @@ export const getMeta = () => {
             max: 24,
           },
           {
-            name: "span",
+            name: "size",
             label: '大小',
-            type: "InputNumber",
-            min: 1,
-            max: 24,
+            type: "Select",
+            options: [
+              {
+                label: '偏小',
+                value: 'small'
+              },
+              {
+                label: '中等',
+                value: 'middle'
+              },
+              {
+                label: '偏大',
+                value: 'large'
+              }
+            ]
           },
         ],
         value: {
           offset: 0,
           span: 16,
+          size: 'small'
         },
         required: true,
       },
@@ -299,12 +327,14 @@ export const getMeta = () => {
           {
             name: 'text',
             label: '文字',
-            type: 'Input'
+            type: 'Input',
+            style: { width: 140 }
           },
           {
             name: 'color',
             label: '颜色',
-            type: 'ColorPicker'
+            type: 'ColorPicker',
+            mode: 'color'
           },
           {
             name: 'visible',
@@ -343,12 +373,14 @@ export const getMeta = () => {
           {
             name: 'text',
             label: '文字',
-            type: 'Input'
+            type: 'Input',
+            style: { width: 140 }
           },
           {
             name: 'color',
             label: '颜色',
-            type: 'ColorPicker'
+            type: 'ColorPicker',
+            mode: 'color'
           },
           {
             name: 'visible',
