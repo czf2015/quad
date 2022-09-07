@@ -14,37 +14,39 @@ export default ({
       type: 'solid',
       thickness: '1px',
       color: 'red',
+      none: false,
     },
     {
       type: 'solid',
       thickness: '2px',
       color: 'blue',
+      none: false,
     },
     {
       type: 'solid',
       thickness: '1px',
       color: 'green',
+      none: false,
     },
     {
       type: 'solid',
       thickness: '1px',
       color: 'yellow',
+      none: false,
     },
   ],
 }) => {
   const [renderObj, setRenderObj] = useState({});
   const [checked, setChecked] = useState();
-  const [openEyes, setOpenEyes] = useState(false);
+  const [closeEyes, setCloseEyes] = useState(stroke?.[0]?.none);
+  const arr = stroke?.map(({ type, thickness, color }) => `${thickness} ${type} ${color}`);
   const handleOutConfig = () => {
     let obj = {};
-    const arr = stroke?.map(({ type, thickness, color }) => `${thickness} ${type} ${color}`);
-    const b = arr?.every((el) => el === arr[0]);
-    debugger;
-    setChecked(!b);
-    if (b) {
+    const verify = arr?.every((el) => el === arr[0]);
+    setChecked(!verify);
+    if (verify) {
       obj.value = `border: ${arr[0] || 'none'}`;
-      obj.color = `border: ${stroke?.[0]?.color}`;
-      debugger;
+      obj.color = stroke?.[0]?.color;
       setRenderObj(obj);
     } else {
       obj.value = `borderTop: ${arr[0] || 'none'}, borderRight: ${arr[1] || 'none'}, borderBottom: ${
@@ -52,14 +54,19 @@ export default ({
       }, borderLeft: ${arr[3] || 'none'}`;
       obj.color =
         'repeating-linear-gradient(135deg, #c74518 0%, #d0d219 30%, #1ed055 60%, #4708cb 100%) 0% 0%/100% 100%';
-      debugger;
       setRenderObj(obj);
     }
   };
 
+  const handleEyes = () => {
+    const arr = stroke?.map((item) => ({ ...item, none: !openEyes }));
+    store('stroke', arr);
+    setCloseEyes((pre) => !pre);
+  };
+
   useEffect(() => {
     handleOutConfig();
-  }, [stroke.toString()]);
+  }, [arr.toString()]);
 
   return (
     <div className={styles.container}>
@@ -68,7 +75,15 @@ export default ({
         <Popover
           placement="leftBottom"
           trigger="click"
-          content={<StrokeConfigPanel store={store} stroke={stroke} checked={checked} setChecked={setChecked} />}
+          content={
+            <StrokeConfigPanel
+              store={store}
+              stroke={stroke}
+              propsValue={arr}
+              checked={checked}
+              setChecked={setChecked}
+            />
+          }
         >
           <span className={styles.effect} style={{ background: renderObj.color }} />
         </Popover>
@@ -76,12 +91,7 @@ export default ({
         <Copy value={renderObj.value} />
       </div>
       <div className={styles.eye}>
-        <Eyes
-          hidden={openEyes}
-          handleEyes={() => {
-            setOpenEyes((pre) => !pre);
-          }}
-        />
+        <Eyes hidden={closeEyes} handleEyes={handleEyes} />
       </div>
     </div>
   );

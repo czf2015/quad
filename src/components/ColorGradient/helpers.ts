@@ -254,6 +254,7 @@ export const convertToComponentStyle = ({
   transform,
   transformOrigin,
   fill = [],
+  stroke = [],
   overflow,
   opacity = 100,
   z,
@@ -321,6 +322,10 @@ export const convertToComponentStyle = ({
       transformOrigin?.top
     )}`,
     opacity: hidden ? 0 : opacity / 100,
+    borderTop: stroke?.[0]?.none ? 'none' : `${stroke?.[0]?.thickness} ${stroke?.[0]?.type} ${stroke?.[0]?.color}`,
+    borderRight: stroke?.[1]?.none ? 'none' : `${stroke?.[1]?.thickness} ${stroke?.[1]?.type} ${stroke?.[1]?.color}`,
+    borderBottom: stroke?.[2]?.none ? 'none' : `${stroke?.[2]?.thickness} ${stroke?.[2]?.type} ${stroke?.[2]?.color}`,
+    borderLeft: stroke?.[3]?.none ? 'none' : `${stroke?.[3]?.thickness} ${stroke?.[3]?.type} ${stroke?.[3]?.color}`,
     // visibility: hidden ? "hidden" : "visible",
   };
 };
