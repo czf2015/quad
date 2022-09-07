@@ -42,7 +42,6 @@ export default ({ store }) => {
             max={100}
             min={0}
             controls={false}
-            // formatter={(value) => `${value}%`}
             defaultValue={store('opacity') || 100}
             prefix={opacityIcon()}
             onBlur={handleOpacityBlur}
