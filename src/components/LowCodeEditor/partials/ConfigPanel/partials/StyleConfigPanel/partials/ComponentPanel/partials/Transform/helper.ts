@@ -1,10 +1,11 @@
 // @ts-nocheck
 import { horizontalIcon, verticalIcon, dge, x, y } from '../../../../icons';
 
-export const transformConfig = (store) => [
+export const transformConfig = (store, scaleX, scaleY, rotate) => [
   {
-    value: store('transform')?.scaleX,
+    value: scaleX,
     step: 0.1,
+    formatter: false,
     icon: horizontalIcon,
     onChange: (value) => {
       store('transform', { scaleX: value })
@@ -16,8 +17,9 @@ export const transformConfig = (store) => [
     }
   },
   {
-    value: store('transform')?.scaleY,
+    value: scaleY,
     step: 0.1,
+    formatter: false,
     icon: verticalIcon,
     onChange: (value) => {
       store('transform', { scaleY: value })
@@ -29,8 +31,9 @@ export const transformConfig = (store) => [
     }
   },
   {
-    value: store('transform')?.rotate,
+    value: rotate,
     step: 5,
+    formatter: true,
     icon: dge,
     onChange: (value) => {
       if (value > 360) {
@@ -49,9 +52,9 @@ export const transformConfig = (store) => [
   }
 ]
 
-export const originConfig = (store) => [
+export const originConfig = (store, left, top) => [
   {
-    value: store('transformOrigin')?.left,
+    value: left,
     icon: x,
     onChange: (e) => {
       store('transformOrigin', { left: e.target.value })
@@ -63,7 +66,7 @@ export const originConfig = (store) => [
     }
   },
   {
-    value: store('transformOrigin')?.top,
+    value: top,
     icon: y,
     onChange: (e) => {
       store('transformOrigin', { top: e.target.value })
