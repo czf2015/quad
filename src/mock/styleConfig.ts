@@ -216,21 +216,25 @@ export const widgetStyle = {
       type: "solid",
       thickness: '1px',
       color: "red",
+      none: true,
     },
     {
       type: "solid",
       thickness: '1px',
       color: "red",
+      none: true,
     },
     {
       type: "solid",
       thickness: '1px',
       color: "red",
+      none: true,
     },
     {
       type: "solid",
       thickness: '1px',
       color: "red",
+      none: true,
     }
   ],// 或数组top right bottom left
   // 图层
