@@ -167,24 +167,45 @@ export const tableColumn = [
     type: "Compact",
     schema: [
       {
-        name: 'offset',
-        label: "偏移",
+        name: "span",
+        label: '跨距',
+        type: "InputNumber",
+        min: 1,
+        max: 24,
+      },
+      {
+        name: "offset",
+        label: '偏移',
         type: "InputNumber",
         min: 0,
         max: 24,
       },
       {
-        name: 'span',
-        label: "大小",
-        type: "InputNumber",
-        min: 1,
-        max: 24,
-      }
+        name: "size",
+        label: '大小',
+        type: "Select",
+        options: [
+          {
+            label: '偏小',
+            value: 'small'
+          },
+          {
+            label: '中等',
+            value: 'middle'
+          },
+          {
+            label: '偏大',
+            value: 'large'
+          }
+        ]
+      },
     ],
     value: {
       offset: 0,
       span: 16,
+      size: 'small'
     },
+    required: true,
   },
   {
     name: "autocomplete",
