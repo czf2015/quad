@@ -163,8 +163,13 @@ export default [
     description: "",
     items: [
       {
-        // name: "BarChart",
         name: 'CustomizeChart',
+        title: "图表",
+        icon: "",
+        description: "",
+      },
+      {
+        name: "BarChart",
         title: "柱状图",
         icon: "",
         description: "",
