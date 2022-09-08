@@ -5,7 +5,7 @@ import Constraints from './Constraints';
 import Layer from './Layer';
 import Fill from '../common/Fill';
 import { useStore } from '@/hooks';
-import styles from './index.module.less'
+// import styles from './index.module.less'
 
 // 区块样式配置面板
 export default ({ id, styleConfig, updateEntity }) => {
@@ -15,12 +15,12 @@ export default ({ id, styleConfig, updateEntity }) => {
   const store = useStore(styleConfig, updateStyleConfig);
 
   return (
-    <div className={`${styles.block_style_config} quad-card`}>
-      <Constraints store={store} />
+    <div /* className={`${styles.block_style_config} quad-card`} */>
+      <Constraints store={store} {...styleConfig} />
       <Divider />
-      <Layer store={store} />
+      <Layer store={store} {...styleConfig} />
       <Divider />
-      <Fill store={store} />
+      <Fill store={store} {...styleConfig} />
     </div>
   );
 };

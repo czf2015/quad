@@ -1,7 +1,7 @@
 // @ts-nocheck
 import React, { useState } from 'react'
-import { Button, Dropdown, Menu, Popconfirm } from '@/plugins/ui'
-import { DeleteOutlined, ScissorOutlined } from '@ant-design/icons'
+import { Button, Dropdown, Menu, Popconfirm, Popover } from '@/plugins/ui'
+import { DeleteOutlined, ScissorOutlined, MoreOutlined } from '@ant-design/icons'
 import BlockStyleConfigPanel from "@/components/LowCodeEditor/partials/ConfigPanel/partials/StyleConfigPanel/partials/BlockPanel";
 import { useClip, useDragMove } from '@/hooks'
 import { convertToStyle } from '@/components/ColorGradient/helpers';
@@ -97,21 +97,22 @@ export const Block = ({ editable, name, id, pid, title = '', quad, hasBlock = fa
 
   const editTools = editable ?
     <>
-      <Popconfirm title="确认是否删除?" onConfirm={remove}>
-        <DeleteOutlined className={`${styles.delete_btn} quad-circle`} />
-      </Popconfirm>
       <Boundary pull={pull} quad={quad} zoom={zoom} />
       {store('isClipHidden')
         ? <ScissorOutlined className={`${styles.scissor_btn} quad-circle`} onClick={handleClipHidden} />
         : <Clip id={id} isHorizontal={store('isHorizontal')} offset={offset} menuItems={menuItems} onClick={split} onVisibleChange={setHaltClipClip} onMenuClick={onMenuClick} />}
+      <Popconfirm title="确认是否删除?" onConfirm={remove}>
+        <DeleteOutlined className={`${styles.delete_btn} quad-circle`} />
+      </Popconfirm>
+      <Popover content={<BlockStyleConfigPanel id={id} {...entity} updateEntity={updateEntity} />} trigger="click">
+        <MoreOutlined className={`${styles.more_btn} quad-circle`} />
+      </Popover>
     </> : null
 
   return (
-    <Dropdown overlay={<BlockStyleConfigPanel id={id} {...entity} updateEntity={updateEntity} />} trigger="contextMenu">
-      <div id={id} className={`${styles.block} ${haltClip ? styles.contextmenu : ''} ${hasBlock ? styles.hasBlock : ''} ${editable ? styles.editable : ''}`} style={{ ...style, ...convertToStyle(entity?.styleConfig) }} onMouseMove={onMouseMove} onDragOver={onDragOver} onDrop={onDrop} ref={ref}>
-        {children}
-        {editTools}
-      </div>
-    </Dropdown>
+    <div className={`${styles.block} ${haltClip ? styles.contextmenu : ''} ${hasBlock ? styles.hasBlock : ''} ${editable ? styles.editable : ''}`} style={{ ...style, ...convertToStyle(entity?.styleConfig, true) }} onMouseMove={onMouseMove} onDragOver={onDragOver} onDrop={onDrop} ref={ref}>
+      {children}
+      {editTools}
+    </div>
   )
 }

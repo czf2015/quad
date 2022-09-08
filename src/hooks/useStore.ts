@@ -1,42 +1,43 @@
 // @ts-nocheck
 import { useState } from "react";
-import { usePropsState } from "./usePropsState";
 import { update, copy } from "@/utils/object";
 
-export const useStore = (initialState = {}, cb) => {
-  // const [state, setState] = useState(initialState);
+export const useStore = (propsState = {}, setPropsState) => {
+  const [state, setState] = useState(propsState);
 
   const store = (key, value) => {
-    if (typeof key == "undefined") {
-      if (typeof value == "undefined") {
-        return copy(initialState);
+    if (typeof setPropsState == 'function') {
+      if (typeof key == "undefined") {
+        if (typeof value == "undefined") {
+          return copy(propsState);
+        }
+        setPropsState(value)
+      } else {
+        if (typeof value == "undefined") {
+          return copy(propsState[key]);
+        }
+        setPropsState?.({
+          ...propsState,
+          ...update(propsState, { [key]: value }),
+        })
       }
-      const newState = {
-        ...initialState,
-        ...value,
-      };
-      if (typeof cb == 'function') {
-        cb?.(newState)
+    } else {
+      if (typeof key == "undefined") {
+        if (typeof value == "undefined") {
+          return copy(state);
+        }
+        setState(value)
+      } else {
+        if (typeof value == "undefined") {
+          return copy(state[key]);
+        }
+        setState?.({
+          ...state,
+          ...update(state, { [key]: value }),
+        })
       }
-      // else {
-      //   setState(newState);
-      // }
     }
-    if (typeof value == "undefined") {
-      return copy(initialState[key]);
-    }
-    const newState = {
-      ...initialState,
-      ...update(initialState, { [key]: value }),
-    };
-
-    if (typeof cb == 'function') {
-      cb?.(newState)
-    }
-    // else {
-    //   setState(newState);
-    // }
-  };
+  }
 
   return store;
 };

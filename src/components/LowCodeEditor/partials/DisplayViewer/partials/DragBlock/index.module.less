@@ -38,7 +38,8 @@
     >.line__left,
     >.line__right,
     >.rotate,
-    >.delete,
+    >.delete_btn,
+    >.more_btn,
     >.clip {
       display: none;
     }
@@ -151,13 +152,21 @@
     }
   }
 
-  >.delete {
+  >.delete_btn {
     position: absolute;
     top: -14px;
     left: 4px;
     font-size: 12px;
     cursor: pointer;
     color: var(--quad-danger-color);
+  }
+  >.more_btn {
+    position: absolute;
+    top: -14px;
+    right: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    color: var(--quad-primary-color);
   }
 
   &:not(.editable),

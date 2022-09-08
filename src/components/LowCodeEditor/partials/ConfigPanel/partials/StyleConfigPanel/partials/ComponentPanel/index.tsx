@@ -13,20 +13,20 @@ export default ({ id, styleConfig, updateEntity }) => {
   const store = useStore(styleConfig, updateStyleConfig);
 
   return (
-    <div>
+    <>
       <BoxModel store={store} {...styleConfig} />
+      <Divider />
+      <Text store={store} {...styleConfig} />
+      <Divider />
+      <Fill store={store} {...styleConfig} />
+      <Divider />
+      <Stroke store={store} {...styleConfig} />
+      <Divider />
+      <BoxShadow store={store} {...styleConfig} />
       <Divider />
       <Layer store={store} />
       <Divider />
       <Transform store={store} {...styleConfig} />
-      <Divider />
-      <Text store={store} {...styleConfig} />
-      <Divider />
-      <Stroke store={store} {...styleConfig} />
-      <Divider />
-      <Fill store={store} {...styleConfig} />
-      <Divider />
-      <BoxShadow store={store} {...styleConfig} />
-    </div>
+    </>
   );
 };

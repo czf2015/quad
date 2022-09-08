@@ -11,7 +11,7 @@
   > .scissor_btn {
     position: absolute;
     top: 24px;
-    right: 32px;
+    right: 60px;
     // font-size: 12px;
 
     &:hover {
@@ -22,11 +22,22 @@
   > .delete_btn {
     position: absolute;
     top: 24px;
+    right: 32px;
+    // font-size: 12px;
+
+    &:hover {
+      color: var(--quad-danger-color);
+    }
+  }
+
+  > .more_btn {
+    position: absolute;
+    top: 24px;
     right: 4px;
     // font-size: 12px;
 
     &:hover {
-      color: #e33e38;
+      color: var(--quad-primary-color);
     }
   }
 
@@ -74,6 +85,7 @@
   &:not(:hover):not(.contextmenu),
   &.hasBlock {
     > .delete_btn,
+    > .more_btn,
     > .scissor_btn,
     > .clip_scissor,
     > .clip_horizontal,

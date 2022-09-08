@@ -42,8 +42,7 @@ const CustomInput = ({ type, value, onBlur }) => {
   );
 };
 
-export default ({ title = '填充', store,fill=[] }) => {
-
+export default ({ title = '填充', store, fill = [] }) => {
   const add = () => {
     store('fill', [{ type: 'color', value: '#FFFFFF', hidden: false, id: uuid() }, ...fill]);
   };
