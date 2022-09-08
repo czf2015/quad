@@ -20,12 +20,14 @@ export const formProps = {
       label: "版本号",
       type: "Input",
       rules: [{ required: true, message: "请输入版本号信息" }],
+      required: true,
     },
     {
       name: "path",
       label: "路径",
       type: "Input",
       rules: [{ required: true, message: "请输入页面路径" }],
+      required: true,
     },
     {
       name: "remark",

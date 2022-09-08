@@ -29,6 +29,7 @@ export const formProps = {
       label: "路径",
       type: "Input",
       rules: [{ required: true, message: '请输入路径参数!' }],
+      required: true,
     },
     {
       name: "query",
@@ -65,6 +66,7 @@ export const formProps = {
           },
         },
       ],
+      required: true
     },
     {
       name: "height",
@@ -80,6 +82,7 @@ export const formProps = {
           },
         },
       ],
+      required: true,
     },
     {
       name: "icon",
