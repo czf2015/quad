@@ -132,14 +132,21 @@ export const appendFormItems = (
   }
 };
 
-export const getMeta = () => {
+export const getMeta = (formValues) => {
   return {
+    binds: [
+      {
+        label: '提交',
+        value: 'submit',
+        payloads: formValues
+      },
+    ],
     customize: [
       {
         name: 'title',
         label: '标题',
         type: 'Compact',
-        schema: [ 
+        schema: [
           {
             name: "text",
             label: "文字",
@@ -406,6 +413,11 @@ export const getMeta = () => {
         },
         required: true
       },
+      {
+        name: "prerequisites",
+        label: '条件',
+        type: 'Code',
+      }
     ],
   };
 };

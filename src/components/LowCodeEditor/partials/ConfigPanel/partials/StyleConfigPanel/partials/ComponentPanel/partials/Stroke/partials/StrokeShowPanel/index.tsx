@@ -39,12 +39,10 @@ export default ({
     let obj = {};
     const arr = stroke?.map(({ type, thickness, color }) => `${thickness} ${type} ${color}`);
     const b = arr?.every((el) => el === arr[0]);
-    debugger;
     setChecked(!b);
     if (b) {
       obj.value = `border: ${arr[0] || 'none'}`;
       obj.color = `border: ${stroke?.[0]?.color}`;
-      debugger;
       setRenderObj(obj);
     } else {
       obj.value = `borderTop: ${arr[0] || 'none'}, borderRight: ${arr[1] || 'none'}, borderBottom: ${
@@ -52,7 +50,6 @@ export default ({
       }, borderLeft: ${arr[3] || 'none'}`;
       obj.color =
         'repeating-linear-gradient(135deg, #c74518 0%, #d0d219 30%, #1ed055 60%, #4708cb 100%) 0% 0%/100% 100%';
-      debugger;
       setRenderObj(obj);
     }
   };

@@ -1,13 +1,73 @@
 // @ts-nocheck
 import React, { useState, useEffect } from "react";
-import { Form, Button } from "antd";
+import { Form, Button, message } from "antd";
 // import Text from "@/components/Form/partials/Text";
 import { CustomFormItem } from "./partials";
 import { appendFormItems, getMeta } from './helpers';
 import { stopPropagation } from "@/utils/dom";
-import { filter, getInitialValues } from "@/components/Form/helpers";
-
+import { convertInfixToSuffixStack } from "@/utils/operate";
+import { /* judgePrerequisite,  */getInitialValues } from "@/components/Form/helpers";
 import styles from './index.module.less'
+
+const evaluate = (expression, formValues) => {
+  if (typeof expression == 'boolean') {
+    return expression
+  }
+  if (typeof expression == 'string') {
+    const [_, key, mark, value] = expression.match(/^(.*)([!=][=:])(.*)$/)
+    switch (mark) {
+      case '==':
+        return formValues[key] == value
+      case '!=':
+        return formValues[key] != value
+      case '=:':
+        return formValues[key].includes(value)
+      case '!:':
+        return !formValues[key].includes(value)
+      default:
+        return true
+    }
+  }
+
+  return true
+}
+
+const filter = (
+  formItems,
+  formValues,
+  prerequisites = {},
+) => {
+  return formItems?.filter(({ name: field, field: name = field }) => {
+    let ret = true;
+    const prerequisite = prerequisites?.[name]
+    if (prerequisite) {
+      const suffixStack = convertInfixToSuffixStack(prerequisite)
+      for (let i = 0; i < suffixStack.length; i++) {
+        switch (suffixStack[i]) {
+          case 'AND':
+            suffixStack[i - 2] = evaluate(suffixStack[i - 1], formValues) && evaluate(suffixStack[i - 2], formValues)
+            suffixStack.splice(i - 1, 2)
+            i -= 2
+            break
+          case 'OR':
+            suffixStack[i - 2] = evaluate(suffixStack[i - 1], formValues) || evaluate(suffixStack[i - 2], formValues)
+            suffixStack.splice(i - 1, 2)
+            i -= 2
+            break
+          case 'NOT':
+            suffixStack[i - 1] = !evaluate(suffixStack[i - 1], formValues)
+            suffixStack.splice(i, 1)
+            i -= 1
+            break
+          default:
+            break
+        }
+      }
+      ret = suffixStack.pop()
+    }
+    return ret;
+  });
+};
 
 export default ({
   // title,
@@ -50,10 +110,6 @@ export default ({
     },
   },
 }) => {
-  useEffect(() => {
-    updateEntity?.(id, { meta: getMeta(), customize })
-  }, [])
-
   const [dragOverItem, setDragOverItem] = useState(null)
 
   const onDragOver = (e) => {
@@ -75,7 +131,11 @@ export default ({
   const handleValuesChange = (changedValues, allValues) => {
     setFormValues(allValues);
     onValuesChange?.(allValues)
+    console.log({ allValues })
   }
+  useEffect(() => {
+    updateEntity?.(id, { meta: getMeta(formValues), customize })
+  }, [formValues])
 
   const handleFormItemChange = (values) => {
     for (let i = 0; i < formItems.length; i++) {
@@ -129,6 +189,13 @@ export default ({
     </div>
   )
 
+  let prerequisites
+  try {
+    prerequisites = JSON.parse(customize?.prerequisites)
+  } catch (e) {
+    message.error(e)
+  }
+
   return (
     <div className={styles.form_wrapper} onContextMenu={stopPropagation}>
       <h4 className={styles.title} style={{ backgroundColor: customize?.title?.backgroundColor, fontSize: customize?.title?.fontSize }}>{customize?.title?.text}</h4>
@@ -148,7 +215,7 @@ export default ({
           autocomplete={customize?.autocomplete}
         >
           <div style={bodyStyle}>
-            {filter(formItems, formValues)?.map((formItem, idx) => {
+            {filter(formItems, formValues, prerequisites)?.map((formItem, idx) => {
               const handleDragStart = (e) => {
                 e.stopPropagation()
                 setDragOverItem({ start: idx, idx, flag: 0 })

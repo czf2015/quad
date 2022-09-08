@@ -19,7 +19,9 @@ import { CaretDownOutlined } from "@ant-design/icons";
 import DatePicker from "./partials/DatePicker";
 
 export const renderFormItem = ({
-  name,
+  name: field,
+  field: name = field,
+  set = [],
   type,
   mode,
   options,
@@ -32,7 +34,6 @@ export const renderFormItem = ({
   needFormItem = true,
   render,
   size/*  = 'small' */,
-  disabled = false,
   min,
   max,
   step,
@@ -43,7 +44,9 @@ export const renderFormItem = ({
   fileList,
   limit,
   picker,
-  hidden = false,
+  required = set?.includes(1),
+  disabled = set?.includes(2),
+  hidden = set?.includes(4),
   key = name,
   allowClear = true,
   checkedChildren = '开',
@@ -223,7 +226,7 @@ export const renderFormItem = ({
   }
 
   return needFormItem ? (
-    <Form.Item name={type == "Compact" ? undefined : name} style={{ display: hidden ? 'none' : undefined }} {...attrs} key={key}>
+    <Form.Item name={type == "Compact" ? undefined : name} style={{ display: hidden ? 'none' : undefined }} required={required} {...attrs} key={key}>
       {item}
     </Form.Item>
   ) : <React.Fragment key={key}>{item}</React.Fragment>

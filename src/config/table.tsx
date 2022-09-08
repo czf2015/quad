@@ -1,16 +1,16 @@
-const FORM_ITEM_TYPES = [
-  "文字",
-  "数字",
-  "勾选",
-  "单选",
-  "多选",
-  "日期",
-  "时间",
-  "附件",
-  "评分",
-  "标签",
-  "类别",
-  "文本框",
+const FORM_ITEM_TYPES_OPTIONS = [
+  { label: "文字", value: 'Text' },
+  { label: "数字", value: 'Number' },
+  { label: "勾选", value: 'Switch' },
+  { label: "单选", value: 'Radio' },
+  { label: "多选", value: 'Checkbox' },
+  { label: "日期", value: 'Date' },
+  { label: "时间", value: 'Time' },
+  { label: "附件", value: 'Attachment' },
+  { label: "评分", value: 'Rate' },
+  { label: "标签", value: 'Tags' },
+  // { label: "类别", value: 'Text' },
+  { label: "文本框", value: 'Texture' },
 ];
 
 const convertEnumsToOptions = (enums) =>
@@ -50,8 +50,34 @@ export const tableColumn = [
     label: "类型",
     required: true,
     type: "Select",
-    options: convertEnumsToOptions(FORM_ITEM_TYPES),
+    options: FORM_ITEM_TYPES_OPTIONS,
     allowClear: false,
+  },
+  {
+    name: "options",
+    label: "校验",
+    type: "FormList",
+    schema: [
+      {
+        name: "label",
+        label: "标签名称",
+        type: "Input",
+        placeholder: "请输入标签名称",
+      },
+      {
+        name: "value",
+        label: "值",
+        type: "Input",
+      },
+    ],
+    prerequisites: [
+      {
+        field: 'type',
+        options: {
+          include: ['Radio', 'Checkbox']
+        }
+      }
+    ]
   },
   {
     name: 'set',
