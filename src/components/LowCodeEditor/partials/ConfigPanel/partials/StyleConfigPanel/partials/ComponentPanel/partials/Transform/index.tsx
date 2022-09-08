@@ -2,6 +2,7 @@
 import React from 'react';
 import { Input, InputNumber } from 'antd';
 import { transformConfig, originConfig } from './helper';
+import { AimOutlined } from '@ant-design/icons';
 import styles from './index.module.less';
 
 export const Transform = ({
@@ -13,7 +14,8 @@ export const Transform = ({
     <div className={styles.trans_form}>
       <h4 className={styles.title}>变形</h4>
       <div className={styles.origin}>
-        <span className={styles.label}>原点:</span>
+        {/* <span className={styles.label}>原点:</span> */}
+        <AimOutlined className={styles.label} />
         {originConfig(store, left, top).map(({ value, icon, onChange, onBlur }, index) => (
           <Input
             key={index}
