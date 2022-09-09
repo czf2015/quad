@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { Form, Button, message } from "antd";
 // import Text from "@/components/Form/partials/Text";
-import { CustomFormItem } from "./partials";
+import { CustomizeFormItem } from "./partials";
 import { appendFormItems, getMeta, filter } from './helpers';
 import { stopPropagation } from "@/utils/dom";
 import { getInitialValues } from "@/components/Form/helpers";
@@ -194,7 +194,7 @@ export default ({
                 updateEntity?.(id, { formItems: formItems.filter(item => item.id != formItem?.id) })
               }
               return (
-                <CustomFormItem
+                <CustomizeFormItem
                   formItem={formItem}
                   onDragStart={handleDragStart}
                   onDragOver={handleDragOver}

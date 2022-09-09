@@ -6,7 +6,7 @@ import { tableColumn as meta } from "@/config/table";
 import { DeleteOutlined, MoreOutlined } from "@ant-design/icons";
 import styles from './index.module.less'
 
-export const CustomFormItem = ({ formItem, onFinish, onDragStart, onDragOver, onDrop, remove, style, }) => {
+export const CustomizeFormItem = ({ formItem, onFinish, onDragStart, onDragOver, onDrop, remove, style, }) => {
   const contextMenu = (
     <div className={`${styles.contextmenu} quad-scrollbar`}>
       <Form children={meta} initialValues={formItem} onFinish={onFinish} wrapperCol={{ span: 19 }} labelCol={{ span: 5 }} />

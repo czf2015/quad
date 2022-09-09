@@ -1,10 +1,10 @@
 import * as charts from "@/components/Chart";
 import CustomizeChart from '@/components/Chart/CustomizeChart'
-import CustomizeForm from '@/components/Form/Customize'
+import CustomizeForm from '@/components/Form/CustomizeForm'
 import DataTable from "@/components/DataTable";
 import Modal from "@/components/Modal";
 import Drawer from "@/components/Drawer";
-import Form from "@/components/Form/Customize";
+import Form from "@/components/Form/CustomizeForm";
 import Button from "@/components/Button";
 import ColorPicker from "@/components/ColorPicker";
 import ColorGradient from "@/components/ColorGradient";
