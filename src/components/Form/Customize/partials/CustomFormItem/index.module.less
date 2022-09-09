@@ -1,0 +1,37 @@
+.contextmenu {
+  margin-right: -16px;
+  padding-right: 16px;
+  width: 400px;
+  max-height: 600px;
+  overflow: hidden auto;
+}
+
+.form_item_wrapper {
+  position: relative;
+  cursor: move;
+
+  .delete_btn {
+    position: absolute;
+    top: 18px;
+    right: 4px;
+    font-size: 12px;
+    color: var(--quad-primary-color);
+    cursor: pointer;
+  }
+
+  .more_btn {
+    position: absolute;
+    top: 2px;
+    right: 4px;
+    font-size: 12px;
+    color: var(--quad-primary-color);
+    cursor: pointer;
+  }
+
+  &:not(:hover) {
+    >.delete_btn,
+    >.more_btn {
+      display: none;
+    }
+  }
+}
