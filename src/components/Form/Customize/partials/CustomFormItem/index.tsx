@@ -3,8 +3,8 @@ import { Popconfirm, Popover } from "antd";
 import Form from '@/components/Form'
 import { renderFormItem } from "@/components/Form/render";
 import { tableColumn as meta } from "@/config/table";
-import styles from './index.module.less'
 import { DeleteOutlined, MoreOutlined } from "@ant-design/icons";
+import styles from './index.module.less'
 
 export const CustomFormItem = ({ formItem, onFinish, onDragStart, onDragOver, onDrop, remove, style, }) => {
   const contextMenu = (
