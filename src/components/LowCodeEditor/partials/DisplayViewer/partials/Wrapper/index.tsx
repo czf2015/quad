@@ -24,7 +24,6 @@ export const Wrapper = ({
   active,
   setActive,
   handleDrop,
-  // style = { width: 400, height: 300 },
   style = {},
   mode = /Chart/.test(name) ? 'card' : 'plain',
   children,
@@ -94,7 +93,7 @@ export const Wrapper = ({
   ) : null
 
   return (
-    <div ref={ref} id={id} data-width={styleConfig?.width} data-height={styleConfig?.height} className={`${styles.wrapper} ${mode == 'card' ? 'quad-card' : ''} ${editable ? styles.editable : ''} ${active.id == id ? styles.active : ''}`} onClick={select} onDragOver={onDragOver} onDrop={onDrop} onDragStart={stopPropagation} style={{ ...convertToComponentStyle(styleConfig, false), ...style }}>
+    <div ref={ref} id={id} data-width={styleConfig?.width} data-height={styleConfig?.height} className={`${styles.wrapper} ${mode == 'card' ? 'quad-card' : ''} ${editable ? styles.editable : ''} ${active.id == id ? styles.active : ''}`} onClick={select} onDragOver={onDragOver} onDrop={onDrop} onDragStart={stopPropagation} style={{ ...style, ...convertToComponentStyle(styleConfig, false) }}>
       <div style={{ ...convertToComponentStyle(styleConfig, true), width: styleConfig?.width, height: styleConfig?.height, boxSizing: 'border-box' }}>
         {children}
       </div>
