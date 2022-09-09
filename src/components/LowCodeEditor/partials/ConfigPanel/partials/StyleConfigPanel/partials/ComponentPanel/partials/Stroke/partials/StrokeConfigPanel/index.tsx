@@ -6,11 +6,19 @@ import { BorderIcon } from '../../../../../../icons';
 import StrokeItem from '../StrokeItem';
 import styles from './index.module.less';
 
-export default ({ store, stroke, checked, setChecked }) => {
+export default ({ store, stroke, propsValue, checked, setChecked }) => {
   return (
     <div className={styles.container}>
       <div className={styles.rect}>
-        <div className={styles.element} style={{}} />
+        <div
+          className={styles.element}
+          style={{
+            borderTop: propsValue?.[0],
+            borderRight: propsValue?.[1],
+            borderBottom: propsValue?.[2],
+            borderLeft: propsValue?.[3],
+          }}
+        />
       </div>
       <Divider />
       <Switch
