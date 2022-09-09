@@ -31,7 +31,7 @@ export const Wrapper = ({
   binds,
   handlers,
   occupied = false,
-  styleConfig = { width: 400, height: 300 },
+  styleConfig = { width: style?.width || 400, height: style?.height || 300 },
   ...entity
 }: IWrapperProps) => {
   // TODO:

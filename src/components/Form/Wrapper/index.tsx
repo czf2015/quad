@@ -110,6 +110,10 @@ export default ({
     },
   },
 }) => {
+  useEffect(() => {
+    updateEntity?.(id, { style: { width: 400, height: 30 }})
+  }, [])
+
   const [dragOverItem, setDragOverItem] = useState(null)
 
   const onDragOver = (e) => {

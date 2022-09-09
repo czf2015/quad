@@ -9,6 +9,7 @@ import Button from "@/components/Button";
 import ColorPicker from "@/components/ColorPicker";
 import ColorGradient from "@/components/ColorGradient";
 import DragBlock from "@/components/DragWrapper";
+import Text from '@/components/Form/partials/InputText'
 import {
   BarChartOutlined,
   LineChartOutlined,
@@ -35,6 +36,7 @@ export const components = {
   DataTable,
   CustomizeForm,
   Form,
+  Text,
   Modal,
   Drawer,
   Button,
