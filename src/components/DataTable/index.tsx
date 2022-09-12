@@ -6,7 +6,7 @@ import Upload from '@/components/Form/partials/Upload';
 import { EditableCell, ColumnTitle } from './partials';
 import { useDataTable, useRowSelection } from '@/hooks';
 import { InfoCircleOutlined, FormOutlined, DeleteOutlined, PlusOutlined, UploadOutlined } from '@ant-design/icons';
-import { convertToFormItems } from './helpers';
+import { convertToFormItems, getMetaCustomize } from './helpers';
 import { tableColumn } from '@/config/table';
 import styles from './index.module.less'
 
@@ -131,6 +131,14 @@ export default ({ size = "small", scroll = { x: 'calc(700px + 50%)', y: 240 }, b
       }
     })
   }, [rowSelection.selectedRowKeys])
+
+  useEffect(() => {
+    updateEntity?.(entity?.id, {
+      meta: {
+        customize: getMetaCustomize()
+      }
+    })
+  }, [])
 
   return (
     <>

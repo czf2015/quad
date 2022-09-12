@@ -16,14 +16,15 @@ export default ({ name: pname, label = '', schema = [], ...rest }) => {
         switch (type) {
           case 'InputText':
           case 'Text':
-            item = <InputText {...attrs} options={options} placeholder={placeholder} size="small" />
+            item = <InputText {...attrs} options={options} placeholder={placeholder} size="small" style={{ minWidth: 120, ...style }} />
             break
           case 'TextArea':
             item = <Input.TextArea placeholder={placeholder} autoSize={{ minRows: 3, maxRows: 10 }} size="small" />
             break
           case 'InputNumber':
           case 'Number':
-            item = <InputNumber {...attrs} placeholder={placeholder} style={style} size="small" />
+            item = <InputNumber {...attrs} placeholder={placeholder} style={{ minWidth: 120, ...style }}
+              size="small" />
             break
           case 'Select':
             item = <Select mode={mode} options={options} placeholder={placeholder} style={{ minWidth: 72, ...style }} size="small" />
@@ -44,7 +45,8 @@ export default ({ name: pname, label = '', schema = [], ...rest }) => {
             item = <Eye />
             break
           default:
-            item = <Input placeholder={placeholder} style={style} size="small" />
+            item = <Input placeholder={placeholder} style={{ minWidth: 120, ...style }}
+              size="small" />
             break
         }
 

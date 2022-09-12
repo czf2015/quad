@@ -51,7 +51,7 @@ export const renderFormItem = ({
   allowClear = true,
   checkedChildren = '开',
   unCheckedChildren = '关',
-  style = { minWidth: 120 },
+  style,
   bind = '',
   ...attrs
 }) => {
@@ -65,7 +65,7 @@ export const renderFormItem = ({
       placeholder={placeholder || `请输入${attrs?.label || '内容'}`}
       disabled={disabled}
       allowClear={allowClear}
-      style={style}
+      style={{ minWidth: 120, ...style }}
       data-bind={bind}
       onChange={attrs.onChange}
     />
@@ -85,7 +85,7 @@ export const renderFormItem = ({
             suffix={suffix}
             addonBefore={addonBefore}
             addonAfter={addonAfter}
-            style={style}
+            style={{ minWidth: 120, ...style }}
             allowClear={allowClear}
             data-bind={bind}
             onChange={attrs.onChange}
@@ -106,7 +106,7 @@ export const renderFormItem = ({
             suffix={suffix}
             addonBefore={addonBefore}
             addonAfter={addonAfter}
-            style={style}
+            style={{ minWidth: 120, ...style }}
             allowClear={allowClear}
             data-bind={bind}
             onChange={attrs.onChange}
@@ -136,7 +136,7 @@ export const renderFormItem = ({
             treeData={options}
             disabled={disabled}
             allowClear={allowClear}
-            style={style}
+            style={{ minWidth: 120, ...style }}
             data-bind={bind}
             onChange={attrs.onChange}
           />
@@ -152,7 +152,7 @@ export const renderFormItem = ({
             placeholder={placeholder}
             disabled={disabled}
             allowClear={allowClear}
-            style={style}
+            style={{ minWidth: 120, ...style }}
             data-bind={bind}
             onChange={attrs.onChange}
           />
@@ -221,7 +221,7 @@ export const renderFormItem = ({
             placeholder={placeholder}
             prefix={<LockOutlined />}
             disabled={disabled}
-            style={style}
+            style={{ minWidth: 120, ...style }}
             data-bind={bind}
             onChange={attrs.onChange}
           />
