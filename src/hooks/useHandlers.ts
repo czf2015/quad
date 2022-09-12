@@ -21,7 +21,7 @@ export const useHandlers = ({ id, handlers, updateEntity }) => {
               return handle({
                 ...params,
                 payload: entities?.find((item) => item.id == params?.id)?.meta
-                  ?.payloads[params.target],
+                  ?.payloads?.[params?.target],
               });
             });
           };

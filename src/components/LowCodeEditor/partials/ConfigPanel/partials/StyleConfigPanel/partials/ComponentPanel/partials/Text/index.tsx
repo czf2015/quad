@@ -36,7 +36,7 @@ const HorizontalIcon = () => {
 
 export const Text = ({ store,fontFamily,fontWeight,color,fontSize,lineHeight,wordSpacing,textAlign,verticalAlign,textDecoration}) => {
   const setStore = (key) => (value) => {
-    store(key, value?.target?.value)
+    store(key, typeof value?.target == 'undefined' ? value : value?.target?.value)
   }
 
   return (

@@ -43,6 +43,7 @@ export default [
       },
       {
         name: "Text",
+        // name: "FormItem",s
         title: "文本",
         icon: "",
         description: "",

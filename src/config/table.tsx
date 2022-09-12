@@ -1,4 +1,4 @@
-const FORM_ITEM_TYPES_OPTIONS = [
+export const FORM_ITEM_TYPES_OPTIONS = [
   { label: "文字", value: 'Text' },
   { label: "数字", value: 'Number' },
   { label: "勾选", value: 'Switch' },

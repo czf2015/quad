@@ -4,6 +4,7 @@ export const EVENT_OPTIONS = [
   { label: "鼠标移入", value: "mouseenter" },
   { label: "鼠标移出", value: "mouseleave" },
   { label: "鼠标悬动", value: "mouseover" },
+  { label: "值变化", value: "change" },
 ];
 
 export const MESSAGE_OPTIONS = [

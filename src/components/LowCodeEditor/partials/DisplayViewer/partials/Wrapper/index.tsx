@@ -53,7 +53,7 @@ export const Wrapper = ({
   }
   const { onDragOver, ...attrs } = useDragMove(handleDragMove, zoom)
 
-  useBinds({ id, binds, updateEntity, setEntities })
+  const rootRef = useBinds({ id, binds, updateEntity, setEntities })
   useHandlers({ id, handlers, updateEntity, })
 
   const select = () => {
@@ -94,7 +94,7 @@ export const Wrapper = ({
 
   return (
     <div ref={ref} id={id} data-width={styleConfig?.width} data-height={styleConfig?.height} className={`${styles.wrapper} ${mode == 'card' ? 'quad-card' : ''} ${editable ? styles.editable : ''} ${active.id == id ? styles.active : ''}`} onClick={select} onDragOver={onDragOver} onDrop={onDrop} onDragStart={stopPropagation} style={{ ...style, ...convertToComponentStyle(styleConfig, false) }}>
-      <div style={{ ...convertToComponentStyle(styleConfig, true), width: styleConfig?.width, height: styleConfig?.height, boxSizing: 'border-box' }}>
+      <div ref={rootRef} style={{ ...convertToComponentStyle(styleConfig, true), width: styleConfig?.width, height: styleConfig?.height, boxSizing: 'border-box' }}>
         {children}
       </div>
       {editTools}

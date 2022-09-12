@@ -123,14 +123,17 @@ export default ({
   }
 
   const footer = (
-    <div style={{ display: 'flex', justifyContent: 'center' }}>
-      <Button type="primary" htmlType="submit" style={{ display: customize?.submit?.visible ? undefined : 'none', marginTop: customize?.content?.lineSpacing }}>
+    // <div style={{ display: 'flex', justifyContent: 'center' }}>
+    <Form.Item>
+
+      <Button data-bind="submit" type="primary" htmlType="submit" style={{ display: customize?.submit?.visible ? undefined : 'none', marginTop: customize?.content?.lineSpacing }}>
         {customize?.submit?.text}
       </Button>
       <Button htmlType="reset" style={{ display: customize?.recontent?.visible ? undefined : 'none', marginTop: customize?.content?.lineSpacing, marginLeft: 16 }}>
         {customize?.recontent?.text}
       </Button>
-    </div>
+    </Form.Item>
+    // </div>
   )
 
   let prerequisites

@@ -51,6 +51,8 @@ export const renderFormItem = ({
   allowClear = true,
   checkedChildren = '开',
   unCheckedChildren = '关',
+  style = { minWidth: 120 },
+  bind = '',
   ...attrs
 }) => {
   let item = (
@@ -63,6 +65,9 @@ export const renderFormItem = ({
       placeholder={placeholder || `请输入${attrs?.label || '内容'}`}
       disabled={disabled}
       allowClear={allowClear}
+      style={style}
+      data-bind={bind}
+      onChange={attrs.onChange}
     />
   );
   if (typeof render == "function") {
@@ -80,8 +85,10 @@ export const renderFormItem = ({
             suffix={suffix}
             addonBefore={addonBefore}
             addonAfter={addonAfter}
-            style={{ width: 120 }}
+            style={style}
             allowClear={allowClear}
+            data-bind={bind}
+            onChange={attrs.onChange}
           />
         );
         break;
@@ -99,8 +106,10 @@ export const renderFormItem = ({
             suffix={suffix}
             addonBefore={addonBefore}
             addonAfter={addonAfter}
-            style={{ width: 120 }}
+            style={style}
             allowClear={allowClear}
+            data-bind={bind}
+            onChange={attrs.onChange}
           />
         );
         break;
@@ -127,6 +136,9 @@ export const renderFormItem = ({
             treeData={options}
             disabled={disabled}
             allowClear={allowClear}
+            style={style}
+            data-bind={bind}
+            onChange={attrs.onChange}
           />
         );
         break;
@@ -140,6 +152,9 @@ export const renderFormItem = ({
             placeholder={placeholder}
             disabled={disabled}
             allowClear={allowClear}
+            style={style}
+            data-bind={bind}
+            onChange={attrs.onChange}
           />
         );
         break;
@@ -153,6 +168,8 @@ export const renderFormItem = ({
             placeholder={placeholder}
             disabled={disabled}
             allowClear={allowClear}
+            data-bind={bind}
+            onChange={attrs.onChange}
           />
         );
         break;
@@ -163,18 +180,39 @@ export const renderFormItem = ({
             options={options}
             placeholder={placeholder}
             disabled={disabled}
-            {...attrs}
+            data-bind={bind}
+            onChange={attrs.onChange}
           />
         );
         break;
       case "Radio":
-        item = <Radio.Group size={size} options={options} disabled={disabled} defaultValue={defaultValue} />;
+        item = <Radio.Group
+          size={size}
+          options={options}
+          defaultValue={defaultValue}
+          disabled={disabled}
+          data-bind={bind}
+          onChange={attrs.onChange}
+        />;
         break;
       case "Checkbox":
-        item = <Checkbox.Group size={size} options={options} disabled={disabled} />;
+        item = <Checkbox.Group
+          size={size}
+          options={options}
+          disabled={disabled}
+          data-bind={bind}
+          onChange={attrs.onChange}
+        />;
         break;
       case 'Multiple':
-        item = <Multiple mode={mode} size={size} options={options} disabled={disabled} />;
+        item = <Multiple
+          mode={mode}
+          size={size}
+          options={options}
+          disabled={disabled}
+          data-bind={bind}
+          onChange={attrs.onChange}
+        />;
         break;
       case "Password":
         item = (
@@ -183,42 +221,97 @@ export const renderFormItem = ({
             placeholder={placeholder}
             prefix={<LockOutlined />}
             disabled={disabled}
+            style={style}
+            data-bind={bind}
+            onChange={attrs.onChange}
           />
         );
         break;
       case "Json":
-        item = <JsonEdit disabled={disabled} />;
+        item = <JsonEdit
+          disabled={disabled}
+          data-bind={bind}
+          onChange={attrs.onChange}
+        />;
         break;
       case "Code":
-        item = <CodeEdit disabled={disabled} />;
+        item = <CodeEdit
+          disabled={disabled}
+          data-bind={bind}
+          onChange={attrs.onChange}
+        />;
         break;
       case "Rate":
-        item = <Rate disabled={disabled} />
+        item = <Rate
+          disabled={disabled}
+          data-bind={bind}
+          onChange={attrs.onChange}
+        />
         break
       case "Attachment":
-        item = <Upload action={action} fileList={fileList} accept={accept} listType={listType} limit={limit} />
+        item = <Upload
+          action={action}
+          fileList={fileList}
+          accept={accept}
+          listType={listType}
+          limit={limit}
+          data-bind={bind}
+          onChange={attrs.onChange}
+        />
         break
       case 'DatePicker':
       case 'Date':
-        item = <DatePicker mode={mode} picker={picker} {...attrs} />
+        item = <DatePicker
+          mode={mode}
+          picker={picker}
+          data-bind={bind}
+          onChange={attrs.onChange}
+        />
         break
       case "FormList":
-        item = <FormList name={name} schema={schema} disabled={disabled} {...attrs} />
+        item = <FormList
+          name={name}
+          schema={schema}
+          disabled={disabled}
+          data-bind={bind}
+          onChange={attrs.onChange}
+        />
         break
       case "FormTable":
-        item = <FormTable name={name} schema={schema} disabled={disabled} {...attrs} />
+        item = <FormTable
+          name={name}
+          schema={schema}
+          disabled={disabled}
+          data-bind={bind}
+          onChange={attrs.onChange}
+        />
         break
       case "Compact":
-        item = <Compact name={name} schema={schema} disabled={disabled} {...attrs} />
+        item = <Compact
+          name={name}
+          schema={schema}
+          disabled={disabled}
+          data-bind={bind}
+          onChange={attrs.onChange}
+        />
         break
       case "Colors":
-        item = <Colors />
+        item = <Colors
+          data-bind={bind}
+          onChange={attrs.onChange}
+        />
         break
       case "ColorPicker":
-        item = <ColorPicker />
+        item = <ColorPicker
+          data-bind={bind}
+          onChange={attrs.onChange}
+        />
         break
       case "Eye":
-        item = <Eye />
+        item = <Eye
+          data-bind={bind}
+          onChange={attrs.onChange}
+        />
         break
       default:
         break;
