@@ -167,6 +167,26 @@ export const BgImage = ({ store }) => {
     backgroundSize: 'contain, cover',
   };
 
+  const props = {
+    name: 'file',
+    action: '',
+    headers: {
+      authorization: 'authorization-text',
+    },
+    showUploadList: false,
+    onChange(info) {
+      if (info.file.status !== 'uploading') {
+        console.log(info.file, info.fileList);
+      }
+
+      if (info.file.status === 'done') {
+        message.success(`${info.file.name} file uploaded successfully`);
+      } else if (info.file.status === 'error') {
+        message.error(`${info.file.name} file upload failed.`);
+      }
+    },
+  };
+
   const handleMouseEnter = () => {
     setHoverState(true);
   };
@@ -178,11 +198,11 @@ export const BgImage = ({ store }) => {
   return (
     <div className={styles.bg_image} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       <div style={bgConfig} />
-      {hoverState && (
-        <div className={styles.mask}>
+      <div className={styles.mask} style={{ display: hoverState ? '' : 'none' }}>
+        <Upload {...props}>
           <div className={styles.btn}>choose image</div>
-        </div>
-      )}
+        </Upload>
+      </div>
       <div className={styles.config_panel}>
         <Url store={store} />
         <Position store={store} />
