@@ -6,7 +6,7 @@ import { tableColumn as meta } from "@/config/table";
 import { DeleteOutlined, MoreOutlined } from "@ant-design/icons";
 import styles from './index.module.less'
 
-export const CustomizeFormItem = ({ formItem, onFinish, onDragStart, onDragOver, onDrop, remove, style, }) => {
+export const CustomizeFormItem = ({ formItem, onFinish, onDragStart, onDragOver, onDrop, remove, style, editable }) => {
   const contextMenu = (
     <div className={`${styles.contextmenu} quad-scrollbar`}>
       <Form children={meta} initialValues={formItem} onFinish={onFinish} wrapperCol={{ span: 19 }} labelCol={{ span: 5 }} />
@@ -14,7 +14,7 @@ export const CustomizeFormItem = ({ formItem, onFinish, onDragStart, onDragOver,
   )
 
   return (
-    <div className={styles.form_item_wrapper} draggable onDragStart={onDragStart} onDragOver={onDragOver} onDrop={onDrop} style={style}>
+    <div className={`${styles.form_item_wrapper} ${editable ? styles.editable : ''}`} draggable onDragStart={onDragStart} onDragOver={onDragOver} onDrop={onDrop} style={style}>
       {renderFormItem(formItem)}
       <Popconfirm title="请确认是否删除" onConfirm={remove}>
         <DeleteOutlined className={styles.delete_btn} />

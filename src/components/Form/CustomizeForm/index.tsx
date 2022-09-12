@@ -205,6 +205,7 @@ export default ({
                   onFinish={handleFormItemChange}
                   remove={remove}
                   style={style}
+                  editable={editable}
                   key={formItem.id} />
               )
             })}

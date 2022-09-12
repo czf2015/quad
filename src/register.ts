@@ -62,8 +62,6 @@ export const components = {
   Modal,
   Drawer,
   Button,
-  ColorPicker,
-  ColorGradient,
   DragBlock,
 };
 

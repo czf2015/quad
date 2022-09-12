@@ -61,9 +61,9 @@ export default ({
 
   return (
     <Row>
-      <Col span={customize?.label?.span}>
-        <label className={customize?.set?.includes(1) ? styles.required : ''}>{customize?.label?.text}</label>
-      </Col>
+      {customize?.label?.text && <Col span={customize?.label?.span}>
+        <label className={`${customize?.set?.includes(1) ? styles.required : ''} ${styles.label}`}>{customize?.label?.text}</label>
+      </Col>}
       <Col span={customize?.control?.span}>{renderFormItem({ ...attrs, ...customize, type: customize?.control?.type, needFormItem: false, bind: id, onChange: handleChange })}</Col>
     </Row>
   )
