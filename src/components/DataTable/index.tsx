@@ -139,7 +139,7 @@ export default ({ size = "small", scroll = { x: 'calc(700px + 50%)', y: 240 }, b
       }
     })
   }, [])
-
+debugger
   return (
     <>
       <Table
@@ -153,6 +153,7 @@ export default ({ size = "small", scroll = { x: 'calc(700px + 50%)', y: 240 }, b
         size={size}
         scroll={scroll}
         bordered={bordered}
+        sticky={{ offsetHeader: 12, offsetScroll: 100, getContainer: () => document.getElementById('display_viewer') }}
       />
       <FormModal title={title} value={record} visible={visible} children={formItems} onOk={handleCancel} onCancel={handleCancel} />
       <FormModal title="添加字段" value={{ type: 0, set: [4] }} visible={columnVisible} children={tableColumn} onOk={handleColumnOk} onCancel={handleColumnCancel} />

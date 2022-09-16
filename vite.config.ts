@@ -25,6 +25,11 @@ export default defineConfig({
         target: 'https://localhost:8000',
         changeOrigin: true,
         secure: false
+      },
+      '/terminal': {
+        target: 'http://localhost:4000',
+        changeOrigin: true,
+        secure: false
       }
     }
   }
