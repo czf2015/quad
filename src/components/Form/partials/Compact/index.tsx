@@ -37,7 +37,7 @@ export default ({ name: pname, label = '', schema = [], ...rest }) => {
             item = <JsonEdit />
             break
           case 'Code':
-            item = <CodeEdit options={{  minimap: { enabled: false }, lineNumbers: 'off', folding: false, scrollbar: { horizontalScrollbarSize: 4, horizontalSliderSize: 4, verticalScrollbarSize: 4, verticalSliderSize: 4 }, }} />
+            item = <CodeEdit options={{  minimap: { enabled: false }, lineNumbers: 'off', folding: false, scrollbar: { horizontalScrollbarSize: 4, horizontalSliderSize: 4, verticalScrollbarSize: 4, verticalSliderSize: 4 }, theme: 'vs-dark' }} />
             break
           case 'ColorPicker':
             item = <ColorPicker mode={mode} />

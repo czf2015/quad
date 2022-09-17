@@ -82,7 +82,7 @@ export default ({ name, schema = [] }) => {
                       item = <JsonEdit />
                       break
                     case 'Code':
-                      item = <CodeEdit options={{  minimap: { enabled: false }, lineNumbers: 'off', folding: false, scrollbar: { horizontalScrollbarSize: 4, horizontalSliderSize: 4, verticalScrollbarSize: 4, verticalSliderSize: 4 }, }} />
+                      item = <CodeEdit options={{  minimap: { enabled: false }, lineNumbers: 'off', folding: false, scrollbar: { horizontalScrollbarSize: 4, horizontalSliderSize: 4, verticalScrollbarSize: 4, verticalSliderSize: 4 }, theme: 'vs-dark' }} />
                       break
                     case "Compact":
                       return <Compact  {...attrs} key={name} name={[field.name, name]} schema={schema} />
