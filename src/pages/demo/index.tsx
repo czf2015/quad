@@ -14,6 +14,10 @@ export default () => {
     const value = ref.current.value
     console.log(value)
   }
+  
+  useEffect(() => {
+    ref.current.focus()
+  }, [])
 
   return (
     <div onClick={handleClick} >

@@ -6,10 +6,11 @@ import monaco, { createInstance } from '@/plugins/monaco'
 const defaultOptions = {
 	language: 'typescript',
 	tabSize: 2,
+	renderLineHighlight: 'none',
 }
 
 export default forwardRef(({
-	value = ['function x() {', '\tconsole.log("Hello world!");', '}'].join('\n'),
+	value = '',
 	onChange,
 	options = defaultOptions,
 	style = { width: '100%', height: 192, border: 'border: 1px solid #ccc' },
@@ -21,6 +22,9 @@ export default forwardRef(({
 			get value() {
 				return instanceRef.current.getValue()
 			},
+			focus() {
+				instanceRef.current.focus()
+			}
 		}
 	});
 	useEffect(() => {
