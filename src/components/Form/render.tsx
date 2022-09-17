@@ -3,7 +3,8 @@ import React from "react";
 import { LockOutlined } from "@ant-design/icons";
 import { Form, Input, Select, Switch, Radio, Checkbox, InputNumber, Rate } from "@/plugins/ui";
 import JsonEdit from '@/components/Form/partials/JsonEdit'
-import CodeEdit from '@/components/Form/partials/CodeEdit'
+// import CodeEdit from '@/components/Form/partials/CodeEdit'
+import CodeEdit from '@/components/Editor'
 import Upload from './partials/Upload/ImageUpload'
 import Cascader from './partials/Cascader'
 import TreeSelect from "./partials/TreeSelect";
@@ -239,6 +240,7 @@ export const renderFormItem = ({
           disabled={disabled}
           data-bind={bind}
           onChange={attrs.onChange}
+          options={{  minimap: { enabled: false }, lineNumbers: 'off', folding: false, scrollbar: { horizontalScrollbarSize: 4, horizontalSliderSize: 4, verticalScrollbarSize: 4, verticalSliderSize: 4 }, }}
         />;
         break;
       case "Rate":

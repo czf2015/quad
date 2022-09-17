@@ -1,15 +1,23 @@
 // @ts-nocheck
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 // import { StyleConfigPanel as Demo } from '@/components/LowCodeEditor/partials/ConfigPanel/partials';
-import Demo from '@/components/Terminal';
+// import Demo from '@/components/Terminal';
+import Demo from '@/components/Editor'
 
 
 const props = {};
 
 export default () => {
+  const ref = useRef(null)
+
+  const handleClick = () => {
+    const value = ref.current.value
+    console.log(value)
+  }
+
   return (
-    <div /* style={{ width: 320, outline: '1px solid #ccc', margin: '100px 0px 0px 400px' }} */>
-      <Demo />
+    <div onClick={handleClick} >
+      <Demo ref={ref} />
     </div>
   );
 };

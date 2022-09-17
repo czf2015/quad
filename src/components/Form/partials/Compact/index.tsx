@@ -1,7 +1,8 @@
 import React from 'react'
 import InputText from '@/components/Form/partials/InputText'
 import JsonEdit from '@/components/Form/partials/JsonEdit'
-import CodeEdit from '@/components/Form/partials/CodeEdit'
+// import CodeEdit from '@/components/Form/partials/CodeEdit'
+import CodeEdit from '@/components/Editor'
 import Eye from '@/components/Form/partials/Eye'
 import ColorPicker from '@/components/ColorPicker'
 import { Form, Input, Select, Switch, InputNumber, Tooltip } from '@/plugins/ui'
@@ -36,7 +37,7 @@ export default ({ name: pname, label = '', schema = [], ...rest }) => {
             item = <JsonEdit />
             break
           case 'Code':
-            item = <CodeEdit />
+            item = <CodeEdit options={{  minimap: { enabled: false }, lineNumbers: 'off', folding: false, scrollbar: { horizontalScrollbarSize: 4, horizontalSliderSize: 4, verticalScrollbarSize: 4, verticalSliderSize: 4 }, }} />
             break
           case 'ColorPicker':
             item = <ColorPicker mode={mode} />

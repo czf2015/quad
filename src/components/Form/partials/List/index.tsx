@@ -2,7 +2,8 @@ import React from 'react'
 import InputEdit from '@/components/Form/partials/TextEdit'
 import InputText from '@/components/Form/partials/InputText'
 import JsonEdit from '@/components/Form/partials/JsonEdit'
-import CodeEdit from '@/components/Form/partials/CodeEdit'
+// import CodeEdit from '@/components/Form/partials/CodeEdit'
+import CodeEdit from '@/components/Editor'
 import Compact from '@/components/Form/partials/Compact'
 import { Button, Form, Input, Select, Switch, InputNumber } from '@/plugins/ui'
 import { useToggle } from '@/hooks'
@@ -81,7 +82,7 @@ export default ({ name, schema = [] }) => {
                       item = <JsonEdit />
                       break
                     case 'Code':
-                      item = <CodeEdit />
+                      item = <CodeEdit options={{  minimap: { enabled: false }, lineNumbers: 'off', folding: false, scrollbar: { horizontalScrollbarSize: 4, horizontalSliderSize: 4, verticalScrollbarSize: 4, verticalSliderSize: 4 }, }} />
                       break
                     case "Compact":
                       return <Compact  {...attrs} key={name} name={[field.name, name]} schema={schema} />
