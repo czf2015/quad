@@ -1,10 +1,10 @@
 // @ts-nocheck
+// reference: https://blog.csdn.net/weixin_42136785/article/details/120082568
 import React, { useEffect, useRef } from "react";
 import { Terminal } from "xterm";
 import { AttachAddon } from "xterm-addon-attach";
 import { FitAddon } from "xterm-addon-fit";
 import { WebLinksAddon } from 'xterm-addon-web-links';
-import axios from "axios";
 import "xterm/css/xterm.css";
 
 //初始化当前系统环境，返回终端的 pid，标识当前终端的唯一性
@@ -31,26 +31,32 @@ const resize = ({ term, container }) => {
   );
 }
 
+const session_id = 'MTY2MzQ4NzgwNnxEdi1CQkFFQ180SUFBUkFCRUFBQUhfLUNBQUVHYzNSeWFXNW5EQVlBQkdGMWRHZ0djM1J5YVc1bkRBTUFBVms9fOFehIZn32mjPFZg0gJ2g4bxZWzVPrK66zbmXRZH4RtF'
+
 export default ({
-  theme = {
+  options = {
+    theme: {
+      foreground: "#ECECEC", //字体
+      background: "#000000", //背景色
+    },
+    rows: 50,
+    cols: 120,
     fontFamily: 'Menlo, Monaco, "Courier New", monospace',
     fontWeight: 400,
     fontSize: 14,
-    rows: 50,
-    cols: 120,
-    cursorBlink: true, // 光标闪烁
-    cursorStyle: "underline", // 光标样式  null | 'block' | 'underline' | 'bar'
-    scrollback: 800, //回滚
+    letterSpacig: 2,
     tabStopWidth: 8, //制表宽度
-    screenKeys: true//
+    cursorBlink: true, // 光标闪烁
+    cursorStyle: "block", // 光标样式  null | 'block' | 'underline' | 'bar'
+    scrollback: 800, //回滚
   },
-  socket = `ws://127.0.0.1:4000/webssh/${Date.now()}`,
+  socket = `ws://localhost:8080/ws/ssh?h=16&w=150&session_id=${session_id}`,
 }) => {
   const terminalContainerRef = useRef(null)
 
   useEffect(() => {
-    const term = new Terminal(theme);
-    const container = terminalContainerRef.current 
+    const term = new Terminal(options);
+    const container = terminalContainerRef.current
     subscribe({ term, socket, container });
     resize({ term, container })
     return () => {

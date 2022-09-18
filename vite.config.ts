@@ -26,8 +26,9 @@ export default defineConfig({
         changeOrigin: true,
         secure: false
       },
-      '/terminal': {
-        target: 'http://localhost:4000',
+      '/ws/ssh': {
+        target: 'ws://localhost:8899',
+        ws: true,
         changeOrigin: true,
         secure: false
       }
