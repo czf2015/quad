@@ -26,8 +26,14 @@ export default defineConfig({
         changeOrigin: true,
         secure: false
       },
+      '/api/getSessionId': {
+        target: 'http://121.4.112.248:8899',
+        ws: true,
+        changeOrigin: true,
+        secure: false
+      },
       '/ws/ssh': {
-        target: 'ws://localhost:8899',
+        target: 'ws://121.4.112.248:8899',
         ws: true,
         changeOrigin: true,
         secure: false

@@ -1,27 +1,28 @@
 // @ts-nocheck
-import React, { useEffect, useRef } from 'react';
-// import { StyleConfigPanel as Demo } from '@/components/LowCodeEditor/partials/ConfigPanel/partials';
-import Demo from '@/components/Terminal';
-// import Demo from '@/components/Editor'
+import React, { useState} from 'react';
+import Terminal from '@/components/Terminal';
+import Login from '@/components/Login';
+import { useToggle } from '@/hooks';
+import { PageService } from '@/services';
 
 
 const props = {};
 
 export default () => {
-  const ref = useRef(null)
-
-  const handleClick = () => {
-    const value = ref.current.value
-    console.log(value)
+  const [visible, toggleVisible] = useToggle(false)
+  const [socketURL, setSocketURL] = useState()
+  const handleFinish = (values) => {
+    console.log(values)
+    PageService.getSessionId(values).then(res => {
+      toggleVisible()
+      const session_id = res.data
+      setSocketURL(`ws://121.4.112.248:8899/ws/ssh?h=16&w=150&session_id=${session_id}`)
+    })
   }
-  
-  // useEffect(() => {
-  //   ref.current.focus()
-  // }, [])
 
-  return (
-    <div onClick={handleClick} >
-      <Demo ref={ref} />
-    </div>
-  );
+  if (visible) {
+    return <Terminal socket={socketURL} />
+  }
+
+  return <Login onFinish={handleFinish} />
 };

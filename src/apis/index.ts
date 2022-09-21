@@ -30,4 +30,8 @@ export class PageApi {
   static getPublishPage(params) {
     return request({ method: "get", url: `${url}/publish`, params });
   }
+
+  static getSessionId(data) {
+    return request({ method: "post", url: "/api/getSessionId", data });
+  }
 }

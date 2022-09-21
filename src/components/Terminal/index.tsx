@@ -31,7 +31,7 @@ const resize = ({ term, container }) => {
   );
 }
 
-const session_id = 'MTY2MzQ4NzgwNnxEdi1CQkFFQ180SUFBUkFCRUFBQUhfLUNBQUVHYzNSeWFXNW5EQVlBQkdGMWRHZ0djM1J5YVc1bkRBTUFBVms9fOFehIZn32mjPFZg0gJ2g4bxZWzVPrK66zbmXRZH4RtF'
+const session_id = 'akjgi7cu6nyj53y'
 
 export default ({
   options = {
@@ -50,7 +50,7 @@ export default ({
     cursorStyle: "block", // 光标样式  null | 'block' | 'underline' | 'bar'
     scrollback: 800, //回滚
   },
-  socket = `ws://localhost:8080/ws/ssh?h=16&w=150&session_id=${session_id}`,
+  socket = `ws://121.4.112.248:8899/ws/ssh?h=16&w=150&session_id=${session_id}`,
 }) => {
   const terminalContainerRef = useRef(null)
 

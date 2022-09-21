@@ -28,4 +28,8 @@ export class PageService {
   static getPublishPage(params) {
     return Api.getPublishPage(params)
   }
+
+  static getSessionId(params) {
+    return Api.getSessionId(params);
+  }
 }
