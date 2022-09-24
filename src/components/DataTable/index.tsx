@@ -139,7 +139,7 @@ export default ({ size = "small", scroll = { x: 'calc(700px + 50%)', y: 240 }, b
       }
     })
   }, [])
-debugger
+  
   return (
     <>
       <Table
