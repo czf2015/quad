@@ -47,3 +47,15 @@ export class Clipboard {
 export const stopPropagation = (e) => {
   e.stopPropagation()
 }
+
+export const getKeyboard = (e) => {
+  const keyCode = e.keyCode || e.which || e.charCode; //获取被按下的键值  
+  const ctrlKey = e.ctrlKey || e.metaKey; // 
+  return {
+    type: e.type,
+    keyCode,
+    ctrlKey,
+    shiftKey: e.shiftKey,
+    altKey: e.altKey,
+  }
+}

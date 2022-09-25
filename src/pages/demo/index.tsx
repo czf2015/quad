@@ -35,8 +35,18 @@ import React, { useState } from 'react';
 // }
 
 /* RichTextEditor */
-import RichTextEditor from '@/components/RichTextEditor';
+// import RichTextEditor from '@/components/RichTextEditor';
+
+// export default () => {
+//   return <RichTextEditor />
+// }
+
+
+/* SvgEditor */
+import SvgEditor from '@/components/SvgEditor';
+import { useKeyboard } from '@/hooks';
 
 export default () => {
-  return <RichTextEditor />
+  useKeyboard()
+  return <SvgEditor style={{ backgroundColor: '#ccc' }} />
 }
