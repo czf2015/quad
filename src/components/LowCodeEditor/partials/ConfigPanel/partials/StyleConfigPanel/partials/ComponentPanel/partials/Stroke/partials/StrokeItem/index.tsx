@@ -14,6 +14,10 @@ const options = [
     label: '虚线',
     value: 'dashed',
   },
+  {
+    label: '无',
+    value: 'none',
+  },
 ];
 
 export default ({ store, stroke, index, type, thickness, color, isMore, icon }) => {

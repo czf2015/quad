@@ -49,10 +49,6 @@ export default ({ store,state, index }) => {
     <div className={styles.container}>
       <div className={styles.row}>
         <div className={styles.item} style={{ marginLeft: 23 }}>
-          <span>颜色:</span>
-          <CustomColorPicker color={item?.color} width={40} onColorChange={onColorChange} />
-        </div>
-        <div className={styles.item}>
           <span>类型:</span>
           <Select
             className={styles.select}
@@ -61,6 +57,10 @@ export default ({ store,state, index }) => {
             value={item?.type}
             onChange={handleTypeChange}
           />
+        </div>
+        <div className={styles.item}>
+          <span>颜色:</span>
+          <CustomColorPicker color={item?.color} width={40} onColorChange={onColorChange} />
         </div>
       </div>
       <div className={styles.row}>

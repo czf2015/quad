@@ -19,7 +19,7 @@ export default ({ value, onChange, checkedChildren = <EyeOutlined />, uncheckedC
     toggleChecked()
   }
 
-  const tip = checked ? '显示' : '隐藏'
+  const tip = checked ? '开启' : '关闭'
 
   return (
     <Tooltip tip={intl(tip)}>

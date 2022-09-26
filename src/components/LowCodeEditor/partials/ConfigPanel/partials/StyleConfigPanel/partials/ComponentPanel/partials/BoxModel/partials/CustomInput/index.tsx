@@ -1,114 +1,86 @@
 // @ts-nocheck
 import React, { useEffect, useState } from 'react';
 import { Input, Tooltip } from 'antd';
-import { SplitIcon } from '../../../../../common';
-import { useInputValue } from '@/hooks';
+import Lock from '@/components/Form/partials/Lock';
+import { useToggle } from '@/hooks';
 import styles from './index.module.less';
 
-const InputItem = ({ index, defaultValue, onBlur, onFocus }) => {
-  const { inputValue, handleInputChange } = useInputValue(defaultValue);
-  return (
-    <Input
-      className={styles.input2}
-      bordered={false}
-      value={inputValue}
-      onChange={handleInputChange}
-      onBlur={(e) => {
-        onBlur(e, index);
-      }}
-      onFocus={onFocus}
-    />
-  );
-};
+export default ({ store, title, name, value, icons }) => {
+  const [locked, toggleLocked] = useToggle(true);
+  const lock = <Lock value={locked} onChange={toggleLocked} />
 
-export default ({ store, title, store_name,value, renderIcon }) => {
-  const [disconnect, setDisconnect] = useState(true);
-  const [index, setIndex] = useState(0);
+  const [curIdx, setCurIdx] = useState(0);
+  const Icon = locked ? icons[0] : icons[curIdx]
+  const prefix = (
+    <Tooltip title={title}>
+      <Icon className={styles.icon} />
+    </Tooltip>
+  )
+
   const [inputValue, setInputValue] = useState();
-  const Icon = renderIcon(disconnect, index);
-
-  const isArrItemEqual = () => {
-    if (value?.every((el) => el === value?.[0])) {
+  const resetInputValue = () => {
+    if (value?.every((item) => item === value?.[0])) {
       setInputValue(value?.[0]);
     } else {
       setInputValue('Mixed');
-      setDisconnect(false);
-    }
-  };
-
-  useEffect(() => {
-    isArrItemEqual();
-  }, [value?.toString()]);
-
-  const handleDisconnect = () => {
-    setDisconnect((pre) => !pre);
-  };
-
-  const handleItemBlur = (e, index) => {
-    const padList = value;
-    padList[index] = e.target.value;
-    store(store_name, [...padList]);
-  };
-
-  const handleSingleChange = (e) => {
-    setInputValue(e.target.value);
-  };
-
-  const handleSingleBlur = (e) => {
-    const rule = /^([0-9]+)(px|%|)$/;
-    if (rule.test(e.target.value)) {
-      // 是否满足数字/px/%结尾,满足修改多个内容
-      if(isNaN(e.target.value)) {
-        const createArr = Array(4).fill(e.target.value);
-        store(store_name, createArr);
-      }else {
-        const createArr = Array(4).fill(`${e.target.value}px`);
-        store(store_name, createArr);
+      if (locked) {
+        toggleLocked()
       }
-      
-    } else if (value?.every((el) => el === value?.[0])) {
-      // 如果多个内容相同,不满足条件时,单个输入框复原值一致
-      setInputValue(value?.[0]);
-    } else {
-      setInputValue('Mixed'); // 都不满足,认为是混合
     }
-  };
+  }
+  useEffect(resetInputValue, value);
+  const Combination = ({ value: inputValue }) => {
+    const handleChange = (e) => {
+      setInputValue(e.target.value);
+    };
+    const handleBlur = (e) => {
+      const newVal = e.target.value
+      const reg = /^([0-9]+)(px|%|)$/;
+      debugger
+      if (reg.test(newVal)) {
+        const newVals = Array(4).fill(newVal);
+        store(name, newVals);
+      } else {
+        resetInputValue();
+      }
+    };
+    return (
+      <Input
+        className={styles.combination_input}
+        value={inputValue}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        bordered={false}
+      />
+    )
+  }
+  const Separation = ({ value: inputValues }) => inputValues?.map((inputValue, idx) => {
+    const handleBlur = (e) => {
+      const newInputValue = e.target.value
+      const newInputValues = inputValues.map((inputValue, idx2) => idx2 == idx ? newInputValue : inputValue);
+      store(name, newInputValues);
+    };
+    const handleFocus = (e) => {
+      setCurIdx(idx + 1)
+    }
+    return (
+      <Input
+        className={styles.separation_input}
+        defaultValue={inputValue}
+        onBlur={handleBlur}
+        onFocus={handleFocus}
+        bordered={false}
+        key={idx}
+      />
+    )
+  })
+  const inputs = locked ? <Combination value={inputValue} /> : <Separation value={value} />
 
   return (
-    <div className={styles.container}>
-      <div className={styles.input_wrap}>
-        <Tooltip title={title}>
-          <Icon className={styles.icon} />
-        </Tooltip>
-        {disconnect ? (
-          <Input
-            className={styles.input}
-            bordered={false}
-            value={inputValue}
-            onChange={handleSingleChange}
-            onBlur={handleSingleBlur}
-          />
-        ) : (
-          <>
-            {value?.map((item, index) => (
-              <InputItem
-                key={index}
-                index={index}
-                defaultValue={item}
-                onBlur={handleItemBlur}
-                onFocus={() => {
-                  setIndex(index);
-                }}
-              />
-            ))}
-          </>
-        )}
-        <SplitIcon
-          style={{ position: 'absolute', right: 0, top: 6 }}
-          disconnect={disconnect}
-          handleDisconnect={handleDisconnect}
-        />
-      </div>
+    <div className={styles.wrapper}>
+      {prefix}
+      {inputs}
+      {lock}
     </div>
-  );
+  )
 };

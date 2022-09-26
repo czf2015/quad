@@ -60,7 +60,7 @@ export default ({
   };
 
   const handleEyes = () => {
-    const arr = stroke?.map((item) => ({ ...item, none: !openEyes }));
+    const arr = stroke?.map((item) => ({ ...item, none: closeEyes }));
     store('stroke', arr);
     setCloseEyes((pre) => !pre);
   };

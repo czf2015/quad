@@ -1,6 +1,11 @@
 // @ts-nocheck
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 
+/* webssh */
+// import Terminal from '@/components/Terminal';
+// import Login from '@/components/Login';
+// import { useToggle } from '@/hooks';
+// import { PageService } from '@/services';
 
 /* Webssh */
 // import Terminal from '@/components/Terminal';
@@ -29,8 +34,32 @@ import React, { useState} from 'react';
 
 
 /* Uppy */
-import Uppy from '@/components/Uppy'
+// import Uppy from '@/components/Uppy'
+
+// export default () => {
+//   return <Uppy />
+// }
+
+
+/* contenteditable */
+// import styles from './index.module.less'
+// export default ({ wrap }) => {
+//   return <div contentEditable="true" className={styles.textarea} wrap={wrap}>contenteditable</div>
+// }
+
+/* RichTextEditor */
+// import RichTextEditor from '@/components/RichTextEditor';
+
+// export default () => {
+//   return <RichTextEditor />
+// }
+
+
+/* SvgEditor */
+import SvgEditor from '@/components/SvgEditor';
+import { useKeyboard } from '@/hooks';
 
 export default () => {
-  return <Uppy />
+  useKeyboard()
+  return <SvgEditor style={{ backgroundColor: '#ccc' }} />
 }

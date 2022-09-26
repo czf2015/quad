@@ -1,27 +1,34 @@
 // @ts-nocheck
 import React from 'react';
-import { Tooltip } from 'antd';
-import { BorderOuterOutlined } from '@ant-design/icons';
 import CustomInput from './partials/CustomInput';
 import BoxSize from './partials/BoxSize';
-import { splitsConfig, sizeConfig } from './helper';
+import {
+  RadiusUpleftOutlined,
+  RadiusUprightOutlined,
+  RadiusBottomrightOutlined,
+  RadiusBottomleftOutlined,
+  BorderTopOutlined,
+  BorderRightOutlined,
+  BorderBottomOutlined,
+  BorderLeftOutlined
+} from '@ant-design/icons'
+import { MarginIcon, PaddingIcon, BorderRadiusIcon } from './icons';
 import styles from './index.module.less';
 
 export const BoxModel = ({
+  title = "盒子",
   store,
-  width = 400,
-  height = 300,
   margin = ['0px', '0px', '0px', '0px'],
   padding = ['0px', '0px', '0px', '0px'],
   borderRadius = ['0px', '0px', '0px', '0px'],
 }) => {
   return (
     <div className={styles.box}>
-      <h4 className={styles.title}>盒子</h4>
-      <BoxSize store={store} sizeConfig={sizeConfig} width={width} height={height} />
-      {splitsConfig(margin, padding, borderRadius)?.map((item, index) => (
-        <CustomInput key={index} store={store} {...item} />
-      ))}
+      <h4 className={styles.title}>{title}</h4>
+      <BoxSize store={store} />
+      <CustomInput store={store} name="margin" value={margin} icons={[MarginIcon, BorderTopOutlined, BorderRightOutlined, BorderBottomOutlined, BorderLeftOutlined]} />
+      <CustomInput store={store} name="padding" value={padding} icons={[PaddingIcon, BorderTopOutlined, BorderRightOutlined, BorderBottomOutlined, BorderLeftOutlined]} />
+      <CustomInput store={store} name="borderRadius" value={borderRadius} icons={[BorderRadiusIcon, RadiusUpleftOutlined, RadiusUprightOutlined, RadiusBottomrightOutlined, RadiusBottomleftOutlined]} />
     </div>
   );
 };
