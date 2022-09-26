@@ -60,6 +60,11 @@ export const getKeyboard = (e) => {
   }
 }
 
+export const getPropertyValue = (xml, reg, defaultValue) => {
+  const match = xml.match(reg);
+  return match && match[1] ? parseInt(match[1], 10) : defaultValue;
+}
+
 // 原文链接：https://blog.csdn.net/allway2/article/details/121127806
 /**
 * converts an svg string to base64 png using the domUrl
@@ -68,22 +73,19 @@ export const getKeyboard = (e) => {
 * @param {string} [fill] optionally backgrund canvas fill
 * @return {Promise} a promise to the bas64 png image
 */
-export const convertSvgToPng = function (svgText, margin, fill) {
+export const convertSvgToPng = function (svgText, fill, margin = 0) {
   // convert an svg text to png using the browser
   return new Promise(function (resolve, reject) {
     try {
       // can use the domUrl function from the browser
-      var domUrl = window.URL || window.webkitURL || window;
+      const domUrl = window.URL || window.webkitURL || window;
       if (!domUrl) {
         throw new Error("(browser doesnt support this)")
       }
 
       // figure out the height and width from svg text
-      var match = svgText.match(/height=\"(\d+)/m);
-      var height = match && match[1] ? parseInt(match[1], 10) : 200;
-      var match = svgText.match(/width=\"(\d+)/m);
-      var width = match && match[1] ? parseInt(match[1], 10) : 200;
-      margin = margin || 0;
+      const width = getPropertyValue(svgText, /width=\"(\d+)/m, 200)
+      const height = getPropertyValue(svgText, /height=\"(\d+)/m, 200)
 
       // it needs a namespace
       if (!svgText.match(/xmlns=\"/mi)) {
@@ -91,22 +93,22 @@ export const convertSvgToPng = function (svgText, margin, fill) {
       }
 
       // create a canvas element to pass through
-      var canvas = document.createElement("canvas");
+      const canvas = document.createElement("canvas");
       canvas.width = height + margin * 2;
       canvas.height = width + margin * 2;
-      var ctx = canvas.getContext("2d");
+      const ctx = canvas.getContext("2d");
 
 
       // make a blob from the svg
-      var svg = new Blob([svgText], {
+      const svg = new Blob([svgText], {
         type: "image/svg+xml;charset=utf-8"
       });
 
       // create a dom object for that image
-      var url = domUrl.createObjectURL(svg);
+      const url = domUrl.createObjectURL(svg);
 
       // create a new image to hold it the converted type
-      var img = new Image;
+      const img = new Image;
 
       // when the image is loaded we can get it as base64 url
       img.onload = function () {
@@ -115,10 +117,10 @@ export const convertSvgToPng = function (svgText, margin, fill) {
 
         // if it needs some styling, we need a new canvas
         if (fill) {
-          var styled = document.createElement("canvas");
+          const styled = document.createElement("canvas");
           styled.width = canvas.width;
           styled.height = canvas.height;
-          var styledCtx = styled.getContext("2d");
+          const styledCtx = styled.getContext("2d");
           styledCtx.save();
           styledCtx.fillStyle = fill;
           styledCtx.fillRect(0, 0, canvas.width, canvas.height);
