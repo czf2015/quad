@@ -31,7 +31,7 @@ const resize = ({ term, container }) => {
   );
 }
 
-const session_id = 'akjgi7cu6nyj53y'
+const session_id = 'xb4ro3k1dgl9dk6'
 
 export default ({
   options = {
@@ -50,7 +50,7 @@ export default ({
     cursorStyle: "block", // 光标样式  null | 'block' | 'underline' | 'bar'
     scrollback: 800, //回滚
   },
-  socket = `ws://121.4.112.248:8899/ws/ssh?h=16&w=150&session_id=${session_id}`,
+  socket = `ws://121.4.112.248:8080/ws/ssh?h=16&w=150&session_id=${session_id}`,
 }) => {
   const terminalContainerRef = useRef(null)
 

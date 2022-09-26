@@ -14,7 +14,8 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, 'src')
+      '@': path.resolve(__dirname, 'src'),
+
     }
   },
   server: {
@@ -27,17 +28,23 @@ export default defineConfig({
         secure: false
       },
       '/api/getSessionId': {
-        target: 'http://121.4.112.248:8899',
+        target: 'http://121.4.112.248:8080',
         ws: true,
         changeOrigin: true,
         secure: false
       },
       '/ws/ssh': {
-        target: 'ws://121.4.112.248:8899',
+        target: 'ws://121.4.112.248:8080',
         ws: true,
         changeOrigin: true,
         secure: false
-      }
+      },
+      '/big/upload':  {
+        target: 'http://10.1.100.103:8888',
+        ws: true,
+        changeOrigin: true,
+        secure: false
+      },
     }
   }
 })
