@@ -19,7 +19,7 @@ export default ({ width = 300, height = 150, viewBox = `0 0 ${width} ${height}`,
       </svg>
       {/*  */}
       <svg className={styles.svg} width={width} height={height} viewBox={viewBox} style={style}>
-        <image className={styles.svg_image} /* xlink: */ href="http://img.alicdn.com/tps/i4/TB1sLIsGXXXXXb6XFXX1aiKJFXX-4-7.png" x="0" y="0" height="100" width="100" style={{ outline: "2px solid red" }} />
+        <image className={styles.svg_image} /* xlink: */ href="https://devnote.pro/assets/images/pen.gif" x="0" y="0" height="100" width="100" style={{ outline: "2px solid red" }} />
       </svg>
       <svg className={styles.svg} width={width} height={height} viewBox={viewBox} style={style}>
         <foreignObject width="40" height="50"
