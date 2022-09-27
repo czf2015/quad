@@ -8,28 +8,28 @@ const getParsedModule = (code) => {
   let module = {
     exports: {},
   }
-  const require = (name) => {
-    return packages[name]
+  const require = (url) => {
+    return packages[url]
   }
   Function('require, exports, module', code)(require, module.exports, module)
   return module
 }
 
-const fetchComponent = async (name) => {
-  const text = await fetch(name).then((a) => {
+const fetchComponent = async (url) => {
+  const text = await fetch(url).then((a) => {
     if (!a.ok) {
       throw new Error('Network response was not ok')
     }
     return a.text()
   })
-  const module = getParsedModule(text, name)
+  const module = getParsedModule(text, url)
   return {default: module.exports}
 }
 
-const DynamicComponent = ({name, children, ...props}) => {
+const DynamicComponent = ({url, children, ...props}) => {
   const Component = useMemo(() => {
-    return React.lazy(async () => fetchComponent(name))
-  }, [name])
+    return React.lazy(async () => fetchComponent(url))
+  }, [url])
 
   return (
     <Suspense

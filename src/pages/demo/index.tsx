@@ -74,7 +74,7 @@ export const sayHello = () => {
 
 export default () => {
   debugger
-  return <DynamicComponent name={
+  return <DynamicComponent url={
     `http://127.0.0.1:8080/packages/Button.jsx?version=1`
   }>Click Me</DynamicComponent>
 }
