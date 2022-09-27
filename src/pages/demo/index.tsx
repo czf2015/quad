@@ -68,6 +68,13 @@ import React, { useState } from 'react';
 /* DynamicComponent */
 import DynamicComponent from '@/components/DynamicComponent';
 
+export const sayHello = () => {
+  console.log('hello111')
+}
+
 export default () => {
-  return <DynamicComponent name='Button'>Click Me</DynamicComponent>
+  debugger
+  return <DynamicComponent name={
+    `http://127.0.0.1:8080/packages/Button.jsx?version=1`
+  }>Click Me</DynamicComponent>
 }

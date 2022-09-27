@@ -93,7 +93,7 @@ export const convertSvgToPng = function (svgText, fill, margin = 0) {
       }
 
       // create a canvas element to pass through
-      const canvas = document.createElement("canvas");
+      let canvas = document.createElement("canvas");
       canvas.width = height + margin * 2;
       canvas.height = width + margin * 2;
       const ctx = canvas.getContext("2d");

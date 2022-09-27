@@ -16,9 +16,7 @@ const getParsedModule = (code) => {
 }
 
 const fetchComponent = async (name) => {
-  const text = await fetch(
-    `http://127.0.0.1:8080/${name}.js?version=1`
-  ).then((a) => {
+  const text = await fetch(name).then((a) => {
     if (!a.ok) {
       throw new Error('Network response was not ok')
     }
