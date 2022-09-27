@@ -43,10 +43,18 @@ import React, { useState } from 'react';
 
 
 /* SvgEditor */
-import SvgEditor from '@/components/SvgEditor';
-import { useKeyboard } from '@/hooks';
+// import SvgEditor from '@/components/SvgEditor';
+// import { useKeyboard } from '@/hooks';
+
+// export default () => {
+//   useKeyboard()
+//   return <SvgEditor style={{ backgroundColor: '#ccc' }} />
+// }
+
+
+/* DynamicComponent */
+import DynamicComponent from '@/components/DynamicComponent';
 
 export default () => {
-  useKeyboard()
-  return <SvgEditor style={{ backgroundColor: '#ccc' }} />
+  return <DynamicComponent name='Button'>Click Me</DynamicComponent>
 }
