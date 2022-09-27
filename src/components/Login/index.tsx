@@ -1,7 +1,7 @@
 // @ts-nocheck
 import React from 'react';
-import { LockOutlined, UserOutlined, DesktopOutlined } from '@ant-design/icons';
-import { Button, Checkbox, Form, Input } from 'antd';
+// import { LockOutlined, UserOutlined, DesktopOutlined } from '@ant-design/icons';
+import { Button, /* Checkbox,  */Form, Input } from 'antd';
 import styles from './index.module.less'
 
 export default ({
@@ -24,6 +24,7 @@ export default ({
       onFinish={handleFinish}
     >
       <Form.Item
+        label="IP"
         name="address"
         rules={[
           {
@@ -32,10 +33,14 @@ export default ({
           },
         ]}
       >
-        <Input prefix={<DesktopOutlined className="site-form-item-icon" />} placeholder="IP" />
+        <Input
+          // prefix={<DesktopOutlined className="site-form-item-icon" />}
+          // placeholder="IP"
+        />
       </Form.Item>
       <Form.Item
         name="port"
+        label="端口"
         rules={[
           {
             required: true,
@@ -43,10 +48,14 @@ export default ({
           },
         ]}
       >
-        <Input prefix={<DesktopOutlined className="site-form-item-icon" />} placeholder="IP" />
+        <Input
+          // prefix={<DesktopOutlined className="site-form-item-icon" />}
+          // placeholder="端口"
+        />
       </Form.Item>
       <Form.Item
         name="user"
+        label="账号"
         rules={[
           {
             required: true,
@@ -54,10 +63,14 @@ export default ({
           },
         ]}
       >
-        <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
+        <Input
+          // prefix={<UserOutlined className="site-form-item-icon" />}
+          // placeholder="Username"
+        />
       </Form.Item>
       <Form.Item
         name="pwd"
+        label="密码"
         rules={[
           {
             required: true,
@@ -66,12 +79,12 @@ export default ({
         ]}
       >
         <Input
-          prefix={<LockOutlined className="site-form-item-icon" />}
           type="password"
-          placeholder="Password"
+          // prefix={<LockOutlined className="site-form-item-icon" />}
+          // placeholder="Password"
         />
       </Form.Item>
-      <Form.Item>
+      {/* <Form.Item>
         <Form.Item name="remember" valuePropName="checked" noStyle>
           <Checkbox>Remember me</Checkbox>
         </Form.Item>
@@ -79,13 +92,13 @@ export default ({
         <a className={styles["login-form-forgot"]} href="">
           Forgot password
         </a>
-      </Form.Item>
+      </Form.Item> */}
 
       <Form.Item>
         <Button type="primary" htmlType="submit" className={styles["login-form-button"]}>
-          Log in
+          连接
         </Button>
-        Or <a href="">register now!</a>
+        {/* Or <a href="">register now!</a> */}
       </Form.Item>
     </Form>
   );

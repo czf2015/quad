@@ -10,6 +10,9 @@
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
     "@loadable/component": "^5.15.2",
+    "@uppy/core": "^3.0.1",
+    "@uppy/dashboard": "^3.0.1",
+    "@uppy/tus": "^3.0.1",
     "antd": "^4.21.7",
     "antd-img-crop": "^4.2.3",
     "axios": "^0.27.2",

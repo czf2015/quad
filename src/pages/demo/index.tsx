@@ -7,6 +7,12 @@ import React, { useState } from 'react';
 // import { useToggle } from '@/hooks';
 // import { PageService } from '@/services';
 
+/* Webssh */
+// import Terminal from '@/components/Terminal';
+// import Login from '@/components/Login';
+// import { useToggle } from '@/hooks';
+// import { PageService } from '@/services';
+
 // export default () => {
 //   const [visible, toggleVisible] = useToggle(false)
 //   const [socketURL, setSocketURL] = useState()
@@ -15,7 +21,7 @@ import React, { useState } from 'react';
 //     PageService.getSessionId(values).then(res => {
 //       toggleVisible()
 //       const session_id = res.data
-//       setSocketURL(`ws://121.4.112.248:8899/ws/ssh?h=16&w=150&session_id=${session_id}`)
+//       setSocketURL(`ws://121.4.112.248:8080/ws/ssh?h=16&w=150&session_id=${session_id}`)
 //     })
 //   }
 
@@ -27,9 +33,16 @@ import React, { useState } from 'react';
 // };
 
 
+/* Uppy */
+// import Uppy from '@/components/Uppy'
+
+// export default () => {
+//   return <Uppy />
+// }
+
+
 /* contenteditable */
 // import styles from './index.module.less'
-
 // export default ({ wrap }) => {
 //   return <div contentEditable="true" className={styles.textarea} wrap={wrap}>contenteditable</div>
 // }
